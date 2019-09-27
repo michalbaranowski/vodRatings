@@ -1,0 +1,11 @@
+.vs/
+vod.Core.Boundary/bin/
+vod.Core.Boundary/obj/
+vod.Core/bin/
+vod.Core/obj/
+vod.Domain.Services.Boundary/bin/
+vod.Domain.Services.Boundary/obj/
+vod.Domain.Services/bin/
+vod.Domain.Services/obj/
+vodApi/bin/
+vodApi/obj/
