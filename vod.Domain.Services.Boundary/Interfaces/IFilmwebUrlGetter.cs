@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using vod.Core.Boundary.Model;
 using vod.Domain.Services.Boundary.Models;
 
 namespace vod.Domain.Services.Boundary.Interfaces
 {
-    public interface IFilmwebService
+    public interface IFilmwebUrlGetter
     {
-        Result CheckInFilmweb(Movie movie);
+        string GetFilmwebUrl(Movie movie);
     }
 }

@@ -25,7 +25,7 @@ namespace vod.Core
         public IEnumerable<Result> GetResults()
         {
             var ncPlusResult = _ncPlusService.GetMoviesOfType(MovieTypes.Thriller).Result;
-            return ncPlusResult.Select(n => new Result() { Title = n.Title });
+            return ncPlusResult.Select(n => _filmwebService.CheckInFilmweb(n)).Where(n=>n!=null);
         }
     }
 }

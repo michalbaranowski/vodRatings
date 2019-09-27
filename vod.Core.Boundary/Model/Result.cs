@@ -8,6 +8,8 @@ namespace vod.Core.Boundary.Model
     {
         public string Title { get; set; }
         public decimal FilmwebRating { get; set; }
+        public int FilmwebRatingCount { get; set; }
         public byte[] Image { get; set; }
+        public int Year { get; set; }
     }
 }
