@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using vod.Core.Boundary;
 using vod.Core.Boundary.Model;
 using vod.Domain.Services.Boundary.Enums;
@@ -24,8 +23,13 @@ namespace vod.Core
 
         public IEnumerable<Result> GetResults()
         {
+            if (VodStorage.StorageDate > DateTime.Now.AddDays(-1) && VodStorage.StoredResults != null)
+                return VodStorage.StoredResults;
+
             var ncPlusResult = _ncPlusService.GetMoviesOfType(MovieTypes.Thriller).Result;
-            return ncPlusResult.Select(n => _filmwebService.CheckInFilmweb(n)).Where(n=>n!=null);
+            var results = ncPlusResult.Select(n => _filmwebService.CheckInFilmweb(n)).Where(n=>n!=null).ToList();
+            VodStorage.Store(results);
+            return results;
         }
     }
 }
