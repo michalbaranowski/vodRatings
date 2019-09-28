@@ -5,6 +5,7 @@ using System.Net;
 using HtmlAgilityPack;
 using vod.Core.Boundary.Model;
 using vod.Domain.Services.Boundary.Models;
+using vod.Domain.Services.Utils.HtmlSource.Extension;
 
 namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
 {
@@ -50,7 +51,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
                     n.Name == "h1" && n.Attributes.Contains("class") &&
                     n.Attributes["class"].Value.Contains("filmTitle")).FirstOrDefault();
 
-            var title = titleH1?.Descendants().FirstOrDefault(n => n.Name == "a")?.Attributes["title"].Value;
+            var title = titleH1?.Descendants().FirstOrDefault(n => n.Name == "a")?.Attributes["title"].Value.FixPlLetters();
             var year = titleH1?.Descendants().FirstOrDefault(n => n.Name == "span")?.InnerHtml
                 .Replace("(", string.Empty).Replace(")", string.Empty);
 

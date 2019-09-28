@@ -32,7 +32,6 @@ namespace vod.Domain.Services
 
             var filmwebHtml = _sourceGetter.GetHtmlFrom(filmwebUrl).Result;
             var result = _sourceDeserializer.DeserializeFilmwebResult(filmwebHtml);
-            result.Image = movie.Image;
             return result;
         }
 
