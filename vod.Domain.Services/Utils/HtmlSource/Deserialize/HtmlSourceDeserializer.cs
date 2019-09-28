@@ -15,6 +15,9 @@ namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
         {
             var divs = html.DocumentNode.Descendants("div")
                 .Where(x => x.Attributes.Contains("title"));
+            var provider = html.DocumentNode.Descendants().FirstOrDefault(n =>
+                    n.Name == "h1" && n.Attributes.Contains("class") && n.Attributes["class"].Value == "page__title")?
+                .InnerHtml.Trim();
 
             return divs.Select(n =>
                     new Movie()
@@ -24,7 +27,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
                             .Value
                             .Replace("(HD)", string.Empty)
                             .Replace("(SD)", ""),
-                        
+                        ProviderName = provider,
                         MoreInfoUrl = n.Descendants().Where(x=>x.Name == "a" && x.Attributes.Contains("href"))?.FirstOrDefault()?.Attributes["href"].Value
                     });
         }

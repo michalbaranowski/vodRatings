@@ -35,10 +35,17 @@ namespace vod.Domain.Services
             var cplusHtml = await _sourceGetter.GetHtmlFrom(NcPlusUrls.VodCplusBaseUrl);
             var cplusResult = _deserializer.DeserializeMovies(cplusHtml);
 
+            var premieryHtml = await _sourceGetter.GetHtmlFrom(NcPlusUrls.VodPremieryBaseUrl);
+            var premieryResult = _deserializer.DeserializeMovies(premieryHtml);
+
             var hboHtml = await _sourceGetter.GetHtmlFrom(NcPlusUrls.VodHboBaseUrl);
             var hboResult = _deserializer.DeserializeMovies(hboHtml);
 
-            var result = cplusResult.Concat(hboResult).DistinctBy(n=>n.Title);
+            var result = cplusResult
+                .Concat(hboResult)
+                .Concat(premieryResult)
+                .DistinctBy(n=>n.Title);
+
             return result;
         }
     }

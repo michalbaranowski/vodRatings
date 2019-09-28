@@ -11,5 +11,6 @@ namespace vod.Core.Boundary.Model
         public int FilmwebRatingCount { get; set; }
         public byte[] Image { get; set; }
         public int Year { get; set; }
+        public string ProviderName { get; set; }
     }
 }
