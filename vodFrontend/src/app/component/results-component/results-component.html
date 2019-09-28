@@ -1,0 +1,6 @@
+<div *ngIf="loading">
+    <button class="button is-primary is-large is-loading"></button>
+</div>
+<div class="columns is-gapless is-multiline is-mobile">
+    <div *ngFor="let item of results" class="column is-one-quarter">{{item.title}} [{{item.year}} rok] (Ocena: {{item.filmwebRating}} - {{item.filmwebRatingCount}} ocen)</div>
+</div>

@@ -23,7 +23,8 @@ namespace vod.Core
 
         public IEnumerable<Result> GetResults()
         {
-            if (VodStorage.StorageDate > DateTime.Now.AddDays(-1) && VodStorage.StoredResults != null)
+            if (VodStorage.StorageDate > DateTime.Now.AddDays(-1) 
+                && VodStorage.StoredResults != null && VodStorage.StoredResults.Any())
                 return VodStorage.StoredResults;
 
             var ncPlusResult = _ncPlusService.GetMoviesOfType(MovieTypes.Thriller).Result;
