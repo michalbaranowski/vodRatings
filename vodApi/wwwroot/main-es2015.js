@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"loading\">\r\n    <button class=\"button is-primary is-large is-loading\"></button>\r\n</div>\r\n<div class=\"columns is-gapless is-multiline is-mobile\">\r\n    <div *ngFor=\"let item of results\" class=\"column is-one-quarter\">{{item.title}}</div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"loading\">\r\n    <button class=\"button is-primary is-large is-loading\"></button>\r\n</div>\r\n<div class=\"columns is-gapless is-multiline is-mobile\">\r\n    <div *ngFor=\"let item of results\" class=\"column is-one-quarter\">{{item.title}} [{{item.year}} rok] (Ocena: {{item.filmwebRating}} - {{item.filmwebRatingCount}} ocen)</div>\r\n</div>");
 
 /***/ }),
 
