@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using vod.Core.Boundary.Model;
-using vod.Domain.Services.Boundary;
+﻿using vod.Core.Boundary.Model;
 using vod.Domain.Services.Boundary.Interfaces;
 using vod.Domain.Services.Boundary.Models;
 using vod.Domain.Services.Utils;
+using vod.Domain.Services.Utils.HtmlSource;
 using vod.Domain.Services.Utils.HtmlSource.Deserialize;
 
 namespace vod.Domain.Services

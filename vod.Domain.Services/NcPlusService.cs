@@ -1,18 +1,12 @@
-﻿using HtmlAgilityPack;
-using MoreLinq;
-using System;
+﻿using MoreLinq;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
-using vod.Domain.Services.Boundary;
-using vod.Domain.Services.Boundary.Enums;
 using vod.Domain.Services.Boundary.Interfaces;
+using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
 using vod.Domain.Services.Utils;
+using vod.Domain.Services.Utils.HtmlSource;
 using vod.Domain.Services.Utils.HtmlSource.Deserialize;
 
 namespace vod.Domain.Services

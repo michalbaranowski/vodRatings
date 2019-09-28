@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace vod.Domain.Services.Utils
+﻿namespace vod.Domain.Services.Utils
 {
     public static class FilmwebUrls
     {

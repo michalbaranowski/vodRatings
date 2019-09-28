@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using vod.Core.Boundary;
 using vod.Core.Boundary.Model;
-using vod.Domain.Services.Boundary.Enums;
 using vod.Domain.Services.Boundary.Interfaces;
+using vod.Domain.Services.Boundary.Interfaces.Enums;
 
 namespace vod.Core
 {

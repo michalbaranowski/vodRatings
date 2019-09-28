@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace vod.Core.Boundary.Model
+﻿namespace vod.Core.Boundary.Model
 {
     public class Result
     {

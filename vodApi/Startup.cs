@@ -8,6 +8,7 @@ using vod.Core.Boundary;
 using vod.Domain.Services;
 using vod.Domain.Services.Boundary.Interfaces;
 using vod.Domain.Services.Utils;
+using vod.Domain.Services.Utils.HtmlSource;
 using vod.Domain.Services.Utils.HtmlSource.Deserialize;
 
 namespace vodApi

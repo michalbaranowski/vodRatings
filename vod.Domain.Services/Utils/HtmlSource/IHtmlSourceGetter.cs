@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using HtmlAgilityPack;
 
-namespace vod.Domain.Services.Utils
+namespace vod.Domain.Services.Utils.HtmlSource
 {
     public interface IHtmlSourceGetter
     {
