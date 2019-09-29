@@ -9,3 +9,7 @@ vod.Domain.Services/bin/
 vod.Domain.Services/obj/
 vodApi/bin/
 vodApi/obj/
+vod.Repository/obj/
+vod.Repository/bin/
+vod.Repository.Boundary/obj/
+vod.Repository.Boundary/bin/

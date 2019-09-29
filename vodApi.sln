@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vodApi", "vodApi\vodApi.csproj", "{9B554220-E563-40C8-91AE-AAA8DC8E31CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vodApi", "vodApi\vodApi.csproj", "{9B554220-E563-40C8-91AE-AAA8DC8E31CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vod.Domain.Services", "vod.Domain.Services\vod.Domain.Services.csproj", "{520D0664-F37C-4921-93A5-6B55DE16E42C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vod.Domain.Services", "vod.Domain.Services\vod.Domain.Services.csproj", "{520D0664-F37C-4921-93A5-6B55DE16E42C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vod.Domain.Services.Boundary", "vod.Domain.Services.Boundary\vod.Domain.Services.Boundary.csproj", "{7CA4EFC0-F3B9-42AA-BB2A-35425D86AC70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vod.Domain.Services.Boundary", "vod.Domain.Services.Boundary\vod.Domain.Services.Boundary.csproj", "{7CA4EFC0-F3B9-42AA-BB2A-35425D86AC70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vod.Core", "vod.Core\vod.Core.csproj", "{8A1033DF-6094-4721-B0C2-E806F8151352}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vod.Core", "vod.Core\vod.Core.csproj", "{8A1033DF-6094-4721-B0C2-E806F8151352}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vod.Core.Boundary", "vod.Core.Boundary\vod.Core.Boundary.csproj", "{C65B22B2-D968-4105-B1A5-3DEC066AF31A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vod.Core.Boundary", "vod.Core.Boundary\vod.Core.Boundary.csproj", "{C65B22B2-D968-4105-B1A5-3DEC066AF31A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vod.Repository", "vod.Repository\vod.Repository.csproj", "{36B89E44-0658-4559-BE9E-D87F2169CA9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vod.Repository.Boundary", "vod.Repository.Boundary\vod.Repository.Boundary.csproj", "{B3F0C0C4-D5B5-453B-9B86-C6EF01F89C75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{C65B22B2-D968-4105-B1A5-3DEC066AF31A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C65B22B2-D968-4105-B1A5-3DEC066AF31A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C65B22B2-D968-4105-B1A5-3DEC066AF31A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36B89E44-0658-4559-BE9E-D87F2169CA9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36B89E44-0658-4559-BE9E-D87F2169CA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36B89E44-0658-4559-BE9E-D87F2169CA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36B89E44-0658-4559-BE9E-D87F2169CA9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3F0C0C4-D5B5-453B-9B86-C6EF01F89C75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3F0C0C4-D5B5-453B-9B86-C6EF01F89C75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3F0C0C4-D5B5-453B-9B86-C6EF01F89C75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3F0C0C4-D5B5-453B-9B86-C6EF01F89C75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

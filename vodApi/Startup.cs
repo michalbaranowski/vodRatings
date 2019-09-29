@@ -1,15 +1,17 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using vod.Core;
 using vod.Core.Boundary;
 using vod.Domain.Services;
 using vod.Domain.Services.Boundary.Interfaces;
-using vod.Domain.Services.Utils;
 using vod.Domain.Services.Utils.HtmlSource;
 using vod.Domain.Services.Utils.HtmlSource.Deserialize;
+using vod.Repository;
+using vod.Repository.Boundary;
 
 namespace vodApi
 {
@@ -25,8 +27,14 @@ namespace vodApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("VodConnection"));
+            });
+            services.AddTransient<IAppDbContext, AppDbContext>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddHttpClient();
+            services.AddTransient<IVodRepository, VodRepository>();
             services.AddTransient<INcPlusService, NcPlusService>();
             services.AddTransient<IFilmwebService, FilmwebService>();
             services.AddTransient<IHtmlSourceGetter, HtmlSourceGetter>();
