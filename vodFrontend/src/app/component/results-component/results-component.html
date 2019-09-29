@@ -3,19 +3,19 @@
 </div>
 
 <div class="columns is-gapless is-multiline is-mobile">
-    <div *ngFor="let item of results" class="column is-one-third">
+    <div *ngFor="let item of results" class="column is-one-third-desktop is-half-tablet is-full-mobile">
         <!-- <app-movie [item]=item></app-movie> -->
 
         <div class="tile is-parent">
-            <article class="tile is-child notification is-dark">
-                <p class="title">{{item.title}}</p>
+            <article class="tile is-child notification is-dark is-mobile">
+                <p class="title">{{item.title}} ({{item.year}})</p>
                 <p class="subtitle">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>
                 <p class="subtitle">Kolekcja: {{item.providerName}}</p>
-                <figure *ngIf="!item.imageUrl" class="image is-4by3">
+                <figure *ngIf="!item.imageUrl" class="image is-3by4">
                     <img src="https://bulma.io/images/placeholders/640x480.png">
                 </figure>
 
-                <figure *ngIf="item.imageUrl" class="image is-4by3">
+                <figure *ngIf="item.imageUrl" class="image is-4by3 is-mobile">
                     <img src="{{item.imageUrl}}">
                 </figure>
             </article>

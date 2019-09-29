@@ -32,7 +32,7 @@ namespace vod.Core
                 var ncPlusResult = _ncPlusService.GetMoviesOfType(MovieTypes.Thriller).Result;
                 var results = ncPlusResult.Select(n => _filmwebService.CheckInFilmweb(n)).Where(n => n != null).ToList();
                 return results;
-            });
+            }).OrderByDescending(n=>n.FilmwebRating);
         }
     }
 }
