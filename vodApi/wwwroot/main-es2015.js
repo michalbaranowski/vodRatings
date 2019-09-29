@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"loading\">\r\n    <button class=\"button is-primary is-large is-loading\"></button>\r\n</div>\r\n<div class=\"columns is-gapless is-multiline is-mobile\">\r\n    <div *ngFor=\"let item of results\" class=\"column is-one-quarter\">{{item.title}} [{{item.year}} rok] (Ocena: {{item.filmwebRating}} - {{item.filmwebRatingCount}} ocen)</div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"loading\">\r\n    <button class=\"button is-primary is-large is-loading\"></button>\r\n</div>\r\n\r\n<div class=\"columns is-gapless is-multiline is-mobile\">\r\n    <div *ngFor=\"let item of results\" class=\"column is-one-third\">\r\n        <!-- <app-movie [item]=item></app-movie> -->\r\n\r\n        <div class=\"tile is-parent\">\r\n            <article class=\"tile is-child notification is-dark\">\r\n                <p class=\"title\">{{item.title}}</p>\r\n                <p class=\"subtitle\">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>\r\n                <p class=\"subtitle\">Kolekcja: {{item.providerName}}</p>\r\n                <figure *ngIf=\"!item.imageUrl\" class=\"image is-4by3\">\r\n                    <img src=\"https://bulma.io/images/placeholders/640x480.png\">\r\n                </figure>\r\n\r\n                <figure *ngIf=\"item.imageUrl\" class=\"image is-4by3\">\r\n                    <img src=\"{{item.imageUrl}}\">\r\n                </figure>\r\n            </article>\r\n        </div>\r\n    </div>\r\n</div>");
 
 /***/ }),
 
