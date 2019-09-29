@@ -14,9 +14,12 @@ namespace vod.Repository
             _context.EnsureCreated();
         }
 
-        public void SaveData(IEnumerable<ResultModel> results)
+        public void RefreshData(IEnumerable<ResultModel> results)
         {
-            _context.AddRange(results);
+            _context.Results.RemoveRange(_context.Results);
+            _context.SaveChanges();
+
+            _context.Results.AddRange(results);
             _context.SaveChanges();
         }
 

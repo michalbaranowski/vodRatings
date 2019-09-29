@@ -15,12 +15,12 @@ namespace vod.Core
 
             if (storedCollection.Any() &&
                 storedCollection.FirstOrDefault()?.StoredDate > DateTime.Now.AddDays(-1))
-                return storedCollection.Select(n => new Result() { Title = n.Title, FilmwebRating = n.FilmwebRating, FilmwebRatingCount = n.FilmwebRatingCount, ProviderName = n.ProviderName, Year = n.Year });
+                return storedCollection.Select(n => new Result() { Title = n.Title, FilmwebRating = n.FilmwebRating, FilmwebRatingCount = n.FilmwebRatingCount, ProviderName = n.ProviderName, Year = n.Year, ImageUrl = n.ImageUrl});
 
             var results = func().ToList();
 
-            var entities = results.Select(n => new ResultModel() { Title = n.Title, FilmwebRating = n.FilmwebRating, FilmwebRatingCount = n.FilmwebRatingCount, ProviderName = n.ProviderName, Year = n.Year});
-            repository.SaveData(entities);
+            var entities = results.Select(n => new ResultModel() { Title = n.Title, FilmwebRating = n.FilmwebRating, FilmwebRatingCount = n.FilmwebRatingCount, ProviderName = n.ProviderName, Year = n.Year, ImageUrl = n.ImageUrl});
+            repository.RefreshData(entities);
             return results;
         }
     }

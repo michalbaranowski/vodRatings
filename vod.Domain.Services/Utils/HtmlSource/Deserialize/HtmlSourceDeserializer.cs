@@ -57,7 +57,18 @@ namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
             var year = titleH1?.Descendants().FirstOrDefault(n => n.Name == "span")?.InnerHtml
                 .Replace("(", string.Empty).Replace(")", string.Empty);
 
-            return new Result() {FilmwebRating = Convert.ToDecimal(rate), FilmwebRatingCount  = Convert.ToInt32(rateCount), Title = title, Year = Convert.ToInt32(year)};
+            var imageUrl = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n =>
+                n.Name == "img" && n.Attributes.Contains("alt") && n.Attributes.Contains("itemprop") &&
+                n.Attributes["itemprop"].Value == "image")?.Attributes["src"].Value;
+
+            return new Result()
+            {
+                FilmwebRating = Convert.ToDecimal(rate),
+                FilmwebRatingCount  = Convert.ToInt32(rateCount),
+                Title = title,
+                Year = Convert.ToInt32(year),
+                ImageUrl = imageUrl
+            };
         }
     }
 }

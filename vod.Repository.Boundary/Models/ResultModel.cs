@@ -14,7 +14,7 @@ namespace vod.Repository.Boundary.Models
         public string Title { get; set; }
         public decimal FilmwebRating { get; set; }
         public int FilmwebRatingCount { get; set; }
-        public byte[] Image { get; set; }
+        public string ImageUrl { get; set; }
         public int Year { get; set; }
         public string ProviderName { get; set; }
         public DateTime StoredDate = DateTime.Now;

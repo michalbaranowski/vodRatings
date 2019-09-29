@@ -6,4 +6,5 @@ export class Result {
     filmwebRatingCount: number;
     year: number;
     providerName: string;
+    imageUrl: any;
 }
