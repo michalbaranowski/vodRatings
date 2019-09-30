@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using HtmlAgilityPack;
-using vod.Core.Boundary.Model;
 using vod.Domain.Services.Boundary.Models;
 using vod.Domain.Services.Utils.HtmlSource.Extension;
 
@@ -38,7 +37,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
                 ?.Attributes["href"].Value;
         }
 
-        public Result DeserializeFilmwebResult(HtmlDocument filmwebHtml)
+        public FilmwebResult DeserializeFilmwebResult(HtmlDocument filmwebHtml)
         {
             var rate = filmwebHtml.DocumentNode.Descendants()?
                 .FirstOrDefault(n => n.Name == "span" && n.Attributes.Contains("itemprop") &&
@@ -61,7 +60,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
                 n.Name == "img" && n.Attributes.Contains("alt") && n.Attributes.Contains("itemprop") &&
                 n.Attributes["itemprop"].Value == "image")?.Attributes["src"].Value;
 
-            return new Result()
+            return new FilmwebResult()
             {
                 FilmwebRating = Convert.ToDecimal(rate),
                 FilmwebRatingCount  = Convert.ToInt32(rateCount),

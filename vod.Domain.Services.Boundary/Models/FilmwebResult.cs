@@ -1,22 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace vod.Repository.Boundary.Models
+namespace vod.Domain.Services.Boundary.Models
 {
-    [Table("Result")]
-    public class ResultModel
+    public class FilmwebResult
     {
-        [Key]
-        public int Id { get; set; }
         public string Title { get; set; }
         public decimal FilmwebRating { get; set; }
         public int FilmwebRatingCount { get; set; }
         public string ImageUrl { get; set; }
         public int Year { get; set; }
         public string ProviderName { get; set; }
-        public DateTime StoredDate { get; set; }
     }
 }

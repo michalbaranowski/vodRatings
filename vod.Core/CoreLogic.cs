@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using vod.Core.Boundary;
+using AutoMapper;
+using vod.Core.Boundary.Interfaces;
 using vod.Core.Boundary.Model;
 using vod.Domain.Services.Boundary.Interfaces;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
-using vod.Repository.Boundary;
-using static vod.Core.StoredDataManager;
 
 namespace vod.Core
 {
@@ -13,26 +12,30 @@ namespace vod.Core
     {
         private readonly IFilmwebService _filmwebService;
         private readonly INcPlusService _ncPlusService;
-        private readonly IVodRepository _repository;
+        private readonly IMapper _mapper;
+        private readonly IStoredDataManager _storedDataManager;
 
         public CoreLogic(
             IFilmwebService filmwebService,
             INcPlusService ncPlusService,
-            IVodRepository repository)
+            IMapper mapper,
+            IStoredDataManager storedDataManager)
         {
             _filmwebService = filmwebService;
             _ncPlusService = ncPlusService;
-            _repository = repository;
+            _mapper = mapper;
+            _storedDataManager = storedDataManager;
         }
 
-        public IEnumerable<Result> GetResults()
+        public IEnumerable<Result> GetResults(MovieTypes type)
         {
-            return UseStorageIfPossible(_repository, () =>
+            return _storedDataManager.UseStorageIfPossible(() =>
             {
-                var ncPlusResult = _ncPlusService.GetMoviesOfType(MovieTypes.Thriller).Result;
+                var ncPlusResult = _ncPlusService.GetMoviesOfType(type).Result;
                 var results = ncPlusResult.Select(n => _filmwebService.CheckInFilmweb(n)).Where(n => n != null).ToList();
                 return results;
-            }).OrderByDescending(n=>n.FilmwebRating);
+            }).OrderByDescending(n => n.FilmwebRating)
+                .Select(n => _mapper.Map<Result>(n)); ;
         }
     }
 }

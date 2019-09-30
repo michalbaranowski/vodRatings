@@ -1,5 +1,4 @@
-﻿using vod.Core.Boundary.Model;
-using vod.Domain.Services.Boundary.Interfaces;
+﻿using vod.Domain.Services.Boundary.Interfaces;
 using vod.Domain.Services.Boundary.Models;
 using vod.Domain.Services.Utils;
 using vod.Domain.Services.Utils.HtmlSource;
@@ -20,7 +19,7 @@ namespace vod.Domain.Services
             _sourceDeserializer = sourceDeserializer;
         }
 
-        public Result CheckInFilmweb(Movie movie)
+        public FilmwebResult CheckInFilmweb(Movie movie)
         {
             var filmwebUrl = GetFilmwebUrl(movie);
 

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\vod.Core.Boundary\vod.Core.Boundary.csproj" />
     <ProjectReference Include="..\vod.Domain.Services.Boundary\vod.Domain.Services.Boundary.csproj" />
     <ProjectReference Include="..\vod.Repository.Boundary\vod.Repository.Boundary.csproj" />

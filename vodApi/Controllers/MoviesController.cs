@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using vod.Core.Boundary;
+using vod.Core.Boundary.Interfaces;
+using vod.Domain.Services.Boundary.Interfaces.Enums;
 
 namespace vodApi.Controllers
 {
@@ -15,9 +17,9 @@ namespace vodApi.Controllers
         }
 
         [HttpGet]
-        public JsonResult Get()
+        public JsonResult Get(int filmType)
         {
-            return new JsonResult(_core.GetResults());
+            return new JsonResult(_core.GetResults((MovieTypes)filmType));
         }
     }
 }

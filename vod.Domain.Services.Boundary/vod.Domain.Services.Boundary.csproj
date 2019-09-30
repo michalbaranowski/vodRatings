@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\vod.Core.Boundary\vod.Core.Boundary.csproj" />
+    <ProjectReference Include="..\vod.Repository.Boundary\vod.Repository.Boundary.csproj" />
   </ItemGroup>
 
 </Project>

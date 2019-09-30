@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vod.Core", "vod.Core\vod.Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vod.Core.Boundary", "vod.Core.Boundary\vod.Core.Boundary.csproj", "{C65B22B2-D968-4105-B1A5-3DEC066AF31A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vod.Repository", "vod.Repository\vod.Repository.csproj", "{36B89E44-0658-4559-BE9E-D87F2169CA9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vod.Repository", "vod.Repository\vod.Repository.csproj", "{36B89E44-0658-4559-BE9E-D87F2169CA9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vod.Repository.Boundary", "vod.Repository.Boundary\vod.Repository.Boundary.csproj", "{B3F0C0C4-D5B5-453B-9B86-C6EF01F89C75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vod.Repository.Boundary", "vod.Repository.Boundary\vod.Repository.Boundary.csproj", "{B3F0C0C4-D5B5-453B-9B86-C6EF01F89C75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
