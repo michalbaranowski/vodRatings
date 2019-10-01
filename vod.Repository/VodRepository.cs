@@ -21,6 +21,8 @@ namespace vod.Repository
             _context.Results.RemoveRange(_context.Results);
             _context.SaveChanges();
 
+            foreach (var result in results) result.StoredDate = DateTime.Now;
+
             _context.Results.AddRange(results);
             _context.SaveChanges();
         }

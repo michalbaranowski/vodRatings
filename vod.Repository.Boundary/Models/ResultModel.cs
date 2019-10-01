@@ -18,5 +18,6 @@ namespace vod.Repository.Boundary.Models
         public int Year { get; set; }
         public string ProviderName { get; set; }
         public DateTime StoredDate { get; set; }
+        public string FilmwebFilmType { get; set; }
     }
 }

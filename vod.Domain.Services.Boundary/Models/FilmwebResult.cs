@@ -12,5 +12,6 @@ namespace vod.Domain.Services.Boundary.Models
         public string ImageUrl { get; set; }
         public int Year { get; set; }
         public string ProviderName { get; set; }
+        public string FilmwebFilmType { get; set; }
     }
 }

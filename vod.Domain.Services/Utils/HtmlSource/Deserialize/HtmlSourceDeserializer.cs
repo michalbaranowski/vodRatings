@@ -13,9 +13,9 @@ namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
         {
             var divs = html.DocumentNode.Descendants("div")
                 .Where(x => x.Attributes.Contains("title"));
+
             var provider = html.DocumentNode.Descendants().FirstOrDefault(n =>
-                    n.Name == "h1" && n.Attributes.Contains("class") && n.Attributes["class"].Value == "page__title")?
-                .InnerHtml.Trim();
+                n.Name == "h2" && n.Attributes.Contains("class") && n.Attributes["class"].Value == "popup__title")?.InnerText.Split("\n")[0];
 
             return divs.Select(n =>
                     new Movie()
@@ -60,10 +60,17 @@ namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
                 n.Name == "img" && n.Attributes.Contains("alt") && n.Attributes.Contains("itemprop") &&
                 n.Attributes["itemprop"].Value == "image")?.Attributes["src"].Value;
 
+            var filmwebFilmType = filmwebHtml.DocumentNode.Descendants()
+                .FirstOrDefault(n =>
+                    n.Name == "ul" && n.Attributes.Contains("class") &&
+                    n.Attributes["class"].Value.Contains("genresList"))?.Descendants().FirstOrDefault(n => n.Name == "a")?
+                .InnerText;
+
             return new FilmwebResult()
             {
                 FilmwebRating = Convert.ToDecimal(rate),
                 FilmwebRatingCount  = Convert.ToInt32(rateCount),
+                FilmwebFilmType = filmwebFilmType,
                 Title = title,
                 Year = Convert.ToInt32(year),
                 ImageUrl = imageUrl
