@@ -11,6 +11,7 @@
                 <p class="title">{{item.title}} ({{item.year}})</p>
                 <p class="subtitle">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>
                 <p class="subtitle">Kolekcja: {{item.providerName}}</p>
+                <p class="subtitle">Gatunek wg Filmweb: {{item.filmwebFilmType}}</p>
                 <figure *ngIf="!item.imageUrl" class="image is-3by4">
                     <img src="https://bulma.io/images/placeholders/640x480.png">
                 </figure>

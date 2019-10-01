@@ -7,4 +7,5 @@ export class Result {
     year: number;
     providerName: string;
     imageUrl: any;
+    filmwebFilmType: string;
 }
