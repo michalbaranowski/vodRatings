@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"loading\">\r\n    <button class=\"button is-primary is-large is-loading\"></button>\r\n</div>\r\n\r\n<div class=\"columns is-gapless is-multiline is-mobile\">\r\n    <div *ngFor=\"let item of results\" class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <!-- <app-movie [item]=item></app-movie> -->\r\n\r\n        <div class=\"tile is-parent\">\r\n            <article class=\"tile is-child notification is-dark is-mobile\">\r\n                <p class=\"title\">{{item.title}} ({{item.year}})</p>\r\n                <p class=\"subtitle\">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>\r\n                <p class=\"subtitle\">Kolekcja: {{item.providerName}}</p>\r\n                <p class=\"subtitle\">Gatunek wg Filmweb: {{item.filmwebFilmType}}</p>\r\n                <figure *ngIf=\"!item.imageUrl\" class=\"image is-3by4\">\r\n                    <img src=\"https://bulma.io/images/placeholders/640x480.png\">\r\n                </figure>\r\n\r\n                <figure *ngIf=\"item.imageUrl\" class=\"image is-4by3 is-mobile\">\r\n                    <img src=\"{{item.imageUrl}}\">\r\n                </figure>\r\n            </article>\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"loading\">\r\n    <button class=\"button is-primary is-large is-loading\"></button>\r\n</div>\r\n\r\n<div class=\"columns is-mobile is-multiline\" *ngIf=\"!loading\">\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <div class=\"control\">\r\n            <label class=\"label\">Tytuł:</label>\r\n            <input [(ngModel)]=\"movieFilterArgs.title\" class=\"input\" type=\"text\" placeholder=\"Tytuł filmu...\">\r\n        </div>\r\n    </div>\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Gatunek wg Filmweb:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilterArgs.filmwebFilmType\">\r\n                <option *ngFor=\"let type of filmwebTypes; let i = index\" [value]=\"filmwebTypes[i]\">{{type}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Dostawca vod:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilterArgs.providerName\">\r\n                <option *ngFor=\"let providerName of providerNames; let i = index\" [value]=\"providerNames[i]\">{{providerName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"columns is-gapless is-multiline is-mobile\" *ngIf=\"!loading\">\r\n    <div *ngFor=\"let item of results | movieFilter:movieFilterArgs\"\r\n        class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <!-- <app-movie [item]=item></app-movie> -->\r\n\r\n        <div class=\"tile is-parent\">\r\n            <article class=\"tile is-child notification is-dark is-mobile\">\r\n                <p class=\"title\">{{item.title}} ({{item.year}})</p>\r\n                <p class=\"subtitle\">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>\r\n                <p class=\"subtitle\">Kolekcja: {{item.providerName}}</p>\r\n                <p class=\"subtitle\">Gatunek wg Filmweb: {{item.filmwebFilmType}}</p>\r\n                <figure *ngIf=\"!item.imageUrl\" class=\"image is-3by4\">\r\n                    <img src=\"https://bulma.io/images/placeholders/640x480.png\">\r\n                </figure>\r\n\r\n                <figure *ngIf=\"item.imageUrl\" class=\"image is-4by3 is-mobile\">\r\n                    <img src=\"{{item.imageUrl}}\">\r\n                </figure>\r\n            </article>\r\n        </div>\r\n    </div>\r\n</div>");
 
 /***/ }),
 
@@ -370,6 +370,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _component_results_component_results_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./component/results-component/results-component */ "./src/app/component/results-component/results-component.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _pipes_movieFilter_pipe__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pipes/movieFilter-pipe */ "./src/app/pipes/movieFilter-pipe.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+
+
 
 
 
@@ -384,13 +388,15 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
         declarations: [
             _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
-            _component_results_component_results_component__WEBPACK_IMPORTED_MODULE_6__["ResultsComponent"]
+            _component_results_component_results_component__WEBPACK_IMPORTED_MODULE_6__["ResultsComponent"],
+            _pipes_movieFilter_pipe__WEBPACK_IMPORTED_MODULE_8__["MovieFilter"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"],
             _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"]
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_9__["FormsModule"]
         ],
         providers: [],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
@@ -414,16 +420,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var src_app_service_resultsService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/service/resultsService */ "./src/app/service/resultsService.ts");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var src_app_model_result__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/model/result */ "./src/app/model/result.ts");
+
 
 
 
 let ResultsComponent = class ResultsComponent {
     constructor(resultsService) {
         this.resultsService = resultsService;
+        this.movieFilterArgs = new src_app_model_result__WEBPACK_IMPORTED_MODULE_3__["Result"]();
         this.loading = true;
         this.resultsService.getResults().subscribe(data => {
             this.results = data;
             this.loading = false;
+            this.filmwebTypes = [];
+            this.results.forEach((x) => {
+                if (this.filmwebTypes.indexOf(x.filmwebFilmType) == -1)
+                    this.filmwebTypes.push(x.filmwebFilmType);
+            });
+            this.providerNames = [];
+            this.results.forEach((x) => {
+                if (this.providerNames.indexOf(x.providerName) == -1)
+                    this.providerNames.push(x.providerName);
+            });
         });
     }
 };
@@ -436,6 +455,65 @@ ResultsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./results-component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/results-component/results-component.html")).default
     })
 ], ResultsComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/result.ts":
+/*!*********************************!*\
+  !*** ./src/app/model/result.ts ***!
+  \*********************************/
+/*! exports provided: Result */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Result", function() { return Result; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class Result {
+    constructor() { }
+}
+
+
+/***/ }),
+
+/***/ "./src/app/pipes/movieFilter-pipe.ts":
+/*!*******************************************!*\
+  !*** ./src/app/pipes/movieFilter-pipe.ts ***!
+  \*******************************************/
+/*! exports provided: MovieFilter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MovieFilter", function() { return MovieFilter; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let MovieFilter = class MovieFilter {
+    transform(items, filter) {
+        if (!items || !filter) {
+            return items;
+        }
+        var results = items;
+        if (filter.title)
+            results = results.filter(item => item.title.toLowerCase().indexOf(filter.title.toLowerCase()) !== -1);
+        if (filter.filmwebFilmType && filter.filmwebFilmType != "Wszystkie")
+            results = results.filter(item => item.filmwebFilmType.indexOf(filter.filmwebFilmType) !== -1);
+        if (filter.providerName && filter.providerName != "Wszystkie")
+            results = results.filter(item => item.providerName.indexOf(filter.providerName) !== -1);
+        return results;
+    }
+};
+MovieFilter = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Pipe"])({
+        name: 'movieFilter',
+        pure: false
+    })
+], MovieFilter);
 
 
 
