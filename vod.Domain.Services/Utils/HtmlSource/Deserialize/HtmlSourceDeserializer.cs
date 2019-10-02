@@ -72,7 +72,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
                 FilmwebRatingCount  = Convert.ToInt32(rateCount),
                 FilmwebFilmType = filmwebFilmType,
                 Title = title,
-                Year = Convert.ToInt32(year),
+                Year = Convert.ToInt32(year.OnlyDigits()),
                 ImageUrl = imageUrl
             };
         }
