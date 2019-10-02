@@ -13,28 +13,35 @@ namespace vod.Domain.Services
     {
         private readonly IMapper _mapper;
         private readonly IVodRepository _repository;
+        private readonly IBackgroundWorker _backgroundWorker;
 
         public StoredDataManager(
             IMapper mapper,
-            IVodRepository repository)
+            IVodRepository repository,
+            IBackgroundWorker backgroundWorker)
         {
             _mapper = mapper;
             _repository = repository;
+            _backgroundWorker = backgroundWorker;
         }
 
         public IEnumerable<FilmwebResult> UseStorageIfPossible(Func<IEnumerable<FilmwebResult>> func)
         {
             var storedCollection = _repository.GetStoredData().ToList();
 
-            if (storedCollection.Any() &&
-                storedCollection.FirstOrDefault()?.StoredDate > DateTime.Now.AddDays(-1))
-                return storedCollection.Select(n => _mapper.Map<FilmwebResult>(n));
+            if (!storedCollection.Any() ||
+                storedCollection.FirstOrDefault()?.StoredDate < DateTime.Now.AddDays(-1))
+            {
+                _backgroundWorker.Execute(() =>
+                {
+                    var results = func().ToList();
+                    var entities = results.Select(n => _mapper.Map<ResultModel>(n));
+                    _repository.RefreshData(entities);
+                    return true;
+                });
+            }
 
-            var results = func().ToList();
-
-            var entities = results.Select(n => _mapper.Map<ResultModel>(n));
-            _repository.RefreshData(entities);
-            return results;
+            return storedCollection.Select(n => _mapper.Map<FilmwebResult>(n));
         }
     }
 }

@@ -23,7 +23,7 @@ namespace vod.Domain.Services.Utils.HtmlSource
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 (Windows NT 6.2; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0");
             
-            Thread.Sleep(_random.Next(1000,2000));
+            Thread.Sleep(_random.Next(500,1000));
 
             var response = await client.SendAsync(request);
             var htmlString = await response.Content.ReadAsStringAsync();

@@ -37,6 +37,7 @@ namespace vodApi
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddHttpClient();
+            services.AddTransient<IBackgroundWorker, BackgroundWorker>();
             services.AddTransient<IVodRepository, VodRepository>();
             services.AddTransient<IStoredDataManager, StoredDataManager>();
             services.AddTransient<INcPlusService, NcPlusService>();
