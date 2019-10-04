@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"loading\">\r\n    <button class=\"button is-primary is-large is-loading\"></button>\r\n</div>\r\n\r\n<div class=\"columns is-mobile is-multiline\" *ngIf=\"!loading\">\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <div class=\"control\">\r\n            <label class=\"label\">Tytuł:</label>\r\n            <input [(ngModel)]=\"movieFilterArgs.title\" class=\"input\" type=\"text\" placeholder=\"Tytuł filmu...\">\r\n        </div>\r\n    </div>\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Gatunek wg Filmweb:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilterArgs.filmwebFilmType\">\r\n                <option *ngFor=\"let type of filmwebTypes; let i = index\" [value]=\"filmwebTypes[i]\">{{type}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Dostawca vod:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilterArgs.providerName\">\r\n                <option *ngFor=\"let providerName of providerNames; let i = index\" [value]=\"providerNames[i]\">{{providerName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"columns is-gapless is-multiline is-mobile\" *ngIf=\"!loading\">\r\n    <div *ngFor=\"let item of results | movieFilter:movieFilterArgs\"\r\n        class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <!-- <app-movie [item]=item></app-movie> -->\r\n\r\n        <div class=\"tile is-parent\">\r\n            <article class=\"tile is-child notification is-dark is-mobile\">\r\n                <p class=\"title\">{{item.title}} ({{item.year}})</p>\r\n                <p class=\"subtitle\">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>\r\n                <p class=\"subtitle\">Kolekcja: {{item.providerName}}</p>\r\n                <p class=\"subtitle\">Gatunek wg Filmweb: {{item.filmwebFilmType}}</p>\r\n                <figure *ngIf=\"!item.imageUrl\" class=\"image is-3by4\">\r\n                    <img src=\"https://bulma.io/images/placeholders/640x480.png\">\r\n                </figure>\r\n\r\n                <figure *ngIf=\"item.imageUrl\" class=\"image is-4by3 is-mobile\">\r\n                    <img src=\"{{item.imageUrl}}\">\r\n                </figure>\r\n            </article>\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar is-dark\" role=\"navigation\" aria-label=\"main navigation\">\r\n    <div class=\"navbar-brand\">\r\n      <img style=\"height: 100px\" src=\"https://www.freelogodesign.org/file/app/client/thumb/32181cf1-8f0f-4f7f-b603-77846f93c401_200x200.png?1570210547028\" alt=\"logo\"/>\r\n  \r\n      <a role=\"button\" class=\"navbar-burger\" data-target=\"navMenu\" aria-label=\"menu\" aria-expanded=\"false\">\r\n        <span aria-hidden=\"true\"></span>\r\n        <span aria-hidden=\"true\"></span>\r\n        <span aria-hidden=\"true\"></span>\r\n      </a>\r\n    </div>\r\n  \r\n    <div id=\"navMenu\" class=\"navbar-menu\">\r\n      <div class=\"navbar-start\">\r\n        <a class=\"navbar-item is-active\" (click)=\"getMoviesOfType(0)\">\r\n          Thriller\r\n        </a>\r\n  \r\n        <a class=\"navbar-item\" (click)=\"getMoviesOfType(1)\">\r\n          Akcja\r\n        </a>\r\n\r\n        <a class=\"navbar-item\" (click)=\"getMoviesOfType(2)\">\r\n            Komedia\r\n        </a>\r\n\r\n      </div>\r\n  \r\n      <div class=\"navbar-end\">\r\n        <div class=\"navbar-item\">\r\n          <div class=\"buttons\">\r\n            <div *ngIf=\"loading\">\r\n                <button class=\"button is-dark is-large is-loading\"></button>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </nav>\r\n\r\n<div style=\"margin-left: 10px;\" class=\"columns is-mobile is-multiline\" *ngIf=\"!loading\">\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-four-fifths-mobile\">\r\n        <div class=\"control\">\r\n            <label class=\"label\">Tytuł:</label>\r\n            <input [(ngModel)]=\"movieFilterArgs.title\" class=\"input\" type=\"text\" placeholder=\"Tytuł filmu...\">\r\n        </div>\r\n    </div>\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Gatunek wg Filmweb:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilterArgs.filmwebFilmType\">\r\n                <option *ngFor=\"let type of filmwebTypes; let i = index\" [value]=\"filmwebTypes[i]\">{{type}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Dostawca vod:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilterArgs.providerName\">\r\n                <option *ngFor=\"let providerName of providerNames; let i = index\" [value]=\"providerNames[i]\">{{providerName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"columns is-gapless is-multiline is-mobile\" *ngIf=\"!loading\">\r\n    <div *ngFor=\"let item of results | movieFilter:movieFilterArgs\"\r\n        class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <!-- <app-movie [item]=item></app-movie> -->\r\n\r\n        <div class=\"tile is-parent\">\r\n            <article class=\"tile is-child notification is-dark is-mobile\">\r\n                <p class=\"title\">{{item.title}} ({{item.year}})</p>\r\n                <p class=\"subtitle\">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>\r\n                <p class=\"subtitle\">Kolekcja: {{item.providerName}}</p>\r\n                <p class=\"subtitle\">Gatunek wg Filmweb: {{item.filmwebFilmType}}</p>\r\n                <p class=\"subtitle\">Data odświeżenia: {{item.storedDate | date:'medium'}}</p>\r\n                <figure *ngIf=\"!item.imageUrl\" class=\"image is-3by4\">\r\n                    <img src=\"https://bulma.io/images/placeholders/640x480.png\">\r\n                </figure>\r\n\r\n                <figure *ngIf=\"item.imageUrl\" class=\"image is-4by3 is-mobile\">\r\n                    <img src=\"{{item.imageUrl}}\">\r\n                </figure>\r\n            </article>\r\n        </div>\r\n    </div>\r\n</div>");
 
 /***/ }),
 
@@ -428,9 +428,10 @@ __webpack_require__.r(__webpack_exports__);
 let ResultsComponent = class ResultsComponent {
     constructor(resultsService) {
         this.resultsService = resultsService;
+        this.initMenu();
         this.movieFilterArgs = new src_app_model_result__WEBPACK_IMPORTED_MODULE_3__["Result"]();
         this.loading = true;
-        this.resultsService.getResults().subscribe(data => {
+        this.resultsService.getResults(0).subscribe(data => {
             this.results = data;
             this.loading = false;
             this.filmwebTypes = [];
@@ -443,6 +444,43 @@ let ResultsComponent = class ResultsComponent {
                 if (this.providerNames.indexOf(x.providerName) == -1)
                     this.providerNames.push(x.providerName);
             });
+        });
+    }
+    getMoviesOfType(type) {
+        this.loading = true;
+        this.resultsService.getResults(type).subscribe(n => {
+            this.results = n;
+            this.loading = false;
+        });
+    }
+    initMenu() {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get all "navbar-burger" elements
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+            // Check if there are any navbar burgers
+            if ($navbarBurgers.length > 0) {
+                debugger;
+                // Add a click event on each of them
+                $navbarBurgers.forEach(el => {
+                    el.addEventListener('click', () => {
+                        // Get the target from the "data-target" attribute
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+                        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+                    });
+                });
+            }
+            const $menuItems = Array.prototype.slice.call(document.querySelectorAll('.navbar-item'), 0);
+            if ($menuItems.length > 0) {
+                $menuItems.forEach(el => {
+                    el.addEventListener('click', () => {
+                        $menuItems.forEach(x => x.classList.remove('is-active'));
+                        el.classList.toggle('is-active');
+                    });
+                });
+            }
         });
     }
 };
@@ -540,8 +578,10 @@ let ResultsService = class ResultsService {
         this.http = http;
         this.resultsUrl = 'api/movies';
     }
-    getResults() {
-        return this.http.get(this.resultsUrl);
+    getResults(type) {
+        if (type)
+            return this.http.get(this.resultsUrl);
+        return this.http.get(this.resultsUrl + "?filmType=" + type);
     }
 };
 ResultsService.ctorParameters = () => [
