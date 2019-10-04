@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace vod.Domain.Services.Boundary.Models
 {
@@ -13,5 +11,6 @@ namespace vod.Domain.Services.Boundary.Models
         public int Year { get; set; }
         public string ProviderName { get; set; }
         public string FilmwebFilmType { get; set; }
+        public DateTime StoredDate { get; set; }
     }
 }

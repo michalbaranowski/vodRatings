@@ -9,7 +9,7 @@ namespace vodApi.Controllers
     [ApiController]
     public class MoviesController : ControllerBase
     {
-        private ICoreLogic _core;
+        private readonly ICoreLogic _core;
 
         public MoviesController(ICoreLogic core)
         {

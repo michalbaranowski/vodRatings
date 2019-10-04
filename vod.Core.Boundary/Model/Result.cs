@@ -1,4 +1,6 @@
-﻿namespace vod.Core.Boundary.Model
+﻿using System;
+
+namespace vod.Core.Boundary.Model
 {
     public class Result
     {
@@ -9,5 +11,6 @@
         public int Year { get; set; }
         public string ProviderName { get; set; }
         public string FilmwebFilmType { get; set; }
+        public DateTime StoredDate { get; set; }
     }
 }

@@ -29,8 +29,8 @@ namespace vod.Domain.Services
         {
             var storedCollection = _repository.GetStoredData().ToList();
 
-            if (!storedCollection.Any() ||
-                storedCollection.FirstOrDefault()?.StoredDate < DateTime.Now.AddDays(-1))
+            if ((!storedCollection.Any() ||
+                storedCollection.FirstOrDefault()?.StoredDate < DateTime.Now.AddDays(-1)) && false)
             {
                 _backgroundWorker.Execute(() =>
                 {
