@@ -11,8 +11,11 @@ export class ResultsService {
     
     resultsUrl = 'api/movies';
 
-    getResults() {
-        return this.http.get(this.resultsUrl);
+    getResults(type: Number) {
+        if(type)
+            return this.http.get(this.resultsUrl);
+
+        return this.http.get(this.resultsUrl + "?filmType=" + type)
     }
 
 }
