@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using HtmlAgilityPack;
+using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
 using vod.Domain.Services.Utils.HtmlSource.Extension;
 
@@ -9,7 +10,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
 {
     public class HtmlSourceDeserializer : IHtmlSourceDeserializer
     {
-        public IEnumerable<Movie> DeserializeMovies(HtmlDocument html)
+        public IEnumerable<Movie> DeserializeMovies(HtmlDocument html, MovieTypes type)
         {
             var divs = html.DocumentNode.Descendants("div")
                 .Where(x => x.Attributes.Contains("title"));
@@ -26,7 +27,8 @@ namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
                             .Replace("(HD)", string.Empty)
                             .Replace("(SD)", ""),
                         ProviderName = provider,
-                        MoreInfoUrl = n.Descendants().Where(x=>x.Name == "a" && x.Attributes.Contains("href"))?.FirstOrDefault()?.Attributes["href"].Value
+                        MoreInfoUrl = n.Descendants().Where(x=>x.Name == "a" && x.Attributes.Contains("href"))?.FirstOrDefault()?.Attributes["href"].Value,
+                        MovieType = type
                     });
         }
 
@@ -37,7 +39,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
                 ?.Attributes["href"].Value;
         }
 
-        public FilmwebResult DeserializeFilmwebResult(HtmlDocument filmwebHtml)
+        public FilmwebResult DeserializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieMovieType)
         {
             var rate = filmwebHtml.DocumentNode.Descendants()?
                 .FirstOrDefault(n => n.Name == "span" && n.Attributes.Contains("itemprop") &&
@@ -73,7 +75,8 @@ namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
                 FilmwebFilmType = filmwebFilmType,
                 Title = title,
                 Year = Convert.ToInt32(year.OnlyDigits()),
-                ImageUrl = imageUrl
+                ImageUrl = imageUrl,
+                VodFilmType = (int)movieMovieType
             };
         }
     }

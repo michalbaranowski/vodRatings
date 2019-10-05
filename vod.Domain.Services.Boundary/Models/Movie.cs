@@ -1,4 +1,6 @@
-﻿namespace vod.Domain.Services.Boundary.Models
+﻿using vod.Domain.Services.Boundary.Interfaces.Enums;
+
+namespace vod.Domain.Services.Boundary.Models
 {
     public class Movie
     {
@@ -6,5 +8,6 @@
         public byte[] Image { get; set; }
         public string MoreInfoUrl { get; set; }
         public string ProviderName { get; set; }
+        public MovieTypes MovieType { get; set; }
     }
 }

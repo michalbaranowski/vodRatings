@@ -27,7 +27,7 @@ namespace vod.Domain.Services
                 return null;
 
             var filmwebHtml = _sourceGetter.GetHtmlFrom(filmwebUrl).Result;
-            var result = _sourceDeserializer.DeserializeFilmwebResult(filmwebHtml);
+            var result = _sourceDeserializer.DeserializeFilmwebResult(filmwebHtml, movie.MovieType);
             result.ProviderName = movie.ProviderName;
             return result;
         }

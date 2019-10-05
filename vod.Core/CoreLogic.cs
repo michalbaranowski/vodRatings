@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using AutoMapper;
 using vod.Core.Boundary.Interfaces;
 using vod.Core.Boundary.Model;
 using vod.Domain.Services.Boundary.Interfaces;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
-using vod.Domain.Services.Boundary.Models;
 
 namespace vod.Core
 {
@@ -31,7 +29,7 @@ namespace vod.Core
 
         public IEnumerable<Result> GetResults(MovieTypes type)
         {
-            return _storedDataManager.UseStorageIfPossible(() =>
+            return _storedDataManager.UseStorageIfPossible(type, () =>
             {
                 var ncPlusResult = _ncPlusService.GetMoviesOfType(type).Result;
                 var results = ncPlusResult.Select(n => _filmwebService.CheckInFilmweb(n)).Where(n => n != null).ToList();

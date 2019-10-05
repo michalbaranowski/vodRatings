@@ -5,6 +5,6 @@ namespace vod.Repository.Boundary
 {
     public interface IVodRepository
     {
-        IEnumerable<ResultModel> GetStoredData();
+        IEnumerable<ResultModel> GetStoredData(int type);
     }
 }

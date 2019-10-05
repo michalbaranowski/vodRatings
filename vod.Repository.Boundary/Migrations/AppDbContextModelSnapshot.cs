@@ -39,6 +39,8 @@ namespace vod.Repository.Boundary.Migrations
 
                     b.Property<string>("Title");
 
+                    b.Property<int>("VodFilmType");
+
                     b.Property<int>("Year");
 
                     b.HasKey("Id");

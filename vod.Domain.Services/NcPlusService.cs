@@ -27,13 +27,13 @@ namespace vod.Domain.Services
         public async Task<IEnumerable<Movie>> GetMoviesOfType(MovieTypes type)
         {
             var cplusHtml = await _sourceGetter.GetHtmlFrom(NcPlusUrls.VodCplusBaseUrl);
-            var cplusResult = _deserializer.DeserializeMovies(cplusHtml);
+            var cplusResult = _deserializer.DeserializeMovies(cplusHtml, type);
 
             var premieryHtml = await _sourceGetter.GetHtmlFrom(NcPlusUrls.VodPremieryBaseUrl);
-            var premieryResult = _deserializer.DeserializeMovies(premieryHtml);
+            var premieryResult = _deserializer.DeserializeMovies(premieryHtml, type);
 
             var hboHtml = await _sourceGetter.GetHtmlFrom(NcPlusUrls.VodHboBaseUrl);
-            var hboResult = _deserializer.DeserializeMovies(hboHtml);
+            var hboResult = _deserializer.DeserializeMovies(hboHtml, type);
 
             var result = cplusResult
                 .Concat(hboResult)

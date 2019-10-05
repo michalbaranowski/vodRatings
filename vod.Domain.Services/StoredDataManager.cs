@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using vod.Domain.Services.Boundary.Interfaces;
+using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
 using vod.Repository.Boundary;
 using vod.Repository.Boundary.Models;
@@ -28,9 +29,9 @@ namespace vod.Domain.Services
             _backgroundWorker = backgroundWorker;
         }
 
-        public IEnumerable<FilmwebResult> UseStorageIfPossible(Func<IEnumerable<FilmwebResult>> func)
+        public IEnumerable<FilmwebResult> UseStorageIfPossible(MovieTypes type, Func<IEnumerable<FilmwebResult>> func)
         {
-            var storedCollection = _repository.GetStoredData().ToList();
+            var storedCollection = _repository.GetStoredData((int)type).ToList();
 
             if ((!storedCollection.Any() ||
                 storedCollection.FirstOrDefault()?.StoredDate < DateTime.Now.AddDays(-1)))

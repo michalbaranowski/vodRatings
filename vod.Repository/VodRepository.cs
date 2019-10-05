@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using vod.Repository.Boundary;
 using vod.Repository.Boundary.Models;
@@ -15,9 +16,9 @@ namespace vod.Repository
             _context = context;
         }
 
-        public IEnumerable<ResultModel> GetStoredData()
+        public IEnumerable<ResultModel> GetStoredData(int type)
         {
-            return _context.Results;
+            return _context.Results.Where(n=>n.VodFilmType == type);
         }
     }
 }
