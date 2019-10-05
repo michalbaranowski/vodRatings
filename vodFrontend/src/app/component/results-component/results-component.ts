@@ -16,22 +16,7 @@ export class ResultsComponent {
     constructor(private resultsService: ResultsService) {
         this.initMenu();
         this.movieFilterArgs = new Result();
-        this.loading = true;
-        this.resultsService.getResults(0).subscribe(
-            data => {
-                this.results = data as Result[];
-                this.loading = false;
-
-                this.filmwebTypes = [];
-                this.results.forEach((x) => {
-                    if (this.filmwebTypes.indexOf(x.filmwebFilmType) == -1) this.filmwebTypes.push(x.filmwebFilmType);
-                });
-
-                this.providerNames = [];
-                this.results.forEach((x) => {
-                    if (this.providerNames.indexOf(x.providerName) == -1) this.providerNames.push(x.providerName);
-                });
-            });
+        this.getMoviesOfType(0);
     }
 
     getMoviesOfType(type: Number) {
@@ -39,6 +24,17 @@ export class ResultsComponent {
         this.resultsService.getResults(type).subscribe(n => {
             this.results = n as Result[];
             this.loading = false;
+
+            this.filmwebTypes = [];
+            this.results.forEach((x) => {
+                if (this.filmwebTypes.indexOf(x.filmwebFilmType) == -1 && x.filmwebFilmType) 
+                    this.filmwebTypes.push(x.filmwebFilmType);
+            });
+
+            this.providerNames = [];
+            this.results.forEach((x) => {
+                if (this.providerNames.indexOf(x.providerName) == -1) this.providerNames.push(x.providerName);
+            });
         });
     }
 
