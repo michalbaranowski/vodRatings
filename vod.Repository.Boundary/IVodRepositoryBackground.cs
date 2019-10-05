@@ -6,6 +6,6 @@ namespace vod.Repository.Boundary
 {
     public interface IVodRepositoryBackground
     {
-        void RefreshData(IEnumerable<ResultModel> results);
+        void RefreshData(IEnumerable<ResultModel> results, int type);
     }
 }
