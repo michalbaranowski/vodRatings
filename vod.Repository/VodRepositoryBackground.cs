@@ -16,11 +16,11 @@ namespace vod.Repository
             _opt = opt;
         }
 
-        public void RefreshData(IEnumerable<ResultModel> results)
+        public void RefreshData(IEnumerable<ResultModel> results, int type)
         {
             using (var ctx = new AppDbContext(_opt))
             {
-                ctx.Results.RemoveRange(ctx.Results);
+                ctx.Results.RemoveRange(ctx.Results.Where(n=>n.VodFilmType == type));
                 ctx.SaveChanges();
 
                 var resultsList = results.ToList();

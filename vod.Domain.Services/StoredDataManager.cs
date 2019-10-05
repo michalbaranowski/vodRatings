@@ -40,7 +40,7 @@ namespace vod.Domain.Services
                 {
                     var results = func().ToList();
                     var entities = results.Select(n => _mapper.Map<ResultModel>(n));
-                    _repositoryBackground.RefreshData(entities);
+                    _repositoryBackground.RefreshData(entities, type);
                     return true;
                 });
             }
