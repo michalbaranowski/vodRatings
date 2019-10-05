@@ -13,15 +13,18 @@ namespace vod.Domain.Services
     {
         private readonly IMapper _mapper;
         private readonly IVodRepository _repository;
+        private readonly IVodRepositoryBackground _repositoryBackground;
         private readonly IBackgroundWorker _backgroundWorker;
 
         public StoredDataManager(
             IMapper mapper,
             IVodRepository repository,
+            IVodRepositoryBackground repositoryBackground,
             IBackgroundWorker backgroundWorker)
         {
             _mapper = mapper;
             _repository = repository;
+            _repositoryBackground = repositoryBackground;
             _backgroundWorker = backgroundWorker;
         }
 
@@ -30,13 +33,13 @@ namespace vod.Domain.Services
             var storedCollection = _repository.GetStoredData().ToList();
 
             if ((!storedCollection.Any() ||
-                storedCollection.FirstOrDefault()?.StoredDate < DateTime.Now.AddDays(-1)) && false)
+                storedCollection.FirstOrDefault()?.StoredDate < DateTime.Now.AddDays(-1)))
             {
                 _backgroundWorker.Execute(() =>
                 {
                     var results = func().ToList();
                     var entities = results.Select(n => _mapper.Map<ResultModel>(n));
-                    _repository.RefreshData(entities);
+                    _repositoryBackground.RefreshData(entities);
                     return true;
                 });
             }

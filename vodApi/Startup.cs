@@ -30,14 +30,15 @@ namespace vodApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
-            services.AddDbContext<AppDbContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("VodConnection"));
-            });
+
+            var dbContextOptions = new DbContextOptionsBuilder<AppDbContext>().UseSqlServer(Configuration.GetConnectionString("VodConnection")).Options;
+            services.AddSingleton(dbContextOptions);
             services.AddTransient<IAppDbContext, AppDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddHttpClient();
             services.AddTransient<IBackgroundWorker, BackgroundWorker>();
+            services.AddTransient<IVodRepositoryBackground, VodRepositoryBackground>();
             services.AddTransient<IVodRepository, VodRepository>();
             services.AddTransient<IStoredDataManager, StoredDataManager>();
             services.AddTransient<INcPlusService, NcPlusService>();

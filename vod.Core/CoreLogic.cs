@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using AutoMapper;
 using vod.Core.Boundary.Interfaces;
 using vod.Core.Boundary.Model;
 using vod.Domain.Services.Boundary.Interfaces;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
+using vod.Domain.Services.Boundary.Models;
 
 namespace vod.Core
 {
