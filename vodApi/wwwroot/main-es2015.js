@@ -430,13 +430,16 @@ let ResultsComponent = class ResultsComponent {
         this.resultsService = resultsService;
         this.initMenu();
         this.movieFilterArgs = new src_app_model_result__WEBPACK_IMPORTED_MODULE_3__["Result"]();
+        this.getMoviesOfType(0);
+    }
+    getMoviesOfType(type) {
         this.loading = true;
-        this.resultsService.getResults(0).subscribe(data => {
-            this.results = data;
+        this.resultsService.getResults(type).subscribe(n => {
+            this.results = n;
             this.loading = false;
             this.filmwebTypes = [];
             this.results.forEach((x) => {
-                if (this.filmwebTypes.indexOf(x.filmwebFilmType) == -1)
+                if (this.filmwebTypes.indexOf(x.filmwebFilmType) == -1 && x.filmwebFilmType)
                     this.filmwebTypes.push(x.filmwebFilmType);
             });
             this.providerNames = [];
@@ -444,13 +447,6 @@ let ResultsComponent = class ResultsComponent {
                 if (this.providerNames.indexOf(x.providerName) == -1)
                     this.providerNames.push(x.providerName);
             });
-        });
-    }
-    getMoviesOfType(type) {
-        this.loading = true;
-        this.resultsService.getResults(type).subscribe(n => {
-            this.results = n;
-            this.loading = false;
         });
     }
     initMenu() {
@@ -540,7 +536,11 @@ let MovieFilter = class MovieFilter {
         if (filter.title)
             results = results.filter(item => item.title.toLowerCase().indexOf(filter.title.toLowerCase()) !== -1);
         if (filter.filmwebFilmType && filter.filmwebFilmType != "Wszystkie")
-            results = results.filter(item => item.filmwebFilmType.indexOf(filter.filmwebFilmType) !== -1);
+            results = results.filter(item => {
+                if (!item.filmwebFilmType)
+                    return true;
+                return item.filmwebFilmType.indexOf(filter.filmwebFilmType) !== -1;
+            });
         if (filter.providerName && filter.providerName != "Wszystkie")
             results = results.filter(item => item.providerName.indexOf(filter.providerName) !== -1);
         return results;
