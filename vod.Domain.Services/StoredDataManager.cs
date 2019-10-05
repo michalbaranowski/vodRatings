@@ -36,7 +36,7 @@ namespace vod.Domain.Services
             if ((!storedCollection.Any() ||
                 storedCollection.FirstOrDefault()?.StoredDate < DateTime.Now.AddDays(-1)))
             {
-                _backgroundWorker.Execute(() =>
+                _backgroundWorker.Execute(type, () =>
                 {
                     var results = func().ToList();
                     var entities = results.Select(n => _mapper.Map<ResultModel>(n));

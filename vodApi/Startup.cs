@@ -9,6 +9,7 @@ using vod.Core;
 using vod.Core.Boundary;
 using vod.Core.Boundary.Interfaces;
 using vod.Domain.Services;
+using vod.Domain.Services.Boundary;
 using vod.Domain.Services.Boundary.Interfaces;
 using vod.Domain.Services.Utils.HtmlSource;
 using vod.Domain.Services.Utils.HtmlSource.Deserialize;
@@ -37,6 +38,7 @@ namespace vodApi
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddHttpClient();
+            services.AddSingleton<IBackgroundWorkerStateManager, BackgroundWorkerStateManager>();
             services.AddTransient<IBackgroundWorker, BackgroundWorker>();
             services.AddTransient<IVodRepositoryBackground, VodRepositoryBackground>();
             services.AddTransient<IVodRepository, VodRepository>();
