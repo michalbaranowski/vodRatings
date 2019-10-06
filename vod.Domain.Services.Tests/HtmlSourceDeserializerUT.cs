@@ -16,21 +16,36 @@ namespace vod.Domain.Services.Tests
         private HtmlDocument _moviesHtmlDoc;
         private HtmlDocument _moreInfoHtmlDoc;
         private HtmlDocument _filmwebResultHtmlDoc;
+        private HtmlDocument _cplusComedies;
+        private HtmlDocument _ncPremieresComediesDoc;
+        private HtmlDocument _hboComedies;
 
 
         private void Arrange()
         {
             _deserializer = new HtmlSourceDeserializer();
-            var moviesHtml = HtmlResources.CanalPlusThrillersResultHtml();
-            var moreInfoHtml = HtmlResources.CanalPlusConcrteMovieResultHtml();
-            var filmwebResultHtml = HtmlResources.FilmwebResultHtml();
+            
+            var ncPremieresComedies = HtmlResources.NcPremieresResultHtml();
+            _ncPremieresComediesDoc = new HtmlDocument();
+            _ncPremieresComediesDoc.LoadHtml(ncPremieresComedies);
 
+            var hboComedies = HtmlResources.HboComediesResultHtml();
+            _hboComedies = new HtmlDocument();
+            _hboComedies.LoadHtml(hboComedies);
+
+            var moviesHtml = HtmlResources.CanalPlusThrillersResultHtml();
             _moviesHtmlDoc = new HtmlDocument();
             _moviesHtmlDoc.LoadHtml(moviesHtml);
 
+            var cplusComedies = HtmlResources.CanalPlusComediesResultHtml();
+            _cplusComedies = new HtmlDocument();
+            _cplusComedies.LoadHtml(cplusComedies);
+
+            var moreInfoHtml = HtmlResources.CanalPlusConcrteMovieResultHtml();
             _moreInfoHtmlDoc = new HtmlDocument();
             _moreInfoHtmlDoc.LoadHtml(moreInfoHtml);
 
+            var filmwebResultHtml = HtmlResources.FilmwebResultHtml();
             _filmwebResultHtmlDoc = new HtmlDocument();
             _filmwebResultHtmlDoc.LoadHtml(filmwebResultHtml);
         }
@@ -44,8 +59,21 @@ namespace vod.Domain.Services.Tests
 
             Assert.True(result.Any(n=>n.Title == "Ostateczna rozgrywka"));
             Assert.True(result.Any(n => n.MoreInfoUrl == "/Collection/Asset?codename=ostateczna-rozgrywka-19"));
-            Assert.True(result.Any(n => n.ProviderName == "CANAL+ VOD"));
             Assert.True(result.Any(n => n.MovieType == MovieTypes.Thriller));
+        }
+
+        [Test]
+        public void DeserializeMovies_ShouldDeserializeCorrectProviderName()
+        {
+            Arrange();
+
+            var result1 = _deserializer.DeserializeMovies(_cplusComedies, MovieTypes.Comedy);
+            var result2 = _deserializer.DeserializeMovies(_hboComedies, MovieTypes.Comedy);
+            var result3 = _deserializer.DeserializeMovies(_ncPremieresComediesDoc, MovieTypes.Comedy);
+
+            Assert.True(result1.All(n => n.ProviderName == "CANAL+ VOD"));
+            Assert.True(result2.All(n => n.ProviderName.ToLower().Contains("hbo")));
+            Assert.True(result3.All(n => n.ProviderName.ToLower().Contains("premiery")));
         }
 
         [Test]

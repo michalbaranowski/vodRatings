@@ -6,6 +6,9 @@ namespace vod.Domain.Services.Tests.Resources
     {
         private const string BASEPATH = "../../../Resources/Htmls/";
         public static string CanalPlusThrillersResultHtml() => ReadFromFile($"{BASEPATH}canalPlusThrillersResult.html");
+        public static string CanalPlusComediesResultHtml() => ReadFromFile($"{BASEPATH}canalPlusComedyResult.html");
+        public static string HboComediesResultHtml() => ReadFromFile($"{BASEPATH}hboKomedie.html");
+        public static string NcPremieresResultHtml() => ReadFromFile($"{BASEPATH}premieryKomedie.html");
         public static string CanalPlusConcrteMovieResultHtml() => ReadFromFile($"{BASEPATH}canalPlusConcreteMovieResult.html");
         public static string FilmwebResultHtml() => ReadFromFile($"{BASEPATH}filmwebResult.html");
 

@@ -29,20 +29,26 @@ namespace vod.Domain.Services
 
             new Thread(() =>
             {
-                Thread.CurrentThread.IsBackground = true;
-                _stateManager.SetState(BgWorkerStatesEnum.Busy);
+                try
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    _stateManager.SetState(BgWorkerStatesEnum.Busy);
 
-                var result = func();
-                if (!result)
-                    throw new Exception("Background work failed.");
+                    var result = func();
+                    if (!result)
+                        throw new Exception("Background work failed.");
 
-                _stateManager.SetState(BgWorkerStatesEnum.Active);
+                }
+                finally
+                {
+                    _stateManager.SetState(BgWorkerStatesEnum.Active);
 
-                if (!_queue.Any())
-                    return;
-
-                var val = _queue.Dequeue();
-                Execute(val.Key, val.Value);
+                    if (_queue.Any())
+                    {
+                        var val = _queue.Dequeue();
+                        Execute(val.Key, val.Value);
+                    }
+                }
             }).Start();
         }
     }

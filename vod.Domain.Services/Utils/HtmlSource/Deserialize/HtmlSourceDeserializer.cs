@@ -15,9 +15,9 @@ namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
             var divs = html.DocumentNode.Descendants("div")
                 .Where(x => x.Attributes.Contains("title"));
 
-            var provider = html.DocumentNode.Descendants().FirstOrDefault(n =>
-                    n.Name == "h2" && n.Attributes.Contains("class") && n.Attributes["class"].Value == "popup__title")
-                ?.InnerText.Split("\n")[1].Trim();
+            var providerNode = html.DocumentNode.Descendants().FirstOrDefault(n =>
+                n.Name == "h2" && n.Attributes.Contains("class") && n.Attributes["class"].Value == "popup__title");
+            var provider = providerNode?.InnerHtml.Split("\n")[0].Trim();
 
             return divs.Select(n =>
                     new Movie()
