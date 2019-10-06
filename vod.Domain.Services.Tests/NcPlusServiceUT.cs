@@ -22,8 +22,7 @@ namespace vod.Domain.Services.Tests
             _deserializerMock = new Mock<IHtmlSourceDeserializer>();
             _deserializerMock.SetupSequence(x => x.DeserializeMovies(It.IsAny<HtmlDocument>(), It.IsAny<MovieTypes>()))
                 .Returns(new List<Movie>() {new Movie() {Title = "title1"}})
-                .Returns(new List<Movie>() {new Movie() {Title = "title2"}})
-                .Returns(new List<Movie>() {new Movie() {Title = "title2"}})
+                .Returns(new List<Movie>() {new Movie() {Title = "title2"}, new Movie() {Title = "title2"}})
                 .Returns(new List<Movie>() {new Movie() {Title = "title3"}});
             
             _ncPlusService = new NcPlusService(_sourceGetterMock.Object, _deserializerMock.Object);
