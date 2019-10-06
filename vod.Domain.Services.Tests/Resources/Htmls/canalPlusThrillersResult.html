@@ -1,0 +1,937 @@
+﻿
+<!DOCTYPE html>
+<!--[if IE 9]>
+    <html class="no-js lt-ie10 ie9" lang="pl">
+<![endif]-->
+<!--[if !IE]><!-->
+<html lang="pl">
+<!--<![endif]-->
+<head id="">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="keywords" content="telewizja mobilna, TV everywhere, CANAL+, Liga Mistrzów UEFA, Ekstraklasa, oglądaj na smartfonie, oglądaj na www, oglądaj na tablecie, dla abonentów nc+, kanały tv w internecie, streaming, video, program tv, vod, live">
+    <meta name="description" content="Twoja telewizja w kieszeni. Oglądaj gdziekolwiek chcesz. Ponad 90 kanałów TV na żywo, tysiące filmów i seriali na życzenie">
+    <title>
+        canal+ vod  -             nc+ GO
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxUlEQVQ4jWNgYGD4TyGmoQEqKir/nR1d/xvxeKNggga8fv36PwycOHECLr5C8///FZr/8RuADL59+/bfx8cHRR6vAXV1dXDNGhoaWL2VIjEDtwEw8PXrV5zhIseuR9iAiRMnYvXS/////z969IiwAefPn8dpwOLFi3Eb8P37d7hCRkZGuDgrKytcXF5eHrcBCgoKKLa9fv0aJUpxhA2qgL+/P4az///////Lly+kpURXV9f/fX19/ysrK/9LSUkNUF6giwEAn2GcRoy1QVMAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="/Content/styles/vendor.css?v=2.23.9-fix01">
+    <link rel="stylesheet" href="/Content/styles/portal.css?v=2.23.9-fix01">
+    <link rel="stylesheet" href="/Content/styles/plugin-modal.css?v=2.23.9-fix01" />
+    <link rel="stylesheet" href="/Content/player/insysplayer-cap.css?v=2.23.9-fix01">
+    <link rel="stylesheet" href="/Content/player/plugin-age-rating.css?v=2.23.9-fix01">
+    <link rel="stylesheet" href="/Content/styles/player-skin-modern.css?v=2.23.9-fix01">
+    <script>
+        var config = {"Portal":{"Routes":{"Epg":"programtv","CollectionAsset":"Collection/Asset","Register":"konto/rejestracja","Login":"konto/logowanie","RecoverPassword":"konto/odzyskiwanie-hasla","ActivateAccount":"activate/{token}","PasswordReset":"reset-password/{token}","SearchAutocomplete":"szukaj/autocomplete"},"Reminders":[{"Value":0,"IsDefault":false},{"Value":5,"IsDefault":false},{"Value":15,"IsDefault":true},{"Value":30,"IsDefault":false},{"Value":60,"IsDefault":false},{"Value":120,"IsDefault":false}],"ShouldSendReminderMailsByDefault":false,"AreReminderMailsEnabled":false,"CMSUrls":{"silverlightChromeInstrukcja":"https://ncplusgo.pl:3443/Cms/Page?codename=silverlight-chrome-instrukcja&mobile=False","PlayReadyInstrukcja":"https://ncplusgo.pl:3443/Cms/Page?codename=playready-instrukcja&mobile=False"},"Url":"https://ncplusgo.pl/","InfoDelayTime":5,"MinimalSupportedChromeVersion":45,"DoubleClickDeveloperKey":"oHfexZEStLvotSAFP9sZzH","GetNotificationsIntervalSeconds":86400,"GetRemindersIntervalSeconds":86400,"LocalStorageClearCacheToken":"20160405","ScriptsVersion":"2.23.9-fix01","GetTimeLeftIntervalSeconds":600,"ChannelTileTimestampSecondsDivisor":300,"HtmlCacheUrl":"https://cache-ncplusgo.rd.insyscd.net"},"Api":{"Url":"https://api-ncplusgo.ncplus.pl/v1/"},"Epg":{"ApiUrl":"https://api-ncplusgo.ncplus.pl/v1/Epg/","Codenames":{"ProgramCategoryCategoryTypeCodename":"movie-category","ChannelCategoryTypeCodename":"channel-category","ProgramGenreCategoryTypeCodename":"genre"},"AvailableDays":null},"ServerDate":1570364540518};
+    </script>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-38991490-11', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+</head>
+<body id="Collection_Details" style="background-image: url(https://ncplusgo.files.rd.insyscd.net/section-backgrounds/section-background-nazyczenie-151900.jpg)">
+    <div class="js-dynamic-config" data-config="{&quot;messages&quot;:[],&quot;token&quot;:null}"></div>
+    <div class="js-messages"></div>
+    <div class="modal js-modal">
+        <div class="modal__loader"></div>
+        <div class="modal__inner js-modal-inner">
+            <a class="modal__close js-modal-close">&times;</a>
+            <div class="modal__content js-modal-content"></div>
+        </div>
+    </div>
+    <header id="top" class="header">
+
+        <div class="full-width full-width--navbar">
+            <div class="container">
+
+                <div>
+                    <div class="main-navbar">
+                        <div class="main-navbar__holder-left">
+
+                            <div class="main-navbar__logo">
+                                <a href="/" title="Strona główna">
+                                    <img src="/Content/images/logo-ncgo__header.png" alt="Logo nc+ GO" />
+                                </a>
+                            </div>
+
+
+                            <nav class="main-navbar__link">
+                                <a class=" main-navbar__link-item main-navbar__link-item--now js-ga" data-ga="{&quot;category&quot;:&quot;Menu&quot;,&quot;action&quot;:&quot;button-press&quot;}" data-ga-label="Teraz w Tv" href="/Channel">teraz w tv</a>
+                                <a class=" main-navbar__link-item main-navbar__link-item--programme js-ga" href="/programtv" data-ga="{&quot;category&quot;:&quot;Menu&quot;,&quot;action&quot;:&quot;button-press&quot;}" data-ga-label="Program Tv">program tv</a>
+                                <a class=" main-navbar__link-item main-navbar__link-item--on-demand js-ga" href="/Collection/CatchUp" data-ga="{&quot;category&quot;:&quot;Menu&quot;,&quot;action&quot;:&quot;button-press&quot;}" data-ga-label="tv na życzenie">tv na życzenie</a>
+                                <a class=" main-navbar__link-zone-canal js-ga main-navbar__link-item" href="/Home/Canal" data-ga="{&quot;category&quot;:&quot;Menu&quot;,&quot;action&quot;:&quot;button-press&quot;}" data-ga-label="świat CANAL+">
+                                    <span class="main-navbar__link-zone-canal-name">świat CANAL+</span>
+                                </a>
+                                <a class=" main-navbar__link-zone-kids js-kids-zone-link js-ga main-navbar__link-item main-navbar__link-zone-kids--theme1" href="/KidsZone/Entry" data-ga="{&quot;category&quot;:&quot;Menu&quot;,&quot;action&quot;:&quot;button-press&quot;}" data-ga-label="strefa dla dzieci">
+                                    dla dzieci
+                                </a>
+                                <a class=" main-navbar__link-item main-navbar__link-item--vod js-ga" href="/Collection/Vod" data-ga="{&quot;category&quot;:&quot;Menu&quot;,&quot;action&quot;:&quot;button-press&quot;}" data-ga-label="Powtórki">vod</a>
+                                <a class=" main-navbar__link-item main-navbar__link-item--guide js-ga" href="/Guide" data-ga="{&quot;category&quot;:&quot;Menu&quot;,&quot;action&quot;:&quot;button-press&quot;}" data-ga-label="Magazyn">magazyn</a>
+                            </nav>
+
+                        </div>
+
+                        <nav class="user-nav__holder">
+                            <ul class="user-nav js-user-nav">
+                                <li class="user-nav__item">
+                                    <a href="/Cms/Page?codename=faq&amp;mobile=False" title="" class="user-nav__item-link">
+                                        pomoc
+                                    </a>
+                                </li>
+                                <li class="user-nav__item">
+                                    <a href="/konto/logowanie?returnUrl=%2FCollection%2FCatchUp%2FDetails%3FcollectionCodename%3Dcatchup-canal-vod%26CollectionCategoryCodename%3DCatchUp%26ViewType%3Dcollections%26ParentCategoryCodename%3Dfilm%26page%3D1%26CategoryCodename%3Dthriller-3" class="user-nav__item-link" title="zaloguj się">
+                                        zaloguj
+                                        <img height="27" class="user-nav__item-icon" src="/Content/images/icon__login.svg" alt="Logo nc+ GO - szare">
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+    <main class="container">
+        <div class="container__content-wrapper">
+            <h1 class="page__title ">
+                CANAL+ VOD
+                <div class="collection-filters__holder pull-right">
+                    <form action="/Collection/CatchUp/Details" method="get">
+                        <div class="collection-filters pure-1-1">
+                            <span class="collection-filters__name">sortuj</span>
+                            <div class="collection-filters__dropdown pull-right">
+                                <select class="js-fancy-select react-component" data-codename="order" data-component="collection-filter" data-val="true" data-val-required="Pole &#39;Order&#39; nie może być puste." id="Order" name="Order">
+                                    <option selected="selected" value="PublishDate">najnowsze</option>
+                                    <option value="Alphabetical">alfabetycznie</option>
+                                    <option value="EndPublish">ostatnia szansa</option>
+                                </select>
+                            </div>
+                            <div class="collection-filters__dropdown pull-right" style="display:none">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </h1>
+            <div id="filters-holder" class="page__columns">
+                <div class="js-sticky page__column--sidebar page__filters-holder">
+                    <div class="page__filters">
+                        <div class="js-filters " data-title="Filtruj">
+                            <h2 class="page__section-title page__section-title--md-toggle js-filter-toggle-view is-filter-collapsed" role="button">Filtruj</h2>
+                            <div class="filter js-filters-list is-filter-collapsed" data-categories="[{&quot;Id&quot;:309,&quot;Name&quot;:&quot;Akcja&quot;,&quot;Codename&quot;:&quot;akcja-2&quot;,&quot;MoviesCount&quot;:8},{&quot;Id&quot;:310,&quot;Name&quot;:&quot;Animowany&quot;,&quot;Codename&quot;:&quot;animowany-1&quot;,&quot;MoviesCount&quot;:6},{&quot;Id&quot;:311,&quot;Name&quot;:&quot;Biograficzny&quot;,&quot;Codename&quot;:&quot;biograficzny-1&quot;,&quot;MoviesCount&quot;:10},{&quot;Id&quot;:312,&quot;Name&quot;:&quot;Dramat&quot;,&quot;Codename&quot;:&quot;dramat-1&quot;,&quot;MoviesCount&quot;:38},{&quot;Id&quot;:314,&quot;Name&quot;:&quot;Familijny&quot;,&quot;Codename&quot;:&quot;familijny-1&quot;,&quot;MoviesCount&quot;:4},{&quot;Id&quot;:585,&quot;Name&quot;:&quot;Horror&quot;,&quot;Codename&quot;:&quot;horror-3&quot;,&quot;MoviesCount&quot;:8},{&quot;Id&quot;:331,&quot;Name&quot;:&quot;Inny&quot;,&quot;Codename&quot;:&quot;inny&quot;,&quot;MoviesCount&quot;:1},{&quot;Id&quot;:318,&quot;Name&quot;:&quot;Komedia&quot;,&quot;Codename&quot;:&quot;komedia-2&quot;,&quot;MoviesCount&quot;:52},{&quot;Id&quot;:319,&quot;Name&quot;:&quot;Komediodramat&quot;,&quot;Codename&quot;:&quot;komediodramat-2&quot;,&quot;MoviesCount&quot;:15},{&quot;Id&quot;:321,&quot;Name&quot;:&quot;Kryminalny&quot;,&quot;Codename&quot;:&quot;kryminalny-1&quot;,&quot;MoviesCount&quot;:7},{&quot;Id&quot;:322,&quot;Name&quot;:&quot;Melodramat&quot;,&quot;Codename&quot;:&quot;melodramat-2&quot;,&quot;MoviesCount&quot;:2},{&quot;Id&quot;:325,&quot;Name&quot;:&quot;Przygodowy&quot;,&quot;Codename&quot;:&quot;przygodowy-2&quot;,&quot;MoviesCount&quot;:7},{&quot;Id&quot;:327,&quot;Name&quot;:&quot;Science Fiction&quot;,&quot;Codename&quot;:&quot;science-fiction-4&quot;,&quot;MoviesCount&quot;:1},{&quot;Id&quot;:328,&quot;Name&quot;:&quot;Sensacyjny&quot;,&quot;Codename&quot;:&quot;sensacyjny-1&quot;,&quot;MoviesCount&quot;:1},{&quot;Id&quot;:684,&quot;Name&quot;:&quot;Thriller&quot;,&quot;Codename&quot;:&quot;thriller-3&quot;,&quot;MoviesCount&quot;:24},{&quot;Id&quot;:329,&quot;Name&quot;:&quot;Western&quot;,&quot;Codename&quot;:&quot;western-2&quot;,&quot;MoviesCount&quot;:1},{&quot;Id&quot;:330,&quot;Name&quot;:&quot;Wojenny&quot;,&quot;Codename&quot;:&quot;wojenny-2&quot;,&quot;MoviesCount&quot;:1}]" data-collection-codename="catchup-canal-vod">
+                                <form action="/Collection/CatchUp/Details" method="get">
+                                    <input id="ParentCategoryCodename" name="ParentCategoryCodename" type="hidden" value="film" /><input id="CollectionCodename" name="CollectionCodename" type="hidden" value="catchup-canal-vod" /><input id="ViewType" name="ViewType" type="hidden" value="all" /> <a class="filter__back-link" href="/Collection/CatchUp/Details?OrderAsString=PublishDate&amp;ViewType=all&amp;ParentCategoryCodename=film&amp;CollectionCodename=catchup-canal-vod">Wróć </a>
+                                    <div class="filter__options-holder">
+                                        <ul class="filter__options-list">
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-309" name="CategoryCodename" value="akcja-2" />
+                                                <label class="filter__label" for="CD-309">
+                                                    Akcja
+                                                    | 8
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-310" name="CategoryCodename" value="animowany-1" />
+                                                <label class="filter__label" for="CD-310">
+                                                    Animowany
+                                                    | 6
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-311" name="CategoryCodename" value="biograficzny-1" />
+                                                <label class="filter__label" for="CD-311">
+                                                    Biograficzny
+                                                    | 10
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-312" name="CategoryCodename" value="dramat-1" />
+                                                <label class="filter__label" for="CD-312">
+                                                    Dramat
+                                                    | 38
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-314" name="CategoryCodename" value="familijny-1" />
+                                                <label class="filter__label" for="CD-314">
+                                                    Familijny
+                                                    | 4
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-585" name="CategoryCodename" value="horror-3" />
+                                                <label class="filter__label" for="CD-585">
+                                                    Horror
+                                                    | 8
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-331" name="CategoryCodename" value="inny" />
+                                                <label class="filter__label" for="CD-331">
+                                                    Inny
+                                                    | 1
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-318" name="CategoryCodename" value="komedia-2" />
+                                                <label class="filter__label" for="CD-318">
+                                                    Komedia
+                                                    | 52
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-319" name="CategoryCodename" value="komediodramat-2" />
+                                                <label class="filter__label" for="CD-319">
+                                                    Komediodramat
+                                                    | 15
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-321" name="CategoryCodename" value="kryminalny-1" />
+                                                <label class="filter__label" for="CD-321">
+                                                    Kryminalny
+                                                    | 7
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-322" name="CategoryCodename" value="melodramat-2" />
+                                                <label class="filter__label" for="CD-322">
+                                                    Melodramat
+                                                    | 2
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-325" name="CategoryCodename" value="przygodowy-2" />
+                                                <label class="filter__label" for="CD-325">
+                                                    Przygodowy
+                                                    | 7
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-327" name="CategoryCodename" value="science-fiction-4" />
+                                                <label class="filter__label" for="CD-327">
+                                                    Science Fiction
+                                                    | 1
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-328" name="CategoryCodename" value="sensacyjny-1" />
+                                                <label class="filter__label" for="CD-328">
+                                                    Sensacyjny
+                                                    | 1
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option filter__option--active">
+                                                <input class="filter__input js-filter-option-input" checked type="radio" id="CD-684" name="CategoryCodename" value="thriller-3" />
+                                                <label class="filter__label" for="CD-684">
+                                                    Thriller
+                                                    | 24
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-329" name="CategoryCodename" value="western-2" />
+                                                <label class="filter__label" for="CD-329">
+                                                    Western
+                                                    | 1
+                                                </label>
+                                            </li>
+                                            <li class="filter__option js-filter-option ">
+                                                <input class="filter__input js-filter-option-input" type="radio" id="CD-330" name="CategoryCodename" value="wojenny-2" />
+                                                <label class="filter__label" for="CD-330">
+                                                    Wojenny
+                                                    | 1
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div></div>
+                                    <input type="submit" class="form-control__button form-control__button--filter react-component" value="Filtruj" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page__column--content is-single-collection page__assets">
+                    <div class="tile__grid js-tile-grid">
+                        <ul class="tile__grid-list">
+                            <li class="tile__grid-list-item channel">
+                                <div class="asset-tile channel" data-tile-size="small">
+                                    <div class="channel-logo">
+                                        <img src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Ostateczna rozgrywka" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="ostateczna-rozgrywka-19" data-content-id="11064910" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=ostateczna-rozgrywka-19" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FOstateczna_rozgrywka_poziom.jpg%3Fsrcmode%3D3%26srcx%3D0%26srcy%3D0%26srcw%3D220%26srch%3D140%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Ostateczna rozgrywka" />
+                                            <a href="/Collection/Asset?codename=ostateczna-rozgrywka-19" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--16.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="11064910" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=ostateczna-rozgrywka-19" class="asset-tile__title-link">Ostateczna rozgrywka</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Twister" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="twister-18" data-content-id="11047564" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=twister-18" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FTwister_poziom.jpg%3Fsrcmode%3D0%26srcx%3D70%26srcy%3D0%26srcw%3D1132%26srch%3D720%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Twister" />
+                                            <a href="/Collection/Asset?codename=twister-18" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--16.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="11047564" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=twister-18" class="asset-tile__title-link">Twister</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Eskorta" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="eskorta-39" data-content-id="11018646" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=eskorta-39" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FEskorta_mile22_poziom.jpg%3Fsrcmode%3D0%26srcx%3D0%26srcy%3D31%26srcw%3D998%26srch%3D635%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Eskorta" />
+                                            <a href="/Collection/Asset?codename=eskorta-39" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--16.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="11018646" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=eskorta-39" class="asset-tile__title-link">Eskorta</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Wr&#243;g numer 1" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="wrog-numer-1" data-content-id="10776726" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=wrog-numer-1" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fr.dcs.redcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2FCAP_21001526%2Fgallery%2F70c16c61-72a9-a1ef-412e-523b6480efb2.CAP.v01.mp4_dir%2FGALLERY%2F00690000.jpg%3Fsrcmode%3D0%26srcx%3D0%26srcy%3D0%26srcw%3D1572%26srch%3D998%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Wr&#243;g numer 1" />
+                                            <a href="/Collection/Asset?codename=wrog-numer-1" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--16.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="10776726" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=wrog-numer-1" class="asset-tile__title-link">Wr&#243;g numer 1</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Precedensowa sprawa" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="precedensowa-sprawa-1" data-content-id="10776725" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=precedensowa-sprawa-1" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fr.dcs.redcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2FCAP_21023623%2Fgallery%2F294f28cf-3a67-e9b7-e17d-d9bee30883e8.CAP.v01.mp4_dir%2FGALLERY%2F01770000.jpg%3Fsrcmode%3D3%26srcx%3D0%26srcy%3D0%26srcw%3D220%26srch%3D140%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Precedensowa sprawa" />
+                                            <a href="/Collection/Asset?codename=precedensowa-sprawa-1" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--12.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="10776725" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=precedensowa-sprawa-1" class="asset-tile__title-link">Precedensowa sprawa</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Powr&#243;t z zaświat&#243;w" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="powrot-z-zaswiatow-2" data-content-id="10663493" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=powrot-z-zaswiatow-2" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FPowrot_z_zaswiatow_poziom.jpg%3Fsrcmode%3D0%26srcx%3D0%26srcy%3D44%26srcw%3D1000%26srch%3D634%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Powr&#243;t z zaświat&#243;w" />
+                                            <a href="/Collection/Asset?codename=powrot-z-zaswiatow-2" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--16.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="10663493" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=powrot-z-zaswiatow-2" class="asset-tile__title-link">Powr&#243;t z zaświat&#243;w</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Delirium" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="delirium-20" data-content-id="10596128" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=delirium-20" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FDelirium_poziom.jpg%3Fsrcmode%3D0%26srcx%3D101%26srcy%3D0%26srcw%3D851%26srch%3D542%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Delirium" />
+                                            <a href="/Collection/Asset?codename=delirium-20" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--16.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="10596128" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=delirium-20" class="asset-tile__title-link">Delirium</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Barrakuda" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="barrakuda-2" data-content-id="10514173" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=barrakuda-2" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FBarrakuda_poziomm.jpg%3Fsrcmode%3D0%26srcx%3D627%26srcy%3D0%26srcw%3D4836%26srch%3D3078%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Barrakuda" />
+                                            <a href="/Collection/Asset?codename=barrakuda-2" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--16.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="10514173" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=barrakuda-2" class="asset-tile__title-link">Barrakuda</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Pasażer" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="pasazer-36" data-content-id="10208812" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=pasazer-36" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2Fpasazer_poziom.jpg%3Fsrcmode%3D0%26srcx%3D15%26srcy%3D0%26srcw%3D500%26srch%3D319%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Pasażer" />
+                                            <a href="/Collection/Asset?codename=pasazer-36" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--12.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="10208812" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=pasazer-36" class="asset-tile__title-link">Pasażer</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Pierwsza noc oczyszczenia" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="pierwsza-noc-oczyszczenia-8" data-content-id="10159253" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=pierwsza-noc-oczyszczenia-8" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FPierwsza_noc_oczyszczenia_poziom.jpg%3Fsrcmode%3D0%26srcx%3D73%26srcy%3D0%26srcw%3D1131%26srch%3D720%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Pierwsza noc oczyszczenia" />
+                                            <a href="/Collection/Asset?codename=pierwsza-noc-oczyszczenia-8" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--18.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="10159253" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=pierwsza-noc-oczyszczenia-8" class="asset-tile__title-link">Pierwsza noc oczyszczenia</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Włamanie" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="wlamanie-9" data-content-id="10058744" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=wlamanie-9" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FWlamanie_poziom.jpg%3Fsrcmode%3D0%26srcx%3D73%26srcy%3D0%26srcw%3D1131%26srch%3D720%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Włamanie" />
+                                            <a href="/Collection/Asset?codename=wlamanie-9" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--16.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="10058744" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=wlamanie-9" class="asset-tile__title-link">Włamanie</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Niepoczytalna" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="niepoczytalna-8" data-content-id="10007977" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=niepoczytalna-8" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2Fniepoczytalna_poziom..jpg%3Fsrcmode%3D0%26srcx%3D0%26srcy%3D45%26srcw%3D1347%26srch%3D854%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Niepoczytalna" />
+                                            <a href="/Collection/Asset?codename=niepoczytalna-8" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--16.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="10007977" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=niepoczytalna-8" class="asset-tile__title-link">Niepoczytalna</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Synalek" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="synalek-15" data-content-id="9903209" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=synalek-15" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FSynalek_1993_poziom.jpg%3Fsrcmode%3D0%26srcx%3D0%26srcy%3D61%26srcw%3D678%26srch%3D432%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Synalek" />
+                                            <a href="/Collection/Asset?codename=synalek-15" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--12.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="9903209" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=synalek-15" class="asset-tile__title-link">Synalek</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Czarna rzeka" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="czarna-rzeka-3" data-content-id="9760046" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=czarna-rzeka-3" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FCzarna_rzeka_poziom.PNG%3Fsrcmode%3D0%26srcx%3D0%26srcy%3D57%26srcw%3D1120%26srch%3D711%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Czarna rzeka" />
+                                            <a href="/Collection/Asset?codename=czarna-rzeka-3" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--16.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="9760046" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=czarna-rzeka-3" class="asset-tile__title-link">Czarna rzeka</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="M&#243;j synek" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="moj-synek-7" data-content-id="9719064" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=moj-synek-7" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FMoj_synek_poziom.PNG%3Fsrcmode%3D0%26srcx%3D0%26srcy%3D56%26srcw%3D1043%26srch%3D662%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="M&#243;j synek" />
+                                            <a href="/Collection/Asset?codename=moj-synek-7" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--12.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="9719064" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=moj-synek-7" class="asset-tile__title-link">M&#243;j synek</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Neapol spowity tajemnicą" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="neapol-spowity-tajemnica-6" data-content-id="9580008" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=neapol-spowity-tajemnica-6" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FNeapol_spowity_tajemnica_poziom.JPG%3Fsrcmode%3D0%26srcx%3D0%26srcy%3D15%26srcw%3D1200%26srch%3D762%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Neapol spowity tajemnicą" />
+                                            <a href="/Collection/Asset?codename=neapol-spowity-tajemnica-6" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--18.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="9580008" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=neapol-spowity-tajemnica-6" class="asset-tile__title-link">Neapol spowity tajemnicą</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Czerwona jask&#243;łka" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="czerwona-jaskolka-19" data-content-id="10448513" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=czerwona-jaskolka-19" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FCzerwona_jaskolka_poziom.jpg%3Fsrcmode%3D0%26srcx%3D0%26srcy%3D111%26srcw%3D1528%26srch%3D969%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Czerwona jask&#243;łka" />
+                                            <a href="/Collection/Asset?codename=czerwona-jaskolka-19" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--16.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="10448513" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=czerwona-jaskolka-19" class="asset-tile__title-link">Czerwona jask&#243;łka</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Sieć podejrzeń" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="siec-podejrzen-8" data-content-id="9523994" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=siec-podejrzen-8" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FSiec_podejrzen_poziom.jpg%3Fsrcmode%3D0%26srcx%3D0%26srcy%3D15%26srcw%3D800%26srch%3D509%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Sieć podejrzeń" />
+                                            <a href="/Collection/Asset?codename=siec-podejrzen-8" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--12.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="9523994" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=siec-podejrzen-8" class="asset-tile__title-link">Sieć podejrzeń</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Dziewczyna we mgle" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="dziewczyna-we-mgle-13" data-content-id="9377713" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=dziewczyna-we-mgle-13" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FDziewczyna_we_mgle_poziom.jpg%3Fsrcmode%3D0%26srcx%3D0%26srcy%3D54%26srcw%3D1400%26srch%3D889%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Dziewczyna we mgle" />
+                                            <a href="/Collection/Asset?codename=dziewczyna-we-mgle-13" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--12.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="9377713" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=dziewczyna-we-mgle-13" class="asset-tile__title-link">Dziewczyna we mgle</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Złe psy" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="zle-psy-7" data-content-id="9141275" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=zle-psy-7" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2Fzle_psy_poziom.jpg%3Fsrcmode%3D0%26srcx%3D0%26srcy%3D0%26srcw%3D500%26srch%3D317%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Złe psy" />
+                                            <a href="/Collection/Asset?codename=zle-psy-7" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--16.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="9141275" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=zle-psy-7" class="asset-tile__title-link">Złe psy</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Zły samarytanin" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="zly-samarytanin-8" data-content-id="9096143" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=zly-samarytanin-8" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FBad_Samaritan_poziom.jpg%3Fsrcmode%3D3%26srcx%3D0%26srcy%3D0%26srcw%3D220%26srch%3D140%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Zły samarytanin" />
+                                            <a href="/Collection/Asset?codename=zly-samarytanin-8" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--16.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="9096143" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=zly-samarytanin-8" class="asset-tile__title-link">Zły samarytanin</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Cień wątpliwości" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="cien-watpliwosci-6" data-content-id="8965314" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=cien-watpliwosci-6" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2FCien_watpliwosci_poziom.PNG%3Fsrcmode%3D0%26srcx%3D412%26srcy%3D0%26srcw%3D1118%26srch%3D712%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Cień wątpliwości" />
+                                            <a href="/Collection/Asset?codename=cien-watpliwosci-6" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--12.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="8965314" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=cien-watpliwosci-6" class="asset-tile__title-link">Cień wątpliwości</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tile__grid-list-item">
+                                <div class="asset-tile js-asset-tile " title="Pojednanie" data-p-start="" data-p-end="" data-tile-type="catchup" data-tile-size="small" data-channel-codename="pojednanie" data-content-id="8824153" data-active="True" data-blackout="False" data-kids-zone="False" data-is-tvod="False" data-asset-url="/Collection/Asset?codename=pojednanie" data-diffusion-id="">
+                                    <div class="asset-tile__thumbnail">
+                                        <div class="asset-tile__thumbnail-inner">
+                                            <img class="asset-tile__thumbnail-img" src="https://img-ncplusgo.ncplus.pl/http%3A%2F%2Fredir.atmcdn.pl%2Fscale%2Fo2%2Fn%2Fvod%2FCAP%2F01_GRAFIKA%2Fforgiven_poziom.jpg%3Fsrcmode%3D0%26srcx%3D0%26srcy%3D7%26srcw%3D633%26srch%3D402%26dstw%3D%7CWIDTH%7C%26dsth%3D%7CHEIGHT%7C%26type%3D1%26cs%3D1?m=resize&amp;w=190&amp;h=108" title="Pojednanie" />
+                                            <a href="/Collection/Asset?codename=pojednanie" class="asset-tile__link asset-tile__play-icon"></a>
+                                            <div class="asset-tile__thumbnail-overlay"></div>
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--logo" width="45" src="https://ncplusgo.files.rd.insyscd.net/canal-plus-vod.png" />
+                                            <img class="asset-tile__channel-icon asset-tile__channel-icon--pegi" width="16" src="/Content/images/icon__rating--16.svg" />
+                                            <div class="asset-tile__controls">
+                                                <a title="dodaj do ulubionych" href="javascript:void(0);" class="pull-right asset-tile__trigger asset-tile__trigger--favorites asset-tile__trigger--favorites-negative js-trigger-favorite" data-id="8824153" data-active="False"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-tile__caption">
+                                        <h2 class="asset-tile__title">
+                                            <a href="/Collection/Asset?codename=pojednanie" class="asset-tile__title-link">Pojednanie</a>
+                                        </h2>
+                                        <p class="asset-tile__media-meta">
+                                            <span class="asset-tile__prop-emphasis">na życzenie</span>
+                                            <span class="asset-tile__genre">film / Thriller</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pagination js-pagination" data-current-page="1">
+                        <ul class="pagination__list"></ul>
+                    </div>
+                </div>
+            </div>
+            <div id="modal-confirm-purchase" class="popup">
+                <div class="popup__wrapper">
+                    <span class="js-modal-close popup__close">zamknij</span>
+                    <div class="popup__content">
+                        <p class="popup__title popup__title--small">Potwierdzenie zakupu kolekcji materiałów VOD</p>
+                        <h2 class="popup__title">
+                            CANAL+ VOD
+                            <span class="popup__sub-title">Opłata comiesięczna za dostęp do wszystkich materiałów w ramach kolekcji</span>
+                        </h2>
+                        <p class="popup__paragraph">Potwierdzając zamówienie wyrażam zgodę na niezwłoczne rozpoczęcie świadczenia usługi i jestem świadomy, że w chwili wyrażenia tej zgody tracę przysługujące mi prawo odstąpienia od umowy.</p>
+                        <p class="popup__paragraph">Kwota należności będzie doliczana do Twojej faktury za usługi nc+.</p>
+                        <form class="pure-form popup-form">
+                            <div class="form-control">
+                                <input class="fancy-dropdown__checkbox" id="AcceptTerms1" name="AcceptTerms1" value="true" type="checkbox"><input name="AcceptTerms1" value="false" type="hidden">
+                                <span class="field-validation-valid" data-valmsg-for="AcceptTerms1" data-valmsg-replace="true"></span>
+                                <label class="fancy-dropdown__label" for="AcceptTerms1"><span class="form-control__required">* </span>Akceptuję <a class="form__link" href="/Cms/Page?codename=regulamin&amp;mobile=False">Regulamin i warunki świadczenia usługi</a></label>
+                            </div>
+                            <div class="form-control">
+                                <input class="fancy-dropdown__checkbox" id="AcceptTerms2" name="AcceptTerms2" value="true" type="checkbox"><input name="AcceptTerms2" value="false" type="hidden">
+                                <span class="field-validation-valid" data-valmsg-for="AcceptTerms2" data-valmsg-replace="true"></span>
+                                <label class="fancy-dropdown__label" for="AcceptTerms2"><span class="form-control__required">* </span>Zapoznałem się z <a class="form__link" href="#">Przysługującymi prawami</a></label>
+                            </div>
+                            <div class="form-control">
+                                <span data-valmsg-replace="true" data-valmsg-for="PasswordConfirm" class="field-validation-valid"></span>
+                                <input type="password" tabindex="7" required="required" placeholder="Podaj  hasło do nc+ GO" name="PasswordConfirm" id="PasswordConfirm" class="pure-input-1">
+                            </div>
+                            <div class="form-control"></div>
+                            <div class="form-control">
+                                <button type="submit" class="form-control__button js-ga" data-ga="">Potwierdzam zamówienie</button>
+                                <p class="popup__paragraph-disclamer">z obowiązkiem zapłaty</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <a href="#top" class="button button--arrow-up js-scroll-to-top" title="powrót do góry"></a>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer__logo">
+            <img class="footer__logo-icon" src="/Content/images/logo_ncgo__footer.png" width="202" height="52" />
+        </div>
+        <p class="footer__test-link">
+            <a href="/Play/TestPlayer">Sprawdź, czy Twoja przeglądarka spełnia wymagania techniczne</a>
+            <br />
+            <a href="https://ncplus.pl/daneosobowe" target="_blank">Dane osobowe</a>
+            <a href="https://ncplus.pl/polityka-prywatnosci" target="_blank">Polityka prywatności</a>
+            <a href="https://ncplus.pl/cookies" target="_blank">Polityka cookies</a>
+        </p>
+        <p class="footer__information center-column">
+            ITI Neovision S.A., al. gen. W. Sikorskiego 9, 02-758 Warszawa, NIP 521-00-82-774, REGON: 010175861, wpisana do Rejestru Przedsiębiorców, przez Sąd Rejonowy dla m.st. Warszawy, XIII Wydział Gospodarczy KRS pod nr KRS: 0000469644,<br />
+            kapitał zakładowy: 441.176.000 zł, w całości wpłacony, Nr GIOŚ E0012413WZBW.
+        </p>
+        <p class="footer__insys">powered by <a href="http://www.insys.pl">insys</a></p>
+    </footer>
+    <div id="fb-root"></div>
+    <div id="cookie-info-content" style="display:none;">
+        ﻿
+        <div class="cms-slot-content">
+            Ta strona wykorzystuje pliki cookies zainstalowane przez ITI Neovision lub Podmioty Współpracujące do celów statystycznych, marketingowych oraz analitycznych, umożliwiając m.in. wyświetlanie spersonalizowanych reklam.
+            Więcej informacji dotyczących plików cookies oraz możliwości zmiany ustawień przeglądarki znajdziesz w <a rel="nofollow" href="http://ncplus.pl/cookies" target="_blank">Polityce cookies</a>.
+            Dalsze korzystnie ze strony bez zmiany ustawień przeglądarki oznacza zgodę na wykorzystywanie plików cookies.
+        </div>
+    </div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.3";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script>
+        !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');
+    </script>
+    <script src="/Content/scripts/vendor.js?v=2.23.9-fix01"></script>
+    <script src="/Content/scripts/app.js?v=2.23.9-fix01"></script>
+</body>
+</html>
