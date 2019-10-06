@@ -15,3 +15,5 @@ vod.Repository.Boundary/obj/
 vod.Repository.Boundary/bin/
 vod.Mappings/obj/
 vod.Mappings/bin/
+vod.Domain.Services.Tests/obj/
+vod.Domain.Services.Tests/bin/
