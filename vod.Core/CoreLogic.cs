@@ -31,7 +31,7 @@ namespace vod.Core
         {
             return _storedDataManager.UseStorageIfPossible(type, () =>
             {
-                var ncPlusResult = _ncPlusService.GetMoviesOfType(type).Result;
+                var ncPlusResult = _ncPlusService.GetMoviesOfType(type);
                 var results = ncPlusResult.Select(n => _filmwebService.CheckInFilmweb(n)).Where(n => n != null).ToList();
                 return results;
             }).OrderByDescending(n => n.FilmwebRating)

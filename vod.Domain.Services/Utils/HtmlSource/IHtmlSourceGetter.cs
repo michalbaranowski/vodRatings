@@ -5,6 +5,6 @@ namespace vod.Domain.Services.Utils.HtmlSource
 {
     public interface IHtmlSourceGetter
     {
-        Task<HtmlDocument> GetHtmlFrom(string url);
+        HtmlDocument GetHtmlFrom(string url);
     }
 }

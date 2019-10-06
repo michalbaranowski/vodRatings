@@ -24,15 +24,15 @@ namespace vod.Domain.Services
             _deserializer = deserializer;
         }
 
-        public async Task<IEnumerable<Movie>> GetMoviesOfType(MovieTypes type)
+        public IEnumerable<Movie> GetMoviesOfType(MovieTypes type)
         {
-            var cplusHtml = await _sourceGetter.GetHtmlFrom(NcPlusUrls.VodCplusBaseUrl.GetUrlWithType(type));
+            var cplusHtml = _sourceGetter.GetHtmlFrom(NcPlusUrls.VodCplusBaseUrl.GetUrlWithType(type));
             var cplusResult = _deserializer.DeserializeMovies(cplusHtml, type);
 
-            var premieryHtml = await _sourceGetter.GetHtmlFrom(NcPlusUrls.VodPremieryBaseUrl.GetUrlWithType(type));
+            var premieryHtml = _sourceGetter.GetHtmlFrom(NcPlusUrls.VodPremieryBaseUrl.GetUrlWithType(type));
             var premieryResult = _deserializer.DeserializeMovies(premieryHtml, type);
 
-            var hboHtml = await _sourceGetter.GetHtmlFrom(NcPlusUrls.VodHboBaseUrl.GetUrlWithType(type));
+            var hboHtml = _sourceGetter.GetHtmlFrom(NcPlusUrls.VodHboBaseUrl.GetUrlWithType(type));
             var hboResult = _deserializer.DeserializeMovies(hboHtml, type);
 
             var result = cplusResult

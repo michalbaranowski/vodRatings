@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading;
-using System.Threading.Tasks;
 using HtmlAgilityPack;
 
 namespace vod.Domain.Services.Utils.HtmlSource
@@ -17,7 +16,7 @@ namespace vod.Domain.Services.Utils.HtmlSource
             _random = new Random();
         }
 
-        public async Task<HtmlDocument> GetHtmlFrom(string url)
+        public HtmlDocument GetHtmlFrom(string url)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             var client = _httpClientFactory.CreateClient();
@@ -25,8 +24,8 @@ namespace vod.Domain.Services.Utils.HtmlSource
             
             Thread.Sleep(_random.Next(500,1000));
 
-            var response = await client.SendAsync(request);
-            var htmlString = await response.Content.ReadAsStringAsync();
+            var response = client.SendAsync(request).Result;
+            var htmlString = response.Content.ReadAsStringAsync().Result;
             var html = new HtmlDocument();
             html.LoadHtml(htmlString);
             return html;

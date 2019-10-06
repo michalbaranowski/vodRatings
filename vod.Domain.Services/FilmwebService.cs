@@ -26,7 +26,7 @@ namespace vod.Domain.Services
             if (string.IsNullOrEmpty(filmwebUrl))
                 return null;
 
-            var filmwebHtml = _sourceGetter.GetHtmlFrom(filmwebUrl).Result;
+            var filmwebHtml = _sourceGetter.GetHtmlFrom(filmwebUrl);
             var result = _sourceDeserializer.DeserializeFilmwebResult(filmwebHtml, movie.MovieType);
             result.ProviderName = movie.ProviderName;
             return result;
@@ -34,7 +34,7 @@ namespace vod.Domain.Services
 
         public string GetFilmwebUrl(Movie movie)
         {
-            var moreInfoHtml = _sourceGetter.GetHtmlFrom($"{NcPlusUrls.NcPlusBaseUrl}{movie.MoreInfoUrl}").Result;
+            var moreInfoHtml = _sourceGetter.GetHtmlFrom($"{NcPlusUrls.NcPlusBaseUrl}{movie.MoreInfoUrl}");
             var filmwebUrl = _sourceDeserializer.DeserializeFilmwebUrl(moreInfoHtml);
             return filmwebUrl;
         }
