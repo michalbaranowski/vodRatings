@@ -30,5 +30,13 @@ namespace vod.Repository
                 ctx.SaveChanges();
             }
         }
+
+        public ResultModel ResultByTitle(string movieTitle)
+        {
+            using (var ctx = new AppDbContext(_opt))
+            {
+                return ctx.Results.FirstOrDefault(n => n.Title == movieTitle);
+            }
+        }
     }
 }
