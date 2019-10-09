@@ -35,7 +35,7 @@ namespace vod.Core
                 var results = ncPlusResult.Select(n => _filmwebService.CheckInFilmweb(n)).Where(n => n != null).ToList();
                 return results;
             }).OrderByDescending(n => n.FilmwebRating)
-                .Select(n => _mapper.Map<Result>(n)); ;
+                .Select(n => _mapper.Map<Result>(n));
         }
     }
 }

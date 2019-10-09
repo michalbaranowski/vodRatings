@@ -14,7 +14,12 @@ namespace vodApi.MapProfiles
             CreateMap<Result, ResultModel>();
             CreateMap<ResultModel, Result>();
             CreateMap<FilmwebResult, ResultModel>();
-            CreateMap<ResultModel, FilmwebResult>();
+            CreateMap<ResultModel, FilmwebResult>()
+                .ForMember(x=>x.FilmwebRating,
+                    opt => opt.MapFrom(
+                        src => src.FilmwebRating >= 10 
+                            ? src.FilmwebRating/10 
+                            : src.FilmwebRating));
         }
     }
 }
