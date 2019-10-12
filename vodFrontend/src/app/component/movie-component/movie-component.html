@@ -1,0 +1,16 @@
+<div class="tile is-parent">
+    <article class="tile is-child notification is-dark is-mobile">
+        <p class="title">{{item.title}} ({{item.year}})</p>
+        <p class="subtitle">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>
+        <p class="subtitle">Kolekcja: {{item.providerName}}</p>
+        <p class="subtitle">Gatunek wg Filmweb: {{item.filmwebFilmType}}</p>
+        <p class="subtitle">Data odświeżenia: {{item.storedDate | date:'medium'}}</p>
+        <figure *ngIf="!item.imageUrl" class="image is-3by4">
+            <img src="https://bulma.io/images/placeholders/640x480.png">
+        </figure>
+
+        <figure *ngIf="item.imageUrl" class="image is-4by3 is-mobile">
+            <img src="{{item.imageUrl}}">
+        </figure>
+    </article>
+</div>

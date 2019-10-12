@@ -1,0 +1,38 @@
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <img style="height: 100px" src="https://www.freelogodesign.org/file/app/client/thumb/32181cf1-8f0f-4f7f-b603-77846f93c401_200x200.png?1570210547028" alt="logo"/>
+  
+      <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item is-active" (click)="changeType(0)">
+          Thriller
+        </a>
+  
+        <a class="navbar-item" (click)="changeType(2)">
+          Akcja
+        </a>
+
+        <a class="navbar-item" (click)="changeType(1)">
+            Komedia
+        </a>
+
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <div *ngIf="loading">
+                <button class="button is-dark is-large is-loading"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>

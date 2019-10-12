@@ -7,11 +7,17 @@ import { ResultsComponent } from './component/results-component/results-componen
 import { HttpClientModule } from '@angular/common/http'; 
 import { MovieFilter } from './pipes/movieFilter-pipe';
 import { FormsModule } from '@angular/forms';
+import { MovieComponent } from './component/movie-component/movie-component';
+import { NavbarComponent } from './component/navbar-component/navbar-component';
+import { FiltersComponent } from './component/filters-component/filters-component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ResultsComponent,
+    MovieComponent,
+    NavbarComponent,
+    FiltersComponent,
     MovieFilter
   ],
   imports: [
