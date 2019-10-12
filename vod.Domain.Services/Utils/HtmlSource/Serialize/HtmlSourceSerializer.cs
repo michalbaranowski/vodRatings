@@ -6,11 +6,11 @@ using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
 using vod.Domain.Services.Utils.HtmlSource.Extension;
 
-namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
+namespace vod.Domain.Services.Utils.HtmlSource.Serialize
 {
-    public class HtmlSourceDeserializer : IHtmlSourceDeserializer
+    public class HtmlSourceSerializer : IHtmlSourceSerializer
     {
-        public IEnumerable<Movie> DeserializeMovies(HtmlDocument html, MovieTypes type)
+        public IEnumerable<Movie> SerializeMovies(HtmlDocument html, MovieTypes type)
         {
             var divs = html.DocumentNode.Descendants("div")
                 .Where(x => x.Attributes.Contains("title"));
@@ -33,14 +33,14 @@ namespace vod.Domain.Services.Utils.HtmlSource.Deserialize
                     });
         }
 
-        public string DeserializeFilmwebUrl(HtmlDocument html)
+        public string SerializeFilmwebUrl(HtmlDocument html)
         {
             return html.DocumentNode.Descendants()?
                 .Where(n => n.Name == "a" && n.Attributes.Contains("href") && n.Attributes["href"].Value.Contains("filmweb")).FirstOrDefault()
                 ?.Attributes["href"].Value;
         }
 
-        public FilmwebResult DeserializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieMovieType)
+        public FilmwebResult SerializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieMovieType)
         {
             var rate = filmwebHtml.DocumentNode.Descendants()?
                 .FirstOrDefault(n => n.Name == "span" && n.Attributes.Contains("itemprop") &&

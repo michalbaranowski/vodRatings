@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using vod.Core;
-using vod.Core.Boundary;
 using vod.Core.Boundary.Interfaces;
 using vod.Domain.Services;
 using vod.Domain.Services.Boundary;
 using vod.Domain.Services.Boundary.Interfaces;
+using vod.Domain.Services.Utils;
 using vod.Domain.Services.Utils.HtmlSource;
-using vod.Domain.Services.Utils.HtmlSource.Deserialize;
+using vod.Domain.Services.Utils.HtmlSource.Serialize;
 using vod.Repository;
 using vod.Repository.Boundary;
 
@@ -43,10 +43,11 @@ namespace vodApi
             services.AddTransient<IVodRepositoryBackground, VodRepositoryBackground>();
             services.AddTransient<IVodRepository, VodRepository>();
             services.AddTransient<IStoredDataManager, StoredDataManager>();
+            services.AddTransient<IUrlGetter, UrlGetter>();
             services.AddTransient<INcPlusService, NcPlusService>();
             services.AddTransient<IFilmwebService, FilmwebService>();
             services.AddTransient<IHtmlSourceGetter, HtmlSourceGetter>();
-            services.AddTransient<IHtmlSourceDeserializer, HtmlSourceDeserializer>();
+            services.AddTransient<IHtmlSourceSerializer, HtmlSourceSerializer>();
             services.AddTransient<ICoreLogic, CoreLogic>();
         }
 

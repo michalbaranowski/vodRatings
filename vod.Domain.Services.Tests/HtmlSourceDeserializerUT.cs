@@ -6,13 +6,13 @@ using HtmlAgilityPack;
 using NUnit.Framework;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Tests.Resources;
-using vod.Domain.Services.Utils.HtmlSource.Deserialize;
+using vod.Domain.Services.Utils.HtmlSource.Serialize;
 
 namespace vod.Domain.Services.Tests
 {
-    public class HtmlSourceDeserializerUT
+    public class HtmlSourceSerializerUT
     {
-        private HtmlSourceDeserializer _deserializer;
+        private HtmlSourceSerializer _serializer;
         private HtmlDocument _moviesHtmlDoc;
         private HtmlDocument _moreInfoHtmlDoc;
         private HtmlDocument _filmwebResultHtmlDoc;
@@ -23,7 +23,7 @@ namespace vod.Domain.Services.Tests
 
         private void Arrange()
         {
-            _deserializer = new HtmlSourceDeserializer();
+            _serializer = new HtmlSourceSerializer();
             
             var ncPremieresComedies = HtmlResources.NcPremieresResultHtml();
             _ncPremieresComediesDoc = new HtmlDocument();
@@ -51,11 +51,11 @@ namespace vod.Domain.Services.Tests
         }
 
         [Test]
-        public void DeserializeMovies_ShouldDeserializeCorrectValues()
+        public void SerializeMovies_ShouldSerializeCorrectValues()
         {
             Arrange();
 
-            var result = _deserializer.DeserializeMovies(_moviesHtmlDoc, MovieTypes.Thriller);
+            var result = _serializer.SerializeMovies(_moviesHtmlDoc, MovieTypes.Thriller);
 
             Assert.True(result.Any(n=>n.Title == "Ostateczna rozgrywka"));
             Assert.True(result.Any(n => n.MoreInfoUrl == "/Collection/Asset?codename=ostateczna-rozgrywka-19"));
@@ -63,13 +63,13 @@ namespace vod.Domain.Services.Tests
         }
 
         [Test]
-        public void DeserializeMovies_ShouldDeserializeCorrectProviderName()
+        public void SerializeMovies_ShouldSerializeCorrectProviderName()
         {
             Arrange();
 
-            var result1 = _deserializer.DeserializeMovies(_cplusComedies, MovieTypes.Comedy);
-            var result2 = _deserializer.DeserializeMovies(_hboComedies, MovieTypes.Comedy);
-            var result3 = _deserializer.DeserializeMovies(_ncPremieresComediesDoc, MovieTypes.Comedy);
+            var result1 = _serializer.SerializeMovies(_cplusComedies, MovieTypes.Comedy);
+            var result2 = _serializer.SerializeMovies(_hboComedies, MovieTypes.Comedy);
+            var result3 = _serializer.SerializeMovies(_ncPremieresComediesDoc, MovieTypes.Comedy);
 
             Assert.True(result1.All(n => n.ProviderName == "CANAL+ VOD"));
             Assert.True(result2.All(n => n.ProviderName.ToLower().Contains("hbo")));
@@ -77,21 +77,21 @@ namespace vod.Domain.Services.Tests
         }
 
         [Test]
-        public void DeserializeFilmwebUrl_ShouldDeserializeCorrectValues()
+        public void SerializeFilmwebUrl_ShouldSerializeCorrectValues()
         {
             Arrange();
 
-            var result = _deserializer.DeserializeFilmwebUrl(_moreInfoHtmlDoc);
+            var result = _serializer.SerializeFilmwebUrl(_moreInfoHtmlDoc);
 
             Assert.AreEqual("http://www.filmweb.pl/film/ostateczna+rozgrywka+19-2018-780203", result);
         }
 
         [Test]
-        public void DeserializeFilmwebResult_ShouldDeserializeCorrectValues()
+        public void SerializeFilmwebResult_ShouldSerializeCorrectValues()
         {
             Arrange();
 
-            var result = _deserializer.DeserializeFilmwebResult(_filmwebResultHtmlDoc, MovieTypes.Thriller);
+            var result = _serializer.SerializeFilmwebResult(_filmwebResultHtmlDoc, MovieTypes.Thriller);
 
             Assert.True(result.Title == "Ostateczna rozgrywka");
             Assert.True(result.FilmwebRating == 5.4m);

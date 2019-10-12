@@ -5,6 +5,7 @@ using vod.Core.Boundary.Interfaces;
 using vod.Core.Boundary.Model;
 using vod.Domain.Services.Boundary.Interfaces;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
+using vod.Domain.Services.Boundary.Models;
 
 namespace vod.Core
 {
@@ -29,13 +30,27 @@ namespace vod.Core
 
         public IEnumerable<Result> GetResults(MovieTypes type)
         {
-            return _storedDataManager.UseStorageIfPossible(type, () =>
-            {
-                var ncPlusResult = _ncPlusService.GetMoviesOfType(type);
-                var results = ncPlusResult.Select(n => _filmwebService.CheckInFilmweb(n)).Where(n => n != null).ToList();
-                return results;
-            }).OrderByDescending(n => n.FilmwebRating)
+            return GetFilmwebResults(type)
+                .OrderByDescending(n => n.FilmwebRating)
                 .Select(n => _mapper.Map<Result>(n));
+        }
+
+        public IEnumerable<Result> GetResultsUsingStorage(MovieTypes type)
+        {
+            return _storedDataManager.UseStorageIfPossible(
+                    type, 
+                    () => GetFilmwebResults(type))
+                .OrderByDescending(n => n.FilmwebRating)
+                .Select(n => _mapper.Map<Result>(n));
+        }
+
+        private IEnumerable<FilmwebResult> GetFilmwebResults(MovieTypes type)
+        {
+            var ncPlusResult = _ncPlusService.GetMoviesOfType(type);
+            var results = ncPlusResult
+                .Select(n => _filmwebService.CheckInFilmweb(n))
+                .Where(n => n != null).ToList();
+            return results;
         }
     }
 }

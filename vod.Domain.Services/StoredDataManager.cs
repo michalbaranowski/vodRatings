@@ -29,12 +29,22 @@ namespace vod.Domain.Services
             _backgroundWorker = backgroundWorker;
         }
 
-        public IEnumerable<FilmwebResult> UseStorageIfPossible(MovieTypes type, Func<IEnumerable<FilmwebResult>> func)
+        public IEnumerable<FilmwebResult> UseStorageIfPossible(
+            MovieTypes type,
+            Func<IEnumerable<FilmwebResult>> func)
         {
             var storedCollection = _repository.GetStoredData((int)type).ToList();
+            UseStorageLogic(storedCollection, type, func);
+            return storedCollection.Select(n => _mapper.Map<FilmwebResult>(n));
+        }
 
+        private void UseStorageLogic(
+            List<ResultModel> storedCollection,
+            MovieTypes type,
+            Func<IEnumerable<FilmwebResult>> func)
+        {
             if ((!storedCollection.Any() ||
-                storedCollection.FirstOrDefault()?.StoredDate < DateTime.Now.AddDays(-1)))
+                 storedCollection.FirstOrDefault()?.StoredDate < DateTime.Now.AddDays(-1)))
             {
                 _backgroundWorker.Execute(type, () =>
                 {
@@ -45,7 +55,6 @@ namespace vod.Domain.Services
                 });
             }
 
-            return storedCollection.Select(n => _mapper.Map<FilmwebResult>(n));
         }
     }
 }

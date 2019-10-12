@@ -27,7 +27,12 @@ namespace vod.Domain.Services
                 return;
             }
 
-            new Thread(() =>
+            PrepareThread(func).Start();
+        }
+
+        private Thread PrepareThread(Func<bool> func)
+        {
+            return new Thread(() =>
             {
                 try
                 {
@@ -49,7 +54,7 @@ namespace vod.Domain.Services
                         Execute(val.Key, val.Value);
                     }
                 }
-            }).Start();
+            });
         }
     }
 }

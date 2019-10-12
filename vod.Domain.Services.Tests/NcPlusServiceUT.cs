@@ -5,27 +5,33 @@ using Moq;
 using NUnit.Framework;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
+using vod.Domain.Services.Utils;
 using vod.Domain.Services.Utils.HtmlSource;
-using vod.Domain.Services.Utils.HtmlSource.Deserialize;
+using vod.Domain.Services.Utils.HtmlSource.Serialize;
 
 namespace vod.Domain.Services.Tests
 {
     public class NcPlusServiceUT
     {
         private Mock<IHtmlSourceGetter> _sourceGetterMock;
-        private Mock<IHtmlSourceDeserializer> _deserializerMock;
+        private Mock<IHtmlSourceSerializer> _serializerMock;
         private NcPlusService _ncPlusService;
+        private UrlGetter _urlGetterFake;
+
 
         private void BaseArrange()
         {
             _sourceGetterMock = new Mock<IHtmlSourceGetter>();
-            _deserializerMock = new Mock<IHtmlSourceDeserializer>();
-            _deserializerMock.SetupSequence(x => x.DeserializeMovies(It.IsAny<HtmlDocument>(), It.IsAny<MovieTypes>()))
+
+            _serializerMock = new Mock<IHtmlSourceSerializer>();
+            _serializerMock.SetupSequence(x => x.SerializeMovies(It.IsAny<HtmlDocument>(), It.IsAny<MovieTypes>()))
                 .Returns(new List<Movie>() {new Movie() {Title = "title1"}})
                 .Returns(new List<Movie>() {new Movie() {Title = "title2"}, new Movie() {Title = "title2"}})
                 .Returns(new List<Movie>() {new Movie() {Title = "title3"}});
+
+            _urlGetterFake = new UrlGetter();
             
-            _ncPlusService = new NcPlusService(_sourceGetterMock.Object, _deserializerMock.Object);
+            _ncPlusService = new NcPlusService(_sourceGetterMock.Object, _serializerMock.Object, _urlGetterFake);
         }
 
         [Test]
