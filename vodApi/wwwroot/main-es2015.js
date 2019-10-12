@@ -36,6 +36,45 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/filters-component/filters-component.html":
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/component/filters-component/filters-component.html ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"margin-left: 10px;\" class=\"columns is-mobile is-multiline\" *ngIf=\"!loading\">\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-four-fifths-mobile\">\r\n        <div class=\"control\">\r\n            <label class=\"label\">Tytuł:</label>\r\n            <input [(ngModel)]=\"movieFilterArgs.title\" class=\"input\" type=\"text\" placeholder=\"Tytuł filmu...\">\r\n        </div>\r\n    </div>\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Gatunek wg Filmweb:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilterArgs.filmwebFilmType\">\r\n                <option *ngFor=\"let type of filmwebTypes; let i = index\" [value]=\"filmwebTypes[i]\">{{type}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Dostawca vod:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilterArgs.providerName\">\r\n                <option *ngFor=\"let providerName of providerNames; let i = index\" [value]=\"providerNames[i]\">{{providerName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n</div>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/movie-component/movie-component.html":
+/*!******************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/component/movie-component/movie-component.html ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"tile is-parent\">\r\n    <article class=\"tile is-child notification is-dark is-mobile\">\r\n        <p class=\"title\">{{item.title}} ({{item.year}})</p>\r\n        <p class=\"subtitle\">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>\r\n        <p class=\"subtitle\">Kolekcja: {{item.providerName}}</p>\r\n        <p class=\"subtitle\">Gatunek wg Filmweb: {{item.filmwebFilmType}}</p>\r\n        <p class=\"subtitle\">Data odświeżenia: {{item.storedDate | date:'medium'}}</p>\r\n        <figure *ngIf=\"!item.imageUrl\" class=\"image is-3by4\">\r\n            <img src=\"https://bulma.io/images/placeholders/640x480.png\">\r\n        </figure>\r\n\r\n        <figure *ngIf=\"item.imageUrl\" class=\"image is-4by3 is-mobile\">\r\n            <img src=\"{{item.imageUrl}}\">\r\n        </figure>\r\n    </article>\r\n</div>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/navbar-component/navbar-component.html":
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/component/navbar-component/navbar-component.html ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar is-dark\" role=\"navigation\" aria-label=\"main navigation\">\r\n    <div class=\"navbar-brand\">\r\n      <img style=\"height: 100px\" src=\"https://www.freelogodesign.org/file/app/client/thumb/32181cf1-8f0f-4f7f-b603-77846f93c401_200x200.png?1570210547028\" alt=\"logo\"/>\r\n  \r\n      <a role=\"button\" class=\"navbar-burger\" data-target=\"navMenu\" aria-label=\"menu\" aria-expanded=\"false\">\r\n        <span aria-hidden=\"true\"></span>\r\n        <span aria-hidden=\"true\"></span>\r\n        <span aria-hidden=\"true\"></span>\r\n      </a>\r\n    </div>\r\n  \r\n    <div id=\"navMenu\" class=\"navbar-menu\">\r\n      <div class=\"navbar-start\">\r\n        <a class=\"navbar-item is-active\" (click)=\"changeType(0)\">\r\n          Thriller\r\n        </a>\r\n  \r\n        <a class=\"navbar-item\" (click)=\"changeType(2)\">\r\n          Akcja\r\n        </a>\r\n\r\n        <a class=\"navbar-item\" (click)=\"changeType(1)\">\r\n            Komedia\r\n        </a>\r\n\r\n      </div>\r\n  \r\n      <div class=\"navbar-end\">\r\n        <div class=\"navbar-item\">\r\n          <div class=\"buttons\">\r\n            <div *ngIf=\"loading\">\r\n                <button class=\"button is-dark is-large is-loading\"></button>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </nav>");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/results-component/results-component.html":
 /*!**********************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/component/results-component/results-component.html ***!
@@ -45,7 +84,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar is-dark\" role=\"navigation\" aria-label=\"main navigation\">\r\n    <div class=\"navbar-brand\">\r\n      <img style=\"height: 100px\" src=\"https://www.freelogodesign.org/file/app/client/thumb/32181cf1-8f0f-4f7f-b603-77846f93c401_200x200.png?1570210547028\" alt=\"logo\"/>\r\n  \r\n      <a role=\"button\" class=\"navbar-burger\" data-target=\"navMenu\" aria-label=\"menu\" aria-expanded=\"false\">\r\n        <span aria-hidden=\"true\"></span>\r\n        <span aria-hidden=\"true\"></span>\r\n        <span aria-hidden=\"true\"></span>\r\n      </a>\r\n    </div>\r\n  \r\n    <div id=\"navMenu\" class=\"navbar-menu\">\r\n      <div class=\"navbar-start\">\r\n        <a class=\"navbar-item is-active\" (click)=\"getMoviesOfType(0)\">\r\n          Thriller\r\n        </a>\r\n  \r\n        <a class=\"navbar-item\" (click)=\"getMoviesOfType(2)\">\r\n          Akcja\r\n        </a>\r\n\r\n        <a class=\"navbar-item\" (click)=\"getMoviesOfType(1)\">\r\n            Komedia\r\n        </a>\r\n\r\n      </div>\r\n  \r\n      <div class=\"navbar-end\">\r\n        <div class=\"navbar-item\">\r\n          <div class=\"buttons\">\r\n            <div *ngIf=\"loading\">\r\n                <button class=\"button is-dark is-large is-loading\"></button>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </nav>\r\n\r\n<div style=\"margin-left: 10px;\" class=\"columns is-mobile is-multiline\" *ngIf=\"!loading\">\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-four-fifths-mobile\">\r\n        <div class=\"control\">\r\n            <label class=\"label\">Tytuł:</label>\r\n            <input [(ngModel)]=\"movieFilterArgs.title\" class=\"input\" type=\"text\" placeholder=\"Tytuł filmu...\">\r\n        </div>\r\n    </div>\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Gatunek wg Filmweb:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilterArgs.filmwebFilmType\">\r\n                <option *ngFor=\"let type of filmwebTypes; let i = index\" [value]=\"filmwebTypes[i]\">{{type}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Dostawca vod:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilterArgs.providerName\">\r\n                <option *ngFor=\"let providerName of providerNames; let i = index\" [value]=\"providerNames[i]\">{{providerName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"columns is-gapless is-multiline is-mobile\" *ngIf=\"!loading\">\r\n    <div *ngFor=\"let item of results | movieFilter:movieFilterArgs\"\r\n        class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <!-- <app-movie [item]=item></app-movie> -->\r\n\r\n        <div class=\"tile is-parent\">\r\n            <article class=\"tile is-child notification is-dark is-mobile\">\r\n                <p class=\"title\">{{item.title}} ({{item.year}})</p>\r\n                <p class=\"subtitle\">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>\r\n                <p class=\"subtitle\">Kolekcja: {{item.providerName}}</p>\r\n                <p class=\"subtitle\">Gatunek wg Filmweb: {{item.filmwebFilmType}}</p>\r\n                <p class=\"subtitle\">Data odświeżenia: {{item.storedDate | date:'medium'}}</p>\r\n                <figure *ngIf=\"!item.imageUrl\" class=\"image is-3by4\">\r\n                    <img src=\"https://bulma.io/images/placeholders/640x480.png\">\r\n                </figure>\r\n\r\n                <figure *ngIf=\"item.imageUrl\" class=\"image is-4by3 is-mobile\">\r\n                    <img src=\"{{item.imageUrl}}\">\r\n                </figure>\r\n            </article>\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-navbar (typeChanged)=\"onTypeChanged($event)\"></app-navbar>\r\n\r\n<app-filters *ngIf=\"results\" [results]=\"results\" [movieFilterArgs]=\"movieFilterArgs\" (filterChanged)=\"onFilterChanged($event)\"></app-filters>\r\n\r\n<div *ngIf=\"results\" class=\"columns is-gapless is-multiline is-mobile\">\r\n    <div *ngFor=\"let item of results | movieFilter:movieFilterArgs\"\r\n        class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <app-movie [item]=item></app-movie>\r\n    </div>\r\n</div>");
 
 /***/ }),
 
@@ -372,6 +411,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var _pipes_movieFilter_pipe__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pipes/movieFilter-pipe */ "./src/app/pipes/movieFilter-pipe.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _component_movie_component_movie_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./component/movie-component/movie-component */ "./src/app/component/movie-component/movie-component.ts");
+/* harmony import */ var _component_navbar_component_navbar_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./component/navbar-component/navbar-component */ "./src/app/component/navbar-component/navbar-component.ts");
+/* harmony import */ var _component_filters_component_filters_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./component/filters-component/filters-component */ "./src/app/component/filters-component/filters-component.ts");
+
+
+
 
 
 
@@ -389,6 +434,9 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         declarations: [
             _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
             _component_results_component_results_component__WEBPACK_IMPORTED_MODULE_6__["ResultsComponent"],
+            _component_movie_component_movie_component__WEBPACK_IMPORTED_MODULE_10__["MovieComponent"],
+            _component_navbar_component_navbar_component__WEBPACK_IMPORTED_MODULE_11__["NavbarComponent"],
+            _component_filters_component_filters_component__WEBPACK_IMPORTED_MODULE_12__["FiltersComponent"],
             _pipes_movieFilter_pipe__WEBPACK_IMPORTED_MODULE_8__["MovieFilter"]
         ],
         imports: [
@@ -407,47 +455,119 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
-/***/ "./src/app/component/results-component/results-component.ts":
+/***/ "./src/app/component/filters-component/filters-component.ts":
 /*!******************************************************************!*\
-  !*** ./src/app/component/results-component/results-component.ts ***!
+  !*** ./src/app/component/filters-component/filters-component.ts ***!
   \******************************************************************/
-/*! exports provided: ResultsComponent */
+/*! exports provided: FiltersComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResultsComponent", function() { return ResultsComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FiltersComponent", function() { return FiltersComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var src_app_service_resultsService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/service/resultsService */ "./src/app/service/resultsService.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var src_app_model_result__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/model/result */ "./src/app/model/result.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 
 
-
-
-let ResultsComponent = class ResultsComponent {
-    constructor(resultsService) {
-        this.resultsService = resultsService;
-        this.initMenu();
-        this.movieFilterArgs = new src_app_model_result__WEBPACK_IMPORTED_MODULE_3__["Result"]();
-        this.getMoviesOfType(0);
+let FiltersComponent = class FiltersComponent {
+    constructor() {
+        this.filterChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
-    getMoviesOfType(type) {
-        this.loading = true;
-        this.resultsService.getResults(type).subscribe(n => {
-            this.results = n;
-            this.loading = false;
-            this.filmwebTypes = [];
-            this.results.forEach((x) => {
-                if (this.filmwebTypes.indexOf(x.filmwebFilmType) == -1 && x.filmwebFilmType)
-                    this.filmwebTypes.push(x.filmwebFilmType);
-            });
-            this.providerNames = [];
-            this.results.forEach((x) => {
-                if (this.providerNames.indexOf(x.providerName) == -1)
-                    this.providerNames.push(x.providerName);
-            });
+    ngOnInit() {
+        this.refresh();
+    }
+    refresh() {
+        this.filmwebTypes = [];
+        this.results.forEach((x) => {
+            if (this.filmwebTypes.indexOf(x.filmwebFilmType) == -1 && x.filmwebFilmType)
+                this.filmwebTypes.push(x.filmwebFilmType);
         });
+        this.providerNames = [];
+        this.results.forEach((x) => {
+            if (this.providerNames.indexOf(x.providerName) == -1)
+                this.providerNames.push(x.providerName);
+        });
+    }
+    ngOnChanges(changes) {
+        const movieFilterArgs = changes.movieFilterArgs;
+        const results = changes.results;
+        if (movieFilterArgs)
+            this.filterChanged.emit(movieFilterArgs.currentValue);
+        if (results)
+            this.refresh();
+    }
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], FiltersComponent.prototype, "movieFilterArgs", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], FiltersComponent.prototype, "results", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+], FiltersComponent.prototype, "filterChanged", void 0);
+FiltersComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-filters',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./filters-component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/filters-component/filters-component.html")).default
+    })
+], FiltersComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/component/movie-component/movie-component.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/component/movie-component/movie-component.ts ***!
+  \**************************************************************/
+/*! exports provided: MovieComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MovieComponent", function() { return MovieComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let MovieComponent = class MovieComponent {
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], MovieComponent.prototype, "item", void 0);
+MovieComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-movie',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./movie-component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/movie-component/movie-component.html")).default
+    })
+], MovieComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/component/navbar-component/navbar-component.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/component/navbar-component/navbar-component.ts ***!
+  \****************************************************************/
+/*! exports provided: NavbarComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavbarComponent", function() { return NavbarComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let NavbarComponent = class NavbarComponent {
+    constructor() {
+        this.typeChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.initMenu();
+    }
+    changeType(n) {
+        this.typeChanged.emit(n);
     }
     initMenu() {
         document.addEventListener('DOMContentLoaded', () => {
@@ -478,6 +598,58 @@ let ResultsComponent = class ResultsComponent {
                 });
             }
         });
+    }
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+], NavbarComponent.prototype, "typeChanged", void 0);
+NavbarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-navbar',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./navbar-component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/navbar-component/navbar-component.html")).default
+    })
+], NavbarComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/component/results-component/results-component.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/component/results-component/results-component.ts ***!
+  \******************************************************************/
+/*! exports provided: ResultsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResultsComponent", function() { return ResultsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var src_app_service_resultsService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/service/resultsService */ "./src/app/service/resultsService.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var src_app_model_result__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/model/result */ "./src/app/model/result.ts");
+
+
+
+
+let ResultsComponent = class ResultsComponent {
+    constructor(resultsService) {
+        this.resultsService = resultsService;
+        this.movieFilterArgs = new src_app_model_result__WEBPACK_IMPORTED_MODULE_3__["Result"]();
+        this.getMoviesOfType(0);
+    }
+    getMoviesOfType(type) {
+        this.loading = true;
+        this.resultsService.getResults(type).subscribe(n => {
+            this.results = n;
+            this.loading = false;
+        });
+    }
+    onTypeChanged(type) {
+        this.getMoviesOfType(type);
+    }
+    onFilterChanged(newFilter) {
+        this.movieFilterArgs = newFilter;
     }
 };
 ResultsComponent.ctorParameters = () => [
