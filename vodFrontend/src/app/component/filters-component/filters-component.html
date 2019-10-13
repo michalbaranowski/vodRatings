@@ -2,13 +2,13 @@
     <div class="column is-one-third-desktop is-half-tablet is-four-fifths-mobile">
         <div class="control">
             <label class="label">Tytuł:</label>
-            <input [(ngModel)]="movieFilterArgs.title" class="input" type="text" placeholder="Tytuł filmu...">
+            <input [(ngModel)]="movieFilter.title" class="input" type="text" placeholder="Tytuł filmu...">
         </div>
     </div>
     <div class="column is-one-third-desktop is-half-tablet is-full-mobile">
         <label class="label">Gatunek wg Filmweb:</label>
         <div class="select">
-            <select [(ngModel)]="movieFilterArgs.filmwebFilmType">
+            <select [(ngModel)]="movieFilter.filmwebFilmType">
                 <option *ngFor="let type of filmwebTypes; let i = index" [value]="filmwebTypes[i]">{{type}}</option>
                 <option [value]="">Wszystkie</option>
             </select>
@@ -18,7 +18,7 @@
     <div class="column is-one-third-desktop is-half-tablet is-full-mobile">
         <label class="label">Dostawca vod:</label>
         <div class="select">
-            <select [(ngModel)]="movieFilterArgs.providerName">
+            <select [(ngModel)]="movieFilter.providerName" (change)="onFilterChanged()">
                 <option *ngFor="let providerName of providerNames; let i = index" [value]="providerNames[i]">{{providerName}}</option>
                 <option [value]="">Wszystkie</option>
             </select>

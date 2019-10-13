@@ -1,6 +1,6 @@
 <app-navbar (typeChanged)="onTypeChanged($event)"></app-navbar>
 
-<app-filters *ngIf="results" [results]="results" [movieFilterArgs]="movieFilterArgs" (filterChanged)="onFilterChanged($event)"></app-filters>
+<app-filters *ngIf="results" [results]="results" (filterChanged)="onFilterChanged($event)"></app-filters>
 
 <div *ngIf="results" class="columns is-gapless is-multiline is-mobile">
     <div *ngFor="let item of results | movieFilter:movieFilterArgs"

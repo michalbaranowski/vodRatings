@@ -8,18 +8,20 @@ import { Result } from 'src/app/model/result';
 
 export class FiltersComponent implements OnInit {
     
-    @Input() movieFilterArgs: Result;
     @Input() results: Result[];
     @Output() filterChanged = new EventEmitter<Result>();
     filmwebTypes: string[];
     providerNames: string[];
-
+    movieFilter: Result = new Result();
 
     ngOnInit() {
         this.refresh();
     }
 
     refresh() {
+        this.movieFilter.providerName = "Wszystkie";
+        this.movieFilter.filmwebFilmType = "Wszystkie";
+
         this.filmwebTypes = [];
         this.results.forEach((x) => {
             if (this.filmwebTypes.indexOf(x.filmwebFilmType) == -1 && x.filmwebFilmType)
@@ -32,12 +34,13 @@ export class FiltersComponent implements OnInit {
         });
     }
 
-    ngOnChanges(changes: SimpleChanges) {
-        const movieFilterArgs: SimpleChange = changes.movieFilterArgs;
-        const results: SimpleChange = changes.results;
+    onFilterChanged() {
+        this.filterChanged.emit(this.movieFilter);
+    }
 
-        if(movieFilterArgs) this.filterChanged.emit(movieFilterArgs.currentValue);
-        if(results) this.refresh();
+    ngOnChanges(changes: SimpleChanges) {
+        const results: SimpleChange = changes.results;
+        if (results) this.refresh();
     }
 
 }
