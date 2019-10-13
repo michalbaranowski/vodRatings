@@ -38,7 +38,7 @@ namespace vod.Domain.Services
                 result = result.Concat(serialized);
             }
 
-            return result.DistinctBy(n=>n.Title);
+            return result.DistinctBy(n => n.Title);
         }
     }
 }

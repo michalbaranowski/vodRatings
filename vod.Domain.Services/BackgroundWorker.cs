@@ -12,6 +12,7 @@ namespace vod.Domain.Services
     {
         private readonly IBackgroundWorkerStateManager _stateManager;
         private readonly Queue<KeyValuePair<MovieTypes,Func<bool>>> _queue;
+        private MovieTypes? _currentExecuteType;
 
         public BackgroundWorker(IBackgroundWorkerStateManager stateManager)
         {
@@ -21,12 +22,18 @@ namespace vod.Domain.Services
 
         public void Execute(MovieTypes type, Func<bool> func)
         {
-            if (_stateManager.IsBusy() && _queue.All(n => n.Key != type))
+            if (_currentExecuteType.HasValue 
+                && type == _currentExecuteType)
+                return;
+
+            if (_stateManager.IsBusy() 
+                && _queue.All(n => n.Key != type))
             {
                 _queue.Enqueue(new KeyValuePair<MovieTypes, Func<bool>>(type, func));
                 return;
             }
 
+            _currentExecuteType = type;
             PrepareThread(func).Start();
         }
 

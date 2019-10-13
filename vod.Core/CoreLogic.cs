@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using MoreLinq;
 using vod.Core.Boundary.Interfaces;
 using vod.Core.Boundary.Model;
 using vod.Domain.Services.Boundary.Interfaces;
@@ -50,7 +51,7 @@ namespace vod.Core
             var results = ncPlusResult
                 .Select(n => _filmwebService.CheckInFilmweb(n))
                 .Where(n => n != null).ToList();
-            return results;
+            return results.DistinctBy(n => n.Title);
         }
     }
 }
