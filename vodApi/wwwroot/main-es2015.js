@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"margin-left: 10px;\" class=\"columns is-mobile is-multiline\" *ngIf=\"!loading\">\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-four-fifths-mobile\">\r\n        <div class=\"control\">\r\n            <label class=\"label\">Tytuł:</label>\r\n            <input [(ngModel)]=\"movieFilter.title\" class=\"input\" type=\"text\" placeholder=\"Tytuł filmu...\">\r\n        </div>\r\n    </div>\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Gatunek wg Filmweb:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.filmwebFilmType\">\r\n                <option *ngFor=\"let type of filmwebTypes; let i = index\" [value]=\"filmwebTypes[i]\">{{type}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Dostawca vod:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.providerName\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let providerName of providerNames; let i = index\" [value]=\"providerNames[i]\">{{providerName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"margin-left: 10px;\" class=\"columns is-mobile is-multiline\" *ngIf=\"!loading\">\r\n    <div class=\"column is-one-quarter-desktop is-half-tablet is-four-fifths-mobile\">\r\n        <div class=\"control\">\r\n            <label class=\"label\">Tytuł:</label>\r\n            <input [(ngModel)]=\"movieFilter.title\" class=\"input\" type=\"text\" placeholder=\"Tytuł filmu...\">\r\n        </div>\r\n    </div>\r\n    <div class=\"column is-one-quarter-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Gatunek wg Filmweb:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.filmwebFilmType\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let type of filmwebTypes; let i = index\" [value]=\"filmwebTypes[i]\">{{type}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-quarter-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Dostawca vod:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.providerName\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let providerName of providerNames; let i = index\" [value]=\"providerNames[i]\">{{providerName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-quarter-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Produkcja:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.production\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let countryName of productionNames; let i = index\" [value]=\"productionNames[i]\">{{countryName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n</div>");
 
 /***/ }),
 
@@ -58,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"tile is-parent\">\r\n    <article class=\"tile is-child notification is-dark is-mobile\">\r\n        <p class=\"title\">{{item.title}} ({{item.year}})</p>\r\n        <p class=\"subtitle\">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>\r\n        <p class=\"subtitle\">Kolekcja: {{item.providerName}}</p>\r\n        <p class=\"subtitle\">Gatunek wg Filmweb: {{item.filmwebFilmType}}</p>\r\n        <p class=\"subtitle\">Data odświeżenia: {{item.storedDate | date:'medium'}}</p>\r\n        <figure *ngIf=\"!item.imageUrl\" class=\"image is-3by4\">\r\n            <img src=\"https://bulma.io/images/placeholders/640x480.png\">\r\n        </figure>\r\n\r\n        <figure *ngIf=\"item.imageUrl\" class=\"image is-4by3 is-mobile\">\r\n            <img src=\"{{item.imageUrl}}\">\r\n        </figure>\r\n    </article>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"tile is-parent\">\r\n    <article class=\"tile is-child notification is-dark is-mobile\">\r\n        <p class=\"title\">{{item.title}} ({{item.year}})</p>\r\n        <p class=\"subtitle\">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>\r\n        <p class=\"subtitle\">Kolekcja: {{item.providerName}}</p>\r\n        <p class=\"subtitle\">Gatunek wg Filmweb: {{item.filmwebFilmType}}</p>\r\n        <p class=\"subtitle\">Produkcja: {{item.production}}</p>\r\n        <p class=\"subtitle\">Data odświeżenia: {{item.storedDate | date:'medium'}}</p>\r\n        <figure *ngIf=\"!item.imageUrl\" class=\"image is-3by4\">\r\n            <img src=\"https://bulma.io/images/placeholders/640x480.png\">\r\n        </figure>\r\n\r\n        <figure *ngIf=\"item.imageUrl\" class=\"image is-4by3 is-mobile\">\r\n            <img src=\"{{item.imageUrl}}\">\r\n        </figure>\r\n    </article>\r\n</div>");
 
 /***/ }),
 
@@ -84,7 +84,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-navbar (typeChanged)=\"onTypeChanged($event)\"></app-navbar>\r\n\r\n<app-filters *ngIf=\"results\" [results]=\"results\" (filterChanged)=\"onFilterChanged($event)\"></app-filters>\r\n\r\n<div *ngIf=\"results\" class=\"columns is-gapless is-multiline is-mobile\">\r\n    <div *ngFor=\"let item of results | movieFilter:movieFilterArgs\"\r\n        class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <app-movie [item]=item></app-movie>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-navbar [loading]=\"loading\" (typeChanged)=\"onTypeChanged($event)\"></app-navbar>\r\n\r\n<app-filters *ngIf=\"results\" [results]=\"results\" (filterChanged)=\"onFilterChanged($event)\"></app-filters>\r\n\r\n<div *ngIf=\"results\" class=\"columns is-gapless is-multiline is-mobile\">\r\n    <div *ngFor=\"let item of results | movieFilter:movieFilterArgs\"\r\n        class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <app-movie [item]=item></app-movie>\r\n    </div>\r\n</div>");
 
 /***/ }),
 
@@ -482,6 +482,7 @@ let FiltersComponent = class FiltersComponent {
     refresh() {
         this.movieFilter.providerName = "Wszystkie";
         this.movieFilter.filmwebFilmType = "Wszystkie";
+        this.movieFilter.production = "Wszystkie";
         this.filmwebTypes = [];
         this.results.forEach((x) => {
             if (this.filmwebTypes.indexOf(x.filmwebFilmType) == -1 && x.filmwebFilmType)
@@ -491,6 +492,11 @@ let FiltersComponent = class FiltersComponent {
         this.results.forEach((x) => {
             if (this.providerNames.indexOf(x.providerName) == -1)
                 this.providerNames.push(x.providerName);
+        });
+        this.productionNames = [];
+        this.results.forEach((x) => {
+            if (this.productionNames.indexOf(x.production) == -1 && x.production)
+                this.productionNames.push(x.production);
         });
     }
     onFilterChanged() {
@@ -605,6 +611,9 @@ let NavbarComponent = class NavbarComponent {
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
 ], NavbarComponent.prototype, "typeChanged", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], NavbarComponent.prototype, "loading", void 0);
 NavbarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-navbar',
@@ -651,7 +660,6 @@ let ResultsComponent = class ResultsComponent {
         this.getMoviesOfType(type);
     }
     onFilterChanged(newFilter) {
-        debugger;
         this.movieFilterArgs = newFilter;
     }
 };
@@ -718,6 +726,8 @@ let MovieFilter = class MovieFilter {
             });
         if (filter.providerName && filter.providerName != "Wszystkie")
             results = results.filter(item => item.providerName.indexOf(filter.providerName) !== -1);
+        if (filter.production && filter.production != "Wszystkie")
+            results = results.filter(item => item.production && item.production.indexOf(filter.production) !== -1);
         return results;
     }
 };
