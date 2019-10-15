@@ -1,4 +1,4 @@
-<app-navbar (typeChanged)="onTypeChanged($event)"></app-navbar>
+<app-navbar [loading]="loading" (typeChanged)="onTypeChanged($event)"></app-navbar>
 
 <app-filters *ngIf="results" [results]="results" (filterChanged)="onFilterChanged($event)"></app-filters>
 

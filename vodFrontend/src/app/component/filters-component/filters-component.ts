@@ -12,6 +12,7 @@ export class FiltersComponent implements OnInit {
     @Output() filterChanged = new EventEmitter<Result>();
     filmwebTypes: string[];
     providerNames: string[];
+    productionNames: string[];
     movieFilter: Result = new Result();
 
     ngOnInit() {
@@ -21,6 +22,7 @@ export class FiltersComponent implements OnInit {
     refresh() {
         this.movieFilter.providerName = "Wszystkie";
         this.movieFilter.filmwebFilmType = "Wszystkie";
+        this.movieFilter.production = "Wszystkie";
 
         this.filmwebTypes = [];
         this.results.forEach((x) => {
@@ -31,6 +33,11 @@ export class FiltersComponent implements OnInit {
         this.providerNames = [];
         this.results.forEach((x) => {
             if (this.providerNames.indexOf(x.providerName) == -1) this.providerNames.push(x.providerName);
+        });
+
+        this.productionNames = [];
+        this.results.forEach((x) => {
+            if (this.productionNames.indexOf(x.production) == -1 && x.production) this.productionNames.push(x.production);
         });
     }
 

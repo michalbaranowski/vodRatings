@@ -8,5 +8,6 @@ export class Result {
     providerName: string;
     imageUrl: any;
     filmwebFilmType: string;
+    production: string;
     storedDate: Date;
 }
