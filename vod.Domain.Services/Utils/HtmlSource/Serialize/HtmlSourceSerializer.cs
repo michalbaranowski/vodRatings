@@ -69,6 +69,9 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                     n.Attributes["class"].Value.Contains("genresList"))?.Descendants().FirstOrDefault(n => n.Name == "a")?
                 .InnerText;
 
+            var production = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n =>
+                n.Name == "a" && n.Attributes.Contains("href") && n.Attributes["href"].Value.Contains("countries"))?.InnerText;
+
             return new FilmwebResult()
             {
                 FilmwebRating = Convert.ToDecimal(rate),
@@ -77,7 +80,8 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 Title = title,
                 Year = Convert.ToInt32(year.OnlyDigits()),
                 ImageUrl = imageUrl,
-                VodFilmType = (int)movieMovieType
+                VodFilmType = (int)movieMovieType,
+                Production = production
             };
         }
     }

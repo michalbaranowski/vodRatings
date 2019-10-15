@@ -95,6 +95,7 @@ namespace vod.Domain.Services.Tests
 
             Assert.True(result.Title == "Ostateczna rozgrywka");
             Assert.True(result.FilmwebRating == 5.4m);
+            Assert.True(result.Production == "Wielka Brytania");
             Assert.True(result.Year == 2018);
         }
     }
