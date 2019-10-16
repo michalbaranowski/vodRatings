@@ -25,6 +25,8 @@ namespace vod.Repository.Boundary.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("FilmDescription");
+
                     b.Property<string>("FilmwebFilmType");
 
                     b.Property<decimal>("FilmwebRating");

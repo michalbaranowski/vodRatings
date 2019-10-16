@@ -6,6 +6,24 @@
         <p class="subtitle">Gatunek wg Filmweb: {{item.filmwebFilmType}}</p>
         <p class="subtitle">Produkcja: {{item.production}}</p>
         <p class="subtitle">Data odświeżenia: {{item.storedDate | date:'medium'}}</p>
+
+        <div *ngIf="item.filmDescription" (click)="onClick($event)" style="margin-bottom: 10px;" class="dropdown is-up">
+            <div class="dropdown-trigger">
+                <button class="button is-light is-rounded" aria-haspopup="true" aria-controls="dropdown-menu7">
+                    <span class="icon is-big">
+                        <i class="fa fa-info"></i>
+                    </span>
+                </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu7" role="menu">
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <p>{{item.filmDescription}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <figure *ngIf="!item.imageUrl" class="image is-3by4">
             <img src="https://bulma.io/images/placeholders/640x480.png">
         </figure>

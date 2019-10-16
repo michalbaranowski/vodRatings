@@ -72,6 +72,12 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
             var production = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n =>
                 n.Name == "a" && n.Attributes.Contains("href") && n.Attributes["href"].Value.Contains("countries"))?.InnerText;
 
+                var filmDesc = filmwebHtml.DocumentNode.Descendants()
+                    .FirstOrDefault(n =>
+                        n.Name == "div" && n.Attributes.Contains("class") &&
+                        n.Attributes["class"].Value.Contains("filmPlot"))?
+                    .Descendants().FirstOrDefault(n => n.Name == "p")?.InnerText;
+
             return new FilmwebResult()
             {
                 FilmwebRating = Convert.ToDecimal(rate),
@@ -81,7 +87,8 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 Year = Convert.ToInt32(year.OnlyDigits()),
                 ImageUrl = imageUrl,
                 VodFilmType = (int)movieMovieType,
-                Production = production
+                Production = production,
+                FilmDescription = filmDesc
             };
         }
     }

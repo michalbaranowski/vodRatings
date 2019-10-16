@@ -10,4 +10,5 @@ export class Result {
     filmwebFilmType: string;
     production: string;
     storedDate: Date;
+    filmDescription: string;
 }
