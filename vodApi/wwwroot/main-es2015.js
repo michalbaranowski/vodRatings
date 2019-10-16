@@ -58,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"tile is-parent\">\r\n    <article class=\"tile is-child notification is-dark is-mobile\">\r\n        <p class=\"title\">{{item.title}} ({{item.year}})</p>\r\n        <p class=\"subtitle\">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>\r\n        <p class=\"subtitle\">Kolekcja: {{item.providerName}}</p>\r\n        <p class=\"subtitle\">Gatunek wg Filmweb: {{item.filmwebFilmType}}</p>\r\n        <p class=\"subtitle\">Produkcja: {{item.production}}</p>\r\n        <p class=\"subtitle\">Data odświeżenia: {{item.storedDate | date:'medium'}}</p>\r\n        <figure *ngIf=\"!item.imageUrl\" class=\"image is-3by4\">\r\n            <img src=\"https://bulma.io/images/placeholders/640x480.png\">\r\n        </figure>\r\n\r\n        <figure *ngIf=\"item.imageUrl\" class=\"image is-4by3 is-mobile\">\r\n            <img src=\"{{item.imageUrl}}\">\r\n        </figure>\r\n    </article>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"tile is-parent\">\r\n    <article class=\"tile is-child notification is-dark is-mobile\">\r\n        <p class=\"title\">{{item.title}} ({{item.year}})</p>\r\n        <p class=\"subtitle\">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>\r\n        <p class=\"subtitle\">Kolekcja: {{item.providerName}}</p>\r\n        <p class=\"subtitle\">Gatunek wg Filmweb: {{item.filmwebFilmType}}</p>\r\n        <p class=\"subtitle\">Produkcja: {{item.production}}</p>\r\n        <p class=\"subtitle\">Data odświeżenia: {{item.storedDate | date:'medium'}}</p>\r\n\r\n        <div *ngIf=\"item.filmDescription\" (click)=\"onClick($event)\" style=\"margin-bottom: 10px;\" class=\"dropdown is-up\">\r\n            <div class=\"dropdown-trigger\">\r\n                <button class=\"button is-light is-rounded\" aria-haspopup=\"true\" aria-controls=\"dropdown-menu7\">\r\n                    <span class=\"icon is-big\">\r\n                        <i class=\"fa fa-info\"></i>\r\n                    </span>\r\n                </button>\r\n            </div>\r\n            <div class=\"dropdown-menu\" id=\"dropdown-menu7\" role=\"menu\">\r\n                <div class=\"dropdown-content\">\r\n                    <div class=\"dropdown-item\">\r\n                        <p>{{item.filmDescription}}</p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <figure *ngIf=\"!item.imageUrl\" class=\"image is-3by4\">\r\n            <img src=\"https://bulma.io/images/placeholders/640x480.png\">\r\n        </figure>\r\n\r\n        <figure *ngIf=\"item.imageUrl\" class=\"image is-4by3 is-mobile\">\r\n            <img src=\"{{item.imageUrl}}\">\r\n        </figure>\r\n    </article>\r\n</div>");
 
 /***/ }),
 
@@ -540,6 +540,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let MovieComponent = class MovieComponent {
+    onClick(event) {
+        event.currentTarget.classList.toggle('is-active');
+    }
 };
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
