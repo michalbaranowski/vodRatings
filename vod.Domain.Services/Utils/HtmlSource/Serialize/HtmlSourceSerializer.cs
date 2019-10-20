@@ -55,7 +55,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                     n.Name == "h1" && n.Attributes.Contains("class") &&
                     n.Attributes["class"].Value.Contains("filmTitle")).FirstOrDefault();
 
-            var title = titleH1?.Descendants().FirstOrDefault(n => n.Name == "a")?.Attributes["title"].Value.FixPlLetters();
+            var title = titleH1?.Descendants().FirstOrDefault(n => n.Name == "a")?.Attributes["title"].Value;
             var year = titleH1?.Descendants().FirstOrDefault(n => n.Name == "span")?.InnerHtml
                 .Replace("(", string.Empty).Replace(")", string.Empty);
 
@@ -63,11 +63,13 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 n.Name == "img" && n.Attributes.Contains("alt") && n.Attributes.Contains("itemprop") &&
                 n.Attributes["itemprop"].Value == "image")?.Attributes["src"].Value;
 
-            var filmwebFilmType = filmwebHtml.DocumentNode.Descendants()
+            var filmwebFilmTypes = filmwebHtml.DocumentNode.Descendants()
                 .FirstOrDefault(n =>
                     n.Name == "ul" && n.Attributes.Contains("class") &&
-                    n.Attributes["class"].Value.Contains("genresList"))?.Descendants().FirstOrDefault(n => n.Name == "a")?
-                .InnerText;
+                    n.Attributes["class"].Value.Contains("genresList"))?.Descendants().Where(n => n.Name == "a")
+                ?.Select(n => n.InnerText);
+
+            var filmwebFilmType = filmwebFilmTypes != null ? string.Join(", ", filmwebFilmTypes) : string.Empty;
 
             var production = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n =>
                 n.Name == "a" && n.Attributes.Contains("href") && n.Attributes["href"].Value.Contains("countries"))?.InnerText;

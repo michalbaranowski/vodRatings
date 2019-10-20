@@ -8,6 +8,7 @@ using Moq;
 using NUnit.Framework;
 using RichardSzalay.MockHttp;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
+using vod.Domain.Services.Tests.Resources;
 using vod.Domain.Services.Utils;
 using vod.Domain.Services.Utils.HtmlSource;
 using static vod.Domain.Services.Utils.NcPlusUrls;
@@ -21,7 +22,7 @@ namespace vod.Domain.Services.Tests
         private void BaseArrange()
         {
             var mockHttp = new MockHttpMessageHandler();
-            mockHttp.When(VodHboBaseUrl.GetUrlWithType(MovieTypes.Action)).Respond("application/html","<html></html>");
+            mockHttp.When(VodHboBaseUrl.GetUrlWithType(MovieTypes.Comedy)).Respond("application/html", HtmlResources.HboComediesResultHtml());
             var fakeClient = new HttpClient(mockHttp);
 
             var httpClientFactoryMock = new Mock<IHttpClientFactory>();
@@ -33,7 +34,7 @@ namespace vod.Domain.Services.Tests
         public void GetHtmlFrom_ShouldReturnHtmlDocument()
         {
             BaseArrange();
-            var result = _htmlSourceGetter.GetHtmlFrom(VodHboBaseUrl.GetUrlWithType(MovieTypes.Action));
+            var result = _htmlSourceGetter.GetHtmlFrom(VodHboBaseUrl.GetUrlWithType(MovieTypes.Comedy));
 
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.DocumentNode);

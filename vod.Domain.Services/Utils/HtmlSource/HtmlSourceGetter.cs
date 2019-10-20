@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading;
 using HtmlAgilityPack;
+using vod.Domain.Services.Utils.HtmlSource.Extension;
 
 namespace vod.Domain.Services.Utils.HtmlSource
 {
@@ -25,7 +26,7 @@ namespace vod.Domain.Services.Utils.HtmlSource
             Thread.Sleep(_random.Next(2000,5000));
 
             var response = client.SendAsync(request).Result;
-            var htmlString = response.Content.ReadAsStringAsync().Result;
+            var htmlString = response.Content.ReadAsStringAsync().Result.FixPlLetters();
             var html = new HtmlDocument();
             html.LoadHtml(htmlString);
             return html;
