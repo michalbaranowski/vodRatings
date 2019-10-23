@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"margin-left: 10px;\" class=\"columns is-mobile is-multiline\" *ngIf=\"!loading\">\r\n    <div class=\"column is-one-quarter-desktop is-half-tablet is-four-fifths-mobile\">\r\n        <div class=\"control\">\r\n            <label class=\"label\">Tytuł:</label>\r\n            <input [(ngModel)]=\"movieFilter.title\" class=\"input\" type=\"text\" placeholder=\"Tytuł filmu...\">\r\n        </div>\r\n    </div>\r\n    <div class=\"column is-one-quarter-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Gatunek wg Filmweb:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.filmwebFilmType\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let type of filmwebTypes; let i = index\" [value]=\"filmwebTypes[i]\">{{type}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-quarter-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Dostawca vod:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.providerName\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let providerName of providerNames; let i = index\" [value]=\"providerNames[i]\">{{providerName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-quarter-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Produkcja:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.production\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let countryName of productionNames; let i = index\" [value]=\"productionNames[i]\">{{countryName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"margin-left: 10px;\" class=\"columns is-mobile is-multiline\" *ngIf=\"!loading\">\r\n    <div class=\"column is-one-quarter-desktop is-half-tablet is-four-fifths-mobile\">\r\n        <div class=\"control\">\r\n            <label class=\"label\">Tytuł:</label>\r\n            <input [(ngModel)]=\"movieFilter.title\" (change)=\"onFilterChanged()\" class=\"input\" type=\"text\" placeholder=\"Tytuł filmu...\">\r\n        </div>\r\n    </div>\r\n    <div class=\"column is-one-quarter-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Gatunek wg Filmweb:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.filmwebFilmType\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let type of filmwebTypes; let i = index\" [value]=\"filmwebTypes[i]\">{{type}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-quarter-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Dostawca vod:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.providerName\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let providerName of providerNames; let i = index\" [value]=\"providerNames[i]\">{{providerName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-quarter-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Produkcja:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.production\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let countryName of productionNames; let i = index\" [value]=\"productionNames[i]\">{{countryName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n</div>");
 
 /***/ }),
 
@@ -58,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"tile is-parent\">\r\n    <article class=\"tile is-child notification is-dark is-mobile\">\r\n        <p class=\"title\">{{item.title}} ({{item.year}})</p>\r\n        <p class=\"subtitle\">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>\r\n        <p class=\"subtitle\">Kolekcja: {{item.providerName}}</p>\r\n        <p class=\"subtitle\">Gatunek wg Filmweb: {{item.filmwebFilmType}}</p>\r\n        <p class=\"subtitle\">Produkcja: {{item.production}}</p>\r\n        <p class=\"subtitle\">Data odświeżenia: {{item.storedDate | date:'medium'}}</p>\r\n\r\n        <div *ngIf=\"item.filmDescription\" (click)=\"onClick($event)\" style=\"margin-bottom: 10px;\" class=\"dropdown is-up\">\r\n            <div class=\"dropdown-trigger\">\r\n                <button class=\"button is-light is-rounded\" aria-haspopup=\"true\" aria-controls=\"dropdown-menu7\">\r\n                    <span class=\"icon is-big\">\r\n                        <i class=\"fa fa-info\"></i>\r\n                    </span>\r\n                </button>\r\n            </div>\r\n            <div class=\"dropdown-menu\" id=\"dropdown-menu7\" role=\"menu\">\r\n                <div class=\"dropdown-content\">\r\n                    <div class=\"dropdown-item\">\r\n                        <p>{{item.filmDescription}}</p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <figure *ngIf=\"!item.imageUrl\" class=\"image is-3by4\">\r\n            <img src=\"https://bulma.io/images/placeholders/640x480.png\">\r\n        </figure>\r\n\r\n        <figure *ngIf=\"item.imageUrl\" class=\"image is-4by3 is-mobile\">\r\n            <img src=\"{{item.imageUrl}}\">\r\n        </figure>\r\n    </article>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"tile is-parent\">\r\n  <article class=\"tile is-child notification is-dark is-mobile\">\r\n    <div class=\"movie-title\" style=\"height: 135px; display: block\">\r\n      <div class=\"tooltip\">\r\n        <p class=\"title\">{{formatTitle(item.title, item.year)}}</p>\r\n        <span class=\"tooltiptext\">{{item.title}} ({{item.year}})</span>\r\n      </div>\r\n      <p class=\"subtitle\">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>\r\n    </div>\r\n\r\n    <div class=\"columns is-multiline is-mobile is-gapless\">\r\n      <div class=\"column is-full\" style=\"margin-bottom: 5px\">\r\n        <div class=\"tags has-addons\">\r\n          <span class=\"tag is-light\">Kolekcja</span>\r\n          <span class=\"tag is-info\">{{item.providerName}}</span>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"column is-full\" style=\"margin-bottom: 5px\">\r\n        <div class=\"tags has-addons\">\r\n          <span class=\"tag is-light\">Gatunek wg Filmweb</span>\r\n          <span class=\"tag is-success\">{{item.filmwebFilmType}}</span>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"column is-full\" style=\"margin-bottom: 5px\">\r\n        <div class=\"tags has-addons\">\r\n          <span class=\"tag is-light\">Produkcja</span>\r\n          <span class=\"tag is-primary\">{{item.production}}</span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"columns\">\r\n      <div class=\"column is-four-fifths\">\r\n        <p>Z dnia: {{item.storedDate | date:'medium'}}</p>\r\n      </div>\r\n      <div class=\"column\">\r\n        <div *ngIf=\"item.filmDescription\" (click)=\"onClick($event)\" style=\"margin-bottom: 10px;\" class=\"dropdown is-up\">\r\n          <div class=\"dropdown-trigger\">\r\n            <button class=\"button is-small is-light is-rounded\" aria-haspopup=\"true\" aria-controls=\"dropdown-menu7\">\r\n              <span class=\"icon is-small\">\r\n                <i class=\"fa fa-info\"></i>\r\n              </span>\r\n            </button>\r\n          </div>\r\n          <div class=\"dropdown-menu\" id=\"dropdown-menu7\" role=\"menu\">\r\n            <div class=\"dropdown-content\">\r\n              <div class=\"dropdown-item\">\r\n                <p>{{item.filmDescription}}</p>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n\r\n\r\n    <figure *ngIf=\"!item.imageUrl\" class=\"image is-3by4\">\r\n      <img src=\"https://bulma.io/images/placeholders/640x480.png\">\r\n    </figure>\r\n\r\n    <figure *ngIf=\"item.imageUrl\" class=\"image is-4by3 is-mobile\">\r\n      <img src=\"{{item.imageUrl}}\">\r\n    </figure>\r\n  </article>\r\n</div>");
 
 /***/ }),
 
@@ -485,8 +485,13 @@ let FiltersComponent = class FiltersComponent {
         this.movieFilter.production = "Wszystkie";
         this.filmwebTypes = [];
         this.results.forEach((x) => {
-            if (this.filmwebTypes.indexOf(x.filmwebFilmType) == -1 && x.filmwebFilmType)
-                this.filmwebTypes.push(x.filmwebFilmType);
+            if (this.filmwebTypes.indexOf(x.filmwebFilmType) == -1 && x.filmwebFilmType) {
+                var types = x.filmwebFilmType.split(', ');
+                types.forEach(type => {
+                    if (this.filmwebTypes.indexOf(type) == -1)
+                        this.filmwebTypes.push(type);
+                });
+            }
         });
         this.providerNames = [];
         this.results.forEach((x) => {
@@ -525,6 +530,19 @@ FiltersComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/component/movie-component/movie-component.css":
+/*!***************************************************************!*\
+  !*** ./src/app/component/movie-component/movie-component.css ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("/* Tooltip container */\r\n.tooltip {\r\n    position: relative;\r\n    display: inline-block;\r\n    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */\r\n  }\r\n/* Tooltip text */\r\n.tooltip .tooltiptext {\r\n    visibility: hidden;\r\n    width: 120px;\r\n    background-color: black;\r\n    color: #fff;\r\n    text-align: center;\r\n    padding: 5px 0;\r\n    border-radius: 6px;\r\n   \r\n    /* Position the tooltip text - see examples below! */\r\n    position: absolute;\r\n    z-index: 1;\r\n  }\r\n/* Show the tooltip text when you mouse over the tooltip container */\r\n.tooltip:hover .tooltiptext {\r\n    visibility: visible;\r\n  }\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50L21vdmllLWNvbXBvbmVudC9tb3ZpZS1jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLHNCQUFzQjtBQUN0QjtJQUNJLGtCQUFrQjtJQUNsQixxQkFBcUI7SUFDckIsK0JBQStCLEVBQUUsOENBQThDO0VBQ2pGO0FBRUEsaUJBQWlCO0FBQ2pCO0lBQ0Usa0JBQWtCO0lBQ2xCLFlBQVk7SUFDWix1QkFBdUI7SUFDdkIsV0FBVztJQUNYLGtCQUFrQjtJQUNsQixjQUFjO0lBQ2Qsa0JBQWtCOztJQUVsQixvREFBb0Q7SUFDcEQsa0JBQWtCO0lBQ2xCLFVBQVU7RUFDWjtBQUVBLG9FQUFvRTtBQUNwRTtJQUNFLG1CQUFtQjtFQUNyQiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9tb3ZpZS1jb21wb25lbnQvbW92aWUtY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFRvb2x0aXAgY29udGFpbmVyICovXHJcbi50b29sdGlwIHtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICAgIGJvcmRlci1ib3R0b206IDFweCBkb3R0ZWQgYmxhY2s7IC8qIElmIHlvdSB3YW50IGRvdHMgdW5kZXIgdGhlIGhvdmVyYWJsZSB0ZXh0ICovXHJcbiAgfVxyXG4gIFxyXG4gIC8qIFRvb2x0aXAgdGV4dCAqL1xyXG4gIC50b29sdGlwIC50b29sdGlwdGV4dCB7XHJcbiAgICB2aXNpYmlsaXR5OiBoaWRkZW47XHJcbiAgICB3aWR0aDogMTIwcHg7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBibGFjaztcclxuICAgIGNvbG9yOiAjZmZmO1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgcGFkZGluZzogNXB4IDA7XHJcbiAgICBib3JkZXItcmFkaXVzOiA2cHg7XHJcbiAgIFxyXG4gICAgLyogUG9zaXRpb24gdGhlIHRvb2x0aXAgdGV4dCAtIHNlZSBleGFtcGxlcyBiZWxvdyEgKi9cclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHotaW5kZXg6IDE7XHJcbiAgfVxyXG4gIFxyXG4gIC8qIFNob3cgdGhlIHRvb2x0aXAgdGV4dCB3aGVuIHlvdSBtb3VzZSBvdmVyIHRoZSB0b29sdGlwIGNvbnRhaW5lciAqL1xyXG4gIC50b29sdGlwOmhvdmVyIC50b29sdGlwdGV4dCB7XHJcbiAgICB2aXNpYmlsaXR5OiB2aXNpYmxlO1xyXG4gIH0iXX0= */");
+
+/***/ }),
+
 /***/ "./src/app/component/movie-component/movie-component.ts":
 /*!**************************************************************!*\
   !*** ./src/app/component/movie-component/movie-component.ts ***!
@@ -543,6 +561,12 @@ let MovieComponent = class MovieComponent {
     onClick(event) {
         event.currentTarget.classList.toggle('is-active');
     }
+    formatTitle(title, year) {
+        let standardTitle = title + " (" + year + ")";
+        return standardTitle.length > 40
+            ? standardTitle.substring(0, 35) + " (...)"
+            : standardTitle;
+    }
 };
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
@@ -550,7 +574,8 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 MovieComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-movie',
-        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./movie-component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/movie-component/movie-component.html")).default
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./movie-component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/movie-component/movie-component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./movie-component.css */ "./src/app/component/movie-component/movie-component.css")).default]
     })
 ], MovieComponent);
 
