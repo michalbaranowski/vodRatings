@@ -2,7 +2,7 @@
     <div class="column is-one-quarter-desktop is-half-tablet is-four-fifths-mobile">
         <div class="control">
             <label class="label">Tytuł:</label>
-            <input [(ngModel)]="movieFilter.title" class="input" type="text" placeholder="Tytuł filmu...">
+            <input [(ngModel)]="movieFilter.title" (change)="onFilterChanged()" class="input" type="text" placeholder="Tytuł filmu...">
         </div>
     </div>
     <div class="column is-one-quarter-desktop is-half-tablet is-full-mobile">

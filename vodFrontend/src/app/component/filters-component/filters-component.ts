@@ -26,8 +26,13 @@ export class FiltersComponent implements OnInit {
 
         this.filmwebTypes = [];
         this.results.forEach((x) => {
-            if (this.filmwebTypes.indexOf(x.filmwebFilmType) == -1 && x.filmwebFilmType)
-                this.filmwebTypes.push(x.filmwebFilmType);
+            if (this.filmwebTypes.indexOf(x.filmwebFilmType) == -1 && x.filmwebFilmType) {
+                var types = x.filmwebFilmType.split(', ');
+                types.forEach(type => {
+                    if(this.filmwebTypes.indexOf(type) == -1)
+                        this.filmwebTypes.push(type);
+                });
+            }
         });
 
         this.providerNames = [];
