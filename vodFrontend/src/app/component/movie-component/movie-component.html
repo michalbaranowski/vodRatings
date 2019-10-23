@@ -1,35 +1,68 @@
 <div class="tile is-parent">
-    <article class="tile is-child notification is-dark is-mobile">
-        <p class="title">{{item.title}} ({{item.year}})</p>
-        <p class="subtitle">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>
-        <p class="subtitle">Kolekcja: {{item.providerName}}</p>
-        <p class="subtitle">Gatunek wg Filmweb: {{item.filmwebFilmType}}</p>
-        <p class="subtitle">Produkcja: {{item.production}}</p>
-        <p class="subtitle">Data odświeżenia: {{item.storedDate | date:'medium'}}</p>
+  <article class="tile is-child notification is-dark is-mobile">
+    <div class="movie-title" style="height: 135px; display: block">
+      <div class="tooltip">
+        <p class="title">{{formatTitle(item.title, item.year)}}</p>
+        <span class="tooltiptext">{{item.title}} ({{item.year}})</span>
+      </div>
+      <p class="subtitle">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>
+    </div>
 
-        <div *ngIf="item.filmDescription" (click)="onClick($event)" style="margin-bottom: 10px;" class="dropdown is-up">
-            <div class="dropdown-trigger">
-                <button class="button is-light is-rounded" aria-haspopup="true" aria-controls="dropdown-menu7">
-                    <span class="icon is-big">
-                        <i class="fa fa-info"></i>
-                    </span>
-                </button>
-            </div>
-            <div class="dropdown-menu" id="dropdown-menu7" role="menu">
-                <div class="dropdown-content">
-                    <div class="dropdown-item">
-                        <p>{{item.filmDescription}}</p>
-                    </div>
-                </div>
-            </div>
+    <div class="columns is-multiline is-mobile is-gapless">
+      <div class="column is-full" style="margin-bottom: 5px">
+        <div class="tags has-addons">
+          <span class="tag is-light">Kolekcja</span>
+          <span class="tag is-info">{{item.providerName}}</span>
         </div>
+      </div>
 
-        <figure *ngIf="!item.imageUrl" class="image is-3by4">
-            <img src="https://bulma.io/images/placeholders/640x480.png">
-        </figure>
+      <div class="column is-full" style="margin-bottom: 5px">
+        <div class="tags has-addons">
+          <span class="tag is-light">Gatunek wg Filmweb</span>
+          <span class="tag is-success">{{item.filmwebFilmType}}</span>
+        </div>
+      </div>
 
-        <figure *ngIf="item.imageUrl" class="image is-4by3 is-mobile">
-            <img src="{{item.imageUrl}}">
-        </figure>
-    </article>
+      <div class="column is-full" style="margin-bottom: 5px">
+        <div class="tags has-addons">
+          <span class="tag is-light">Produkcja</span>
+          <span class="tag is-primary">{{item.production}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-four-fifths">
+        <p>Z dnia: {{item.storedDate | date:'medium'}}</p>
+      </div>
+      <div class="column">
+        <div *ngIf="item.filmDescription" (click)="onClick($event)" style="margin-bottom: 10px;" class="dropdown is-up">
+          <div class="dropdown-trigger">
+            <button class="button is-small is-light is-rounded" aria-haspopup="true" aria-controls="dropdown-menu7">
+              <span class="icon is-small">
+                <i class="fa fa-info"></i>
+              </span>
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu7" role="menu">
+            <div class="dropdown-content">
+              <div class="dropdown-item">
+                <p>{{item.filmDescription}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <figure *ngIf="!item.imageUrl" class="image is-3by4">
+      <img src="https://bulma.io/images/placeholders/640x480.png">
+    </figure>
+
+    <figure *ngIf="item.imageUrl" class="image is-4by3 is-mobile">
+      <img src="{{item.imageUrl}}">
+    </figure>
+  </article>
 </div>
