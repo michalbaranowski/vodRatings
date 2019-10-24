@@ -15,6 +15,7 @@ using vod.Domain.Services.Utils.HtmlSource;
 using vod.Domain.Services.Utils.HtmlSource.Serialize;
 using vod.Repository;
 using vod.Repository.Boundary;
+using vod.SignalR.Hub.Hub;
 
 namespace vodApi
 {
@@ -31,13 +32,15 @@ namespace vodApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
+            services.AddSignalR();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             var dbContextOptions = new DbContextOptionsBuilder<AppDbContext>().UseSqlServer(Configuration.GetConnectionString("VodConnection")).Options;
             services.AddSingleton(dbContextOptions);
             services.AddTransient<IAppDbContext, AppDbContext>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddHttpClient();
+            services.AddSingleton<UpdateNotificationHub>();
             services.AddSingleton<IBackgroundWorkerStateManager, BackgroundWorkerStateManager>();
             services.AddSingleton<IBackgroundWorker, BackgroundWorker>();
             services.AddTransient<IVodRepositoryBackground, VodRepositoryBackground>();
@@ -58,6 +61,11 @@ namespace vodApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<UpdateNotificationHub>("/updateNotification");
+            });
 
             app.UseStaticFiles();
             app.UseMvc();

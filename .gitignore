@@ -17,3 +17,5 @@ vod.Mappings/obj/
 vod.Mappings/bin/
 vod.Domain.Services.Tests/obj/
 vod.Domain.Services.Tests/bin/
+vod.SignalR.Hub/obj/
+vod.SignalR.Hub/bin/

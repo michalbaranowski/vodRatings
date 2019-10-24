@@ -12,6 +12,7 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="1.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.11" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
   </ItemGroup>
@@ -23,6 +24,7 @@
     <ProjectReference Include="..\vod.Domain.Services\vod.Domain.Services.csproj" />
     <ProjectReference Include="..\vod.Repository.Boundary\vod.Repository.Boundary.csproj" />
     <ProjectReference Include="..\vod.Repository\vod.Repository.csproj" />
+    <ProjectReference Include="..\vod.SignalR.Hub\vod.SignalR.Hub.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,6 +7,7 @@ using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
 using vod.Repository.Boundary;
 using vod.Repository.Boundary.Models;
+using vod.SignalR.Hub.Hub;
 
 namespace vod.Domain.Services
 {
@@ -16,17 +17,20 @@ namespace vod.Domain.Services
         private readonly IVodRepository _repository;
         private readonly IVodRepositoryBackground _repositoryBackground;
         private readonly IBackgroundWorker _backgroundWorker;
+        private readonly UpdateNotificationHub _notificationHub;
 
         public StoredDataManager(
             IMapper mapper,
             IVodRepository repository,
             IVodRepositoryBackground repositoryBackground,
-            IBackgroundWorker backgroundWorker)
+            IBackgroundWorker backgroundWorker,
+            UpdateNotificationHub notificationHub)
         {
             _mapper = mapper;
             _repository = repository;
             _repositoryBackground = repositoryBackground;
             _backgroundWorker = backgroundWorker;
+            _notificationHub = notificationHub;
         }
 
         public IEnumerable<FilmwebResult> UseStorageIfPossible(
@@ -51,6 +55,7 @@ namespace vod.Domain.Services
                     var results = func().ToList();
                     var entities = results.Select(n => _mapper.Map<ResultModel>(n));
                     _repositoryBackground.RefreshData(entities, (int)type);
+                    _notificationHub.NotifyUpdate(type);
                     return true;
                 });
             }
