@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { MovieComponent } from './component/movie-component/movie-component';
 import { NavbarComponent } from './component/navbar-component/navbar-component';
 import { FiltersComponent } from './component/filters-component/filters-component';
+import { UpdateModalComponent } from './component/update-modal-component/update-modal-component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FiltersComponent } from './component/filters-component/filters-componen
     MovieComponent,
     NavbarComponent,
     FiltersComponent,
-    MovieFilter
+    MovieFilter,
+    UpdateModalComponent
   ],
   imports: [
     BrowserModule,

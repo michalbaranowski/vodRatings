@@ -31,4 +31,8 @@ export class ResultsComponent {
     onFilterChanged(newFilter: Result) {
         this.movieFilterArgs = newFilter;
     }
+
+    onUpdate(type: number) {
+        this.getMoviesOfType(type);
+    }
 }

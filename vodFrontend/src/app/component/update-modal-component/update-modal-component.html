@@ -1,0 +1,16 @@
+<div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Aktualizacja!</p>
+        <button class="delete" aria-label="close" (click)="closeModal()"></button>
+      </header>
+      <section class="modal-card-body">
+        Dostępna jest aktualizacja danych dla gatunku: {{updateFilmType}}
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success" (click)="update()">Aktualizuj</button>
+        <button class="button" (click)="closeModal()">Anuluj</button>
+      </footer>
+    </div>
+  </div>
