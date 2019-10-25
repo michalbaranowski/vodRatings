@@ -84,7 +84,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-navbar [loading]=\"loading\" (typeChanged)=\"onTypeChanged($event)\"></app-navbar>\r\n\r\n<app-filters *ngIf=\"results\" [results]=\"results\" (filterChanged)=\"onFilterChanged($event)\"></app-filters>\r\n\r\n<div *ngIf=\"results\" class=\"columns is-gapless is-multiline is-mobile\">\r\n    <div *ngFor=\"let item of results | movieFilter:movieFilterArgs\"\r\n        class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <app-movie [item]=item></app-movie>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-navbar [loading]=\"loading\" (typeChanged)=\"onTypeChanged($event)\"></app-navbar>\r\n\r\n<app-filters *ngIf=\"results\" [results]=\"results\" (filterChanged)=\"onFilterChanged($event)\"></app-filters>\r\n\r\n<div *ngIf=\"results\" class=\"columns is-gapless is-multiline is-mobile\">\r\n    <div *ngFor=\"let item of results | movieFilter:movieFilterArgs\"\r\n        class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <app-movie [item]=item></app-movie>\r\n    </div>\r\n</div>\r\n\r\n<app-update-modal (updateEmitter)=\"onUpdate($event)\"></app-update-modal>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/update-modal-component/update-modal-component.html":
+/*!********************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/component/update-modal-component/update-modal-component.html ***!
+  \********************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal\">\r\n    <div class=\"modal-background\"></div>\r\n    <div class=\"modal-card\">\r\n      <header class=\"modal-card-head\">\r\n        <p class=\"modal-card-title\">Aktualizacja!</p>\r\n        <button class=\"delete\" aria-label=\"close\" (click)=\"closeModal()\"></button>\r\n      </header>\r\n      <section class=\"modal-card-body\">\r\n        Dostępna jest aktualizacja danych dla gatunku: {{updateFilmType}}\r\n      </section>\r\n      <footer class=\"modal-card-foot\">\r\n        <button class=\"button is-success\" (click)=\"update()\">Aktualizuj</button>\r\n        <button class=\"button\" (click)=\"closeModal()\">Anuluj</button>\r\n      </footer>\r\n    </div>\r\n  </div>");
 
 /***/ }),
 
@@ -372,23 +385,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _aspnet_signalr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @aspnet/signalr */ "./node_modules/@aspnet/signalr/dist/esm/index.js");
-
 
 
 let AppComponent = class AppComponent {
     constructor() {
         this.title = 'vodFrontend';
-    }
-    ngOnInit() {
-        this._hubConnection = new _aspnet_signalr__WEBPACK_IMPORTED_MODULE_2__["HubConnectionBuilder"]().withUrl('/updateNotification').build();
-        this._hubConnection
-            .start()
-            .then(() => console.log('Connection started!'))
-            .catch(err => console.log('Error while establishing connection :('));
-        this._hubConnection.on("NotifyUpdate", function (typeToUpdate) {
-            console.log("update! " + typeToUpdate);
-        });
     }
 };
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -426,6 +427,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _component_movie_component_movie_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./component/movie-component/movie-component */ "./src/app/component/movie-component/movie-component.ts");
 /* harmony import */ var _component_navbar_component_navbar_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./component/navbar-component/navbar-component */ "./src/app/component/navbar-component/navbar-component.ts");
 /* harmony import */ var _component_filters_component_filters_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./component/filters-component/filters-component */ "./src/app/component/filters-component/filters-component.ts");
+/* harmony import */ var _component_update_modal_component_update_modal_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./component/update-modal-component/update-modal-component */ "./src/app/component/update-modal-component/update-modal-component.ts");
+
 
 
 
@@ -449,7 +452,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _component_movie_component_movie_component__WEBPACK_IMPORTED_MODULE_10__["MovieComponent"],
             _component_navbar_component_navbar_component__WEBPACK_IMPORTED_MODULE_11__["NavbarComponent"],
             _component_filters_component_filters_component__WEBPACK_IMPORTED_MODULE_12__["FiltersComponent"],
-            _pipes_movieFilter_pipe__WEBPACK_IMPORTED_MODULE_8__["MovieFilter"]
+            _pipes_movieFilter_pipe__WEBPACK_IMPORTED_MODULE_8__["MovieFilter"],
+            _component_update_modal_component_update_modal_component__WEBPACK_IMPORTED_MODULE_13__["UpdateModalComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -702,6 +706,9 @@ let ResultsComponent = class ResultsComponent {
     onFilterChanged(newFilter) {
         this.movieFilterArgs = newFilter;
     }
+    onUpdate(type) {
+        this.getMoviesOfType(type);
+    }
 };
 ResultsComponent.ctorParameters = () => [
     { type: src_app_service_resultsService__WEBPACK_IMPORTED_MODULE_1__["ResultsService"] }
@@ -712,6 +719,75 @@ ResultsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./results-component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/results-component/results-component.html")).default
     })
 ], ResultsComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/component/update-modal-component/update-modal-component.ts":
+/*!****************************************************************************!*\
+  !*** ./src/app/component/update-modal-component/update-modal-component.ts ***!
+  \****************************************************************************/
+/*! exports provided: UpdateModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UpdateModalComponent", function() { return UpdateModalComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _aspnet_signalr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @aspnet/signalr */ "./node_modules/@aspnet/signalr/dist/esm/index.js");
+
+
+
+let UpdateModalComponent = class UpdateModalComponent {
+    constructor() {
+        this.updateEmitter = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+    }
+    ngOnInit() {
+        this.showUpdateModal(1);
+        this._hubConnection = new _aspnet_signalr__WEBPACK_IMPORTED_MODULE_2__["HubConnectionBuilder"]().withUrl('/updateNotification').build();
+        this._hubConnection
+            .start()
+            .then(() => console.log('Connection started!'))
+            .catch(err => console.log('Error while establishing connection :('));
+        this._hubConnection.on("NotifyUpdate", function (typeToUpdate) {
+            this.showUpdateModal(typeToUpdate);
+        });
+    }
+    update() {
+        this.updateEmitter.emit();
+        var el = this.getModalElement();
+        el.classList.remove('is-active');
+    }
+    closeModal() {
+        var el = this.getModalElement();
+        el.classList.remove('is-active');
+    }
+    showUpdateModal(typeToUpdate) {
+        this.updateFilmType = typeToUpdate;
+        //   switch(typeToUpdate){
+        //     case 0: this.updateFilmType = 'Thriller'
+        //     case 1: this.updateFilmType = 'Komedia'
+        //     case 2: this.updateFilmType = 'Akcja'
+        //   }
+        var el = this.getModalElement();
+        el.classList.add('is-active');
+    }
+    getModalElement() {
+        var modal = Array.prototype.slice.call(document.querySelectorAll('.modal'), 0)[0];
+        return modal;
+    }
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+], UpdateModalComponent.prototype, "updateEmitter", void 0);
+UpdateModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-update-modal',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./update-modal-component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/update-modal-component/update-modal-component.html")).default
+    })
+], UpdateModalComponent);
 
 
 
