@@ -15,5 +15,6 @@ namespace vod.Core.Boundary.Model
         public int VodFilmType { get; set; }
         public DateTime StoredDate { get; set; }
         public string FilmDescription { get; set; }
+        public bool IsNew { get; set; }
     }
 }

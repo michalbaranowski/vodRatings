@@ -24,7 +24,9 @@ namespace vod.Repository
                 ctx.SaveChanges();
 
                 var resultsList = results.ToList();
-                foreach (var result in resultsList) result.StoredDate = DateTime.Now;
+                foreach (var result in resultsList)
+                    if (result.StoredDate == DateTime.MinValue)
+                        result.StoredDate = DateTime.Now;
 
                 ctx.Results.AddRange(resultsList);
                 ctx.SaveChanges();

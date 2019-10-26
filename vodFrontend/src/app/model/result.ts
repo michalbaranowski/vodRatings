@@ -11,4 +11,5 @@ export class Result {
     production: string;
     storedDate: Date;
     filmDescription: string;
+    isNew: boolean;
 }

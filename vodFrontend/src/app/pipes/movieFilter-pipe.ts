@@ -27,6 +27,9 @@ export class MovieFilter implements PipeTransform {
         if (filter.production && filter.production != "Wszystkie")
             results = results.filter(item => item.production && item.production.indexOf(filter.production) !== -1);
 
+        if(filter.isNew)
+            results = results.filter(item => item.isNew == true);
+            
         return results;
     }
 }

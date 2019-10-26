@@ -4,6 +4,7 @@ using AutoMapper;
 using MoreLinq;
 using vod.Core.Boundary.Interfaces;
 using vod.Core.Boundary.Model;
+using vod.Core.Extension;
 using vod.Domain.Services.Boundary.Interfaces;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
@@ -42,7 +43,9 @@ namespace vod.Core
                     type, 
                     () => GetFilmwebResults(type))
                 .OrderByDescending(n => n.FilmwebRating)
-                .Select(n => _mapper.Map<Result>(n));
+                .Select(n => _mapper.Map<Result>(n))
+                .ToList()
+                .AddNewFlagIfNeeded();
         }
 
         private IEnumerable<FilmwebResult> GetFilmwebResults(MovieTypes type)

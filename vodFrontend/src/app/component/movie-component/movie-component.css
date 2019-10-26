@@ -24,3 +24,34 @@
   .tooltip:hover .tooltiptext {
     visibility: visible;
   }
+
+  * {
+    box-sizing: border-box;
+  }
+  .flag {
+    width: 55px;
+    height: 28px;
+    margin: 0 auto;
+    padding-top: 5px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 999;
+    background: hsl(348, 100%, 61%);
+    color: white;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .flag:after {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-bottom: 6px solid #363636;
+    border-left: 27px solid transparent;
+    border-right: 27px solid transparent;
+  }

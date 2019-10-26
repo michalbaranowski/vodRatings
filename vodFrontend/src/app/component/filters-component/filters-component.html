@@ -1,11 +1,12 @@
 <div style="margin-left: 10px;" class="columns is-mobile is-multiline" *ngIf="!loading">
-    <div class="column is-one-quarter-desktop is-half-tablet is-four-fifths-mobile">
+    <div class="column is-one-fifth-desktop is-half-tablet is-four-fifths-mobile">
         <div class="control">
             <label class="label">Tytuł:</label>
-            <input [(ngModel)]="movieFilter.title" (change)="onFilterChanged()" class="input" type="text" placeholder="Tytuł filmu...">
+            <input [(ngModel)]="movieFilter.title" (change)="onFilterChanged()" class="input" type="text"
+                placeholder="Tytuł filmu...">
         </div>
     </div>
-    <div class="column is-one-quarter-desktop is-half-tablet is-full-mobile">
+    <div class="column is-one-fifth-desktop is-half-tablet is-full-mobile">
         <label class="label">Gatunek wg Filmweb:</label>
         <div class="select">
             <select [(ngModel)]="movieFilter.filmwebFilmType" (change)="onFilterChanged()">
@@ -15,23 +16,30 @@
         </div>
     </div>
 
-    <div class="column is-one-quarter-desktop is-half-tablet is-full-mobile">
+    <div class="column is-one-fifth-desktop is-half-tablet is-full-mobile">
         <label class="label">Dostawca vod:</label>
         <div class="select">
             <select [(ngModel)]="movieFilter.providerName" (change)="onFilterChanged()">
-                <option *ngFor="let providerName of providerNames; let i = index" [value]="providerNames[i]">{{providerName}}</option>
+                <option *ngFor="let providerName of providerNames; let i = index" [value]="providerNames[i]">
+                    {{providerName}}</option>
                 <option [value]="">Wszystkie</option>
             </select>
         </div>
     </div>
 
-    <div class="column is-one-quarter-desktop is-half-tablet is-full-mobile">
+    <div class="column is-one-fifth-desktop is-half-tablet is-full-mobile">
         <label class="label">Produkcja:</label>
         <div class="select">
             <select [(ngModel)]="movieFilter.production" (change)="onFilterChanged()">
-                <option *ngFor="let countryName of productionNames; let i = index" [value]="productionNames[i]">{{countryName}}</option>
+                <option *ngFor="let countryName of productionNames; let i = index" [value]="productionNames[i]">
+                    {{countryName}}</option>
                 <option [value]="">Wszystkie</option>
             </select>
         </div>
+    </div>
+
+    <div class="column is-one-fifth-desktop is-half-tablet is-full-mobile">
+        <label class="label checkbox">Tylko nowości:</label>
+        <input class="is-full" [(ngModel)]="movieFilter.isNew" type="checkbox" (change)="onFilterChanged()">
     </div>
 </div>

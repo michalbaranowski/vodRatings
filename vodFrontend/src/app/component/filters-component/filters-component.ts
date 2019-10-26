@@ -3,7 +3,8 @@ import { Result } from 'src/app/model/result';
 
 @Component({
     selector: 'app-filters',
-    templateUrl: 'filters-component.html'
+    templateUrl: 'filters-component.html',
+    styleUrls: ['filters-component.css']
 })
 
 export class FiltersComponent implements OnInit {

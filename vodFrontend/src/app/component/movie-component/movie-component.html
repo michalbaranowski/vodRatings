@@ -1,5 +1,9 @@
 <div class="tile is-parent">
+
   <article class="tile is-child notification is-dark is-mobile">
+      <div *ngIf="item.isNew" class="flag">
+          NEW
+        </div>
     <div class="movie-title" style="height: 135px; display: block">
       <div class="tooltip">
         <p class="title">{{formatTitle(item.title, item.year)}}</p>
@@ -54,8 +58,6 @@
         </div>
       </div>
     </div>
-
-
 
     <figure *ngIf="!item.imageUrl" class="image is-3by4">
       <img src="https://bulma.io/images/placeholders/640x480.png">
