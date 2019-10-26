@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal\">\r\n    <div class=\"modal-background\"></div>\r\n    <div class=\"modal-card\">\r\n      <header class=\"modal-card-head\">\r\n        <p class=\"modal-card-title\">Aktualizacja!</p>\r\n        <button class=\"delete\" aria-label=\"close\" (click)=\"closeModal()\"></button>\r\n      </header>\r\n      <section class=\"modal-card-body\">\r\n        Dostępna jest aktualizacja danych dla gatunku: {{updateFilmType}}\r\n      </section>\r\n      <footer class=\"modal-card-foot\">\r\n        <button class=\"button is-success\" (click)=\"update()\">Aktualizuj</button>\r\n        <button class=\"button\" (click)=\"closeModal()\">Anuluj</button>\r\n      </footer>\r\n    </div>\r\n  </div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal\">\r\n    <div class=\"modal-background\"></div>\r\n    <div class=\"modal-card\">\r\n      <header class=\"modal-card-head\">\r\n        <p class=\"modal-card-title\">Aktualizacja!</p>\r\n        <button class=\"delete\" aria-label=\"close\" (click)=\"closeModal()\"></button>\r\n      </header>\r\n      <section class=\"modal-card-body\">\r\n        Dostępna jest aktualizacja danych dla gatunku: {{getMovieType(updateFilmType)}}\r\n      </section>\r\n      <footer class=\"modal-card-foot\">\r\n        <button class=\"button is-success\" (click)=\"update()\">Aktualizuj</button>\r\n        <button class=\"button\" (click)=\"closeModal()\">Anuluj</button>\r\n      </footer>\r\n    </div>\r\n  </div>");
 
 /***/ }),
 
@@ -627,7 +627,6 @@ let NavbarComponent = class NavbarComponent {
             const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
             // Check if there are any navbar burgers
             if ($navbarBurgers.length > 0) {
-                debugger;
                 // Add a click event on each of them
                 $navbarBurgers.forEach(el => {
                     el.addEventListener('click', () => {
@@ -707,6 +706,7 @@ let ResultsComponent = class ResultsComponent {
         this.movieFilterArgs = newFilter;
     }
     onUpdate(type) {
+        debugger;
         this.getMoviesOfType(type);
     }
 };
@@ -751,12 +751,12 @@ let UpdateModalComponent = class UpdateModalComponent {
             .start()
             .then(() => console.log('Connection started!'))
             .catch(err => console.log('Error while establishing connection :('));
-        this._hubConnection.on("NotifyUpdate", function (typeToUpdate) {
+        this._hubConnection.on("NotifyUpdate", (typeToUpdate) => {
             this.showUpdateModal(typeToUpdate);
         });
     }
     update() {
-        this.updateEmitter.emit();
+        this.updateEmitter.emit(this.updateFilmType);
         var el = this.getModalElement();
         el.classList.remove('is-active');
     }
@@ -766,13 +766,15 @@ let UpdateModalComponent = class UpdateModalComponent {
     }
     showUpdateModal(typeToUpdate) {
         this.updateFilmType = typeToUpdate;
-        //   switch(typeToUpdate){
-        //     case 0: this.updateFilmType = 'Thriller'
-        //     case 1: this.updateFilmType = 'Komedia'
-        //     case 2: this.updateFilmType = 'Akcja'
-        //   }
         var el = this.getModalElement();
         el.classList.add('is-active');
+    }
+    getMovieType(typeToUpdate) {
+        switch (typeToUpdate) {
+            case 0: return 'Thriller';
+            case 1: return 'Komedia';
+            case 2: return 'Akcja';
+        }
     }
     getModalElement() {
         var modal = Array.prototype.slice.call(document.querySelectorAll('.modal'), 0)[0];
