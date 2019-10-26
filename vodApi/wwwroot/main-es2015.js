@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"margin-left: 10px;\" class=\"columns is-mobile is-multiline\" *ngIf=\"!loading\">\r\n    <div class=\"column is-one-fifth-desktop is-half-tablet is-four-fifths-mobile\">\r\n        <div class=\"control\">\r\n            <label class=\"label\">Tytuł:</label>\r\n            <input [(ngModel)]=\"movieFilter.title\" (change)=\"onFilterChanged()\" class=\"input\" type=\"text\"\r\n                placeholder=\"Tytuł filmu...\">\r\n        </div>\r\n    </div>\r\n    <div class=\"column is-one-fifth-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Gatunek wg Filmweb:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.filmwebFilmType\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let type of filmwebTypes; let i = index\" [value]=\"filmwebTypes[i]\">{{type}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-fifth-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Dostawca vod:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.providerName\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let providerName of providerNames; let i = index\" [value]=\"providerNames[i]\">\r\n                    {{providerName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-fifth-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Produkcja:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.production\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let countryName of productionNames; let i = index\" [value]=\"productionNames[i]\">\r\n                    {{countryName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-fifth-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label checkbox\">Tylko nowości:</label>\r\n        <input class=\"is-full\" [(ngModel)]=\"movieFilter.isNew\" type=\"checkbox\" (change)=\"onFilterChanged()\">\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"margin: 10px;\" class=\"columns is-mobile is-multiline\" *ngIf=\"!loading\">\r\n    <div class=\"column is-one-fifth-desktop is-half-tablet is-four-fifths-mobile\">\r\n        <div class=\"control\">\r\n            <label class=\"label\">Tytuł:</label>\r\n            <input [(ngModel)]=\"movieFilter.title\" (change)=\"onFilterChanged()\" class=\"input\" type=\"text\"\r\n                placeholder=\"Tytuł filmu...\">\r\n        </div>\r\n    </div>\r\n    <div class=\"column is-one-fifth-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Gatunek wg Filmweb:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.filmwebFilmType\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let type of filmwebTypes; let i = index\" [value]=\"filmwebTypes[i]\">{{type}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-fifth-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Dostawca vod:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.providerName\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let providerName of providerNames; let i = index\" [value]=\"providerNames[i]\">\r\n                    {{providerName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-fifth-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label\">Produkcja:</label>\r\n        <div class=\"select\">\r\n            <select [(ngModel)]=\"movieFilter.production\" (change)=\"onFilterChanged()\">\r\n                <option *ngFor=\"let countryName of productionNames; let i = index\" [value]=\"productionNames[i]\">\r\n                    {{countryName}}</option>\r\n                <option [value]=\"\">Wszystkie</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"column is-one-fifth-desktop is-half-tablet is-full-mobile\">\r\n        <label class=\"label checkbox\">Tylko nowości:</label>\r\n        <input class=\"is-full\" [(ngModel)]=\"movieFilter.isNew\" type=\"checkbox\" (change)=\"onFilterChanged()\">\r\n    </div>\r\n</div>");
 
 /***/ }),
 
@@ -84,7 +84,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-navbar [loading]=\"loading\" (typeChanged)=\"onTypeChanged($event)\"></app-navbar>\r\n\r\n<app-filters *ngIf=\"results\" [results]=\"results\" (filterChanged)=\"onFilterChanged($event)\"></app-filters>\r\n\r\n<div *ngIf=\"results\" class=\"columns is-gapless is-multiline is-mobile\">\r\n    <div *ngFor=\"let item of results | movieFilter:movieFilterArgs\"\r\n        class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <app-movie [item]=item></app-movie>\r\n    </div>\r\n</div>\r\n\r\n<app-update-modal (updateEmitter)=\"onUpdate($event)\"></app-update-modal>");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-navbar [loading]=\"loading\" [typeToChange]=\"typeToChange\" (typeChanged)=\"onTypeChanged($event)\"></app-navbar>\r\n\r\n<app-filters *ngIf=\"results\" [results]=\"results\" (filterChanged)=\"onFilterChanged($event)\"></app-filters>\r\n\r\n<div *ngIf=\"results\" class=\"columns is-gapless is-multiline is-mobile\">\r\n    <div *ngFor=\"let item of results | movieFilter:movieFilterArgs\"\r\n        class=\"column is-one-third-desktop is-half-tablet is-full-mobile\">\r\n        <app-movie [item]=item></app-movie>\r\n    </div>\r\n</div>\r\n\r\n<app-update-modal (updateEmitter)=\"onUpdate($event)\"></app-update-modal>");
 
 /***/ }),
 
@@ -480,7 +480,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("input[type='checkbox'] {\r\n    -webkit-appearance:none;\r\n    width:30px;\r\n    height:30px;\r\n    background:white;\r\n    border-radius:5px;\r\n    border:2px solid #555;\r\n}\r\ninput[type='checkbox']:checked {\r\n    background:#363636;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50L2ZpbHRlcnMtY29tcG9uZW50L2ZpbHRlcnMtY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHVCQUF1QjtJQUN2QixVQUFVO0lBQ1YsV0FBVztJQUNYLGdCQUFnQjtJQUNoQixpQkFBaUI7SUFDakIscUJBQXFCO0FBQ3pCO0FBQ0E7SUFDSSxrQkFBa0I7QUFDdEIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnQvZmlsdGVycy1jb21wb25lbnQvZmlsdGVycy1jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW5wdXRbdHlwZT0nY2hlY2tib3gnXSB7XHJcbiAgICAtd2Via2l0LWFwcGVhcmFuY2U6bm9uZTtcclxuICAgIHdpZHRoOjMwcHg7XHJcbiAgICBoZWlnaHQ6MzBweDtcclxuICAgIGJhY2tncm91bmQ6d2hpdGU7XHJcbiAgICBib3JkZXItcmFkaXVzOjVweDtcclxuICAgIGJvcmRlcjoycHggc29saWQgIzU1NTtcclxufVxyXG5pbnB1dFt0eXBlPSdjaGVja2JveCddOmNoZWNrZWQge1xyXG4gICAgYmFja2dyb3VuZDojMzYzNjM2O1xyXG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = ("input[type='checkbox'] {\r\n    -webkit-appearance:none;\r\n    width:30px;\r\n    height:30px;\r\n    background:white;\r\n    border-radius:5px;\r\n    border:2px solid #B5B5B5;\r\n}\r\ninput[type='checkbox']:checked {\r\n    background:#363636;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50L2ZpbHRlcnMtY29tcG9uZW50L2ZpbHRlcnMtY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHVCQUF1QjtJQUN2QixVQUFVO0lBQ1YsV0FBVztJQUNYLGdCQUFnQjtJQUNoQixpQkFBaUI7SUFDakIsd0JBQXdCO0FBQzVCO0FBQ0E7SUFDSSxrQkFBa0I7QUFDdEIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnQvZmlsdGVycy1jb21wb25lbnQvZmlsdGVycy1jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW5wdXRbdHlwZT0nY2hlY2tib3gnXSB7XHJcbiAgICAtd2Via2l0LWFwcGVhcmFuY2U6bm9uZTtcclxuICAgIHdpZHRoOjMwcHg7XHJcbiAgICBoZWlnaHQ6MzBweDtcclxuICAgIGJhY2tncm91bmQ6d2hpdGU7XHJcbiAgICBib3JkZXItcmFkaXVzOjVweDtcclxuICAgIGJvcmRlcjoycHggc29saWQgI0I1QjVCNTtcclxufVxyXG5pbnB1dFt0eXBlPSdjaGVja2JveCddOmNoZWNrZWQge1xyXG4gICAgYmFja2dyb3VuZDojMzYzNjM2O1xyXG59Il19 */");
 
 /***/ }),
 
@@ -632,6 +632,11 @@ let NavbarComponent = class NavbarComponent {
         this.typeChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.initMenu();
     }
+    ngOnChanges(changes) {
+        const typeToChange = changes.typeToChange;
+        if (typeToChange)
+            this.changeType(typeToChange.currentValue);
+    }
     changeType(n) {
         this.typeChanged.emit(n);
     }
@@ -671,6 +676,9 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
 ], NavbarComponent.prototype, "loading", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], NavbarComponent.prototype, "typeToChange", void 0);
 NavbarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-navbar',
@@ -720,7 +728,7 @@ let ResultsComponent = class ResultsComponent {
         this.movieFilterArgs = newFilter;
     }
     onUpdate(type) {
-        this.getMoviesOfType(type);
+        this.typeToChange = type;
     }
 };
 ResultsComponent.ctorParameters = () => [
