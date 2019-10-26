@@ -706,7 +706,6 @@ let ResultsComponent = class ResultsComponent {
         this.movieFilterArgs = newFilter;
     }
     onUpdate(type) {
-        debugger;
         this.getMoviesOfType(type);
     }
 };
@@ -745,7 +744,6 @@ let UpdateModalComponent = class UpdateModalComponent {
         this.updateEmitter = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
     ngOnInit() {
-        this.showUpdateModal(1);
         this._hubConnection = new _aspnet_signalr__WEBPACK_IMPORTED_MODULE_2__["HubConnectionBuilder"]().withUrl('/updateNotification').build();
         this._hubConnection
             .start()

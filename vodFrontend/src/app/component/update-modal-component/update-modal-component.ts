@@ -11,7 +11,6 @@ export class UpdateModalComponent implements OnInit {
     @Output() updateEmitter = new EventEmitter<number>();
 
     ngOnInit(): void {
-        this.showUpdateModal(1);
         this._hubConnection = new HubConnectionBuilder().withUrl('/updateNotification').build();
 
         this._hubConnection
