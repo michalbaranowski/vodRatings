@@ -1,18 +1,25 @@
-import { Component, Output, EventEmitter, Input } from "@angular/core";
+import { Component, Output, EventEmitter, Input, OnChanges, SimpleChanges, SimpleChange } from "@angular/core";
 
 @Component({
     selector: 'app-navbar',
     templateUrl: 'navbar-component.html'
 })
 
-export class NavbarComponent {
+export class NavbarComponent implements OnChanges {
+
     @Output() typeChanged = new EventEmitter<Number>();
     @Input() loading: Boolean;
+    @Input() typeToChange: number;
 
     constructor() {
         this.initMenu();
     }
     
+    ngOnChanges(changes: SimpleChanges): void {
+        const typeToChange: SimpleChange = changes.typeToChange;
+        if (typeToChange) this.changeType(typeToChange.currentValue);
+    }
+
     changeType(n: Number) {
         this.typeChanged.emit(n);
     }

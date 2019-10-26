@@ -4,7 +4,7 @@ input[type='checkbox'] {
     height:30px;
     background:white;
     border-radius:5px;
-    border:2px solid #555;
+    border:2px solid #B5B5B5;
 }
 input[type='checkbox']:checked {
     background:#363636;

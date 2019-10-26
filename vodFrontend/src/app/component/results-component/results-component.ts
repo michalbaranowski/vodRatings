@@ -10,6 +10,7 @@ export class ResultsComponent {
     loading: boolean;
     results: Result[];
     movieFilterArgs: Result;
+    typeToChange: number;
 
     constructor(private resultsService: ResultsService) {
         this.movieFilterArgs = new Result();
@@ -33,6 +34,6 @@ export class ResultsComponent {
     }
 
     onUpdate(type: number) {
-        this.getMoviesOfType(type);
+        this.typeToChange = type;
     }
 }
