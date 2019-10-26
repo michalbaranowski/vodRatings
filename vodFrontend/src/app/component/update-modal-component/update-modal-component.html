@@ -6,7 +6,7 @@
         <button class="delete" aria-label="close" (click)="closeModal()"></button>
       </header>
       <section class="modal-card-body">
-        Dostępna jest aktualizacja danych dla gatunku: {{updateFilmType}}
+        Dostępna jest aktualizacja danych dla gatunku: {{getMovieType(updateFilmType)}}
       </section>
       <footer class="modal-card-foot">
         <button class="button is-success" (click)="update()">Aktualizuj</button>

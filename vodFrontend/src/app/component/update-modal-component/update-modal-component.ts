@@ -8,7 +8,7 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 export class UpdateModalComponent implements OnInit {
     private _hubConnection: HubConnection;
     updateFilmType: number;
-    @Output() updateEmitter = new EventEmitter<boolean>();
+    @Output() updateEmitter = new EventEmitter<number>();
 
     ngOnInit(): void {
         this.showUpdateModal(1);
@@ -19,13 +19,13 @@ export class UpdateModalComponent implements OnInit {
             .then(() => console.log('Connection started!'))
             .catch(err => console.log('Error while establishing connection :('));
 
-        this._hubConnection.on("NotifyUpdate", function (typeToUpdate) {
+        this._hubConnection.on("NotifyUpdate", (typeToUpdate) => {
             this.showUpdateModal(typeToUpdate);
-        })
+        });
     }
 
     update() {
-        this.updateEmitter.emit();
+        this.updateEmitter.emit(this.updateFilmType);
         var el = this.getModalElement();
         el.classList.remove('is-active');
     }
@@ -37,14 +37,16 @@ export class UpdateModalComponent implements OnInit {
 
     showUpdateModal(typeToUpdate) {
         this.updateFilmType = typeToUpdate;
-        //   switch(typeToUpdate){
-        //     case 0: this.updateFilmType = 'Thriller'
-        //     case 1: this.updateFilmType = 'Komedia'
-        //     case 2: this.updateFilmType = 'Akcja'
-        //   }
-
         var el = this.getModalElement();
         el.classList.add('is-active');
+    }
+
+    getMovieType(typeToUpdate: number) {
+        switch (typeToUpdate) {
+            case 0: return 'Thriller'
+            case 1: return 'Komedia'
+            case 2: return 'Akcja'
+        }
     }
 
     private getModalElement() {
