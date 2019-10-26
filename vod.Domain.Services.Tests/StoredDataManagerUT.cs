@@ -9,6 +9,7 @@ using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
 using vod.Repository.Boundary;
 using vod.Repository.Boundary.Models;
+using vod.SignalR.Hub.Hub;
 
 namespace vod.Domain.Services.Tests
 {
@@ -37,7 +38,9 @@ namespace vod.Domain.Services.Tests
             var mapperMock = new Mock<IMapper>();
             mapperMock.Setup(x => x.Map<FilmwebResult>(fakeResultModel)).Returns(new FilmwebResult() {Title = fakeResultModel.Title, StoredDate = fakeResultModel.StoredDate});
 
-            _storedDataManager = new StoredDataManager(mapperMock.Object, _repositoryMock.Object, _repositoryBgMock.Object, _bgWorkerMock.Object);
+            var updateHubMock = new Mock<UpdateNotificationHub>();
+
+            _storedDataManager = new StoredDataManager(mapperMock.Object, _repositoryMock.Object, _repositoryBgMock.Object, _bgWorkerMock.Object, updateHubMock.Object);
         }
 
         [Test]
