@@ -39,6 +39,8 @@ namespace vod.Repository.Boundary.Migrations
 
                     b.Property<string>("ProviderName");
 
+                    b.Property<DateTime>("RefreshDate");
+
                     b.Property<DateTime>("StoredDate");
 
                     b.Property<string>("Title");

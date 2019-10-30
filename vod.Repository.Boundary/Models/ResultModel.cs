@@ -22,5 +22,6 @@ namespace vod.Repository.Boundary.Models
         public string FilmwebFilmType { get; set; }
         public int? VodFilmType { get; set; }
         public string FilmDescription { get; set; }
+        public DateTime RefreshDate { get; set; }
     }
 }

@@ -24,13 +24,24 @@ namespace vod.Repository
                 ctx.SaveChanges();
 
                 var resultsList = results.ToList();
-                foreach (var result in resultsList)
-                    if (result.StoredDate == DateTime.MinValue)
-                        result.StoredDate = DateTime.Now;
+                resultsList = AddStoredAndRefreshDate(resultsList);
 
                 ctx.Results.AddRange(resultsList);
                 ctx.SaveChanges();
             }
+        }
+
+        private List<ResultModel> AddStoredAndRefreshDate(List<ResultModel> results)
+        {
+            foreach (var result in results)
+            {
+                result.RefreshDate = DateTime.Now;
+
+                if (result.StoredDate == DateTime.MinValue)
+                    result.StoredDate = DateTime.Now;
+            }
+
+            return results;
         }
 
         public ResultModel ResultByTitle(string movieTitle)

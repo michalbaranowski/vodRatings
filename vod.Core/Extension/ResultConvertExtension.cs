@@ -18,7 +18,7 @@ namespace vod.Core.Extension
                 return result;
 
             foreach (var res in result)
-                if (res.StoredDate == max)
+                if (res.StoredDate.Date == max.Date)
                     res.IsNew = true;
 
             return result;

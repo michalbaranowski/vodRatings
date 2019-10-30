@@ -9,6 +9,6 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
     {
         IEnumerable<Movie> SerializeMovies(HtmlDocument html, MovieTypes type);
         string SerializeFilmwebUrl(HtmlDocument html);
-        FilmwebResult SerializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieMovieType);
+        FilmwebResult SerializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieMovieType, string movieName);
     }
 }

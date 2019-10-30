@@ -16,6 +16,8 @@
                 .Replace("&#324;", "ń")
                 .Replace("&Oacute;", "Ó")
                 .Replace("&oacute;", "ó")
+                .Replace("&#243;", "ó")
+                .Replace("&#198;", "AE")
                 .Replace("&#346;", "Ś")
                 .Replace("&#347;", "ś")
                 .Replace("&#377;", "Ź")

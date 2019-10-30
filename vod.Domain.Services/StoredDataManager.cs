@@ -48,7 +48,7 @@ namespace vod.Domain.Services
             Func<IEnumerable<FilmwebResult>> func)
         {
             if ((!storedCollection.Any() ||
-                 storedCollection.FirstOrDefault()?.StoredDate < DateTime.Now.AddDays(-1)))
+                 storedCollection.FirstOrDefault()?.RefreshDate < DateTime.Now.AddDays(-1)))
             {
                 _backgroundWorker.Execute(type, () =>
                 {

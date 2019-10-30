@@ -15,5 +15,6 @@ namespace vod.Domain.Services.Boundary.Models
         public string Production { get; set; }
         public DateTime StoredDate { get; set; }
         public string FilmDescription { get; set; }
+        public string FilmwebTitle { get; set; }
     }
 }

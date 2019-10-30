@@ -40,7 +40,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 ?.Attributes["href"].Value;
         }
 
-        public FilmwebResult SerializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieMovieType)
+        public FilmwebResult SerializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieMovieType, string movieTitle)
         {
             var rate = filmwebHtml.DocumentNode.Descendants()?
                 .FirstOrDefault(n => n.Name == "span" && n.Attributes.Contains("itemprop") &&
@@ -85,7 +85,8 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 FilmwebRating = Convert.ToDecimal(rate),
                 FilmwebRatingCount  = Convert.ToInt32(rateCount),
                 FilmwebFilmType = filmwebFilmType,
-                Title = title,
+                Title = movieTitle,
+                FilmwebTitle = title,
                 Year = Convert.ToInt32(year.OnlyDigits()),
                 ImageUrl = imageUrl,
                 VodFilmType = (int)movieMovieType,

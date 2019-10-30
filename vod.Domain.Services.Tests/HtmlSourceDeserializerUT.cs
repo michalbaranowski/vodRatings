@@ -91,9 +91,10 @@ namespace vod.Domain.Services.Tests
         {
             Arrange();
 
-            var result = _serializer.SerializeFilmwebResult(_filmwebResultHtmlDoc, MovieTypes.Thriller);
+            var title = "Ostateczna rozgrywka";
+            var result = _serializer.SerializeFilmwebResult(_filmwebResultHtmlDoc, MovieTypes.Thriller, title);
 
-            Assert.True(result.Title == "Ostateczna rozgrywka");
+            Assert.True(result.Title == title);
             Assert.True(result.FilmwebRating == 5.4m);
             Assert.True(result.Production == "Wielka Brytania");
             Assert.True(result.FilmwebFilmType == "Akcja, Thriller");
