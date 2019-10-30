@@ -36,7 +36,7 @@
     position: absolute;
     top: 0px;
     right: 0px;
-    z-index: 999;
+    z-index: auto;
     background: hsl(348, 100%, 61%);
     color: white;
     font-size: 11px;
