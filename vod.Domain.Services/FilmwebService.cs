@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using vod.Domain.Services.Boundary.Interfaces;
 using vod.Domain.Services.Boundary.Models;
 using vod.Domain.Services.Utils;
@@ -33,6 +34,7 @@ namespace vod.Domain.Services
             if (storedData != null)
                 return _mapper.Map<FilmwebResult>(storedData);
 
+            GetMovieDetails(movie);
             var filmwebUrl = GetFilmwebUrl(movie);
 
             if (string.IsNullOrEmpty(filmwebUrl))
@@ -44,10 +46,16 @@ namespace vod.Domain.Services
             return result;
         }
 
-        public string GetFilmwebUrl(Movie movie)
+        private void GetMovieDetails(Movie movie)
         {
             var moreInfoHtml = _sourceGetter.GetHtmlFrom($"{NcPlusUrls.NcPlusGoUrl}{movie.MoreInfoUrl}");
-            var filmwebUrl = _sourceSerializer.SerializeFilmwebUrl(moreInfoHtml);
+            _sourceGetter.SerializeFilmDetails(moreInfoHtml, movie);
+        }
+
+        public string GetFilmwebUrl(Movie movie)
+        {
+            var filmwebSearchHtml = _sourceGetter.GetHtmlFrom(FilmwebUrls.FilmwebSearchBaseUrl(movie.OriginalTitle));
+            var filmwebUrl = _sourceSerializer.SerializeFilmwebUrl(filmwebSearchHtml, movie.Director);
             return filmwebUrl;
         }
     }

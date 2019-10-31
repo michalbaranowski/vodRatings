@@ -25,8 +25,8 @@ namespace vod.Domain.Services.Tests
         private void BaseArrange(DateTime? fakeStoredDate = null)
         {
             var dateNow = DateTime.Now;
-            var fakeResultModel = new ResultModel() {Title = "test", StoredDate = fakeStoredDate ?? dateNow};
-            var fakeFilmwebResult = new FilmwebResult() {Title = "test", StoredDate = dateNow};
+            var fakeResultModel = new ResultModel() {Title = "test", StoredDate = fakeStoredDate ?? dateNow, RefreshDate = fakeStoredDate ?? dateNow};
+            var fakeFilmwebResult = new FilmwebResult() {Title = "test", StoredDate = dateNow };
             _fakeStoredCollection = new List<ResultModel>() {fakeResultModel};
             _fakeFilmwebResults = new List<FilmwebResult>() {fakeFilmwebResult};
             _repositoryMock = new Mock<IVodRepository>();

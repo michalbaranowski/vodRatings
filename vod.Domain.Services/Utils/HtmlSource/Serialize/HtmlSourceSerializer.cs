@@ -33,11 +33,20 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                     });
         }
 
-        public string SerializeFilmwebUrl(HtmlDocument html)
+        public string SerializeFilmwebUrl(HtmlDocument html, string director)
         {
-            return html.DocumentNode.Descendants()?
-                .Where(n => n.Name == "a" && n.Attributes.Contains("href") && n.Attributes["href"].Value.Contains("filmweb")).FirstOrDefault()
-                ?.Attributes["href"].Value;
+            var ul = html.DocumentNode.Descendants().FirstOrDefault(n => n.Name == "ul" && n.Attributes.Contains("class") && n.Attributes["class"].Value == "resultsList hits");
+            if (ul == null) return string.Empty;
+
+            var li = ul.Descendants().FirstOrDefault(n=>n.Name == "li" && n.Descendants().FirstOrDefault(p=>p.Name == "div" && p.Attributes.Contains("class") && p.Attributes["class"].Value == "filmPreview__info filmPreview__info--directors").InnerText.Contains(director));
+            if (li == null) return string.Empty;
+
+            var href = li.Descendants()
+                .FirstOrDefault(n => n.Name == "a" && n.Attributes.Contains("class") && n.Attributes.Contains("href") && n.Attributes["class"]?
+                .Value == "filmPreview__link")?
+                .Attributes["href"]?
+                .Value;
+            return href != null ? $"{FilmwebUrls.FilmwebBaseUrl}{href}" : string.Empty;
         }
 
         public FilmwebResult SerializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieMovieType, string movieTitle)

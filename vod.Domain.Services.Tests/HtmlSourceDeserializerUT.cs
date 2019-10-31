@@ -19,7 +19,7 @@ namespace vod.Domain.Services.Tests
         private HtmlDocument _cplusComedies;
         private HtmlDocument _ncPremieresComediesDoc;
         private HtmlDocument _hboComedies;
-
+        private HtmlDocument _filmwebSearchHtmlDoc;
 
         private void Arrange()
         {
@@ -44,6 +44,10 @@ namespace vod.Domain.Services.Tests
             var moreInfoHtml = HtmlResources.CanalPlusConcrteMovieResultHtml();
             _moreInfoHtmlDoc = new HtmlDocument();
             _moreInfoHtmlDoc.LoadHtml(moreInfoHtml);
+
+            var filmwebSearchHtml = HtmlResources.FilmWebSearchResultHtml();
+            _filmwebSearchHtmlDoc = new HtmlDocument();
+            _filmwebSearchHtmlDoc.LoadHtml(filmwebSearchHtml);
 
             var filmwebResultHtml = HtmlResources.FilmwebResultHtml();
             _filmwebResultHtmlDoc = new HtmlDocument();
@@ -81,9 +85,9 @@ namespace vod.Domain.Services.Tests
         {
             Arrange();
 
-            var result = _serializer.SerializeFilmwebUrl(_moreInfoHtmlDoc);
+            var result = _serializer.SerializeFilmwebUrl(_filmwebSearchHtmlDoc);
 
-            Assert.AreEqual("http://www.filmweb.pl/film/ostateczna+rozgrywka+19-2018-780203", result);
+            Assert.AreEqual("https://www.filmweb.pl/film/Ostateczna+rozgrywka-2018-780203", result);
         }
 
         [Test]

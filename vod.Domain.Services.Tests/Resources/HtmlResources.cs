@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace vod.Domain.Services.Tests.Resources
 {
@@ -11,6 +12,7 @@ namespace vod.Domain.Services.Tests.Resources
         public static string NcPremieresResultHtml() => ReadFromFile($"{BASEPATH}premieryKomedie.html");
         public static string CanalPlusConcrteMovieResultHtml() => ReadFromFile($"{BASEPATH}canalPlusConcreteMovieResult.html");
         public static string FilmwebResultHtml() => ReadFromFile($"{BASEPATH}filmwebResult.html");
+        public static string FilmWebSearchResultHtml() => ReadFromFile($"{BASEPATH}filmWebSearchResult.html");
 
         private static string ReadFromFile(string path)
         {
@@ -23,6 +25,5 @@ namespace vod.Domain.Services.Tests.Resources
 
             return result;
         }
-
     }
 }

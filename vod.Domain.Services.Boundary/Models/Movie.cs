@@ -9,5 +9,7 @@ namespace vod.Domain.Services.Boundary.Models
         public string MoreInfoUrl { get; set; }
         public string ProviderName { get; set; }
         public MovieTypes MovieType { get; set; }
+        public string OriginalTitle { get; set; }
+        public string Director { get; set; }
     }
 }

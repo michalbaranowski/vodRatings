@@ -9,6 +9,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Extension
         public static string OnlyDigits(this string str)
         {
             var result = string.Empty;
+            if (string.IsNullOrEmpty(str)) return result;
 
             foreach (char c in str)
             {
