@@ -38,7 +38,14 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
             var ul = html.DocumentNode.Descendants().FirstOrDefault(n => n.Name == "ul" && n.Attributes.Contains("class") && n.Attributes["class"].Value == "resultsList hits");
             if (ul == null) return string.Empty;
 
-            var li = ul.Descendants().FirstOrDefault(n=>n.Name == "li" && n.Descendants().FirstOrDefault(p=>p.Name == "div" && p.Attributes.Contains("class") && p.Attributes["class"].Value == "filmPreview__info filmPreview__info--directors").InnerText.Contains(director));
+            var li = ul.Descendants()
+                .FirstOrDefault(n=>n.Name == "li" 
+                                && n.HasChildNodes 
+                                && n.Descendants().Any(p=>
+                                    p.Name == "div" 
+                                    && p.Attributes.Contains("class") 
+                                    && p.Attributes["class"].Value == "filmPreview__info filmPreview__info--directors"
+                                    && p.InnerText.Contains(director)));
             if (li == null) return string.Empty;
 
             var href = li.Descendants()

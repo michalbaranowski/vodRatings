@@ -20,6 +20,7 @@ namespace vod.Domain.Services.Tests
         private HtmlDocument _ncPremieresComediesDoc;
         private HtmlDocument _hboComedies;
         private HtmlDocument _filmwebSearchHtmlDoc;
+        private HtmlDocument _filmwebSearch2HtmlDoc;
 
         private void Arrange()
         {
@@ -52,6 +53,10 @@ namespace vod.Domain.Services.Tests
             var filmwebResultHtml = HtmlResources.FilmwebResultHtml();
             _filmwebResultHtmlDoc = new HtmlDocument();
             _filmwebResultHtmlDoc.LoadHtml(filmwebResultHtml);
+
+            var filmwebSearch2Html = HtmlResources.FilmWebSearchResult2Html();
+            _filmwebSearch2HtmlDoc = new HtmlDocument();
+            _filmwebSearch2HtmlDoc.LoadHtml(filmwebSearch2Html);
         }
 
         [Test]
@@ -85,9 +90,9 @@ namespace vod.Domain.Services.Tests
         {
             Arrange();
 
-            var result = _serializer.SerializeFilmwebUrl(_filmwebSearchHtmlDoc);
+            var result = _serializer.SerializeFilmwebUrl(_filmwebSearch2HtmlDoc, "Sean Mathias");
 
-            Assert.AreEqual("https://www.filmweb.pl/film/Ostateczna+rozgrywka-2018-780203", result);
+            Assert.AreEqual("https://www.filmweb.pl/film/Pi%C4%99tno-1997-31929", result);
         }
 
         [Test]

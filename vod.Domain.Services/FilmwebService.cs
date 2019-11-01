@@ -54,6 +54,9 @@ namespace vod.Domain.Services
 
         public string GetFilmwebUrl(Movie movie)
         {
+            if (string.IsNullOrEmpty(movie.OriginalTitle)) return string.Empty;
+            if (string.IsNullOrEmpty(movie.Director)) return string.Empty;
+
             var filmwebSearchHtml = _sourceGetter.GetHtmlFrom(FilmwebUrls.FilmwebSearchBaseUrl(movie.OriginalTitle));
             var filmwebUrl = _sourceSerializer.SerializeFilmwebUrl(filmwebSearchHtml, movie.Director);
             return filmwebUrl;

@@ -13,6 +13,7 @@ namespace vod.Domain.Services.Tests.Resources
         public static string CanalPlusConcrteMovieResultHtml() => ReadFromFile($"{BASEPATH}canalPlusConcreteMovieResult.html");
         public static string FilmwebResultHtml() => ReadFromFile($"{BASEPATH}filmwebResult.html");
         public static string FilmWebSearchResultHtml() => ReadFromFile($"{BASEPATH}filmWebSearchResult.html");
+        public static string FilmWebSearchResult2Html() => ReadFromFile($"{BASEPATH}filmWebSearchResult2.html");
 
         private static string ReadFromFile(string path)
         {
