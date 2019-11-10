@@ -35,3 +35,7 @@
 Backend aplikacji napisany został w języku C# przy wykorzysaniu frameworku ASP.NET Core WebApi. Dostęp do bazy danych zapewnia ORM Entity Framework. 
 
 Wykorzystano SignalR do informowania frontendu o dostępności nowych danych. Część frontendowa wykonana została przy wykorzystaniu frameworku Angular 8, widoki HTML/CSS zostały wsparte frameworkiem Bulma.
+
+**3. Live demo**
+
+http://vodratings.azurewebsites.net/
