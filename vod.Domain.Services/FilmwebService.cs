@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using vod.Domain.Services.Boundary.Interfaces;
+using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
 using vod.Domain.Services.Utils;
 using vod.Domain.Services.Utils.HtmlSource;
 using vod.Domain.Services.Utils.HtmlSource.Serialize;
 using vod.Repository.Boundary;
+using vod.Repository.Boundary.Models;
 
 namespace vod.Domain.Services
 {
@@ -15,6 +19,7 @@ namespace vod.Domain.Services
         private readonly IHtmlSourceSerializer _sourceSerializer;
         private readonly IVodRepositoryBackground _repositoryBackground;
         private readonly IMapper _mapper;
+        private IList<ResultModel> _storedData;
 
         public FilmwebService(
             IHtmlSourceGetter sourceGetter,
@@ -28,12 +33,14 @@ namespace vod.Domain.Services
             _mapper = mapper;
         }
 
-        public FilmwebResult CheckInFilmweb(Movie movie)
+        public FilmwebResult CheckInFilmweb(Movie movie, MovieTypes type)
         {
-            var storedData = _repositoryBackground.ResultByTitle(movie.Title);
-            if (storedData != null)
-                return _mapper.Map<FilmwebResult>(storedData);
+            if(_storedData == null || !_storedData.Any())
+                _storedData = _repositoryBackground.GetResultsOfType((int)type);
 
+            if (_storedData.Any(n=>n.Title == movie.Title))
+                return _mapper.Map<FilmwebResult>(_storedData.FirstOrDefault(n=>n.Title == movie.Title));
+                
             GetMovieDetails(movie);
             var filmwebUrl = GetFilmwebUrl(movie);
 
@@ -55,10 +62,10 @@ namespace vod.Domain.Services
         public string GetFilmwebUrl(Movie movie)
         {
             if (string.IsNullOrEmpty(movie.OriginalTitle)) return string.Empty;
-            if (string.IsNullOrEmpty(movie.Director)) return string.Empty;
+            if (movie.Directors == null && !movie.Directors.Any()) return string.Empty;
 
             var filmwebSearchHtml = _sourceGetter.GetHtmlFrom(FilmwebUrls.FilmwebSearchBaseUrl(movie.OriginalTitle));
-            var filmwebUrl = _sourceSerializer.SerializeFilmwebUrl(filmwebSearchHtml, movie.Director);
+            var filmwebUrl = _sourceSerializer.SerializeFilmwebUrl(filmwebSearchHtml, movie.Directors);
             return filmwebUrl;
         }
     }

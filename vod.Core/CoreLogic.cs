@@ -52,7 +52,7 @@ namespace vod.Core
         {
             var ncPlusResult = _ncPlusService.GetMoviesOfType(type);
             var results = ncPlusResult
-                .Select(n => _filmwebService.CheckInFilmweb(n))
+                .Select(n => _filmwebService.CheckInFilmweb(n, type))
                 .Where(n => n != null).ToList();
             return results.DistinctBy(n => n.Title);
         }

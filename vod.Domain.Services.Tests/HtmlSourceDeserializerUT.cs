@@ -89,8 +89,9 @@ namespace vod.Domain.Services.Tests
         public void SerializeFilmwebUrl_ShouldSerializeCorrectValues()
         {
             Arrange();
+            var directors = new List<string>() { "Sean Mathias", "Test" };
 
-            var result = _serializer.SerializeFilmwebUrl(_filmwebSearch2HtmlDoc, "Sean Mathias");
+            var result = _serializer.SerializeFilmwebUrl(_filmwebSearch2HtmlDoc, directors);
 
             Assert.AreEqual("https://www.filmweb.pl/film/Pi%C4%99tno-1997-31929", result);
         }

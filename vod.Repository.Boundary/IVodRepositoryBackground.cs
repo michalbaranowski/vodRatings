@@ -8,5 +8,6 @@ namespace vod.Repository.Boundary
     {
         void RefreshData(IEnumerable<ResultModel> results, int type);
         ResultModel ResultByTitle(string movieTitle);
+        IList<ResultModel> GetResultsOfType(int type);
     }
 }

@@ -46,7 +46,7 @@ namespace vod.Domain.Services.Utils.HtmlSource
                     && p.InnerText == "Tytuł oryginalny"))?
                     .InnerText.Replace("\n", "").Replace("Tytuł oryginalny", string.Empty);
 
-            var director = html.DocumentNode.Descendants()
+            var directors = html.DocumentNode.Descendants()
                     .FirstOrDefault(n => n.Name == "li"
                     && n.Attributes.Contains("class")
                     && n.Attributes["class"].Value == "asset-page__meta-list"
@@ -54,17 +54,18 @@ namespace vod.Domain.Services.Utils.HtmlSource
                     && p.Attributes.Contains("class")
                     && p.Attributes["class"].Value == "asset-page__meta-label"
                     && p.InnerText == "Reżyseria"))?
-                    .InnerText.Replace("\n", "").Replace("Reżyseria", string.Empty);
+                    .InnerText.Replace("\n", "").Replace("Reżyseria", string.Empty)
+                    .Split(",").Select(n=>n.Trim()).ToList();
 
             if (string.IsNullOrEmpty(origTitle)) return;
-            if (string.IsNullOrEmpty(director)) return;
+            if (directors == null) return;
 
             movie.OriginalTitle = origTitle
                                     .Replace(" hd", "")
                                     .Replace(" HD", "")
                                     .Replace(" sd", "")
                                     .Replace(" SD", "");
-            movie.Director = director;
+            movie.Directors = directors;
         }
     }
 }

@@ -33,7 +33,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                     });
         }
 
-        public string SerializeFilmwebUrl(HtmlDocument html, string director)
+        public string SerializeFilmwebUrl(HtmlDocument html, List<string> directors)
         {
             var ul = html.DocumentNode.Descendants().FirstOrDefault(n => n.Name == "ul" && n.Attributes.Contains("class") && n.Attributes["class"].Value == "resultsList hits");
             if (ul == null) return string.Empty;
@@ -45,7 +45,8 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                                     p.Name == "div" 
                                     && p.Attributes.Contains("class") 
                                     && p.Attributes["class"].Value == "filmPreview__info filmPreview__info--directors"
-                                    && p.InnerText.Contains(director)));
+                                    && directors.Any(x=>x == p.InnerText.Replace("reżyser", ""))));
+
             if (li == null) return string.Empty;
 
             var href = li.Descendants()

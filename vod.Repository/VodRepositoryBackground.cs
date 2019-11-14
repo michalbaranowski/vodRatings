@@ -51,5 +51,13 @@ namespace vod.Repository
                 return ctx.Results.FirstOrDefault(n => n.Title == movieTitle);
             }
         }
+
+        public IList<ResultModel> GetResultsOfType(int type)
+        {
+            using (var ctx = new AppDbContext(_opt))
+            {
+                return ctx.Results.Where(n => n.VodFilmType == type).ToList();
+            }
+        }
     }
 }

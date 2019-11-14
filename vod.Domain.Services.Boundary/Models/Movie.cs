@@ -1,4 +1,5 @@
-﻿using vod.Domain.Services.Boundary.Interfaces.Enums;
+﻿using System.Collections.Generic;
+using vod.Domain.Services.Boundary.Interfaces.Enums;
 
 namespace vod.Domain.Services.Boundary.Models
 {
@@ -10,6 +11,6 @@ namespace vod.Domain.Services.Boundary.Models
         public string ProviderName { get; set; }
         public MovieTypes MovieType { get; set; }
         public string OriginalTitle { get; set; }
-        public string Director { get; set; }
+        public List<string> Directors { get; set; }
     }
 }

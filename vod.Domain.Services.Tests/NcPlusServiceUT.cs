@@ -27,7 +27,9 @@ namespace vod.Domain.Services.Tests
             _serializerMock.SetupSequence(x => x.SerializeMovies(It.IsAny<HtmlDocument>(), It.IsAny<MovieTypes>()))
                 .Returns(new List<Movie>() {new Movie() {Title = "title1"}})
                 .Returns(new List<Movie>() {new Movie() {Title = "title2"}, new Movie() {Title = "title2"}})
-                .Returns(new List<Movie>() {new Movie() {Title = "title3"}});
+                .Returns(new List<Movie>() {new Movie() {Title = "title3"}})
+                .Returns(new List<Movie>() {new Movie() {Title = "title4"}})
+                .Returns(new List<Movie>() {new Movie() {Title = "title5"}});
 
             _urlGetterFake = new UrlGetter();
             
@@ -39,7 +41,7 @@ namespace vod.Domain.Services.Tests
         {
             BaseArrange();
             var results = _ncPlusService.GetMoviesOfType(MovieTypes.Thriller);
-            Assert.True(results.Count() == 3);
+            Assert.True(results.Count() == 5);
         }
 
         [Test]
