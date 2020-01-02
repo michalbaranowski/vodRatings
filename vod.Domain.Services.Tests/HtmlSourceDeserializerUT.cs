@@ -102,7 +102,7 @@ namespace vod.Domain.Services.Tests
             Arrange();
 
             var title = "Ostateczna rozgrywka";
-            var result = _serializer.SerializeFilmwebResult(_filmwebResultHtmlDoc, MovieTypes.Thriller, title);
+            var result = _serializer.SerializeFilmwebResult(_filmwebResultHtmlDoc, MovieTypes.Thriller, string.Empty, title);
 
             Assert.True(result.Title == title);
             Assert.True(result.FilmwebRating == 5.4m);

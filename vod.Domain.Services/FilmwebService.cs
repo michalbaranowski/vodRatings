@@ -48,7 +48,7 @@ namespace vod.Domain.Services
                 return null;
 
             var filmwebHtml = _sourceGetter.GetHtmlFrom(filmwebUrl);
-            var result = _sourceSerializer.SerializeFilmwebResult(filmwebHtml, movie.MovieType, movie.Title);
+            var result = _sourceSerializer.SerializeFilmwebResult(filmwebHtml, movie.MovieType, movie.MoreInfoUrl, movie.Title);
             result.ProviderName = movie.ProviderName;
             return result;
         }

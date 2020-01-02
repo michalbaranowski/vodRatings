@@ -58,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"tile is-parent\">\r\n\r\n  <article class=\"tile is-child notification is-dark is-mobile\">\r\n      <div *ngIf=\"item.isNew\" class=\"flag\">\r\n          NEW\r\n        </div>\r\n    <div class=\"movie-title\" style=\"height: 135px; display: block\">\r\n      <div class=\"tooltip\">\r\n        <p class=\"title\">{{formatTitle(item.title, item.year)}}</p>\r\n        <span class=\"tooltiptext\">{{item.title}} ({{item.year}})</span>\r\n      </div>\r\n      <p class=\"subtitle\">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>\r\n    </div>\r\n\r\n    <div class=\"columns is-multiline is-mobile is-gapless\">\r\n      <div class=\"column is-full\" style=\"margin-bottom: 5px\">\r\n        <div class=\"tags has-addons\">\r\n          <span class=\"tag is-light\">Kolekcja</span>\r\n          <span class=\"tag is-info\">{{item.providerName}}</span>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"column is-full\" style=\"margin-bottom: 5px\">\r\n        <div class=\"tags has-addons\">\r\n          <span class=\"tag is-light\">Gatunek wg Filmweb</span>\r\n          <span class=\"tag is-success\">{{item.filmwebFilmType}}</span>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"column is-full\" style=\"margin-bottom: 5px\">\r\n        <div class=\"tags has-addons\">\r\n          <span class=\"tag is-light\">Produkcja</span>\r\n          <span class=\"tag is-primary\">{{item.production}}</span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"columns\">\r\n      <div class=\"column is-four-fifths\">\r\n        <p>Z dnia: {{item.storedDate | date:'medium'}}</p>\r\n      </div>\r\n      <div class=\"column\">\r\n        <div *ngIf=\"item.filmDescription\" (click)=\"onClick($event)\" style=\"margin-bottom: 10px;\" class=\"dropdown is-up\">\r\n          <div class=\"dropdown-trigger\">\r\n            <button class=\"button is-small is-light is-rounded\" aria-haspopup=\"true\" aria-controls=\"dropdown-menu7\">\r\n              <span class=\"icon is-small\">\r\n                <i class=\"fa fa-info\"></i>\r\n              </span>\r\n            </button>\r\n          </div>\r\n          <div class=\"dropdown-menu\" id=\"dropdown-menu7\" role=\"menu\">\r\n            <div class=\"dropdown-content\">\r\n              <div class=\"dropdown-item\">\r\n                <p>{{item.filmDescription}}</p>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <figure *ngIf=\"!item.imageUrl\" class=\"image is-3by4\">\r\n      <img src=\"https://bulma.io/images/placeholders/640x480.png\">\r\n    </figure>\r\n\r\n    <figure *ngIf=\"item.imageUrl\" class=\"image is-4by3 is-mobile\">\r\n      <img src=\"{{item.imageUrl}}\">\r\n    </figure>\r\n  </article>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"tile is-parent\">\r\n\r\n  <article class=\"tile is-child notification is-dark is-mobile\">\r\n      <div *ngIf=\"item.isNew\" class=\"flag\">\r\n          NEW\r\n        </div>\r\n    <div class=\"movie-title\" style=\"height: 135px; display: block\">\r\n      <div class=\"tooltip\">\r\n        <p class=\"title\">{{formatTitle(item.title, item.year)}}</p>\r\n        <span class=\"tooltiptext\">{{item.title}} ({{item.year}})</span>\r\n      </div>\r\n      <p class=\"subtitle\">Ocena: {{item.filmwebRating}} (z {{item.filmwebRatingCount}} ocen)</p>\r\n    </div>\r\n\r\n    <div class=\"columns is-multiline is-mobile is-gapless\">\r\n      <div class=\"column is-full\" style=\"margin-bottom: 5px\">\r\n        <div class=\"tags has-addons\">\r\n          <span class=\"tag is-light\">Kolekcja</span>\r\n          <span class=\"tag is-info\">{{item.providerName}}</span>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"column is-full\" style=\"margin-bottom: 5px\">\r\n        <div class=\"tags has-addons\">\r\n          <span class=\"tag is-light\">Gatunek wg Filmweb</span>\r\n          <span class=\"tag is-success\">{{item.filmwebFilmType}}</span>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"column is-full\" style=\"margin-bottom: 5px\">\r\n        <div class=\"tags has-addons\">\r\n          <span class=\"tag is-light\">Produkcja</span>\r\n          <span class=\"tag is-primary\">{{item.production}}</span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"columns\">\r\n      <div class=\"column is-two-thirds\">\r\n        <p>Z dnia: {{item.storedDate | date:'short'}}</p>\r\n      </div>\r\n      <div class=\"column\">\r\n        <div *ngIf=\"item.filmDescription\" (click)=\"onClick($event)\" style=\"margin-bottom: 10px;\" class=\"dropdown is-up\">\r\n          <div class=\"dropdown-trigger\">\r\n            <button class=\"button is-small is-light is-rounded\" aria-haspopup=\"true\" aria-controls=\"dropdown-menu7\">\r\n              <span class=\"icon is-small\">\r\n                <i class=\"fa fa-info\"></i>\r\n              </span>\r\n            </button>\r\n          </div>\r\n          <div class=\"dropdown-menu\" id=\"dropdown-menu7\" role=\"menu\">\r\n            <div class=\"dropdown-content\">\r\n              <div class=\"dropdown-item\">\r\n                <p>{{item.filmDescription}}</p>\r\n                <p>link: {{item.vodFilmUrl}}</p>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"column\">\r\n        <button *ngIf=\"item.movieUrl\" (click)=\"openMovie(item)\" class=\"button is-small is-light is-rounded\">\r\n          <span class=\"icon is-small\">\r\n            <i class=\"fa fa-video\"></i>\r\n          </span>\r\n        </button>\r\n      </div>\r\n    </div>\r\n\r\n    <figure *ngIf=\"!item.imageUrl\" class=\"image is-3by4\">\r\n      <img src=\"https://bulma.io/images/placeholders/640x480.png\">\r\n    </figure>\r\n\r\n    <figure *ngIf=\"item.imageUrl\" class=\"image is-4by3 is-mobile\">\r\n      <img src=\"{{item.imageUrl}}\">\r\n    </figure>\r\n  </article>\r\n</div>");
 
 /***/ }),
 
@@ -428,6 +428,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _component_navbar_component_navbar_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./component/navbar-component/navbar-component */ "./src/app/component/navbar-component/navbar-component.ts");
 /* harmony import */ var _component_filters_component_filters_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./component/filters-component/filters-component */ "./src/app/component/filters-component/filters-component.ts");
 /* harmony import */ var _component_update_modal_component_update_modal_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./component/update-modal-component/update-modal-component */ "./src/app/component/update-modal-component/update-modal-component.ts");
+/* harmony import */ var _angular_common_locales_pl__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common/locales/pl */ "./node_modules/@angular/common/locales/pl.js");
+/* harmony import */ var _angular_common_locales_pl__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_pl__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _angular_common_locales_extra_pl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/common/locales/extra/pl */ "./node_modules/@angular/common/locales/extra/pl.js");
+/* harmony import */ var _angular_common_locales_extra_pl__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_extra_pl__WEBPACK_IMPORTED_MODULE_15__);
 
 
 
@@ -442,6 +446,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["registerLocaleData"])(_angular_common_locales_pl__WEBPACK_IMPORTED_MODULE_14___default.a, 'pl-PL', _angular_common_locales_extra_pl__WEBPACK_IMPORTED_MODULE_15___default.a);
 let AppModule = class AppModule {
 };
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -462,7 +470,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_9__["FormsModule"]
         ],
-        providers: [],
+        providers: [{ provide: _angular_core__WEBPACK_IMPORTED_MODULE_2__["LOCALE_ID"], useValue: 'pl-PL' }],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
     })
 ], AppModule);
@@ -596,6 +604,10 @@ let MovieComponent = class MovieComponent {
         return standardTitle.length > 40
             ? standardTitle.substring(0, 35) + " (...)"
             : standardTitle;
+    }
+    openMovie(movie) {
+        var win = window.open(movie.movieUrl, '_blank');
+        win.focus();
     }
 };
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

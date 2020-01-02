@@ -20,4 +20,9 @@ export class MovieComponent{
             ? standardTitle.substring(0,35) + " (...)" 
             : standardTitle;
     }
+
+    openMovie(movie:Result) {
+        var win = window.open(movie.movieUrl, '_blank');
+        win.focus();
+    }
 }

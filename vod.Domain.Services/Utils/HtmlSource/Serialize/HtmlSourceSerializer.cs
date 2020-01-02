@@ -57,7 +57,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
             return href != null ? $"{FilmwebUrls.FilmwebBaseUrl}{href}" : string.Empty;
         }
 
-        public FilmwebResult SerializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieMovieType, string movieTitle)
+        public FilmwebResult SerializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieType, string moreInfoUrl, string movieTitle)
         {
             var rate = filmwebHtml.DocumentNode.Descendants()?
                 .FirstOrDefault(n => n.Name == "span" && n.Attributes.Contains("itemprop") &&
@@ -106,9 +106,10 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 FilmwebTitle = title,
                 Year = Convert.ToInt32(year.OnlyDigits()),
                 ImageUrl = imageUrl,
-                VodFilmType = (int)movieMovieType,
+                VodFilmType = (int)movieType,
                 Production = production,
-                FilmDescription = filmDesc
+                FilmDescription = filmDesc,
+                MovieUrl = $"{NcPlusUrls.NcPlusGoUrl}{moreInfoUrl}"
             };
         }
     }

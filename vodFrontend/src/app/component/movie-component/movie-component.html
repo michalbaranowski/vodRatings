@@ -36,8 +36,8 @@
     </div>
 
     <div class="columns">
-      <div class="column is-four-fifths">
-        <p>Z dnia: {{item.storedDate | date:'medium'}}</p>
+      <div class="column is-two-thirds">
+        <p>Z dnia: {{item.storedDate | date:'short'}}</p>
       </div>
       <div class="column">
         <div *ngIf="item.filmDescription" (click)="onClick($event)" style="margin-bottom: 10px;" class="dropdown is-up">
@@ -52,10 +52,18 @@
             <div class="dropdown-content">
               <div class="dropdown-item">
                 <p>{{item.filmDescription}}</p>
+                <p>link: {{item.vodFilmUrl}}</p>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="column">
+        <button *ngIf="item.movieUrl" (click)="openMovie(item)" class="button is-small is-light is-rounded">
+          <span class="icon is-small">
+            <i class="fa fa-video"></i>
+          </span>
+        </button>
       </div>
     </div>
 

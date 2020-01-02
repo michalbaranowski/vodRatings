@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace vod.Repository.Boundary.Models
 {
@@ -23,5 +21,6 @@ namespace vod.Repository.Boundary.Models
         public int? VodFilmType { get; set; }
         public string FilmDescription { get; set; }
         public DateTime RefreshDate { get; set; }
+        public string MovieUrl { get; set; }
     }
 }

@@ -35,6 +35,8 @@ namespace vod.Repository.Boundary.Migrations
 
                     b.Property<string>("ImageUrl");
 
+                    b.Property<string>("MovieUrl");
+
                     b.Property<string>("Production");
 
                     b.Property<string>("ProviderName");

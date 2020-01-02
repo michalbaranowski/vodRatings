@@ -12,4 +12,5 @@ export class Result {
     storedDate: Date;
     filmDescription: string;
     isNew: boolean;
+    movieUrl: string;
 }
