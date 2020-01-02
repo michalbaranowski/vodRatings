@@ -27,8 +27,4 @@
     <ProjectReference Include="..\vod.SignalR.Hub\vod.SignalR.Hub.csproj" />
   </ItemGroup>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="cd ../vodFrontend&#xD;&#xA;ng build" />
-  </Target>
-
 </Project>
