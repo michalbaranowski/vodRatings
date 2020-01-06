@@ -67,11 +67,13 @@ SET MSBUILD_PATH=%ProgramFiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe
 echo Handling ASP.NET Core Web Application deployment. - test
 
 :: 0. Angular build
-call :ExecuteCmd cd vodFrontend
+call :ExecuteCmd "cd vodFrontend"
 IF !ERRORLEVEL! NEQ 0 goto error
 call :ExecuteCmd npm install
 IF !ERRORLEVEL! NEQ 0 goto error
 call :ExecuteCmd ng build
+IF !ERRORLEVEL! NEQ 0 goto error
+call :ExecuteCmd "cd .."
 IF !ERRORLEVEL! NEQ 0 goto error
 
 :: 1. Restore nuget packages
