@@ -1,2 +1,2 @@
 cd vodFrontend
-npm run ng -- build --silent
+npm run ng build --silent
