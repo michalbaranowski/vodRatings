@@ -67,7 +67,7 @@ SET MSBUILD_PATH=%ProgramFiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe
 echo Handling ASP.NET Core Web Application deployment. - test
 
 :: 0. Angular install and build
-call :ExecuteCmd npm install @angular/cli
+call :ExecuteCmd npm install @angular/cli --silent
 call :ExecuteCmd npm-install.cmd
 call :ExecuteCmd angular-build.cmd
 IF !ERRORLEVEL! NEQ 0 goto error
