@@ -1,2 +1,2 @@
 cd vodFrontend
-npm install
+npm install --silent
