@@ -64,7 +64,11 @@ SET MSBUILD_PATH=%ProgramFiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe
 :: Deployment
 :: ----------
 
-echo Handling ASP.NET Core Web Application deployment.
+echo Handling ASP.NET Core Web Application deployment. - test
+
+:: 0. Angular build
+call :ExecuteCmd ng build
+IF !ERRORLEVEL! NEQ 0 goto error
 
 :: 1. Restore nuget packages
 call :ExecuteCmd dotnet restore "%DEPLOYMENT_SOURCE%\vodApi.sln"
