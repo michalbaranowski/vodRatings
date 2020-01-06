@@ -1,0 +1,2 @@
+cd vodFrontend
+ng build
