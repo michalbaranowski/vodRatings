@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using vod.Core;
 using vod.Core.Boundary.Interfaces;
 using vod.Domain.Services;
@@ -27,12 +26,7 @@ namespace vodApi
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             _hostingEnvironment = env;
-
-            Configuration = new ConfigurationBuilder()
-            .SetBasePath(env.ContentRootPath)
-            .AddJsonFile("appsettings.json", false, true)
-            .AddEnvironmentVariables()
-            .Build();
+            Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -44,9 +38,7 @@ namespace vodApi
             services.AddSignalR();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            var dbContextOptions = _hostingEnvironment.IsProduction() 
-                ? new DbContextOptionsBuilder<AppDbContext>().UseSqlServer(Configuration.GetConnectionString("SQLCONNSTR_DefaultConnection")).Options 
-                : throw new Exception("give me connstr");
+            var dbContextOptions = new DbContextOptionsBuilder<AppDbContext>().UseSqlServer(Configuration.GetValue<string>("ConnectionStrings:DefaultConnection")).Options;
 
             services.AddSingleton(dbContextOptions);
             services.AddTransient<IAppDbContext, AppDbContext>();

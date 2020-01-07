@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace vodApi
 {
@@ -12,6 +13,11 @@ namespace vodApi
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                    .ConfigureAppConfiguration((builderContext, config) =>
+                    {
+                        config.AddXmlFile("appsettings.xml", optional: true, reloadOnChange: true);
+                        config.AddEnvironmentVariables();
+                    })
                 .UseStartup<Startup>();
     }
 }
