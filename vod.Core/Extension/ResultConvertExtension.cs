@@ -9,19 +9,28 @@ namespace vod.Core.Extension
 {
     public static class ResultConvertExtension
     {
+        private const int _storedDatesRange = 2;
+
         public static IEnumerable<Result> AddNewFlagIfNeeded(this IList<Result> result)
         {
             if (result.Any() == false) return result;
 
-            var max = result.Max(n => n.StoredDate);
-            var min = result.Min(n => n.StoredDate);
+            var newestStoredDates = result.GroupBy(n => n.StoredDate)
+                .OrderByDescending(n => n.Key)
+                .Select(n => new DateTime(n.Key.Year, n.Key.Month, n.Key.Day, n.Key.Hour, n.Key.Minute, n.Key.Second))
+                .Distinct()
+                .Take(_storedDatesRange);
 
-            if (max == min)
-                return result;
+            var newestResults = result
+                .Where(n => newestStoredDates
+                    .Any(p => p.Year == n.StoredDate.Year &&
+                            p.Month == n.StoredDate.Month && 
+                            p.Day == n.StoredDate.Day && 
+                            p.Hour == n.StoredDate.Hour && 
+                            p.Minute == n.StoredDate.Minute));
 
-            foreach (var res in result)
-                if (res.StoredDate.Date == max.Date)
-                    res.IsNew = true;
+            foreach (var res in newestResults)
+                res.IsNew = true;
 
             return result;
         }
