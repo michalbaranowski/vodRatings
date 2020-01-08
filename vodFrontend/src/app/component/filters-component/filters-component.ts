@@ -17,6 +17,8 @@ export class FiltersComponent implements OnInit {
     movieFilter: Result = new Result();
 
     ngOnInit() {
+        //początkowy filter aby powiązać obiekt movieFilter z komponentem z filmami - todo: zrobic to porządnie
+        this.onFilterChanged();
         this.refresh();
     }
 
@@ -24,6 +26,7 @@ export class FiltersComponent implements OnInit {
         this.movieFilter.providerName = "Wszystkie";
         this.movieFilter.filmwebFilmType = "Wszystkie";
         this.movieFilter.production = "Wszystkie";
+        this.movieFilter.title = "";
 
         this.filmwebTypes = [];
         this.results.forEach((x) => {
