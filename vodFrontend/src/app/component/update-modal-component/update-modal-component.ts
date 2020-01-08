@@ -35,6 +35,7 @@ export class UpdateModalComponent implements OnInit {
     }
 
     showUpdateModal(typeToUpdate) {
+        console.log("!! UPDATE: " + typeToUpdate);
         this.updateFilmType = typeToUpdate;
         var el = this.getModalElement();
         el.classList.add('is-active');
@@ -45,6 +46,7 @@ export class UpdateModalComponent implements OnInit {
             case 0: return 'Thriller'
             case 1: return 'Komedia'
             case 2: return 'Akcja'
+            default: return 'Nieznany typ filmu: ' + typeToUpdate
         }
     }
 
