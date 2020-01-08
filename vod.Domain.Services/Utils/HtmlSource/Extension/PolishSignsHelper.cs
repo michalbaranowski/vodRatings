@@ -15,6 +15,7 @@
                 .Replace("&#323;", "Ń")
                 .Replace("&#324;", "ń")
                 .Replace("&Oacute;", "Ó")
+                .Replace("&#211;", "Ó")
                 .Replace("&oacute;", "ó")
                 .Replace("&#243;", "ó")
                 .Replace("&#198;", "AE")
@@ -23,7 +24,8 @@
                 .Replace("&#377;", "Ź")
                 .Replace("&#378;", "ź")
                 .Replace("&#379;", "Ż")
-                .Replace("&#380;", "ż");
+                .Replace("&#380;", "ż")
+                .Replace("&quot;", "\"");
         }
     }
 }
