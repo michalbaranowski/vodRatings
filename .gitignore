@@ -20,3 +20,4 @@ vod.Domain.Services.Tests/bin/
 vod.SignalR.Hub/obj/
 vod.SignalR.Hub/bin/
 vodApi/wwwroot/
+vod.Repository.Boundary/Migrations/

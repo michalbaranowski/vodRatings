@@ -12,9 +12,10 @@ namespace vod.Repository.Boundary.Migration
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables()
                 .Build();
 
-            var connstr = configuration.GetConnectionString("VodConnection");
+            var connstr = configuration.GetValue<string>("ConnectionStrings:DefaultConnection");
             var builder = new DbContextOptionsBuilder<AppDbContext>();
             builder.UseSqlServer(connstr);
             return new AppDbContext(builder.Options);

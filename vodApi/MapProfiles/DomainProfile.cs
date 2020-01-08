@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 using vod.Core.Boundary.Model;
 using vod.Domain.Services.Boundary.Models;
 using vod.Repository.Boundary.Models;
@@ -13,14 +14,20 @@ namespace vodApi.MapProfiles
             CreateMap<Result, FilmwebResult>();
             CreateMap<Result, ResultModel>();
             CreateMap<ResultModel, Result>();
-            CreateMap<FilmwebResult, ResultModel>();
+            CreateMap<FilmwebResult, ResultModel>()
+                .ForMember(x => x.Cast,
+                    opt => opt.MapFrom(
+                        src => string.Join(", ", src.Cast)));
 
             CreateMap<ResultModel, FilmwebResult>()
                 .ForMember(x => x.FilmwebRating,
                     opt => opt.MapFrom(
                         src => src.FilmwebRating >= 10
                             ? src.FilmwebRating / 10
-                            : src.FilmwebRating));
+                            : src.FilmwebRating))
+                .ForMember(x => x.Cast,
+                    opt => opt.MapFrom(
+                        src => src.Cast.Split(",", StringSplitOptions.None)));
         }
     }
 }

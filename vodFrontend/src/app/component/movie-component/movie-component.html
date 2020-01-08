@@ -33,6 +33,22 @@
           <span class="tag is-primary">{{item.production}}</span>
         </div>
       </div>
+
+      <div class="column is-full" style="margin-bottom: 5px">
+        <div class="tags has-addons">
+            <div class="tooltip">
+                <span class="tag is-light">Obsada</span>
+                <span class="tag is-link"><i>Pokaż...</i></span>
+                <span class="tooltiptext">
+                    <ul *ngIf="item.cast && item.cast.length > 0">
+                        <li *ngFor="let castItem of item.cast">{{castItem}}</li>
+                    </ul>
+
+                    <p *ngIf="item.cast && item.cast.length == 0">Brak informacji na temat obsady dla tego filmu.</p>
+                </span>
+            </div>
+        </div>
+      </div>
     </div>
 
     <div class="columns">
@@ -57,6 +73,7 @@
           </div>
         </div>
       </div>
+
       <div class="column">
         <button *ngIf="item.movieUrl" (click)="openMovie(item)" class="button is-small is-light is-rounded">
           <span class="icon is-small">

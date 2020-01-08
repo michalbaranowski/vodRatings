@@ -13,4 +13,5 @@ export class Result {
     filmDescription: string;
     isNew: boolean;
     movieUrl: string;
+    cast: Array<string>;
 }

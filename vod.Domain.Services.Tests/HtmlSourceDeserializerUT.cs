@@ -110,6 +110,7 @@ namespace vod.Domain.Services.Tests
             Assert.True(result.FilmwebFilmType == "Akcja, Thriller");
             Assert.True(result.FilmDescription.Contains("Piłkarski stadion zostaje opanowany"));
             Assert.True(result.Year == 2018);
+            Assert.True(result.Cast.Contains("Dave Bautista"));
         }
     }
 }

@@ -97,6 +97,15 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                         n.Attributes["class"].Value.Contains("filmPlot"))?
                     .Descendants().FirstOrDefault(n => n.Name == "p")?.InnerText;
 
+            var cast = filmwebHtml.DocumentNode.Descendants()
+                .Where(n => n.Name == "tr"
+                        && n.Attributes.Contains("id")
+                        && n.Attributes["id"].Value.Contains("role_"))
+                            .Select(n => n.Descendants()
+                                    .FirstOrDefault(p => p.Name == "td")
+                                        .Descendants()
+                                            .FirstOrDefault(r => r.Name == "a" && r.Attributes.Contains("title")).Attributes["title"].Value).ToList();
+
             return new FilmwebResult()
             {
                 FilmwebRating = Convert.ToDecimal(rate),
@@ -109,7 +118,8 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 VodFilmType = (int)movieType,
                 Production = production,
                 FilmDescription = filmDesc,
-                MovieUrl = $"{NcPlusUrls.NcPlusGoUrl}{moreInfoUrl}"
+                MovieUrl = $"{NcPlusUrls.NcPlusGoUrl}{moreInfoUrl}",
+                Cast = cast
             };
         }
     }

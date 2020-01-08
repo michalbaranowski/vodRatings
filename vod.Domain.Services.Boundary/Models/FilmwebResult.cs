@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace vod.Domain.Services.Boundary.Models
 {
@@ -17,5 +18,6 @@ namespace vod.Domain.Services.Boundary.Models
         public string FilmDescription { get; set; }
         public string FilmwebTitle { get; set; }
         public string MovieUrl { get; set; }
+        public List<string> Cast { get; set; }
     }
 }
