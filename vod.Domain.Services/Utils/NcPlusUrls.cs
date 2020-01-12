@@ -32,6 +32,8 @@ namespace vod.Domain.Services.Utils
                     return $"{baseUrl}&CategoryCodename=akcja-2";
                 case MovieTypes.Comedy:
                     return $"{baseUrl}&CategoryCodename=komedia-2";
+                case MovieTypes.Cartoons:
+                    return $"{baseUrl}&CategoryCodename=animowany-1";
                 default:
                     throw new NotImplementedException("Brak implementacji dla podanego typu!");
             }

@@ -4,6 +4,7 @@
     {
         Thriller,
         Comedy,
-        Action
+        Action,
+        Cartoons
     }
 }
