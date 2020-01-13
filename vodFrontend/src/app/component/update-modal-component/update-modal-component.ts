@@ -46,6 +46,7 @@ export class UpdateModalComponent implements OnInit {
             case 0: return 'Thriller'
             case 1: return 'Komedia'
             case 2: return 'Akcja'
+            case 3: return 'Bajki'
             default: return 'Nieznany typ filmu: ' + typeToUpdate
         }
     }
