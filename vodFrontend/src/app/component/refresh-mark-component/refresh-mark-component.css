@@ -1,0 +1,17 @@
+.refresh-notification {
+    position: fixed;
+    bottom: 0;
+    width: 600px;
+    left: 50%;
+    margin-left: -300px;
+}
+
+@media only screen and (max-width: 600px) {
+    .refresh-notification {
+        position: fixed;
+        bottom: 0;
+        width: 300px;
+        left: 50%;
+        margin-left: -150px;
+    }
+}

@@ -106,14 +106,23 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                                         .Descendants()
                                             .FirstOrDefault(r => r.Name == "a" && r.Attributes.Contains("title")).Attributes["title"].Value).ToList();
 
+            var ratingValue = 0m;
+            decimal.TryParse(rate, out ratingValue);
+
+            var ratingCountValue = 0;
+            int.TryParse(rateCount, out ratingCountValue);
+
+            var yearValue = 0;
+            int.TryParse(year.OnlyDigits(), out yearValue);
+
             return new FilmwebResult()
             {
-                FilmwebRating = Convert.ToDecimal(rate),
-                FilmwebRatingCount  = Convert.ToInt32(rateCount),
+                FilmwebRating = ratingValue,
+                FilmwebRatingCount  = ratingCountValue,
                 FilmwebFilmType = filmwebFilmType,
                 Title = movieTitle,
                 FilmwebTitle = title,
-                Year = Convert.ToInt32(year.OnlyDigits()),
+                Year = yearValue,
                 ImageUrl = imageUrl,
                 VodFilmType = (int)movieType,
                 Production = production,

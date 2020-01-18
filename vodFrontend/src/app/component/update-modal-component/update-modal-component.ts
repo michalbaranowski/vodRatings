@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { MovieTypeHelper } from 'src/app/helpers/movie-type-helper';
 
 @Component({
     selector: 'app-update-modal',
@@ -10,6 +11,8 @@ export class UpdateModalComponent implements OnInit {
     updateFilmType: number;
     @Output() updateEmitter = new EventEmitter<number>();
 
+    constructor(private movieTypeHelper: MovieTypeHelper) {    }
+    
     ngOnInit(): void {
         this._hubConnection = new HubConnectionBuilder().withUrl('/updateNotification').build();
 
@@ -42,12 +45,7 @@ export class UpdateModalComponent implements OnInit {
     }
 
     getMovieType(typeToUpdate: number) {
-        switch (typeToUpdate) {
-            case 0: return 'Thriller'
-            case 1: return 'Komedia'
-            case 2: return 'Akcja'
-            default: return 'Nieznany typ filmu: ' + typeToUpdate
-        }
+        return this.movieTypeHelper.getMovieType(typeToUpdate);
     }
 
     private getModalElement() {

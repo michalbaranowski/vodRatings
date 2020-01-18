@@ -14,6 +14,7 @@ import { UpdateModalComponent } from './component/update-modal-component/update-
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
 import localePlExtra from '@angular/common/locales/extra/pl';
+import { RefreshMarkComponent } from './component/refresh-mark-component/refresh-mark-component';
 
 registerLocaleData(localePl, 'pl-PL', localePlExtra);
 
@@ -25,7 +26,8 @@ registerLocaleData(localePl, 'pl-PL', localePlExtra);
     NavbarComponent,
     FiltersComponent,
     MovieFilter,
-    UpdateModalComponent
+    UpdateModalComponent,
+    RefreshMarkComponent
   ],
   imports: [
     BrowserModule,
