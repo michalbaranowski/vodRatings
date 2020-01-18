@@ -10,5 +10,10 @@ namespace vod.SignalR.Hub.Hub
         {
             Clients.All.SendAsync("NotifyUpdate", (int)type);
         }
+
+        public void NotifyRefreshStarted(MovieTypes type)
+        {
+            Clients.All.SendAsync("RefreshStarted", (int)type);
+        }
     }
 }

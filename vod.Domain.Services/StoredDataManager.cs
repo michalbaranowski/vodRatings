@@ -52,6 +52,7 @@ namespace vod.Domain.Services
             {
                 _backgroundWorker.Execute(type, () =>
                 {
+                    _notificationHub.NotifyRefreshStarted(type);
                     var results = func().ToList();
                     var entities = results.Select(n => _mapper.Map<ResultModel>(n));
                     _repositoryBackground.RefreshData(entities, (int)type);
