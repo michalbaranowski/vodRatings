@@ -11,7 +11,7 @@ namespace vod.Core.Extension
     {
         private const int _storedDatesRange = 2;
 
-        public static IEnumerable<Result> AddNewFlagIfNeeded(this IList<Result> result)
+        public static IEnumerable<Result> AddNewFlagIfNeeded(this IEnumerable<Result> result)
         {
             if (result.Any() == false) return result;
 

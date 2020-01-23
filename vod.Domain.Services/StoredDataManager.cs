@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using vod.Domain.Services.Boundary.Commands;
 using vod.Domain.Services.Boundary.Interfaces;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
@@ -33,16 +34,14 @@ namespace vod.Domain.Services
             _notificationHub = notificationHub;
         }
 
-        public IEnumerable<FilmwebResult> UseStorageIfPossible(
-            MovieTypes type,
-            Func<IEnumerable<FilmwebResult>> func)
+        public IEnumerable<FilmwebResult> UseStorageIfPossible(UseStorageIfPossibleCommand command)
         {
-            var storedCollection = _repository.GetStoredData((int)type).ToList();
-            UseStorageLogic(storedCollection, type, func);
+            var storedCollection = _repository.GetStoredData((int)command.Type).ToList();
+            UseStorageInternal(storedCollection, command.Type, command.Func);
             return storedCollection.Select(n => _mapper.Map<FilmwebResult>(n));
         }
 
-        private void UseStorageLogic(
+        private void UseStorageInternal(
             List<ResultModel> storedCollection,
             MovieTypes type,
             Func<IEnumerable<FilmwebResult>> func)

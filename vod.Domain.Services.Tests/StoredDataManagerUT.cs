@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.SignalR;
 using Moq;
 using NUnit.Framework;
 using vod.Domain.Services.Boundary;
+using vod.Domain.Services.Boundary.Commands;
 using vod.Domain.Services.Boundary.Interfaces;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
@@ -22,8 +23,10 @@ namespace vod.Domain.Services.Tests
         private List<ResultModel> _fakeStoredCollection;
         private Mock<IBackgroundWorker> _bgWorkerMock;
         private Mock<UpdateNotificationHub> _updateHubMock;
+        private Mock<IHubCallerClients> _mockClients;
         private IStoredDataManager _storedDataManager;
         private StoredDataManager _storedDataManager2;
+        private UseStorageIfPossibleCommand _cmd;
         private List<FilmwebResult> _fakeFilmwebResults;
         private BackgroundWorker _fakeBgWorker;
 
@@ -47,10 +50,19 @@ namespace vod.Domain.Services.Tests
             mapperMock.Setup(x => x.Map<FilmwebResult>(fakeResultModel)).Returns(new FilmwebResult() {Title = fakeResultModel.Title, StoredDate = fakeResultModel.StoredDate});
 
             _updateHubMock = new Mock<UpdateNotificationHub>();
-            _updateHubMock.Setup(x => x.Clients).Returns(new Mock<IHubCallerClients>().Object);
+            var fakeUpdateHub = new UpdateNotificationHub();
+            _mockClients = new Mock<IHubCallerClients>();
+            _mockClients.Setup(x => x.All).Returns(new Mock<IClientProxy>().Object).Verifiable();
+            fakeUpdateHub.Clients = _mockClients.Object;
 
             _storedDataManager = new StoredDataManager(mapperMock.Object, _repositoryMock.Object, _repositoryBgMock.Object, _bgWorkerMock.Object, _updateHubMock.Object);
-            _storedDataManager2 = new StoredDataManager(mapperMock.Object, _repositoryMock.Object, _repositoryBgMock.Object, _fakeBgWorker, _updateHubMock.Object);
+            _storedDataManager2 = new StoredDataManager(mapperMock.Object, _repositoryMock.Object, _repositoryBgMock.Object, _fakeBgWorker, fakeUpdateHub);
+
+            _cmd = new UseStorageIfPossibleCommand()
+            {
+                Type = MovieTypes.Action,
+                Func = () => _fakeFilmwebResults
+            };
         }
 
         [Test]
@@ -58,7 +70,7 @@ namespace vod.Domain.Services.Tests
         {
             BaseArrange();
 
-            var result = _storedDataManager.UseStorageIfPossible(MovieTypes.Action, () => _fakeFilmwebResults).ToList();
+            var result = _storedDataManager.UseStorageIfPossible(_cmd).ToList();
 
             Assert.AreEqual(result.First().Title, _fakeFilmwebResults.First().Title);
             Assert.AreEqual(result.First().StoredDate, _fakeFilmwebResults.First().StoredDate);
@@ -69,7 +81,7 @@ namespace vod.Domain.Services.Tests
         {
             BaseArrange();
 
-            _storedDataManager.UseStorageIfPossible(MovieTypes.Action, () => _fakeFilmwebResults);
+            _storedDataManager.UseStorageIfPossible(_cmd);
 
             _bgWorkerMock.Verify(n => n.Execute(MovieTypes.Action, It.IsAny<Func<bool>>()), Times.Never);
         }
@@ -79,7 +91,7 @@ namespace vod.Domain.Services.Tests
         {
             BaseArrange(DateTime.Now.AddDays(-2));
 
-            _storedDataManager.UseStorageIfPossible(MovieTypes.Action, () => _fakeFilmwebResults);
+            _storedDataManager.UseStorageIfPossible(_cmd);
 
             _bgWorkerMock.Verify(n => n.Execute(MovieTypes.Action, It.IsAny<Func<bool>>()), Times.Once);
         }
@@ -89,7 +101,7 @@ namespace vod.Domain.Services.Tests
         {
             BaseArrange(DateTime.Now.AddDays(-2));
 
-            _storedDataManager2.UseStorageIfPossible(MovieTypes.Action, () => _fakeFilmwebResults);
+            _storedDataManager2.UseStorageIfPossible(_cmd);
 
             _repositoryBgMock.Verify(n => n.RefreshData(It.IsAny<IEnumerable<ResultModel>>(), It.IsAny<int>()), Times.Once);
         }
@@ -99,9 +111,9 @@ namespace vod.Domain.Services.Tests
         {
             BaseArrange(DateTime.Now.AddDays(-2));
 
-            _storedDataManager2.UseStorageIfPossible(MovieTypes.Action, () => _fakeFilmwebResults);
+            _storedDataManager2.UseStorageIfPossible(_cmd);
 
-            _updateHubMock.Verify(n => n.NotifyUpdate(It.IsAny<MovieTypes>()), Times.Once);
+            _mockClients.Verify();
         }
     }
 }
