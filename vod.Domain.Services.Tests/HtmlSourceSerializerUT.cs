@@ -21,6 +21,7 @@ namespace vod.Domain.Services.Tests
         private HtmlDocument _hboComedies;
         private HtmlDocument _filmwebSearchHtmlDoc;
         private HtmlDocument _filmwebSearch2HtmlDoc;
+        private HtmlDocument _filmwebNewResultHtmlDoc;
 
         private void Arrange()
         {
@@ -53,6 +54,10 @@ namespace vod.Domain.Services.Tests
             var filmwebResultHtml = HtmlResources.FilmwebResultHtml();
             _filmwebResultHtmlDoc = new HtmlDocument();
             _filmwebResultHtmlDoc.LoadHtml(filmwebResultHtml);
+
+            var filmwebNewResultHtml = HtmlResources.FilmwebNewResultHtml();
+            _filmwebNewResultHtmlDoc = new HtmlDocument();
+            _filmwebNewResultHtmlDoc.LoadHtml(filmwebNewResultHtml);
 
             var filmwebSearch2Html = HtmlResources.FilmWebSearchResult2Html();
             _filmwebSearch2HtmlDoc = new HtmlDocument();
@@ -111,6 +116,22 @@ namespace vod.Domain.Services.Tests
             Assert.True(result.FilmDescription.Contains("Piłkarski stadion zostaje opanowany"));
             Assert.True(result.Year == 2018);
             Assert.True(result.Cast.Contains("Dave Bautista"));
+        }
+
+        [Test]
+        public void SerializeFilmwebResult_ShouldSerializeCorrectValuesForNewFilmwebResult()
+        {
+            Arrange();
+
+            var title = "Kapitan Ameryka: Wojna bohaterów (2016)";
+            var result = _serializer.SerializeFilmwebResult(_filmwebNewResultHtmlDoc, MovieTypes.Action, string.Empty, title);
+
+            Assert.True(result.FilmwebRating == 7.5m);
+            Assert.True(result.Production == "USA");
+            Assert.True(result.FilmwebFilmType == "Akcja, Sci-Fi");
+            Assert.True(result.FilmDescription.Contains("ONZ wprowadza przymusowy rejestr bohaterów"));
+            Assert.True(result.Year == 2016);
+            Assert.True(result.Cast.Contains("Robert Downey Jr."));
         }
     }
 }
