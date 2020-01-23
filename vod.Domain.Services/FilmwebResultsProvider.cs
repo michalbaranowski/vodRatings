@@ -23,7 +23,7 @@ namespace vod.Domain.Services
         {
             var ncPlusResult = _ncPlusService.GetMoviesOfType(type);
             var results = ncPlusResult
-                .Select(n => _filmwebService.CheckInFilmweb(n, type))
+                .Select(n => _filmwebService.GetFilmwebResult(n))
                 .Where(n => n != null)
                 .OrderByDescending(n => n.FilmwebRating)
                 .ToList();

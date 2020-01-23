@@ -33,39 +33,5 @@ namespace vod.Domain.Services.Utils.HtmlSource
             html.LoadHtml(htmlString);
             return html;
         }
-
-        public void SerializeFilmDetails(HtmlDocument html, Movie movie)
-        {
-            var origTitle = html.DocumentNode.Descendants()
-                    .FirstOrDefault(n => n.Name == "li"
-                    && n.Attributes.Contains("class")
-                    && n.Attributes["class"].Value == "asset-page__meta-list"
-                    && n.Descendants().Any(p => p.Name == "span"
-                    && p.Attributes.Contains("class")
-                    && p.Attributes["class"].Value == "asset-page__meta-label"
-                    && p.InnerText == "Tytuł oryginalny"))?
-                    .InnerText.Replace("\n", "").Replace("Tytuł oryginalny", string.Empty);
-
-            var directors = html.DocumentNode.Descendants()
-                    .FirstOrDefault(n => n.Name == "li"
-                    && n.Attributes.Contains("class")
-                    && n.Attributes["class"].Value == "asset-page__meta-list"
-                    && n.Descendants().Any(p => p.Name == "span"
-                    && p.Attributes.Contains("class")
-                    && p.Attributes["class"].Value == "asset-page__meta-label"
-                    && p.InnerText == "Reżyseria"))?
-                    .InnerText.Replace("\n", "").Replace("Reżyseria", string.Empty)
-                    .Split(",").Select(n=>n.Trim()).ToList();
-
-            if (string.IsNullOrEmpty(origTitle)) return;
-            if (directors == null) return;
-
-            movie.OriginalTitle = origTitle
-                                    .Replace(" hd", "")
-                                    .Replace(" HD", "")
-                                    .Replace(" sd", "")
-                                    .Replace(" SD", "");
-            movie.Directors = directors;
-        }
     }
 }

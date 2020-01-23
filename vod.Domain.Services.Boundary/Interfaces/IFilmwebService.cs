@@ -5,6 +5,6 @@ namespace vod.Domain.Services.Boundary.Interfaces
 {
     public interface IFilmwebService
     {
-        FilmwebResult CheckInFilmweb(Movie movie, MovieTypes type);
+        FilmwebResult GetFilmwebResult(Movie movie);
     }
 }

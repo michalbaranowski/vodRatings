@@ -28,7 +28,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                             .Replace("(HD)", string.Empty)
                             .Replace("(SD)", ""),
                         ProviderName = provider,
-                        MoreInfoUrl = n.Descendants().Where(x=>x.Name == "a" && x.Attributes.Contains("href"))?.FirstOrDefault()?.Attributes["href"].Value,
+                        MoreInfoUrl = n.Descendants().Where(x => x.Name == "a" && x.Attributes.Contains("href"))?.FirstOrDefault()?.Attributes["href"].Value,
                         MovieType = type
                     });
         }
@@ -39,13 +39,13 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
             if (ul == null) return string.Empty;
 
             var li = ul.Descendants()
-                .FirstOrDefault(n=>n.Name == "li" 
-                                && n.HasChildNodes 
-                                && n.Descendants().Any(p=>
-                                    p.Name == "div" 
-                                    && p.Attributes.Contains("class") 
+                .FirstOrDefault(n => n.Name == "li"
+                                && n.HasChildNodes
+                                && n.Descendants().Any(p =>
+                                    p.Name == "div"
+                                    && p.Attributes.Contains("class")
                                     && p.Attributes["class"].Value == "filmPreview__info filmPreview__info--directors"
-                                    && directors.Any(x=>x == p.InnerText.Replace("reżyser", ""))));
+                                    && directors.Any(x => x == p.InnerText.Replace("reżyser", ""))));
 
             if (li == null) return string.Empty;
 
@@ -91,11 +91,11 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
             var production = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n =>
                 n.Name == "a" && n.Attributes.Contains("href") && n.Attributes["href"].Value.Contains("countries"))?.InnerText;
 
-                var filmDesc = filmwebHtml.DocumentNode.Descendants()
-                    .FirstOrDefault(n =>
-                        n.Name == "div" && n.Attributes.Contains("class") &&
-                        n.Attributes["class"].Value.Contains("filmPlot"))?
-                    .Descendants().FirstOrDefault(n => n.Name == "p")?.InnerText;
+            var filmDesc = filmwebHtml.DocumentNode.Descendants()
+                .FirstOrDefault(n =>
+                    n.Name == "div" && n.Attributes.Contains("class") &&
+                    n.Attributes["class"].Value.Contains("filmPlot"))?
+                .Descendants().FirstOrDefault(n => n.Name == "p")?.InnerText;
 
             var cast = filmwebHtml.DocumentNode.Descendants()
                 .Where(n => n.Name == "tr"
@@ -118,7 +118,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
             return new FilmwebResult()
             {
                 FilmwebRating = ratingValue,
-                FilmwebRatingCount  = ratingCountValue,
+                FilmwebRatingCount = ratingCountValue,
                 FilmwebFilmType = filmwebFilmType,
                 Title = movieTitle,
                 FilmwebTitle = title,
@@ -130,6 +130,45 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 MovieUrl = $"{NcPlusUrls.NcPlusGoUrl}{moreInfoUrl}",
                 Cast = cast
             };
+        }
+
+        public List<string> SerializeDirectors(HtmlDocument html)
+        {
+            var directors = html.DocumentNode.Descendants()
+                        .FirstOrDefault(n => n.Name == "li"
+                        && n.Attributes.Contains("class")
+                        && n.Attributes["class"].Value == "asset-page__meta-list"
+                        && n.Descendants().Any(p => p.Name == "span"
+                        && p.Attributes.Contains("class")
+                        && p.Attributes["class"].Value == "asset-page__meta-label"
+                        && p.InnerText == "Reżyseria"))?
+                        .InnerText.Replace("\n", "").Replace("Reżyseria", string.Empty)
+                        .Split(",").Select(n => n.Trim()).ToList();
+
+            if (directors == null) return new List<string>();
+
+            return directors;
+        }
+
+        public string SerializeOriginalTitle(HtmlDocument html)
+        {
+            var origTitle = html.DocumentNode.Descendants()
+                    .FirstOrDefault(n => n.Name == "li"
+                    && n.Attributes.Contains("class")
+                    && n.Attributes["class"].Value == "asset-page__meta-list"
+                    && n.Descendants().Any(p => p.Name == "span"
+                    && p.Attributes.Contains("class")
+                    && p.Attributes["class"].Value == "asset-page__meta-label"
+                    && p.InnerText == "Tytuł oryginalny"))?
+                    .InnerText.Replace("\n", "").Replace("Tytuł oryginalny", string.Empty);
+
+            if (string.IsNullOrEmpty(origTitle)) return string.Empty;
+
+            return origTitle
+                .Replace(" hd", "")
+                .Replace(" HD", "")
+                .Replace(" sd", "")
+                .Replace(" SD", "");
         }
     }
 }
