@@ -25,7 +25,6 @@ namespace vod.Domain.Services
             var results = ncPlusResult
                 .Select(n => _filmwebService.GetFilmwebResult(n))
                 .Where(n => n != null)
-                .OrderByDescending(n => n.FilmwebRating)
                 .ToList();
             return results.DistinctBy(n => n.Title);
         }

@@ -33,6 +33,7 @@ namespace vod.Core
         {
             return _filmwebResultsProvider.GetFilmwebResults(type)                
                 .Select(n => _mapper.Map<Result>(n))
+                .OrderByDescending(n => n.FilmwebRating)
                 .AddNewFlagIfNeeded();
         }
 
@@ -46,6 +47,7 @@ namespace vod.Core
 
             return _storedDataManager.UseStorageIfPossible(cmd)
                     .Select(n => _mapper.Map<Result>(n))
+                    .OrderByDescending(n => n.FilmwebRating)
                     .AddNewFlagIfNeeded();
         }
     }

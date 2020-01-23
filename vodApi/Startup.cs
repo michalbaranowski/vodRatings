@@ -55,6 +55,7 @@ namespace vodApi
             services.AddTransient<IFilmwebService, FilmwebService>();
             services.AddTransient<IHtmlSourceGetter, HtmlSourceGetter>();
             services.AddTransient<IHtmlSourceSerializer, HtmlSourceSerializer>();
+            services.AddTransient<IFilmwebResultsProvider, FilmwebResultsProvider>();
             services.AddTransient<ICoreLogic, CoreLogic>();
         }
 
