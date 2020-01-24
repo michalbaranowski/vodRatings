@@ -64,24 +64,32 @@ SET MSBUILD_PATH=%ProgramFiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe
 :: Deployment
 :: ----------
 
-echo Handling ASP.NET Core Web Application deployment. - test
+echo Handling ASP.NET Core Web Application deployment.
 
 :: 0. Angular install and build
-call :ExecuteCmd npm-install.cmd
+echo Angular install and build
+:: call :ExecuteCmd npm-install.cmd
 call :ExecuteCmd angular-build.cmd
 IF !ERRORLEVEL! NEQ 0 goto error
+echo Angular install and build - OK
 
 :: 1. Restore nuget packages
+echo Restore nuget packages
 call :ExecuteCmd dotnet restore "%DEPLOYMENT_SOURCE%\vodApi.sln"
 IF !ERRORLEVEL! NEQ 0 goto error
+echo Restore nuget packages - OK
 
 :: 2. Build and publish
+echo Build and publish
 call :ExecuteCmd dotnet publish "%DEPLOYMENT_SOURCE%\vodApi\vodApi.csproj" --output "%DEPLOYMENT_TEMP%" --configuration Release 
 IF !ERRORLEVEL! NEQ 0 goto error
+echo Build and publish - OK
 
 :: 3. KuduSync
+echo KuduSync
 call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_TEMP%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
 IF !ERRORLEVEL! NEQ 0 goto error
+echo KuduSync - OK
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 goto end
