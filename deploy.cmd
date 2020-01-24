@@ -68,7 +68,7 @@ echo Handling ASP.NET Core Web Application deployment.
 
 :: 0. Angular install and build
 echo Angular install and build
-:: call :ExecuteCmd npm-install.cmd
+call :ExecuteCmd npm-install.cmd
 call :ExecuteCmd angular-build.cmd
 IF !ERRORLEVEL! NEQ 0 goto error
 echo Angular install and build - OK
