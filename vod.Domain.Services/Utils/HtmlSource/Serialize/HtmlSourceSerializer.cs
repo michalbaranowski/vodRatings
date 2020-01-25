@@ -130,7 +130,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 .Descendants().FirstOrDefault(n => n.Name == "p")?.InnerText;
 
             if (string.IsNullOrEmpty(filmDesc))
-                filmDesc = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n => n.Name == "div" && n.Attributes.Contains("class") && n.Attributes["class"].Value == "filmPosterSection__plot").InnerText;
+                filmDesc = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n => n.Name == "div" && n.Attributes.Contains("class") && n.Attributes["class"].Value == "filmPosterSection__plot")?.InnerText;
 
             var cast = filmwebHtml.DocumentNode.Descendants()
                 .Where(n => n.Name == "tr"
@@ -143,7 +143,6 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
 
             if(cast.Any() == false)
             {
-                //personRole personRole--poster roleSource PersonRole  -> attr: data-person
                 cast = filmwebHtml.DocumentNode.Descendants()
                     .Where(n => n.Attributes.Contains("class") && n.Attributes.Contains("data-person"))
                     .Select(n => n.Attributes["data-person"].Value).ToList();

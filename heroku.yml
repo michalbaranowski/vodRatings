@@ -1,0 +1,8 @@
+setup:
+  command:
+    - npm-install.cmd
+    - angular-build.cmd
+    - dotnet publish -c Release
+build:
+  docker:
+    web: Dockerfile
