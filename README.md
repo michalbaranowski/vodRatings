@@ -39,4 +39,5 @@ Wykorzystano SignalR do informowania frontendu o dostępności nowych danych. Cz
 **3. Live demo**
 
 ~~http://vodratings.azurewebsites.net/~~
+
 https://vodsearcher.herokuapp.com/
