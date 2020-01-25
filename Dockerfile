@@ -6,6 +6,9 @@ RUN cd vodFrontend && npm install --silent
 RUN cd vodFrontend && ng build
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1
 WORKDIR /app
+COPY . .
 RUN dotnet publish -c Release
 FROM microsoft/dotnet:2.1-aspnetcore-runtime
+WORKDIR /app
+COPY . .
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet .\vodApi\bin\Release\netcoreapp2.1\publish\vodApi.dll
