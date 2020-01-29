@@ -58,4 +58,24 @@ export class NavbarComponent implements OnChanges {
             }
         });
     }
+
+    openLogin() {
+        const loginModal = Array.prototype.slice.call(document.querySelectorAll('.modal.login'), 0)[0];
+        loginModal.classList.toggle('is-active');
+    }
+
+    closeLogin() {
+        const loginModal = Array.prototype.slice.call(document.querySelectorAll('.modal.login'), 0)[0];
+        loginModal.classList.remove('is-active');
+    }
+
+    openRegister() {
+        const loginModal = Array.prototype.slice.call(document.querySelectorAll('.modal.register'), 0)[0];
+        loginModal.classList.toggle('is-active');
+    }
+
+    closeRegister() {
+        const loginModal = Array.prototype.slice.call(document.querySelectorAll('.modal.register'), 0)[0];
+        loginModal.classList.remove('is-active');
+    }
 }

@@ -15,6 +15,8 @@ import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
 import localePlExtra from '@angular/common/locales/extra/pl';
 import { RefreshMarkComponent } from './component/refresh-mark-component/refresh-mark-component';
+import { LoginFormComponent } from './component/login-form-component/login-form-component';
+import { RegisterFormComponent } from './component/register-form-component/register-form-component';
 
 registerLocaleData(localePl, 'pl-PL', localePlExtra);
 
@@ -27,7 +29,9 @@ registerLocaleData(localePl, 'pl-PL', localePlExtra);
     FiltersComponent,
     MovieFilter,
     UpdateModalComponent,
-    RefreshMarkComponent
+    RefreshMarkComponent,
+    LoginFormComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,
