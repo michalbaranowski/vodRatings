@@ -63,7 +63,8 @@ namespace vodApi.Controllers
                   new
                   {
                       token = new JwtSecurityTokenHandler().WriteToken(token),
-                      expiration = token.ValidTo
+                      expiration = token.ValidTo,
+                      statusCode = 200
                   });
             }
             return Unauthorized();

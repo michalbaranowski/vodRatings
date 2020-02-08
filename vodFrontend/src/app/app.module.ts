@@ -17,6 +17,7 @@ import localePlExtra from '@angular/common/locales/extra/pl';
 import { RefreshMarkComponent } from './component/refresh-mark-component/refresh-mark-component';
 import { LoginFormComponent } from './component/login-form-component/login-form-component';
 import { RegisterFormComponent } from './component/register-form-component/register-form-component';
+import {CookieService} from 'ngx-cookie-service';
 
 registerLocaleData(localePl, 'pl-PL', localePlExtra);
 
@@ -40,7 +41,10 @@ registerLocaleData(localePl, 'pl-PL', localePlExtra);
     HttpClientModule,
     FormsModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pl-PL' }],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'pl-PL' },
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
