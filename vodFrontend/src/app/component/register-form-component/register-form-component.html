@@ -1,18 +1,18 @@
-<div id="login">
-        <div class="login-card">
+<div id="register">
+        <div class="register-card">
     
             <div class="card-title">
                 <h1>Please Register your account</h1>
             </div>
     
             <div class="content">
-                <form method="POST" action="#">
+                <form>
     
-                    <input id="email" type="email" name="email" title="email" placeholder="Email" required autofocus>
-                    <input id="password" type="password" name="password" title="password" placeholder="Password" required>
-                    <input id="passwordr" type="password" name="passwordr" title="Repeat password" placeholder="Password repeat" required>
+                    <input [(ngModel)]="registerData.email" id="emailRegister" type="email" name="email" title="email" placeholder="Email" required autofocus>
+                    <input [(ngModel)]="registerData.password" id="passwordRegister" type="password" name="password" title="password" placeholder="Password" required>
+                    <input [(ngModel)]="passwordRepeat" id="passwordRepeatRegister" type="password" name="passwordr" title="Repeat password" placeholder="Password repeat" required>
     
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button (click)="register()" type="submit" class="btn btn-primary">Register</button>
                 </form>
             </div>
         </div>

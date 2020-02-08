@@ -1,27 +1,27 @@
-#login {
+#register {
     display: flex;
     align-items: center;
     justify-content: center;
     background: transparent;
   }
-  #login .login-card {
+  #register .register-card {
     background: #fff;
     width: 24rem;
     box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.11);
   }
-  #login .login-card .card-title {
+  #register .register-card .card-title {
     background-color: #00b89c;
     padding: 2rem;
   }
-  #login .login-card .card-title h1 {
+  #register .register-card .card-title h1 {
     color: #fff;
     text-align: center;
     font-size: 1.2rem;
   }
-  #login .login-card .content {
+  #register .register-card .content {
     padding: 3rem 2.5rem 5rem;
   }
-  #login .login-card #email, #login .login-card #password {
+  #register .register-card #emailRegister, #register .register-card #passwordRegister {
     display: block;
     width: 100%;
     font-size: 1rem;
@@ -31,14 +31,14 @@
     border-bottom: 1px solid #dbdbdb;
     transition: all .5s;
   }
-  #login .login-card #email:hover, #login .login-card #password:hover {
+  #register .register-card #emailRegister:hover, #register .register-card #passwordRegister:hover {
     border-color: #7a7a7a;
   }
-  #login .login-card #email:active, #login .login-card #email:focus, #login .login-card #password:active, #login .login-card #password:focus {
+  #register .register-card #emailRegister:active, #register .register-card #emailRegister:focus, #register .register-card #passwordRegister:active, #register .register-card #passwordRegister:focus {
     border-color: #00d1b2;
   }
 
-  #login .login-card #email, #login .login-card #passwordr {
+  #register .register-card #emailRegister, #register .register-card #passwordRepeatRegister {
     display: block;
     width: 100%;
     font-size: 1rem;
@@ -48,28 +48,28 @@
     border-bottom: 1px solid #dbdbdb;
     transition: all .5s;
   }
-  #login .login-card #email:hover, #login .login-card #passwordr:hover {
+  #register .register-card #emailRegister:hover, #register .register-card #passwordRepeatRegister:hover {
     border-color: #7a7a7a;
   }
-  #login .login-card #email:active, #login .login-card #email:focus, #login .login-card #password:active, #login .login-card #passwordr:focus {
+  #register .register-card #emailRegister:active, #register .register-card #emailRegister:focus, #register .register-card #passwordRegister:active, #register .register-card #passwordRepeatRegister:focus {
     border-color: #00d1b2;
   }
 
-  #login .login-card .checkbox {
+  #register .register-card .checkbox {
     color: #b5b5b5;
     font-size: 0.8rem;
   }
-  #login .login-card .checkbox span {
+  #register .register-card .checkbox span {
     margin-left: 0.5rem;
   }
-  #login .login-card a {
+  #register .register-card a {
     font-size: 0.8rem;
   }
-  #login .login-card .options {
+  #register .register-card .options {
     color: #b5b5b5;
     margin-bottom: 1.5rem;
   }
-  #login .login-card button {
+  #register .register-card button {
     cursor: pointer;
     font-size: 1.2rem;
     color: #00d1b2;
@@ -81,11 +81,11 @@
     padding: 0.9rem 0 1.1rem;
     transition: color .5s, border-color .5s;
   }
-  #login .login-card button:hover, #login .login-card button:focus {
+  #register .register-card button:hover, #register .register-card button:focus {
     color: #009e86;
     border-color: #009e86;
   }
-  #login .login-card button:active {
+  #register .register-card button:active {
     transform: translateY(1px);
   }
   
