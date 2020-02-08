@@ -1,10 +1,14 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using vod.Core;
 using vod.Core.Boundary.Interfaces;
 using vod.Domain.Services;
@@ -39,9 +43,39 @@ namespace vodApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             var dbContextOptions = new DbContextOptionsBuilder<AppDbContext>().UseSqlServer(Configuration.GetValue<string>("ConnectionStrings:DefaultConnection")).Options;
-
             services.AddSingleton(dbContextOptions);
             services.AddTransient<IAppDbContext, AppDbContext>();
+
+            services.AddDbContext<AuthDbContext>(option => option.UseSqlServer(Configuration.GetValue<string>("ConnectionStrings:DefaultConnection")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>(
+                option =>
+                {
+                    option.Password.RequireDigit = true;
+                    option.Password.RequiredLength = 6;
+                    option.Password.RequireNonAlphanumeric = false;
+                    option.Password.RequireUppercase = true;
+                    option.Password.RequireLowercase = true;
+                }
+            ).AddEntityFrameworkStores<AuthDbContext>()
+            .AddDefaultTokenProviders();
+
+            services.AddAuthentication(option => {
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options => {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = true;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = Configuration["Jwt:Site"],
+                    ValidIssuer = Configuration["Jwt:Site"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:SigningKey"]))
+                };
+            });
 
             services.AddHttpClient();
             services.AddSingleton<UpdateNotificationHub>();
@@ -73,6 +107,7 @@ namespace vodApi
             });
 
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
