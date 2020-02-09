@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/service/authService';
 import { LoginCredentials } from 'src/app/model/loginCredentials';
 import { TokenHandler } from 'src/app/service/tokenHandler';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
     selector: 'app-login-form',
@@ -10,7 +11,8 @@ import { TokenHandler } from 'src/app/service/tokenHandler';
 })
 export class LoginFormComponent{
     constructor(private authService: AuthService,
-                private tokenHandler: TokenHandler) { }
+                private tokenHandler: TokenHandler,
+                private notifyService: NotifierService) { }
 
     loginCred: LoginCredentials = new LoginCredentials();
 
@@ -19,6 +21,7 @@ export class LoginFormComponent{
 
             if(loginResult.statusCode === 200) {
                 this.tokenHandler.setToken(loginResult.token);
+                this.notifyService.notify("success", "Zalogowano pomyślnie...");
             }
         });
     }

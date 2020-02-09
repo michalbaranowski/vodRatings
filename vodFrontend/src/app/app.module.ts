@@ -18,6 +18,7 @@ import { RefreshMarkComponent } from './component/refresh-mark-component/refresh
 import { LoginFormComponent } from './component/login-form-component/login-form-component';
 import { RegisterFormComponent } from './component/register-form-component/register-form-component';
 import {CookieService} from 'ngx-cookie-service';
+import { NotifierModule } from "angular-notifier";
 
 registerLocaleData(localePl, 'pl-PL', localePlExtra);
 
@@ -39,7 +40,8 @@ registerLocaleData(localePl, 'pl-PL', localePlExtra);
     AppRoutingModule,
     CommonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NotifierModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pl-PL' },

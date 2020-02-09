@@ -1,0 +1,29 @@
+{
+    "/api/*": {
+      "target": "http://localhost:59475",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+
+    "/login": {
+        "target": "http://localhost:59475",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+      },
+
+      "/register": {
+        "target": "http://localhost:59475",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+      },
+
+      "/updateNotification": {
+        "target": "http://localhost:59475",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+      }
+  }
