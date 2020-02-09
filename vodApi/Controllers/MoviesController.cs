@@ -18,7 +18,6 @@ namespace vodApi.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public JsonResult Get(int filmType)
         {
             return new JsonResult(_core.GetResultsUsingStorage((MovieTypes)filmType));
