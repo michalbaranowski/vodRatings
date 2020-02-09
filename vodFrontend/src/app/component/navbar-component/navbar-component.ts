@@ -67,6 +67,10 @@ export class NavbarComponent implements OnChanges {
     checkIfLoggedInAndGetUsername() {
         this.authService.authorize().subscribe(result => {
             this.loggedInUser = result;
+            this.changeType(0);
+        },
+        error => {
+            this.loggedInUser = null;            
         });
     }
 
@@ -81,7 +85,7 @@ export class NavbarComponent implements OnChanges {
     }
 
     loggedIn() {
-        //this.displayUsername(); - display username instead of signup/login buttons
+        this.checkIfLoggedInAndGetUsername();
         this.closeLogin();
     }
 
