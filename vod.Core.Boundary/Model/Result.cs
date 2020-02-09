@@ -19,5 +19,6 @@ namespace vod.Core.Boundary.Model
         public bool IsNew { get; set; }
         public string MovieUrl { get; set; }
         public List<string> Cast { get; set; }
+        public bool IsAlreadyWatched { get; set; } = false;
     }
 }

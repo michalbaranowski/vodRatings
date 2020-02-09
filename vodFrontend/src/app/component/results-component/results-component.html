@@ -5,7 +5,7 @@
 <div *ngIf="results" class="columns is-gapless is-multiline is-mobile">
     <div *ngFor="let item of results | movieFilter:movieFilterArgs"
         class="column is-one-third-desktop is-half-tablet is-full-mobile">
-        <app-movie [item]=item></app-movie>
+        <app-movie [displayWatchedButton]="isLoggedIn" [item]="item"></app-movie>
     </div>
 </div>
 

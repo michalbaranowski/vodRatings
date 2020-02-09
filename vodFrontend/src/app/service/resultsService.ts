@@ -13,6 +13,7 @@ export class ResultsService {
     constructor(private ajaxService: AjaxService) { }
     
     resultsUrl = 'api/movies';
+    watchedMoviesUrl = 'api/watchedMovies';
 
     getResults(type: Number) {
         if(!type) {
@@ -20,5 +21,9 @@ export class ResultsService {
         }
         
         return this.ajaxService.doGet<Result[]>(this.resultsUrl + "?filmType=" + type)
+    }
+
+    setAsAlreadyWatched(title: string) {
+        return this.ajaxService.doPost(this.watchedMoviesUrl, {title: title});
     }
 }

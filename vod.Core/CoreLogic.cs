@@ -18,15 +18,23 @@ namespace vod.Core
         private readonly IMapper _mapper;
         private readonly IStoredDataManager _storedDataManager;
         private readonly IFilmwebResultsProvider _filmwebResultsProvider;
+        private IAlreadyWatchedFilmService _alreadyWatchedFilmService;
 
         public CoreLogic(
             IMapper mapper,
             IStoredDataManager storedDataManager,
-            IFilmwebResultsProvider filmwebResultsProvider)
+            IFilmwebResultsProvider filmwebResultsProvider,
+            IAlreadyWatchedFilmService alreadyWatchedFilmService)
         {
             _mapper = mapper;
             _storedDataManager = storedDataManager;
             _filmwebResultsProvider = filmwebResultsProvider;
+            _alreadyWatchedFilmService = alreadyWatchedFilmService;
+        }
+
+        public void AddAlreadyWatchedMovie(WatchedMovie movie)
+        {
+            _alreadyWatchedFilmService.Add(_mapper.Map<AlreadyWatchedMovie>(movie));
         }
 
         public IEnumerable<Result> GetResults(MovieTypes type)
@@ -37,12 +45,13 @@ namespace vod.Core
                 .AddNewFlagIfNeeded();
         }
 
-        public IEnumerable<Result> GetResultsUsingStorage(MovieTypes type)
+        public IEnumerable<Result> GetResultsUsingStorage(MovieTypes type, string username)
         {
             var cmd = new UseStorageIfPossibleCommand()
             {
                 Type = type,
-                Func = () => _filmwebResultsProvider.GetFilmwebResults(type)
+                Func = () => _filmwebResultsProvider.GetFilmwebResults(type),
+                Username = username
             };
 
             return _storedDataManager.UseStorageIfPossible(cmd)

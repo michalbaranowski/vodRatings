@@ -10,6 +10,8 @@ namespace vodApi.MapProfiles
     {
         public DomainProfile()
         {
+            CreateMap<WatchedMovie, AlreadyWatchedMovie>();
+            CreateMap<AlreadyWatchedMovie, AlreadyWatchedModel>();
             CreateMap<FilmwebResult, Result>();
             CreateMap<Result, FilmwebResult>();
             CreateMap<Result, ResultModel>();

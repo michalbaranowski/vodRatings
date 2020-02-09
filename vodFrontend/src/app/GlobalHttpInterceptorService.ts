@@ -13,10 +13,13 @@ export class GlobalHttpInterceptorService implements HttpInterceptor {
 
     return next.handle(req).pipe(
       catchError((error) => {
-        console.log(error);
         switch (error.status) {
           case 401:
-            this.notifyService.notify("warning", "Aby przejść dalej należy się zalogować", error.status);
+            if(req.url === "api/authorize") {
+              return throwError(error);  
+            }
+
+            this.notifyService.notify("warning", "Logowanie nie powiodło się", error.status);
             return throwError(error);
         }
         this.notifyService.notify("error", "Error " + error.status + ": " + error.statusText);

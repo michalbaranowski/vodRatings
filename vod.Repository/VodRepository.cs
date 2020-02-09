@@ -14,6 +14,20 @@ namespace vod.Repository
             _context = context;
         }
 
+        public void AddAlreadyWatched(AlreadyWatchedModel movie)
+        {
+            if (_context.AlreadyWatched.Any(n => n.Title == movie.Title && n.Username == movie.Username))
+                return;
+
+            _context.AlreadyWatched.Add(movie);
+            _context.SaveChanges();
+        }
+
+        public IEnumerable<AlreadyWatchedModel> GetAlreadyWatched(string username)
+        {
+            return _context.AlreadyWatched.Where(n => n.Username == username);
+        }
+
         public IEnumerable<ResultModel> GetStoredData(int type)
         {
             return _context.Results.Where(n=>n.VodFilmType == type);

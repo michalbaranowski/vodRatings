@@ -10,6 +10,9 @@ namespace vod.Repository.Boundary
             
         }
         public DbSet<ResultModel> Results { get; set; }
+
+        public DbSet<AlreadyWatchedModel> AlreadyWatched { get; set; }
+
         public void EnsureCreated()
         {
             Database.EnsureCreated();

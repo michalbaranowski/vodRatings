@@ -14,4 +14,5 @@ export class Result {
     isNew: boolean;
     movieUrl: string;
     cast: Array<string>;
+    isAlreadyWatched: Boolean;
 }

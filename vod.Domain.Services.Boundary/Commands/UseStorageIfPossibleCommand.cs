@@ -9,5 +9,6 @@ namespace vod.Domain.Services.Boundary.Commands
     {
         public MovieTypes Type { get; set; }
         public Func<IEnumerable<FilmwebResult>> Func { get; set; }
+        public string Username { get; set; }
     }
 }

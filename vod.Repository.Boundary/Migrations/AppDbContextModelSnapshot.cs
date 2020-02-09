@@ -15,15 +15,30 @@ namespace vod.Repository.Boundary.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
+                .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("vod.Repository.Boundary.Models.ResultModel", b =>
+            modelBuilder.Entity("vod.Repository.Boundary.Models.AlreadyWatchedModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ResultId");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("Username");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AlreadyWatchedMovie");
+                });
+
+            modelBuilder.Entity("vod.Repository.Boundary.Models.ResultModel", b =>
+                {
+                    b.Property<int>("Id");
 
                     b.Property<string>("Cast");
 
@@ -56,6 +71,14 @@ namespace vod.Repository.Boundary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Result");
+                });
+
+            modelBuilder.Entity("vod.Repository.Boundary.Models.ResultModel", b =>
+                {
+                    b.HasOne("vod.Repository.Boundary.Models.AlreadyWatchedModel", "AlreadyWatched")
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

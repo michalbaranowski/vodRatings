@@ -1,6 +1,7 @@
 import { ResultsService } from 'src/app/service/resultsService';
 import { Component } from '@angular/core';
 import { Result } from 'src/app/model/result';
+import { AuthService } from 'src/app/service/authService';
 
 @Component({
     selector: 'app-results',
@@ -11,9 +12,13 @@ export class ResultsComponent {
     results: Result[];
     movieFilterArgs: Result;
     typeToChange: number = 0;
+    isLoggedIn: Boolean;
 
-    constructor(private resultsService: ResultsService) {
+    constructor(private resultsService: ResultsService,
+                private authService: AuthService) {
+
         this.movieFilterArgs = new Result();
+        this.authService.authorize().subscribe(result => this.isLoggedIn = result != null)
     }
 
     getMoviesOfType(type: Number) {

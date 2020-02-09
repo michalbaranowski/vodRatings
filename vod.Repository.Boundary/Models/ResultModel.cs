@@ -23,5 +23,7 @@ namespace vod.Repository.Boundary.Models
         public DateTime RefreshDate { get; set; }
         public string MovieUrl { get; set; }
         public string Cast { get; set; }
+        [NotMapped]
+        public bool IsAlreadyWatched { get; set; }
     }
 }

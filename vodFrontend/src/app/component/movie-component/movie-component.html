@@ -1,10 +1,13 @@
 <div class="tile is-parent">
 
   <article class="tile is-child notification is-dark is-mobile">
-      <div *ngIf="item.isNew" class="flag">
-          NEW
-        </div>
-    <div class="movie-title" style="height: 135px; display: block">
+    <div *ngIf="item.isNew" class="flag">
+      NEW
+    </div>
+    <div *ngIf="displayWatchedButton" (click)="setAsAlreadyWatched(item)" class="watched">
+      <span class="fa fa-eye"></span>
+    </div>
+    <div class="movie-title" style="height: 135px; display: block; margin-top: 5px">
       <div class="tooltip">
         <p class="title">{{formatTitle(item.title, item.year)}}</p>
         <span class="tooltiptext">{{item.title}} ({{item.year}})</span>
@@ -36,17 +39,17 @@
 
       <div class="column is-full" style="margin-bottom: 5px">
         <div class="tags has-addons">
-            <div class="tooltip">
-                <span class="tag is-light">Obsada</span>
-                <span class="tag is-link"><i>Pokaż...</i></span>
-                <span class="tooltiptext">
-                    <ul *ngIf="item.cast && item.cast.length > 0">
-                        <li *ngFor="let castItem of item.cast">{{castItem}}</li>
-                    </ul>
+          <div class="tooltip">
+            <span class="tag is-light">Obsada</span>
+            <span class="tag is-link"><i>Pokaż...</i></span>
+            <span class="tooltiptext">
+              <ul *ngIf="item.cast && item.cast.length > 0">
+                <li *ngFor="let castItem of item.cast">{{castItem}}</li>
+              </ul>
 
-                    <p *ngIf="item.cast && item.cast.length == 0">Brak informacji na temat obsady dla tego filmu.</p>
-                </span>
-            </div>
+              <p *ngIf="item.cast && item.cast.length == 0">Brak informacji na temat obsady dla tego filmu.</p>
+            </span>
+          </div>
         </div>
       </div>
     </div>

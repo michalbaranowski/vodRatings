@@ -30,6 +30,6 @@ export class MovieFilter implements PipeTransform {
         if(filter.isNew)
             results = results.filter(item => item.isNew == true);
             
-        return results;
+        return results.filter(item => item.isAlreadyWatched == false);
     }
 }

@@ -90,6 +90,7 @@ namespace vodApi
             services.AddTransient<IHtmlSourceGetter, HtmlSourceGetter>();
             services.AddTransient<IHtmlSourceSerializer, HtmlSourceSerializer>();
             services.AddTransient<IFilmwebResultsProvider, FilmwebResultsProvider>();
+            services.AddTransient<IAlreadyWatchedFilmService, AlreadyWatchedService>();
             services.AddTransient<ICoreLogic, CoreLogic>();
         }
 

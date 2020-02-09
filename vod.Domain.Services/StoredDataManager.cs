@@ -37,6 +37,18 @@ namespace vod.Domain.Services
         public IEnumerable<FilmwebResult> UseStorageIfPossible(UseStorageIfPossibleCommand command)
         {
             var storedCollection = _repository.GetStoredData((int)command.Type).ToList();
+            var alreadyWatched = _repository.GetAlreadyWatched(command.Username);
+
+            foreach (var item in alreadyWatched)
+            {
+                var movie = storedCollection.FirstOrDefault(n => n.Title == item.Title);
+
+                if (movie == null)
+                    continue;
+
+                movie.IsAlreadyWatched = true;
+            }
+
             UseStorageInternal(storedCollection, command.Type, command.Func);
             return storedCollection.Select(n => _mapper.Map<FilmwebResult>(n));
         }
