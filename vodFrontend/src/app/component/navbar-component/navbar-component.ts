@@ -1,4 +1,6 @@
 import { Component, Output, EventEmitter, Input, OnChanges, SimpleChanges, SimpleChange } from "@angular/core";
+import { AuthService } from 'src/app/service/authService';
+import { UserData } from 'src/app/model/userData';
 
 @Component({
     selector: 'app-navbar',
@@ -11,8 +13,11 @@ export class NavbarComponent implements OnChanges {
     @Input() loading: Boolean;
     @Input() typeToChange: number;
 
-    constructor() {
+    loggedInUser: UserData;
+
+    constructor(private authService: AuthService) {
         this.initMenu();
+        this.checkIfLoggedInAndGetUsername();
     }
     
     ngOnChanges(changes: SimpleChanges): void {
@@ -59,6 +64,12 @@ export class NavbarComponent implements OnChanges {
         });
     }
 
+    checkIfLoggedInAndGetUsername() {
+        this.authService.authorize().subscribe(result => {
+            this.loggedInUser = result;
+        });
+    }
+
     openLogin() {
         const loginModal = Array.prototype.slice.call(document.querySelectorAll('.modal.login'), 0)[0];
         loginModal.classList.toggle('is-active');
@@ -86,5 +97,10 @@ export class NavbarComponent implements OnChanges {
 
     registered() {
         this.closeRegister();
+    }
+
+    logout() {
+        this.authService.logout();
+        this.checkIfLoggedInAndGetUsername();
     }
 }

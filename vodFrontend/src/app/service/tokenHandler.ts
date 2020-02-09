@@ -17,4 +17,8 @@ export class TokenHandler {
     getToken() {
         return this.cookieService.get(this.tokenName);
     }
+
+    removeToken() {
+        this.cookieService.delete(this.tokenName);
+    }
 }

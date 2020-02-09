@@ -5,16 +5,20 @@ import { Observable } from 'rxjs';
 import { LoginResult } from '../model/loginResult';
 import { AjaxService } from './ajaxService';
 import { RegisterResult } from '../model/registerResult';
+import { TokenHandler } from './tokenHandler';
+import { UserData } from '../model/userData';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
 
-    constructor(private ajaxService: AjaxService) { }
+    constructor(private ajaxService: AjaxService,
+                private tokenHandler: TokenHandler) { }
     
-    loginUrl = 'login';
-    registerUrl = 'register';
+    loginUrl = 'api/login';
+    registerUrl = 'api/register';
+    authorizeUrl = 'api/authorize';
 
     login(loginCred: LoginCredentials) : Observable<LoginResult> {
         if(loginCred)
@@ -24,5 +28,13 @@ export class AuthService {
     register(registerData: RegisterData) : Observable<RegisterResult> {
         if(registerData)
             return this.ajaxService.doPost<RegisterResult>(this.registerUrl, registerData);
+    }
+
+    authorize() {
+        return this.ajaxService.doGet<UserData>(this.authorizeUrl);
+    }
+
+    logout() {
+        this.tokenHandler.removeToken();
     }
 }

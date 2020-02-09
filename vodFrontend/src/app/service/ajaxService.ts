@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RegisterData } from '../model/registerData';
-import { LoginCredentials } from '../model/loginCredentials';
-import { Observable } from 'rxjs';
-import { LoginResult } from '../model/loginResult';
-import { ApiResult } from '../model/apiResult';
-import { NotifierService } from 'angular-notifier';
 import { TokenHandler } from './tokenHandler';
 
 @Injectable({
@@ -14,7 +8,6 @@ import { TokenHandler } from './tokenHandler';
 export class AjaxService {
 
     constructor(private http: HttpClient,
-                private notifyService: NotifierService,
                 private tokenHandler: TokenHandler) { }
     
     doGet<T>(url: string) {

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -23,7 +25,7 @@ namespace vodApi.Controllers
         }
 
         // /register
-        [Route("register")]
+        [Route("api/register")]
         [HttpPost]
         public async Task<ActionResult> InsertUser([FromBody] RegisterViewModel model)
         {
@@ -37,7 +39,7 @@ namespace vodApi.Controllers
             return Ok(new { Username = user.UserName });
         }
 
-        [Route("login")] // /login
+        [Route("api/login")] // /login
         [HttpPost]
         public async Task<ActionResult> Login([FromBody] LoginViewModel model)
         {
@@ -53,11 +55,12 @@ namespace vodApi.Controllers
                 int expiryInMinutes = Convert.ToInt32(_configuration["Jwt:ExpiryInMinutes"]);
 
                 var token = new JwtSecurityToken(
-                  issuer: _configuration["Jwt:Site"],
-                  audience: _configuration["Jwt:Site"],
-                  expires: DateTime.UtcNow.AddMinutes(expiryInMinutes),
-                  signingCredentials: new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256)
-                );
+                    new JwtHeader(new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256)),
+                    new JwtPayload(_configuration["Jwt:Site"],
+                                    _configuration["Jwt:Site"],
+                                    new List<Claim>() { new Claim(ClaimTypes.Name, user.UserName)},
+                                    null,
+                                    DateTime.UtcNow.AddMinutes(expiryInMinutes)));                
 
                 return Ok(
                   new
@@ -67,6 +70,15 @@ namespace vodApi.Controllers
                   });
             }
             return Unauthorized();
+        }
+
+        [Route("api/authorize")]
+        [HttpGet]
+        [Authorize]
+        public ActionResult GetUsername()
+        {
+            var username = User.FindFirst(ClaimTypes.Name)?.Value;
+            return Ok(new { username });
         }
     }
 }

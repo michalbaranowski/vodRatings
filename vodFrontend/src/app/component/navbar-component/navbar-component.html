@@ -37,12 +37,16 @@
             <div *ngIf="loading">
                 <button class="button is-dark is-large is-loading"></button>
               </div>
-          <a (click)="openRegister()" class="button is-primary">
+          <a *ngIf="!loggedInUser" (click)="openRegister()" class="button is-primary">
             <strong>Sign up</strong>
           </a>
-          <a (click)="openLogin()" class="button is-light">
+          <a *ngIf="!loggedInUser" (click)="openLogin()" class="button is-light">
             Log in
           </a>
+          <div *ngIf="loggedInUser">
+            <strong class="has-text-light">{{loggedInUser.username}} </strong> 
+            <span (click)="logout()" class="fa fa-sign-out is-large"></span>
+          </div>
         </div>
       </div>
     </div>
