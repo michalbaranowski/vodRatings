@@ -49,7 +49,7 @@ export class UpdateModalComponent implements OnInit {
     }
 
     private getModalElement() {
-        var modal = Array.prototype.slice.call(document.querySelectorAll('.modal'), 0)[0];
+        var modal = Array.prototype.slice.call(document.querySelectorAll('.update'), 0)[0];
         return modal;
     }
 }
