@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ResultsComponent } from './component/results-component/results-component';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
 import { MovieFilter } from './pipes/movieFilter-pipe';
 import { FormsModule } from '@angular/forms';
 import { MovieComponent } from './component/movie-component/movie-component';
@@ -19,6 +19,7 @@ import { LoginFormComponent } from './component/login-form-component/login-form-
 import { RegisterFormComponent } from './component/register-form-component/register-form-component';
 import {CookieService} from 'ngx-cookie-service';
 import { NotifierModule } from "angular-notifier";
+import { GlobalHttpInterceptorService } from './GlobalHttpInterceptorService';
 
 registerLocaleData(localePl, 'pl-PL', localePlExtra);
 
@@ -44,7 +45,8 @@ registerLocaleData(localePl, 'pl-PL', localePlExtra);
     NotifierModule
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'pl-PL' },
+    {provide: LOCALE_ID, useValue: 'pl-PL'},
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  },
     CookieService
   ],
   bootstrap: [AppComponent]

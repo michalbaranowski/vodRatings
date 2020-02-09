@@ -1,27 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TokenHandler } from './tokenHandler';
+import { AjaxService } from './ajaxService';
+import { Result } from '../model/result';
+import { Observable, Subscribable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ResultsService {
 
-    constructor(private http: HttpClient,
-                private tokenHandler: TokenHandler) { }
+    constructor(private ajaxService: AjaxService) { }
     
     resultsUrl = 'api/movies';
 
     getResults(type: Number) {
-        if(!type)
-            return this.http.get(this.resultsUrl, this.prepareOptions());
-
-        return this.http.get(this.resultsUrl + "?filmType=" + type, this.prepareOptions())
-    }
-
-    prepareOptions() {
-        let token = this.tokenHandler.getToken();
-        let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token});  
-        return {headers: headers};
+        if(!type) {
+            return this.ajaxService.doGet<Result[]>(this.resultsUrl)
+        }
+        
+        return this.ajaxService.doGet<Result[]>(this.resultsUrl + "?filmType=" + type)
     }
 }

@@ -1,6 +1,4 @@
-import { ApiResult } from './apiResult';
-
-export class LoginResult extends ApiResult{
+export class LoginResult{
     token: string;
     expiration: Date;
 }

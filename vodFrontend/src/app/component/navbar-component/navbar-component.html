@@ -52,7 +52,7 @@
 <div class="modal login">
     <div class="modal-background"></div>
     <div class="modal-content">
-      <app-login-form></app-login-form>
+      <app-login-form (loggedIn)="loggedIn()"></app-login-form>
     </div>
     <button (click)="closeLogin()" class="modal-close is-large" aria-label="close"></button>
 </div>
@@ -60,7 +60,7 @@
 <div class="modal register">
     <div class="modal-background"></div>
     <div class="modal-content">
-      <app-register-form></app-register-form>
+      <app-register-form (registered)="registered()"></app-register-form>
     </div>
     <button (click)="closeRegister()" class="modal-close is-large" aria-label="close"></button>
 </div>

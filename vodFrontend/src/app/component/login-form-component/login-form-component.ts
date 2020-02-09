@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/service/authService';
 import { LoginCredentials } from 'src/app/model/loginCredentials';
 import { TokenHandler } from 'src/app/service/tokenHandler';
@@ -16,13 +16,13 @@ export class LoginFormComponent{
 
     loginCred: LoginCredentials = new LoginCredentials();
 
+    @Output() loggedIn = new EventEmitter<Boolean>();
+
     login() {
         this.authService.login(this.loginCred).subscribe(loginResult => {
-
-            if(loginResult.statusCode === 200) {
-                this.tokenHandler.setToken(loginResult.token);
-                this.notifyService.notify("success", "Zalogowano pomyślnie...");
-            }
+            this.tokenHandler.setToken(loginResult.token);
+            this.notifyService.notify("success", "Zalogowano pomyślnie...");
+            this.loggedIn.emit(true);
         });
     }
 }

@@ -69,6 +69,11 @@ export class NavbarComponent implements OnChanges {
         loginModal.classList.remove('is-active');
     }
 
+    loggedIn() {
+        //this.displayUsername(); - display username instead of signup/login buttons
+        this.closeLogin();
+    }
+
     openRegister() {
         const loginModal = Array.prototype.slice.call(document.querySelectorAll('.modal.register'), 0)[0];
         loginModal.classList.toggle('is-active');
@@ -77,5 +82,9 @@ export class NavbarComponent implements OnChanges {
     closeRegister() {
         const loginModal = Array.prototype.slice.call(document.querySelectorAll('.modal.register'), 0)[0];
         loginModal.classList.remove('is-active');
+    }
+
+    registered() {
+        this.closeRegister();
     }
 }

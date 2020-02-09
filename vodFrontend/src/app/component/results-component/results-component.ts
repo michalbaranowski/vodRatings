@@ -10,11 +10,10 @@ export class ResultsComponent {
     loading: boolean;
     results: Result[];
     movieFilterArgs: Result;
-    typeToChange: number;
+    typeToChange: number = 0;
 
     constructor(private resultsService: ResultsService) {
         this.movieFilterArgs = new Result();
-        this.getMoviesOfType(0);
     }
 
     getMoviesOfType(type: Number) {
