@@ -43,7 +43,7 @@
         <input class="is-full" [(ngModel)]="movieFilter.isNew" type="checkbox" (change)="onFilterChanged()">
     </div>
     
-    <div class="column">
+    <div *ngIf="loggedInUser" class="column">
             <label class="label checkbox">Pokaż obejrzane:</label>
             <input class="is-full" [(ngModel)]="movieFilter.isAlreadyWatched" type="checkbox" (change)="onFilterChanged()">
         </div>

@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter, SimpleChanges, SimpleChange, OnInit } from "@angular/core";
 import { Result } from 'src/app/model/result';
+import { AuthService } from 'src/app/service/authService';
+import { UserData } from 'src/app/model/userData';
 
 @Component({
     selector: 'app-filters',
@@ -15,6 +17,9 @@ export class FiltersComponent implements OnInit {
     providerNames: string[];
     productionNames: string[];
     movieFilter: Result = new Result();
+    loggedInUser: UserData;
+
+    constructor(private authService: AuthService) {}
 
     ngOnInit() {
         //początkowy filter aby powiązać obiekt movieFilter z komponentem z filmami - todo: zrobic to porządnie
@@ -23,6 +28,7 @@ export class FiltersComponent implements OnInit {
     }
 
     refresh() {
+        this.authService.authorize().subscribe(n=>this.loggedInUser = n);
         this.movieFilter.providerName = "Wszystkie";
         this.movieFilter.filmwebFilmType = "Wszystkie";
         this.movieFilter.production = "Wszystkie";

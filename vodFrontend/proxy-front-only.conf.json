@@ -1,0 +1,15 @@
+{
+    "/api/*": {
+      "target": "https://vodsearcher.herokuapp.com/",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+
+      "/updateNotification": {
+        "target": "https://vodsearcher.herokuapp.com/",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+      }
+  }
