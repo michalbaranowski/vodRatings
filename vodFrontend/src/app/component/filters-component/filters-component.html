@@ -38,8 +38,13 @@
         </div>
     </div>
 
-    <div class="column is-one-fifth-desktop is-half-tablet is-full-mobile">
+    <div class="column">
         <label class="label checkbox">Tylko nowości:</label>
         <input class="is-full" [(ngModel)]="movieFilter.isNew" type="checkbox" (change)="onFilterChanged()">
     </div>
+    
+    <div class="column">
+            <label class="label checkbox">Pokaż obejrzane:</label>
+            <input class="is-full" [(ngModel)]="movieFilter.isAlreadyWatched" type="checkbox" (change)="onFilterChanged()">
+        </div>
 </div>

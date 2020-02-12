@@ -5,6 +5,7 @@ namespace vod.Core.Boundary.Model
 {
     public class Result
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public decimal FilmwebRating { get; set; }
         public int FilmwebRatingCount { get; set; }

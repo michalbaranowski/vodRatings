@@ -1,6 +1,7 @@
 export class Result {
     constructor() {}
 
+    id: number;
     title: string;
     filmwebRating: number;
     filmwebRatingCount: number;

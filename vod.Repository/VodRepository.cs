@@ -23,6 +23,17 @@ namespace vod.Repository
             _context.SaveChanges();
         }
 
+        public void RemoveAlreadyWatched(AlreadyWatchedModel alreadyWatchedModel)
+        {
+            var objToRemove = _context.AlreadyWatched.FirstOrDefault(n => n.Title == alreadyWatchedModel.Title);
+
+            if (objToRemove == null)
+                return;
+
+            _context.AlreadyWatched.Remove(objToRemove);
+            _context.SaveChanges();
+        }
+
         public IEnumerable<AlreadyWatchedModel> GetAlreadyWatched(string username)
         {
             return _context.AlreadyWatched.Where(n => n.Username == username);

@@ -14,6 +14,7 @@ export class ResultsService {
     
     resultsUrl = 'api/movies';
     watchedMoviesUrl = 'api/watchedMovies';
+    unwatchedMoviesUrl = 'api/unwatchedMovies';
 
     getResults(type: Number) {
         if(!type) {
@@ -25,5 +26,9 @@ export class ResultsService {
 
     setAsAlreadyWatched(title: string) {
         return this.ajaxService.doPost(this.watchedMoviesUrl, {title: title});
+    }
+
+    setAsUnwatched(title: string) {
+        return this.ajaxService.doPost(this.unwatchedMoviesUrl, {title: title});
     }
 }

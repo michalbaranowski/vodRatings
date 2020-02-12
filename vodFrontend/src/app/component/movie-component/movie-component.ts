@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Result } from 'src/app/model/result';
-import { AuthService } from 'src/app/service/authService';
 import { ResultsService } from 'src/app/service/resultsService';
 
 @Component({
@@ -13,7 +12,7 @@ export class MovieComponent{
     constructor (private resultsService: ResultsService) {}
 
     @Input() item: Result;
-    @Input() displayWatchedButton: Boolean;
+    @Input() displayWatchedSwitch: Boolean;
 
     onClick(event) {
         event.currentTarget.classList.toggle('is-active');
@@ -21,8 +20,8 @@ export class MovieComponent{
 
     formatTitle(title, year) {
         let standardTitle = title + " (" + year + ")";
-        return standardTitle.length > 40 
-            ? standardTitle.substring(0,35) + " (...)" 
+        return standardTitle.length > 25 
+            ? standardTitle.substring(0,25) + " (...)" 
             : standardTitle;
     }
 
@@ -31,9 +30,21 @@ export class MovieComponent{
         win.focus();
     }
     
-    setAsAlreadyWatched(movie: Result) {
-        debugger;
+    setAsAlreadyWatched(movie: Result) {        
         this.resultsService.setAsAlreadyWatched(movie.title).subscribe(n=>n);
         movie.isAlreadyWatched = true;
+    }
+
+    setAsUnwatched(movie: Result) {        
+        this.resultsService.setAsUnwatched(movie.title).subscribe(n=>n);
+        movie.isAlreadyWatched = false;
+    }
+
+    isWatchedChanged(movie: Result) {
+        if(movie.isAlreadyWatched) {
+            this.setAsAlreadyWatched(movie);
+        } else {
+            this.setAsUnwatched(movie);
+        }
     }
 }

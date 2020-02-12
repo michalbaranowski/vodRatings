@@ -7,6 +7,7 @@ namespace vod.Repository.Boundary
     {
         IEnumerable<ResultModel> GetStoredData(int type);
         void AddAlreadyWatched(AlreadyWatchedModel movie);
+        void RemoveAlreadyWatched(AlreadyWatchedModel alreadyWatchedModel);
         IEnumerable<AlreadyWatchedModel> GetAlreadyWatched(string username);
     }
 }

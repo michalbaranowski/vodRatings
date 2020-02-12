@@ -22,6 +22,7 @@
     "@aspnet/signalr": "^1.1.4",
     "angular-notifier": "^6.0.1",
     "bulma": "^0.7.5",
+    "bulma-switch": "^2.0.0",
     "bulma-tooltip": "^3.0.2",
     "font-awesome": "^4.7.0",
     "ngx-cookie-service": "^2.3.0",

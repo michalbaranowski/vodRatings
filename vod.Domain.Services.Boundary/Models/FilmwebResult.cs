@@ -5,6 +5,7 @@ namespace vod.Domain.Services.Boundary.Models
 {
     public class FilmwebResult
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public decimal FilmwebRating { get; set; }
         public int FilmwebRatingCount { get; set; }

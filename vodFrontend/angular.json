@@ -27,7 +27,8 @@
               "src/styles.css",
               "node_modules/bulma/css/bulma.css",
               "node_modules/font-awesome/css/font-awesome.css",
-              "node_modules/angular-notifier/styles.css"
+              "node_modules/angular-notifier/styles.css",
+              "node_modules/bulma-switch/dist/css/bulma-switch.min.css"
             ],
             "scripts": []
           },

@@ -4,10 +4,7 @@
     <div *ngIf="item.isNew" class="flag">
       NEW
     </div>
-    <div *ngIf="displayWatchedButton" (click)="setAsAlreadyWatched(item)" class="watched">
-      <span class="fa fa-eye"></span>
-    </div>
-    <div class="movie-title" style="height: 135px; display: block; margin-top: 5px">
+    <div class="movie-title" style="height: 160px; margin-top: 5px">
       <div class="tooltip">
         <p class="title">{{formatTitle(item.title, item.year)}}</p>
         <span class="tooltiptext">{{item.title}} ({{item.year}})</span>
@@ -16,6 +13,15 @@
     </div>
 
     <div class="columns is-multiline is-mobile is-gapless">
+
+      <div *ngIf="displayWatchedSwitch" class="column is-full" style="margin-bottom: 5px">
+        <div class="field">
+          <input [(ngModel)]="item.isAlreadyWatched" (change)="isWatchedChanged(item)" id="switchRoundedDefault{{item.id}}" type="checkbox"
+            name="switchRoundedDefault{{item.id}}" class="switch is-rounded" checked="checked">
+          <label for="switchRoundedDefault{{item.id}}">Obejrzany</label>
+        </div>
+      </div>
+
       <div class="column is-full" style="margin-bottom: 5px">
         <div class="tags has-addons">
           <span class="tag is-light">Kolekcja</span>

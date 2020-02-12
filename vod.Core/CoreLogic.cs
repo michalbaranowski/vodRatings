@@ -32,11 +32,6 @@ namespace vod.Core
             _alreadyWatchedFilmService = alreadyWatchedFilmService;
         }
 
-        public void AddAlreadyWatchedMovie(WatchedMovie movie)
-        {
-            _alreadyWatchedFilmService.Add(_mapper.Map<AlreadyWatchedMovie>(movie));
-        }
-
         public IEnumerable<Result> GetResults(MovieTypes type)
         {
             return _filmwebResultsProvider.GetFilmwebResults(type)                
@@ -58,6 +53,16 @@ namespace vod.Core
                     .Select(n => _mapper.Map<Result>(n))
                     .OrderByDescending(n => n.FilmwebRating)
                     .AddNewFlagIfNeeded();
+        }
+
+        public void AddAlreadyWatchedMovie(WatchedMovie movie)
+        {
+            _alreadyWatchedFilmService.Add(_mapper.Map<AlreadyWatchedMovie>(movie));
+        }
+
+        public void RemoveAlreadyWatchedMovie(WatchedMovie movie)
+        {
+            _alreadyWatchedFilmService.Remove(_mapper.Map<AlreadyWatchedMovie>(movie));
         }
     }
 }

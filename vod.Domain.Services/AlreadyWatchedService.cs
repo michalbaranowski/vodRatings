@@ -24,5 +24,10 @@ namespace vod.Domain.Services
         {
             _repository.AddAlreadyWatched(_mapper.Map<AlreadyWatchedModel>(movie));
         }
+
+        public void Remove(AlreadyWatchedMovie movie)
+        {
+            _repository.RemoveAlreadyWatched(_mapper.Map<AlreadyWatchedModel>(movie));
+        }
     }
 }

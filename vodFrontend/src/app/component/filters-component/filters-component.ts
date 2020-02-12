@@ -27,6 +27,7 @@ export class FiltersComponent implements OnInit {
         this.movieFilter.filmwebFilmType = "Wszystkie";
         this.movieFilter.production = "Wszystkie";
         this.movieFilter.title = "";
+        this.movieFilter.isAlreadyWatched = false;
 
         this.filmwebTypes = [];
         this.results.forEach((x) => {
