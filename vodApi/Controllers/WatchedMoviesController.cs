@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using vod.Core.Boundary.Interfaces;
 using vod.Core.Boundary.Model;
+using vod.Domain.Services.Boundary;
+using vod.Domain.Services.Boundary.Models;
 
 namespace vodApi.Controllers
 {
@@ -15,19 +17,19 @@ namespace vodApi.Controllers
     [ApiController]
     public class WatchedMoviesController : ControllerBase
     {
-        private ICoreLogic _coreLogic;
+        private readonly IAlreadyWatchedFilmService _alreadyWatchedFilmService;
 
-        public WatchedMoviesController(ICoreLogic coreLogic)
+        public WatchedMoviesController(IAlreadyWatchedFilmService alreadyWatchedFilmService)
         {
-            _coreLogic = coreLogic;
+            _alreadyWatchedFilmService = alreadyWatchedFilmService;
         }
 
         [HttpPost]
         [Authorize]
-        public void Post(WatchedMovie movie)
+        public void Post(AlreadyWatchedMovie movie)
         {
-            movie.Username = User.FindFirst(ClaimTypes.Name)?.Value;
-            _coreLogic.AddAlreadyWatchedMovie(movie);
+            movie.UserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            _alreadyWatchedFilmService.Add(movie);
         }
     }
 }

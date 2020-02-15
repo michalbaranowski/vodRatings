@@ -39,7 +39,7 @@ namespace vod.Domain.Services.Tests
             _fakeStoredCollection = new List<MovieEntity>() {fakeResultModel};
             _fakeFilmwebResults = new List<FilmwebResult>() {fakeFilmwebResult};
             _repositoryMock = new Mock<IVodRepository>();
-            _repositoryMock.Setup(x => x.GetStoredData(It.IsAny<int>())).Returns(_fakeStoredCollection);
+            _repositoryMock.Setup(x => x.GetStoredData(It.IsAny<int>())).Returns(_fakeStoredCollection.AsQueryable());
 
             _repositoryBgMock = new Mock<IVodRepositoryBackground>();
 

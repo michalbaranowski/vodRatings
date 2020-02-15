@@ -31,12 +31,12 @@ export class MovieComponent{
     }
     
     setAsAlreadyWatched(movie: Result) {        
-        this.resultsService.setAsAlreadyWatched(movie.title).subscribe(n=>n);
+        this.resultsService.setAsAlreadyWatched(movie).subscribe(n=>n);
         movie.isAlreadyWatched = true;
     }
 
     setAsUnwatched(movie: Result) {        
-        this.resultsService.setAsUnwatched(movie.title).subscribe(n=>n);
+        this.resultsService.setAsUnwatched(movie).subscribe(n=>n);
         movie.isAlreadyWatched = false;
     }
 

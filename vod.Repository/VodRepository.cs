@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using vod.Repository.Boundary;
 using vod.Repository.Boundary.Models;
 
@@ -14,34 +13,34 @@ namespace vod.Repository
             _context = context;
         }
 
-        public void AddAlreadyWatched(AlreadyWatchedModel movie)
+        public void AddAlreadyWatched(UserMovieEntity userMovie)
         {
-            if (_context.AlreadyWatched.Any(n => n.Title == movie.Title && n.Username == movie.Username))
+            if (_context.UserMovies.Any(n => n.UserId == userMovie.UserId && n.MovieId == userMovie.MovieId))
                 return;
 
-            _context.AlreadyWatched.Add(movie);
+            _context.UserMovies.Add(userMovie);
             _context.SaveChanges();
         }
 
-        public void RemoveAlreadyWatched(AlreadyWatchedModel alreadyWatchedModel)
+        public void RemoveAlreadyWatched(int movieId, string userId)
         {
-            var objToRemove = _context.AlreadyWatched.FirstOrDefault(n => n.Title == alreadyWatchedModel.Title);
+            var objToRemove = _context.UserMovies.FirstOrDefault(n => n.MovieId == movieId && n.UserId == userId);
 
             if (objToRemove == null)
                 return;
 
-            _context.AlreadyWatched.Remove(objToRemove);
+            _context.UserMovies.Remove(objToRemove);
             _context.SaveChanges();
         }
 
-        public IEnumerable<AlreadyWatchedModel> GetAlreadyWatched(string username)
+        public IQueryable<UserMovieEntity> GetAlreadyWatched(string userId)
         {
-            return _context.AlreadyWatched.Where(n => n.Username == username);
+            return _context.UserMovies.Where(n => n.UserId == userId);
         }
 
-        public IEnumerable<MovieEntity> GetStoredData(int type)
+        public IQueryable<MovieEntity> GetStoredData(int type)
         {
-            return _context.Movies.Where(n=>n.VodFilmType == type);
+            return _context.Movies.Where(n=>n.VodFilmType == type && n.IsDeleted == false);
         }
     }
 }

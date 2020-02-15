@@ -37,11 +37,11 @@ namespace vod.Domain.Services
         public IEnumerable<FilmwebResult> UseStorageIfPossible(UseStorageIfPossibleCommand command)
         {
             var storedCollection = _repository.GetStoredData((int)command.Type).ToList();
-            var alreadyWatched = _repository.GetAlreadyWatched(command.Username);
+            var alreadyWatched = _repository.GetAlreadyWatched(command.UserId);
 
             foreach (var item in alreadyWatched)
             {
-                var movie = storedCollection.FirstOrDefault(n => n.Title == item.Title);
+                var movie = storedCollection.FirstOrDefault(n => n.Id == item.MovieId);
 
                 if (movie == null)
                     continue;

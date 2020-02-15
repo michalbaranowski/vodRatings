@@ -60,11 +60,16 @@ namespace vod.Repository
             }
         }
 
-        public void RemoveMovies(IEnumerable<MovieEntity> moviesToRemove)
+        public void MarkAsDeleted(IEnumerable<MovieEntity> moviesToRemove)
         {
             using (var ctx = new AppDbContext(_opt))
             {
-                ctx.RemoveRange(moviesToRemove);
+                foreach (var item in moviesToRemove)
+                {
+                    item.IsDeleted = true;
+                }
+
+                ctx.UpdateRange(moviesToRemove);
                 ctx.SaveChanges();
             }
         }

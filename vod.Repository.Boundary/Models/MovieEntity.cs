@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace vod.Repository.Boundary.Models
 {
-    [Table("Result")]
+    [Table("Movie")]
     public class MovieEntity
     {
         [Key]
@@ -23,6 +24,9 @@ namespace vod.Repository.Boundary.Models
         public DateTime RefreshDate { get; set; }
         public string MovieUrl { get; set; }
         public string Cast { get; set; }
+        public bool IsDeleted { get; set; }
+
+        [Obsolete("Do usunięcia")]
         [NotMapped]
         public bool IsAlreadyWatched { get; set; }
     }

@@ -40,29 +40,19 @@ namespace vod.Core
                 .AddNewFlagIfNeeded();
         }
 
-        public IEnumerable<MovieViewModel> GetResultsUsingStorage(MovieTypes type, string username)
+        public IEnumerable<MovieViewModel> GetResultsUsingStorage(MovieTypes type, string userId)
         {
             var cmd = new UseStorageIfPossibleCommand()
             {
                 Type = type,
                 CrawlFunc = () => _filmwebResultsProvider.GetFilmwebResults(type),
-                Username = username
+                UserId = userId
             };
 
             return _storedDataManager.UseStorageIfPossible(cmd)
                     .Select(n => _mapper.Map<MovieViewModel>(n))
                     .OrderByDescending(n => n.FilmwebRating)
                     .AddNewFlagIfNeeded();
-        }
-
-        public void AddAlreadyWatchedMovie(WatchedMovie movie)
-        {
-            _alreadyWatchedFilmService.Add(_mapper.Map<AlreadyWatchedMovie>(movie));
-        }
-
-        public void RemoveAlreadyWatchedMovie(WatchedMovie movie)
-        {
-            _alreadyWatchedFilmService.Remove(_mapper.Map<AlreadyWatchedMovie>(movie));
         }
     }
 }

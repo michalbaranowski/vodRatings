@@ -44,7 +44,7 @@ namespace vod.Domain.Services
             var ncPlusMoviesToAdd = ncPlusMovies.Where(n => dbResults.Any(p => p.Title == n.Title) == false);
             var moviesToAdd = _filmwebResultsProvider.GetFilmwebResultsByNcPlusResults(ncPlusMoviesToAdd).Select(n => _mapper.Map<MovieEntity>(n));
 
-            _repositoryBackground.RemoveMovies(moviesToRemove);
+            _repositoryBackground.MarkAsDeleted(moviesToRemove);
             _repositoryBackground.AddMovies(moviesToAdd);
 
             return SUCCESS_STATE;

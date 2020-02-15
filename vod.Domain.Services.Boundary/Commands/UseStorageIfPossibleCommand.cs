@@ -9,6 +9,6 @@ namespace vod.Domain.Services.Boundary.Commands
     {
         public MovieTypes Type { get; set; }
         public Func<IEnumerable<FilmwebResult>> CrawlFunc { get; set; }
-        public string Username { get; set; }
+        public string UserId { get; set; }
     }
 }

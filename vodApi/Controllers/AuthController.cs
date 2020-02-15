@@ -35,7 +35,15 @@ namespace vodApi.Controllers
                 UserName = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString()
             };
-            var result = await _userManager.CreateAsync(user, model.Password);
+            try
+            {
+                var result = await _userManager.CreateAsync(user, model.Password);
+            }
+            catch(Exception exp)
+            {
+                throw exp;
+            }
+            
             return Ok(new { Username = user.UserName });
         }
 
@@ -58,7 +66,7 @@ namespace vodApi.Controllers
                     new JwtHeader(new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256)),
                     new JwtPayload(_configuration["Jwt:Site"],
                                     _configuration["Jwt:Site"],
-                                    new List<Claim>() { new Claim(ClaimTypes.Name, user.UserName)},
+                                    new List<Claim>() { new Claim(ClaimTypes.Name, user.UserName), new Claim(ClaimTypes.NameIdentifier, user.Id)},
                                     null,
                                     DateTime.UtcNow.AddMinutes(expiryInMinutes)));                
 
@@ -75,7 +83,7 @@ namespace vodApi.Controllers
         [Route("api/authorize")]
         [HttpGet]
         [Authorize]
-        public ActionResult GetUsername()
+        public ActionResult GetUserData()
         {
             var username = User.FindFirst(ClaimTypes.Name)?.Value;
             return Ok(new { username });

@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using vod.Repository.Boundary.Models;
 
 namespace vod.Repository.Boundary
 {
-    public class AppDbContext : DbContext, IAppDbContext
+    public class AppDbContext : IdentityDbContext<IdentityUser>, IAppDbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> opt) : base(opt)
         {
@@ -14,6 +16,8 @@ namespace vod.Repository.Boundary
 
         [Obsolete("Do wywalenia docelowo")]
         public DbSet<AlreadyWatchedModel> AlreadyWatched { get; set; }
+
+        public DbSet<UserMovieEntity> UserMovies { get; set; }
 
         public void EnsureCreated()
         {

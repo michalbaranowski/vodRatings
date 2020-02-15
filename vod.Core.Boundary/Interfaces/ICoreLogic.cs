@@ -8,7 +8,5 @@ namespace vod.Core.Boundary.Interfaces
     {
         IEnumerable<MovieViewModel> GetResults(MovieTypes type);
         IEnumerable<MovieViewModel> GetResultsUsingStorage(MovieTypes type, string username);
-        void AddAlreadyWatchedMovie(WatchedMovie movie);
-        void RemoveAlreadyWatchedMovie(WatchedMovie movie);
     }
 }

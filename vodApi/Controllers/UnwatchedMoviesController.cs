@@ -1,8 +1,8 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using vod.Core.Boundary.Interfaces;
-using vod.Core.Boundary.Model;
+using vod.Domain.Services.Boundary;
+using vod.Domain.Services.Boundary.Models;
 
 namespace vodApi.Controllers
 {
@@ -10,19 +10,19 @@ namespace vodApi.Controllers
     [ApiController]
     public class UnwatchedMoviesController : ControllerBase
     {
-        private ICoreLogic _coreLogic;
+        private readonly IAlreadyWatchedFilmService _alreadyWatchedFilmService;
 
-        public UnwatchedMoviesController(ICoreLogic coreLogic)
+        public UnwatchedMoviesController(IAlreadyWatchedFilmService alreadyWatchedFilmService)
         {
-            _coreLogic = coreLogic;
+            _alreadyWatchedFilmService = alreadyWatchedFilmService;
         }
 
         [HttpPost]
         [Authorize]
-        public void Post(WatchedMovie movie)
+        public void Post(AlreadyWatchedMovie movie)
         {
-            movie.Username = User.FindFirst(ClaimTypes.Name)?.Value;
-            _coreLogic.RemoveAlreadyWatchedMovie(movie);
+            movie.UserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            _alreadyWatchedFilmService.RemoveAt(movie.MovieId, movie.UserId);
         }
     }
 }

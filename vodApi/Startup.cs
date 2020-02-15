@@ -46,7 +46,7 @@ namespace vodApi
             services.AddSingleton(dbContextOptions);
             services.AddTransient<IAppDbContext, AppDbContext>();
 
-            services.AddDbContext<AuthDbContext>(option => option.UseSqlServer(Configuration.GetValue<string>("ConnectionStrings:DefaultConnection")));
+            services.AddDbContext<AppDbContext>(option => option.UseSqlServer(Configuration.GetValue<string>("ConnectionStrings:DefaultConnection")));
 
             services.AddIdentity<IdentityUser, IdentityRole>(
                 option =>
@@ -57,7 +57,7 @@ namespace vodApi
                     option.Password.RequireUppercase = true;
                     option.Password.RequireLowercase = true;
                 }
-            ).AddEntityFrameworkStores<AuthDbContext>()
+            ).AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
 
             services.AddAuthentication(option => {

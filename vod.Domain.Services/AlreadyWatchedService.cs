@@ -20,14 +20,14 @@ namespace vod.Domain.Services
             _mapper = mapper;
         }
 
-        public void Add(AlreadyWatchedMovie movie)
+        public void Add(AlreadyWatchedMovie userMovie)
         {
-            _repository.AddAlreadyWatched(_mapper.Map<AlreadyWatchedModel>(movie));
+            _repository.AddAlreadyWatched(_mapper.Map<UserMovieEntity>(userMovie));
         }
 
-        public void Remove(AlreadyWatchedMovie movie)
+        public void RemoveAt(int movieId, string userId)
         {
-            _repository.RemoveAlreadyWatched(_mapper.Map<AlreadyWatchedModel>(movie));
+            _repository.RemoveAlreadyWatched(movieId, userId);
         }
     }
 }

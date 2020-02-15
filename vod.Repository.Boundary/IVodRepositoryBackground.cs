@@ -8,7 +8,7 @@ namespace vod.Repository.Boundary
         void RefreshData(IEnumerable<MovieEntity> results, int type);
         MovieEntity ResultByTitle(string movieTitle);
         IList<MovieEntity> GetResultsOfType(int type);
-        void RemoveMovies(IEnumerable<MovieEntity> moviesToRemove);
+        void MarkAsDeleted(IEnumerable<MovieEntity> moviesToRemove);
         void AddMovies(IEnumerable<MovieEntity> moviesToAdd);
     }
 }

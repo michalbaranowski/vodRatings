@@ -24,11 +24,11 @@ export class ResultsService {
         return this.ajaxService.doGet<Result[]>(this.resultsUrl + "?filmType=" + type)
     }
 
-    setAsAlreadyWatched(title: string) {
-        return this.ajaxService.doPost(this.watchedMoviesUrl, {title: title});
+    setAsAlreadyWatched(movie: Result) {
+        return this.ajaxService.doPost(this.watchedMoviesUrl, movie);
     }
 
-    setAsUnwatched(title: string) {
-        return this.ajaxService.doPost(this.unwatchedMoviesUrl, {title: title});
+    setAsUnwatched(movie: Result) {
+        return this.ajaxService.doPost(this.unwatchedMoviesUrl, movie);
     }
 }
