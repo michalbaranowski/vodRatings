@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using vod.Repository.Boundary.Models;
 
 namespace vod.Repository.Boundary
@@ -9,5 +8,7 @@ namespace vod.Repository.Boundary
         void RefreshData(IEnumerable<ResultModel> results, int type);
         ResultModel ResultByTitle(string movieTitle);
         IList<ResultModel> GetResultsOfType(int type);
+        void RemoveMovies(IEnumerable<ResultModel> moviesToRemove);
+        void AddMovies(IEnumerable<ResultModel> moviesToAdd);
     }
 }

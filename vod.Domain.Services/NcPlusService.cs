@@ -1,4 +1,5 @@
 ﻿using MoreLinq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using vod.Domain.Services.Boundary.Interfaces;
@@ -15,6 +16,8 @@ namespace vod.Domain.Services
         private readonly IHtmlSourceGetter _sourceGetter;
         private readonly IHtmlSourceSerializer _serializer;
         private readonly IUrlGetter _urlGetter;
+        private IEnumerable<Movie> _results;
+        private DateTime _refreshDate;
 
         public NcPlusService(
             IHtmlSourceGetter sourceGetter,
@@ -28,6 +31,9 @@ namespace vod.Domain.Services
 
         public IEnumerable<Movie> GetMoviesOfType(MovieTypes type)
         {
+            if (_results != null && _results.Any() && _refreshDate.AddHours(1) >= DateTime.Now)
+                return _results;
+
             var urls = _urlGetter.GetBaseUrls();
             var result = new List<Movie>().AsEnumerable();
 
@@ -38,7 +44,9 @@ namespace vod.Domain.Services
                 result = result.Concat(serialized);
             }
 
-            return result.DistinctBy(n => n.Title);
+            _results = result.DistinctBy(n => n.Title);
+            _refreshDate = DateTime.Now;
+            return _results;
         }
     }
 }

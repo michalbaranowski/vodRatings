@@ -24,6 +24,7 @@ namespace vod.Domain.Services.Tests
         private Mock<IBackgroundWorker> _bgWorkerMock;
         private Mock<UpdateNotificationHub> _updateHubMock;
         private Mock<IHubCallerClients> _mockClients;
+        private Mock<IRefreshDataService> _refreshDataServiceMock;
         private IStoredDataManager _storedDataManager;
         private StoredDataManager _storedDataManager2;
         private UseStorageIfPossibleCommand _cmd;
@@ -55,13 +56,16 @@ namespace vod.Domain.Services.Tests
             _mockClients.Setup(x => x.All).Returns(new Mock<IClientProxy>().Object).Verifiable();
             fakeUpdateHub.Clients = _mockClients.Object;
 
-            _storedDataManager = new StoredDataManager(mapperMock.Object, _repositoryMock.Object, _repositoryBgMock.Object, _bgWorkerMock.Object, _updateHubMock.Object);
-            _storedDataManager2 = new StoredDataManager(mapperMock.Object, _repositoryMock.Object, _repositoryBgMock.Object, _fakeBgWorker, fakeUpdateHub);
+            _refreshDataServiceMock = new Mock<IRefreshDataService>();
+            _refreshDataServiceMock.Setup(x => x.Refresh(It.IsAny<MovieTypes>(), It.IsAny<Func<IEnumerable<FilmwebResult>>>()));
+
+            _storedDataManager = new StoredDataManager(mapperMock.Object, _repositoryMock.Object, _bgWorkerMock.Object, _refreshDataServiceMock.Object);
+            _storedDataManager2 = new StoredDataManager(mapperMock.Object, _repositoryMock.Object, _fakeBgWorker, _refreshDataServiceMock.Object);
 
             _cmd = new UseStorageIfPossibleCommand()
             {
                 Type = MovieTypes.Action,
-                Func = () => _fakeFilmwebResults
+                CrawlFunc = () => _fakeFilmwebResults
             };
         }
 
@@ -97,23 +101,13 @@ namespace vod.Domain.Services.Tests
         }
 
         [Test]
-        public void UseStorageIfPossible_ShouldCallRepositoryBackgroundIfRefreshNeeded()
+        public void UseStorageIfPossible_ShouldCallRefreshDataServiceIfNeeded()
         {
             BaseArrange(DateTime.Now.AddDays(-2));
 
             _storedDataManager2.UseStorageIfPossible(_cmd);
 
-            _repositoryBgMock.Verify(n => n.RefreshData(It.IsAny<IEnumerable<ResultModel>>(), It.IsAny<int>()), Times.Once);
-        }
-
-        [Test]
-        public void UseStorageIfPossible_ShouldCallNotifyUpdateIfRefreshNeeded()
-        {
-            BaseArrange(DateTime.Now.AddDays(-2));
-
-            _storedDataManager2.UseStorageIfPossible(_cmd);
-
-            _mockClients.Verify();
+            _refreshDataServiceMock.Verify(n => n.Refresh(_cmd.Type, _cmd.CrawlFunc), Times.Once);
         }
     }
 }

@@ -22,7 +22,12 @@ namespace vod.Domain.Services
         public IEnumerable<FilmwebResult> GetFilmwebResults(MovieTypes type)
         {
             var ncPlusResult = _ncPlusService.GetMoviesOfType(type);
-            var results = ncPlusResult
+            return GetFilmwebResultsByNcPlusResults(ncPlusResult);
+        }
+
+        public IEnumerable<FilmwebResult> GetFilmwebResultsByNcPlusResults(IEnumerable<Movie> movies)
+        {
+            var results = movies
                 .Select(n => _filmwebService.GetFilmwebResult(n))
                 .Where(n => n != null)
                 .ToList();

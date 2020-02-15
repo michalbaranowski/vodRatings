@@ -6,6 +6,7 @@ using vod.Domain.Services.Boundary.Commands;
 using vod.Domain.Services.Boundary.Interfaces;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
+using vod.Domain.Services.Utils;
 using vod.Repository.Boundary;
 using vod.Repository.Boundary.Models;
 using vod.SignalR.Hub.Hub;
@@ -18,20 +19,19 @@ namespace vod.Domain.Services
         private readonly IVodRepository _repository;
         private readonly IVodRepositoryBackground _repositoryBackground;
         private readonly IBackgroundWorker _backgroundWorker;
+        private readonly IRefreshDataService _refreshDataService;
         private readonly UpdateNotificationHub _notificationHub;
 
         public StoredDataManager(
             IMapper mapper,
             IVodRepository repository,
-            IVodRepositoryBackground repositoryBackground,
             IBackgroundWorker backgroundWorker,
-            UpdateNotificationHub notificationHub)
+            IRefreshDataService refreshDataService)
         {
             _mapper = mapper;
             _repository = repository;
-            _repositoryBackground = repositoryBackground;
             _backgroundWorker = backgroundWorker;
-            _notificationHub = notificationHub;
+            _refreshDataService = refreshDataService;
         }
 
         public IEnumerable<FilmwebResult> UseStorageIfPossible(UseStorageIfPossibleCommand command)
@@ -49,27 +49,18 @@ namespace vod.Domain.Services
                 movie.IsAlreadyWatched = true;
             }
 
-            UseStorageInternal(storedCollection, command.Type, command.Func);
+            RefreshIfNeeded(storedCollection, command.Type, command.CrawlFunc);
             return storedCollection.Select(n => _mapper.Map<FilmwebResult>(n));
         }
 
-        private void UseStorageInternal(
+        private void RefreshIfNeeded(
             List<ResultModel> storedCollection,
             MovieTypes type,
             Func<IEnumerable<FilmwebResult>> func)
         {
-            if ((!storedCollection.Any() ||
-                 storedCollection.FirstOrDefault()?.RefreshDate < DateTime.Now.AddDays(-1)))
+            if (storedCollection.Any() == false || storedCollection.NeedRefresh())
             {
-                _backgroundWorker.Execute(type, () =>
-                {
-                    _notificationHub.NotifyRefreshStarted(type);
-                    var results = func().ToList();
-                    var entities = results.Select(n => _mapper.Map<ResultModel>(n));
-                    _repositoryBackground.RefreshData(entities, (int)type);
-                    _notificationHub.NotifyUpdate(type);
-                    return true;
-                });
+                _backgroundWorker.Execute(type, () => _refreshDataService.Refresh(type, func));
             }
 
         }

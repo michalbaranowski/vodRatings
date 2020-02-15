@@ -59,5 +59,23 @@ namespace vod.Repository
                 return ctx.Results.Where(n => n.VodFilmType == type).ToList();
             }
         }
+
+        public void RemoveMovies(IEnumerable<ResultModel> moviesToRemove)
+        {
+            using (var ctx = new AppDbContext(_opt))
+            {
+                ctx.RemoveRange(moviesToRemove);
+                ctx.SaveChanges();
+            }
+        }
+
+        public void AddMovies(IEnumerable<ResultModel> moviesToAdd)
+        {
+            using (var ctx = new AppDbContext(_opt))
+            {
+                ctx.AddRange(moviesToAdd);
+                ctx.SaveChanges();
+            }
+        }
     }
 }
