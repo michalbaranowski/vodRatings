@@ -19,7 +19,8 @@ namespace vodApi.MapProfiles
             CreateMap<FilmwebResult, ResultModel>()
                 .ForMember(x => x.Cast,
                     opt => opt.MapFrom(
-                        src => string.Join(", ", src.Cast)));
+                        src => string.Join(", ", src.Cast)))
+                        .ForMember(x => x.Id, opt => opt.Ignore());
 
             CreateMap<ResultModel, FilmwebResult>()
                 .ForMember(x => x.FilmwebRating,
