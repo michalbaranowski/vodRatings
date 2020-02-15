@@ -25,7 +25,7 @@ namespace vod.Domain.Services
             return GetFilmwebResultsByNcPlusResults(ncPlusResult);
         }
 
-        public IEnumerable<FilmwebResult> GetFilmwebResultsByNcPlusResults(IEnumerable<Movie> movies)
+        public IEnumerable<FilmwebResult> GetFilmwebResultsByNcPlusResults(IEnumerable<NcPlusResult> movies)
         {
             var results = movies
                 .Select(n => _filmwebService.GetFilmwebResult(n))

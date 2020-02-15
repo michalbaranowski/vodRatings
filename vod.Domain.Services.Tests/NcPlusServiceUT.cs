@@ -25,11 +25,11 @@ namespace vod.Domain.Services.Tests
 
             _serializerMock = new Mock<IHtmlSourceSerializer>();
             _serializerMock.SetupSequence(x => x.SerializeMovies(It.IsAny<HtmlDocument>(), It.IsAny<MovieTypes>()))
-                .Returns(new List<Movie>() {new Movie() {Title = "title1"}})
-                .Returns(new List<Movie>() {new Movie() {Title = "title2"}, new Movie() {Title = "title2"}})
-                .Returns(new List<Movie>() {new Movie() {Title = "title3"}})
-                .Returns(new List<Movie>() {new Movie() {Title = "title4"}})
-                .Returns(new List<Movie>() {new Movie() {Title = "title5"}});
+                .Returns(new List<NcPlusResult>() {new NcPlusResult() {Title = "title1"}})
+                .Returns(new List<NcPlusResult>() {new NcPlusResult() {Title = "title2"}, new NcPlusResult() {Title = "title2"}})
+                .Returns(new List<NcPlusResult>() {new NcPlusResult() {Title = "title3"}})
+                .Returns(new List<NcPlusResult>() {new NcPlusResult() {Title = "title4"}})
+                .Returns(new List<NcPlusResult>() {new NcPlusResult() {Title = "title5"}});
 
             _urlGetterFake = new UrlGetter();
             

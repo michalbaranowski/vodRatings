@@ -19,7 +19,7 @@ namespace vod.Domain.Services.Tests
     public class FilmwebServiceUT
     {
         private FilmwebService _fakeFilmwebService;
-        private List<ResultModel> _fakeStoredCollection;
+        private List<MovieEntity> _fakeStoredCollection;
         private Mock<IVodRepositoryBackground> _repoBackgroundMock;
         private FilmwebResult _expectedResult;
         private Mock<IHtmlSourceGetter> _htmlSourceGetterMock;
@@ -37,16 +37,16 @@ namespace vod.Domain.Services.Tests
             _sourceSerializerMock.Setup(x => x.SerializeFilmwebUrl(It.IsAny<HtmlDocument>(), It.IsAny<List<string>>())).Returns("testurl");
             _sourceSerializerMock.Setup(x => x.SerializeFilmwebResult(It.IsAny<HtmlDocument>(), It.IsAny<MovieTypes>(), It.IsAny<string>(), It.IsAny<string>())).Returns(_expectedResult);
 
-            var resultModelMock = new Mock<ResultModel>();
+            var resultModelMock = new Mock<MovieEntity>();
             resultModelMock.SetupAllProperties();
             resultModelMock.Object.Title = TEST_TITLE;
 
-            _fakeStoredCollection = new List<ResultModel> { resultModelMock.Object };
+            _fakeStoredCollection = new List<MovieEntity> { resultModelMock.Object };
             _repoBackgroundMock = new Mock<IVodRepositoryBackground>();
             _repoBackgroundMock.Setup(x => x.GetResultsOfType(It.IsAny<int>())).Returns(_fakeStoredCollection);
 
             _mapperMock = new Mock<IMapper>();
-            _mapperMock.Setup(x => x.Map<FilmwebResult>(It.IsAny<ResultModel>())).Returns(_expectedResult);
+            _mapperMock.Setup(x => x.Map<FilmwebResult>(It.IsAny<MovieEntity>())).Returns(_expectedResult);
 
             _fakeFilmwebService = new FilmwebService(
                 _htmlSourceGetterMock.Object,
@@ -59,11 +59,11 @@ namespace vod.Domain.Services.Tests
         public void GetFilmwebResults_ShouldUseStoredDataIfExists()
         {
             BaseArrange();
-            var movie = new Movie() { Title = TEST_TITLE };
+            var movie = new NcPlusResult() { Title = TEST_TITLE };
 
             var result = _fakeFilmwebService.GetFilmwebResult(movie);
 
-            _mapperMock.Verify(x => x.Map<FilmwebResult>(It.IsAny<ResultModel>()));
+            _mapperMock.Verify(x => x.Map<FilmwebResult>(It.IsAny<MovieEntity>()));
             
         }
 
@@ -71,7 +71,7 @@ namespace vod.Domain.Services.Tests
         public void GetFilmwebResults_SearchFilmwebResult()
         {
             BaseArrange();
-            var movie = new Movie() { Title = It.IsAny<string>(), MoreInfoUrl="test" };
+            var movie = new NcPlusResult() { Title = It.IsAny<string>(), MoreInfoUrl="test" };
 
             var result = _fakeFilmwebService.GetFilmwebResult(movie);
 
@@ -82,7 +82,7 @@ namespace vod.Domain.Services.Tests
         public void GetFilmwebResults_GetsStoredDataOnlyOncePerLifeScope()
         {
             BaseArrange();
-            var movie = new Movie();
+            var movie = new NcPlusResult();
 
             for (int i = 0; i < 2; i++)
             {
@@ -99,7 +99,7 @@ namespace vod.Domain.Services.Tests
             _sourceSerializerMock
                 .Setup(x => x.SerializeFilmwebUrl(It.IsAny<HtmlDocument>(), It.IsAny<List<string>>()))
                 .Returns(string.Empty);
-            var movie = new Movie() { Title = It.IsAny<string>(), MoreInfoUrl = "test" };
+            var movie = new NcPlusResult() { Title = It.IsAny<string>(), MoreInfoUrl = "test" };
 
             var result = _fakeFilmwebService.GetFilmwebResult(movie);
 

@@ -20,7 +20,7 @@ namespace vod.Domain.Services.Tests
     {
         private Mock<IVodRepository> _repositoryMock;
         private Mock<IVodRepositoryBackground> _repositoryBgMock;
-        private List<ResultModel> _fakeStoredCollection;
+        private List<MovieEntity> _fakeStoredCollection;
         private Mock<IBackgroundWorker> _bgWorkerMock;
         private Mock<UpdateNotificationHub> _updateHubMock;
         private Mock<IHubCallerClients> _mockClients;
@@ -34,9 +34,9 @@ namespace vod.Domain.Services.Tests
         private void BaseArrange(DateTime? fakeStoredDate = null)
         {
             var dateNow = DateTime.Now;
-            var fakeResultModel = new ResultModel() {Title = "test", StoredDate = fakeStoredDate ?? dateNow, RefreshDate = fakeStoredDate ?? dateNow};
+            var fakeResultModel = new MovieEntity() {Title = "test", StoredDate = fakeStoredDate ?? dateNow, RefreshDate = fakeStoredDate ?? dateNow};
             var fakeFilmwebResult = new FilmwebResult() {Title = "test", StoredDate = dateNow };
-            _fakeStoredCollection = new List<ResultModel>() {fakeResultModel};
+            _fakeStoredCollection = new List<MovieEntity>() {fakeResultModel};
             _fakeFilmwebResults = new List<FilmwebResult>() {fakeFilmwebResult};
             _repositoryMock = new Mock<IVodRepository>();
             _repositoryMock.Setup(x => x.GetStoredData(It.IsAny<int>())).Returns(_fakeStoredCollection);

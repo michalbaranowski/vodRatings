@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using vod.Repository.Boundary.Models;
 
 namespace vod.Repository.Boundary
@@ -9,8 +10,9 @@ namespace vod.Repository.Boundary
         {
             
         }
-        public DbSet<ResultModel> Results { get; set; }
+        public DbSet<MovieEntity> Movies { get; set; }
 
+        [Obsolete("Do wywalenia docelowo")]
         public DbSet<AlreadyWatchedModel> AlreadyWatched { get; set; }
 
         public void EnsureCreated()

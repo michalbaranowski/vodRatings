@@ -54,7 +54,7 @@ namespace vod.Domain.Services
         }
 
         private void RefreshIfNeeded(
-            List<ResultModel> storedCollection,
+            List<MovieEntity> storedCollection,
             MovieTypes type,
             Func<IEnumerable<FilmwebResult>> func)
         {

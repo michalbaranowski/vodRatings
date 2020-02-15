@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace vod.Repository.Boundary.Models
 {
     [Table("Result")]
-    public class ResultModel
+    public class MovieEntity
     {
         [Key]
         public int Id { get; set; }

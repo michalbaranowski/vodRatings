@@ -5,6 +5,6 @@ namespace vod.Domain.Services.Boundary.Interfaces
 {
     public interface IFilmwebService
     {
-        FilmwebResult GetFilmwebResult(Movie movie);
+        FilmwebResult GetFilmwebResult(NcPlusResult movie);
     }
 }

@@ -8,7 +8,7 @@ namespace vod.Domain.Services.Utils
 {
     public static class Extension
     {
-        public static bool NeedRefresh(this IList<ResultModel> collection)
+        public static bool NeedRefresh(this IList<MovieEntity> collection)
         {
             return collection.FirstOrDefault()?.RefreshDate < DateTime.Now.AddDays(-1);
         }

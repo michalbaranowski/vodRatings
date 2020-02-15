@@ -12,17 +12,17 @@ namespace vodApi.MapProfiles
         {
             CreateMap<WatchedMovie, AlreadyWatchedMovie>();
             CreateMap<AlreadyWatchedMovie, AlreadyWatchedModel>();
-            CreateMap<FilmwebResult, Result>();
-            CreateMap<Result, FilmwebResult>();
-            CreateMap<Result, ResultModel>();
-            CreateMap<ResultModel, Result>();
-            CreateMap<FilmwebResult, ResultModel>()
+            CreateMap<FilmwebResult, MovieViewModel>();
+            CreateMap<MovieViewModel, FilmwebResult>();
+            CreateMap<MovieViewModel, MovieEntity>();
+            CreateMap<MovieEntity, MovieViewModel>();
+            CreateMap<FilmwebResult, MovieEntity>()
                 .ForMember(x => x.Cast,
                     opt => opt.MapFrom(
                         src => string.Join(", ", src.Cast)))
                         .ForMember(x => x.Id, opt => opt.Ignore());
 
-            CreateMap<ResultModel, FilmwebResult>()
+            CreateMap<MovieEntity, FilmwebResult>()
                 .ForMember(x => x.FilmwebRating,
                     opt => opt.MapFrom(
                         src => src.FilmwebRating >= 10

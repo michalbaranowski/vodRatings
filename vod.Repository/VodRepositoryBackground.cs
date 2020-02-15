@@ -16,22 +16,22 @@ namespace vod.Repository
             _opt = opt;
         }
 
-        public void RefreshData(IEnumerable<ResultModel> results, int type)
+        public void RefreshData(IEnumerable<MovieEntity> results, int type)
         {
             using (var ctx = new AppDbContext(_opt))
             {
-                ctx.Results.RemoveRange(ctx.Results.Where(n=>n.VodFilmType == type));
+                ctx.Movies.RemoveRange(ctx.Movies.Where(n=>n.VodFilmType == type));
                 ctx.SaveChanges();
 
                 var resultsList = results.ToList();
                 resultsList = AddStoredAndRefreshDate(resultsList);
 
-                ctx.Results.AddRange(resultsList);
+                ctx.Movies.AddRange(resultsList);
                 ctx.SaveChanges();
             }
         }
 
-        private List<ResultModel> AddStoredAndRefreshDate(List<ResultModel> results)
+        private List<MovieEntity> AddStoredAndRefreshDate(List<MovieEntity> results)
         {
             foreach (var result in results)
             {
@@ -44,23 +44,23 @@ namespace vod.Repository
             return results;
         }
 
-        public ResultModel ResultByTitle(string movieTitle)
+        public MovieEntity ResultByTitle(string movieTitle)
         {
             using (var ctx = new AppDbContext(_opt))
             {
-                return ctx.Results.FirstOrDefault(n => n.Title == movieTitle);
+                return ctx.Movies.FirstOrDefault(n => n.Title == movieTitle);
             }
         }
 
-        public IList<ResultModel> GetResultsOfType(int type)
+        public IList<MovieEntity> GetResultsOfType(int type)
         {
             using (var ctx = new AppDbContext(_opt))
             {
-                return ctx.Results.Where(n => n.VodFilmType == type).ToList();
+                return ctx.Movies.Where(n => n.VodFilmType == type).ToList();
             }
         }
 
-        public void RemoveMovies(IEnumerable<ResultModel> moviesToRemove)
+        public void RemoveMovies(IEnumerable<MovieEntity> moviesToRemove)
         {
             using (var ctx = new AppDbContext(_opt))
             {
@@ -69,7 +69,7 @@ namespace vod.Repository
             }
         }
 
-        public void AddMovies(IEnumerable<ResultModel> moviesToAdd)
+        public void AddMovies(IEnumerable<MovieEntity> moviesToAdd)
         {
             using (var ctx = new AppDbContext(_opt))
             {

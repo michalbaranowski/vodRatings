@@ -6,8 +6,8 @@ namespace vod.Core.Boundary.Interfaces
 {
     public interface ICoreLogic
     {
-        IEnumerable<Result> GetResults(MovieTypes type);
-        IEnumerable<Result> GetResultsUsingStorage(MovieTypes type, string username);
+        IEnumerable<MovieViewModel> GetResults(MovieTypes type);
+        IEnumerable<MovieViewModel> GetResultsUsingStorage(MovieTypes type, string username);
         void AddAlreadyWatchedMovie(WatchedMovie movie);
         void RemoveAlreadyWatchedMovie(WatchedMovie movie);
     }

@@ -7,6 +7,6 @@ namespace vod.Domain.Services.Boundary
     public interface IFilmwebResultsProvider
     {
         IEnumerable<FilmwebResult> GetFilmwebResults(MovieTypes type);
-        IEnumerable<FilmwebResult> GetFilmwebResultsByNcPlusResults(IEnumerable<Movie> movies);
+        IEnumerable<FilmwebResult> GetFilmwebResultsByNcPlusResults(IEnumerable<NcPlusResult> movies);
     }
 }

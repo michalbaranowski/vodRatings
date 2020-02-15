@@ -16,7 +16,7 @@ namespace vod.Domain.Services
         private readonly IHtmlSourceGetter _sourceGetter;
         private readonly IHtmlSourceSerializer _serializer;
         private readonly IUrlGetter _urlGetter;
-        private IEnumerable<Movie> _results;
+        private IEnumerable<NcPlusResult> _results;
         private DateTime _refreshDate;
 
         public NcPlusService(
@@ -29,13 +29,13 @@ namespace vod.Domain.Services
             _urlGetter = urlGetter;
         }
 
-        public IEnumerable<Movie> GetMoviesOfType(MovieTypes type)
+        public IEnumerable<NcPlusResult> GetMoviesOfType(MovieTypes type)
         {
             if (_results != null && _results.Any() && _refreshDate.AddHours(1) >= DateTime.Now)
                 return _results;
 
             var urls = _urlGetter.GetBaseUrls();
-            var result = new List<Movie>().AsEnumerable();
+            var result = new List<NcPlusResult>().AsEnumerable();
 
             foreach (var baseUrl in urls)
             {

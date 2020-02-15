@@ -17,7 +17,7 @@ namespace vod.Domain.Services
         private readonly IHtmlSourceSerializer _sourceSerializer;
         private readonly IVodRepositoryBackground _repositoryBackground;
         private readonly IMapper _mapper;
-        private IList<ResultModel> _storedData;
+        private IList<MovieEntity> _storedData;
 
         public FilmwebService(
             IHtmlSourceGetter sourceGetter,
@@ -31,7 +31,7 @@ namespace vod.Domain.Services
             _mapper = mapper;
         }
 
-        public FilmwebResult GetFilmwebResult(Movie movie)
+        public FilmwebResult GetFilmwebResult(NcPlusResult movie)
         {
             if (_storedData == null || !_storedData.Any())
                 _storedData = _repositoryBackground.GetResultsOfType((int)movie.MovieType);
@@ -39,7 +39,7 @@ namespace vod.Domain.Services
             return GetFromStoredData(movie) ?? SearchFilmwebResult(movie);
         }
 
-        private FilmwebResult SearchFilmwebResult(Movie movie)
+        private FilmwebResult SearchFilmwebResult(NcPlusResult movie)
         {
             var moreInfoHtml = _sourceGetter.GetHtmlFrom($"{NcPlusUrls.NcPlusGoUrl}{movie.MoreInfoUrl}");
             movie.OriginalTitle = _sourceSerializer.SerializeOriginalTitle(moreInfoHtml);
@@ -58,7 +58,7 @@ namespace vod.Domain.Services
             return result;
         }
 
-        private FilmwebResult GetFromStoredData(Movie movie)
+        private FilmwebResult GetFromStoredData(NcPlusResult movie)
         {
             if (_storedData.Any(n => n.Title == movie.Title))
                 return _mapper.Map<FilmwebResult>(_storedData.FirstOrDefault(n => n.Title == movie.Title));

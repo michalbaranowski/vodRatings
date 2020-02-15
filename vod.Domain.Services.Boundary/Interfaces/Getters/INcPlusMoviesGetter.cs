@@ -6,6 +6,6 @@ namespace vod.Domain.Services.Boundary.Interfaces.Getters
 {
     public interface INcPlusMoviesGetter
     {
-        IEnumerable<Movie> GetMoviesOfType(MovieTypes type);
+        IEnumerable<NcPlusResult> GetMoviesOfType(MovieTypes type);
     }
 }

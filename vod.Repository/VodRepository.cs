@@ -39,9 +39,9 @@ namespace vod.Repository
             return _context.AlreadyWatched.Where(n => n.Username == username);
         }
 
-        public IEnumerable<ResultModel> GetStoredData(int type)
+        public IEnumerable<MovieEntity> GetStoredData(int type)
         {
-            return _context.Results.Where(n=>n.VodFilmType == type);
+            return _context.Movies.Where(n=>n.VodFilmType == type);
         }
     }
 }

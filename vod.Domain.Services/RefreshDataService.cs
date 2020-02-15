@@ -42,7 +42,7 @@ namespace vod.Domain.Services
 
             var moviesToRemove = dbResults.Where(n => ncPlusMovies.Any(p => p.Title == n.Title) == false);
             var ncPlusMoviesToAdd = ncPlusMovies.Where(n => dbResults.Any(p => p.Title == n.Title) == false);
-            var moviesToAdd = _filmwebResultsProvider.GetFilmwebResultsByNcPlusResults(ncPlusMoviesToAdd).Select(n => _mapper.Map<ResultModel>(n));
+            var moviesToAdd = _filmwebResultsProvider.GetFilmwebResultsByNcPlusResults(ncPlusMoviesToAdd).Select(n => _mapper.Map<MovieEntity>(n));
 
             _repositoryBackground.RemoveMovies(moviesToRemove);
             _repositoryBackground.AddMovies(moviesToAdd);
@@ -54,7 +54,7 @@ namespace vod.Domain.Services
         {
             _notificationHub.NotifyRefreshStarted(type);
             var results = func().ToList();
-            var entities = results.Select(n => _mapper.Map<ResultModel>(n));
+            var entities = results.Select(n => _mapper.Map<MovieEntity>(n));
             _repositoryBackground.RefreshData(entities, (int)type);
             _notificationHub.NotifyUpdate(type);
 

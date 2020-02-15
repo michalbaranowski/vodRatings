@@ -5,10 +5,10 @@ namespace vod.Repository.Boundary
 {
     public interface IVodRepositoryBackground
     {
-        void RefreshData(IEnumerable<ResultModel> results, int type);
-        ResultModel ResultByTitle(string movieTitle);
-        IList<ResultModel> GetResultsOfType(int type);
-        void RemoveMovies(IEnumerable<ResultModel> moviesToRemove);
-        void AddMovies(IEnumerable<ResultModel> moviesToAdd);
+        void RefreshData(IEnumerable<MovieEntity> results, int type);
+        MovieEntity ResultByTitle(string movieTitle);
+        IList<MovieEntity> GetResultsOfType(int type);
+        void RemoveMovies(IEnumerable<MovieEntity> moviesToRemove);
+        void AddMovies(IEnumerable<MovieEntity> moviesToAdd);
     }
 }

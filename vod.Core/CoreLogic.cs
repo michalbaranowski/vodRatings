@@ -32,15 +32,15 @@ namespace vod.Core
             _alreadyWatchedFilmService = alreadyWatchedFilmService;
         }
 
-        public IEnumerable<Result> GetResults(MovieTypes type)
+        public IEnumerable<MovieViewModel> GetResults(MovieTypes type)
         {
             return _filmwebResultsProvider.GetFilmwebResults(type)                
-                .Select(n => _mapper.Map<Result>(n))
+                .Select(n => _mapper.Map<MovieViewModel>(n))
                 .OrderByDescending(n => n.FilmwebRating)
                 .AddNewFlagIfNeeded();
         }
 
-        public IEnumerable<Result> GetResultsUsingStorage(MovieTypes type, string username)
+        public IEnumerable<MovieViewModel> GetResultsUsingStorage(MovieTypes type, string username)
         {
             var cmd = new UseStorageIfPossibleCommand()
             {
@@ -50,7 +50,7 @@ namespace vod.Core
             };
 
             return _storedDataManager.UseStorageIfPossible(cmd)
-                    .Select(n => _mapper.Map<Result>(n))
+                    .Select(n => _mapper.Map<MovieViewModel>(n))
                     .OrderByDescending(n => n.FilmwebRating)
                     .AddNewFlagIfNeeded();
         }

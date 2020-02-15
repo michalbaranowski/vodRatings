@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace vod.Core.Boundary.Model
 {
-    public class Result
+    public class MovieViewModel
     {
         public int Id { get; set; }
         public string Title { get; set; }

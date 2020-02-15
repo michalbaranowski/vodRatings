@@ -11,7 +11,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
 {
     public class HtmlSourceSerializer : IHtmlSourceSerializer
     {
-        public IEnumerable<Movie> SerializeMovies(HtmlDocument html, MovieTypes type)
+        public IEnumerable<NcPlusResult> SerializeMovies(HtmlDocument html, MovieTypes type)
         {
             var divs = html.DocumentNode.Descendants("div")
                 .Where(x => x.Attributes.Contains("title"));
@@ -21,7 +21,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
             var provider = providerNode?.InnerHtml.Split("\n")[0].Trim();
 
             return divs.Select(n =>
-                    new Movie()
+                    new NcPlusResult()
                     {
                         Title = n.Attributes?
                             .FirstOrDefault(p => p.Name == "title")?
