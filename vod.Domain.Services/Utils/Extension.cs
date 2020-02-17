@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using vod.Repository.Boundary.Models;
 
 namespace vod.Domain.Services.Utils
 {
     public static class Extension
     {
-        public static bool NeedRefresh(this IList<MovieEntity> collection)
+        public static IEnumerable<MovieEntity> FillStoredDate(this IEnumerable<MovieEntity> collection)
         {
-            return collection.FirstOrDefault()?.RefreshDate < DateTime.Now.AddDays(-1);
+            foreach (var item in collection)
+            {
+                item.StoredDate = DateTime.Now;
+                yield return item;
+            }
         }
     }
 }

@@ -240,6 +240,21 @@ namespace vod.Repository.Boundary.Migrations
                     b.ToTable("Movie");
                 });
 
+            modelBuilder.Entity("vod.Repository.Boundary.Models.UpdateLogEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MovieType");
+
+                    b.Property<DateTime>("UpdateDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UpdateLog");
+                });
+
             modelBuilder.Entity("vod.Repository.Boundary.Models.UserMovieEntity", b =>
                 {
                     b.Property<int>("Id")

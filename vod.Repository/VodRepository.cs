@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using vod.Repository.Boundary;
 using vod.Repository.Boundary.Models;
 
@@ -41,6 +42,14 @@ namespace vod.Repository
         public IQueryable<MovieEntity> GetStoredData(int type)
         {
             return _context.Movies.Where(n=>n.VodFilmType == type && n.IsDeleted == false);
+        }
+
+        public DateTime GetUpdateDateTime(int movieType)
+        {
+            return _context.UpdateLogs
+                .Where(n => n.MovieType == movieType).OrderBy(n => n.Id)
+                .Select(n => n.UpdateDate)
+                .FirstOrDefault();
         }
     }
 }

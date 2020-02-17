@@ -82,5 +82,25 @@ namespace vod.Repository
                 ctx.SaveChanges();
             }
         }
+
+        public void LogUpdate(int movieType)
+        {
+            using (var ctx = new AppDbContext(_opt))
+            {
+                ctx.UpdateLogs.Add(new UpdateLogEntity() { UpdateDate = DateTime.Now, MovieType = movieType });
+                ctx.SaveChanges();
+            }
+        }
+
+        public DateTime GetUpdateDateTime(int movieType)
+        {
+            using (var ctx = new AppDbContext(_opt))
+            {
+                return ctx.UpdateLogs
+                    .Where(n => n.MovieType == movieType).OrderBy(n => n.Id)
+                    .Select(n => n.UpdateDate)
+                    .FirstOrDefault();
+            }
+        }
     }
 }

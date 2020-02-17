@@ -53,12 +53,14 @@ namespace vod.Domain.Services
             return storedCollection.Select(n => _mapper.Map<FilmwebResult>(n));
         }
 
+        private bool IsUpdateNeeded(MovieTypes type) => _repository.GetUpdateDateTime((int)type).AddDays(1) <= DateTime.Now;
+
         private void RefreshIfNeeded(
             List<MovieEntity> storedCollection,
             MovieTypes type,
             Func<IEnumerable<FilmwebResult>> func)
         {
-            if (storedCollection.Any() == false || storedCollection.NeedRefresh())
+            if (storedCollection.Any() == false || IsUpdateNeeded(type))
             {
                 _backgroundWorker.Execute(type, () => _refreshDataService.Refresh(type, func));
             }

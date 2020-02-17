@@ -19,6 +19,8 @@ namespace vod.Repository.Boundary
 
         public DbSet<UserMovieEntity> UserMovies { get; set; }
 
+        public DbSet<UpdateLogEntity> UpdateLogs { get; set; }
+
         public void EnsureCreated()
         {
             Database.EnsureCreated();

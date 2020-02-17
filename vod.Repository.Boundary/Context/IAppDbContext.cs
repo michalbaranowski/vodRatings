@@ -9,6 +9,7 @@ namespace vod.Repository.Boundary
     {
         DbSet<MovieEntity> Movies { get; set; }
         DbSet<UserMovieEntity> UserMovies { get; }
+        DbSet<UpdateLogEntity> UpdateLogs { get; set; }
 
         [Obsolete]
         DbSet<AlreadyWatchedModel> AlreadyWatched { get; }

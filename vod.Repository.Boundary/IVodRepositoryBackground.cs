@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using vod.Repository.Boundary.Models;
 
 namespace vod.Repository.Boundary
@@ -10,5 +11,6 @@ namespace vod.Repository.Boundary
         IList<MovieEntity> GetResultsOfType(int type);
         void MarkAsDeleted(IEnumerable<MovieEntity> moviesToRemove);
         void AddMovies(IEnumerable<MovieEntity> moviesToAdd);
+        void LogUpdate(int movieType);
     }
 }
