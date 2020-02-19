@@ -46,10 +46,11 @@ namespace vod.Repository
 
         public DateTime GetUpdateDateTime(int movieType)
         {
-            return _context.UpdateLogs
-                .Where(n => n.MovieType == movieType).OrderBy(n => n.Id)
+            var result = _context.UpdateLogs
+                .Where(n => n.MovieType == movieType).OrderByDescending(n => n.Id)
                 .Select(n => n.UpdateDate)
                 .FirstOrDefault();
+            return result;
         }
     }
 }
