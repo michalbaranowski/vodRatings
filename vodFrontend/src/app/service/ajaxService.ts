@@ -18,6 +18,10 @@ export class AjaxService {
         return this.http.post<T>(url, data, this.prepareOptions());
     }
 
+    doDelete<T>(url: string, idToDelete: number) {
+        return this.http.delete<T>(url + "?idToDelete=" + idToDelete, this.prepareOptions())
+    }
+
     private prepareOptions() {
         let token = this.tokenHandler.getToken();
         let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token});  

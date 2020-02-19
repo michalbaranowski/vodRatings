@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using vod.Core.Boundary.Interfaces;
-using vod.Core.Boundary.Model;
 using vod.Domain.Services.Boundary;
 using vod.Domain.Services.Boundary.Models;
 
@@ -30,6 +23,14 @@ namespace vodApi.Controllers
         {
             movie.UserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             _alreadyWatchedFilmService.Add(movie);
+        }
+
+        [HttpDelete]
+        [Authorize]
+        public void Delete(int idToDelete)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            _alreadyWatchedFilmService.RemoveAt(idToDelete, userId);
         }
     }
 }
