@@ -56,16 +56,5 @@ namespace vod.Domain.Services
             _notificationHub.NotifyUpdate(type);
             return SUCCESS_STATE;
         }
-
-        private bool OldRefresh(MovieTypes type, Func<IEnumerable<FilmwebResult>> func)
-        {
-            _notificationHub.NotifyRefreshStarted(type);
-            var results = func().ToList();
-            var entities = results.Select(n => _mapper.Map<MovieEntity>(n));
-            _repositoryBackground.RefreshData(entities, (int)type);
-            _notificationHub.NotifyUpdate(type);
-
-            return SUCCESS_STATE;
-        }
     }
 }

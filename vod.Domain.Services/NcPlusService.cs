@@ -16,8 +16,8 @@ namespace vod.Domain.Services
         private readonly IHtmlSourceGetter _sourceGetter;
         private readonly IHtmlSourceSerializer _serializer;
         private readonly IUrlGetter _urlGetter;
-        private IEnumerable<NcPlusResult> _results;
-        private DateTime _refreshDate;
+        private Dictionary<MovieTypes, IEnumerable<NcPlusResult>> _results;
+        private Dictionary<MovieTypes, DateTime> _refreshDate;
 
         public NcPlusService(
             IHtmlSourceGetter sourceGetter,
@@ -27,12 +27,15 @@ namespace vod.Domain.Services
             _sourceGetter = sourceGetter;
             _serializer = serializer;
             _urlGetter = urlGetter;
+
+            _results = new Dictionary<MovieTypes, IEnumerable<NcPlusResult>>();
+            _refreshDate = new Dictionary<MovieTypes, DateTime>();
         }
 
         public IEnumerable<NcPlusResult> GetMoviesOfType(MovieTypes type)
         {
-            if (_results != null && _results.Any() && _refreshDate.AddHours(1) >= DateTime.Now)
-                return _results;
+            if (IsStoredDataAvailable(type))
+                return _results[type];
 
             var urls = _urlGetter.GetBaseUrls();
             var result = new List<NcPlusResult>().AsEnumerable();
@@ -44,9 +47,26 @@ namespace vod.Domain.Services
                 result = result.Concat(serialized);
             }
 
-            _results = result.DistinctBy(n => n.Title);
-            _refreshDate = DateTime.Now;
-            return _results;
+            StoreData(type, result);
+            return _results[type];
+        }
+
+        private bool IsStoredDataAvailable(MovieTypes type)
+        {
+            return _results.ContainsKey(type) && _results[type] != null && _results[type].Any() && _refreshDate[type].AddHours(1) >= DateTime.Now;
+        }
+
+        private void StoreData(MovieTypes type, IEnumerable<NcPlusResult> result)
+        {
+            if (_results.ContainsKey(type) == false)
+                _results.Add(type, result.DistinctBy(n => n.Title));
+            else
+                _results[type] = result.DistinctBy(n => n.Title);
+
+            if (_refreshDate.ContainsKey(type) == false)
+                _refreshDate.Add(type, DateTime.Now);
+            else
+                _refreshDate[type] = DateTime.Now;
         }
     }
 }

@@ -31,11 +31,10 @@ namespace vod.Domain.Services.Tests
         private List<FilmwebResult> _fakeFilmwebResults;
         private BackgroundWorker _fakeBgWorker;
 
-        private void BaseArrange(DateTime? fakeStoredDate = null)
+        private void BaseArrange()
         {
-            var dateNow = DateTime.Now;
-            var fakeResultModel = new MovieEntity() {Title = "test", StoredDate = fakeStoredDate ?? dateNow, RefreshDate = fakeStoredDate ?? dateNow};
-            var fakeFilmwebResult = new FilmwebResult() {Title = "test", StoredDate = dateNow };
+            var fakeResultModel = new MovieEntity() {Title = "test"};
+            var fakeFilmwebResult = new FilmwebResult() {Title = "test" };
             _fakeStoredCollection = new List<MovieEntity>() {fakeResultModel};
             _fakeFilmwebResults = new List<FilmwebResult>() {fakeFilmwebResult};
             _repositoryMock = new Mock<IVodRepository>();
@@ -84,6 +83,7 @@ namespace vod.Domain.Services.Tests
         public void UseStorageIfPossible_ShouldNotUseBgWorkerIfDoesNotHaveTo()
         {
             BaseArrange();
+            _repositoryMock.Setup(x => x.GetUpdateDateTime(It.IsAny<int>())).Returns(DateTime.Now);
 
             _storedDataManager.UseStorageIfPossible(_cmd);
 
@@ -93,7 +93,8 @@ namespace vod.Domain.Services.Tests
         [Test]
         public void UseStorageIfPossible_ShouldCallExecuteIfRefreshIsNeeded()
         {
-            BaseArrange(DateTime.Now.AddDays(-2));
+            BaseArrange();
+            _repositoryMock.Setup(x => x.GetUpdateDateTime(It.IsAny<int>())).Returns(DateTime.Now.AddDays(-2));
 
             _storedDataManager.UseStorageIfPossible(_cmd);
 
@@ -103,7 +104,8 @@ namespace vod.Domain.Services.Tests
         [Test]
         public void UseStorageIfPossible_ShouldCallRefreshDataServiceIfNeeded()
         {
-            BaseArrange(DateTime.Now.AddDays(-2));
+            BaseArrange();
+            _repositoryMock.Setup(x => x.GetUpdateDateTime(It.IsAny<int>())).Returns(DateTime.Now.AddDays(-2));
 
             _storedDataManager2.UseStorageIfPossible(_cmd);
 
