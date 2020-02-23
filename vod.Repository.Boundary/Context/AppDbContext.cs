@@ -14,8 +14,7 @@ namespace vod.Repository.Boundary
         }
         public DbSet<MovieEntity> Movies { get; set; }
 
-        [Obsolete("Do wywalenia docelowo")]
-        public DbSet<AlreadyWatchedModel> AlreadyWatched { get; set; }
+        public DbSet<BlackListedMovieEntity> BlackListedMovies { get; set; }
 
         public DbSet<UserMovieEntity> UserMovies { get; set; }
 

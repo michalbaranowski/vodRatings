@@ -45,15 +45,25 @@ namespace vod.Domain.Services
 
             var ncPlusMovies = _ncPlusService.GetMoviesOfType(type).ToList();
             var dbResults = _repositoryBackground.GetResultsOfType((int)type);
+            var blackListedMovies = _repositoryBackground.GetBlackListedMovies();
 
             var moviesToRemove = dbResults.Where(n => ncPlusMovies.Any(p => p.Title == n.Title) == false);
-            var ncPlusMoviesToAdd = ncPlusMovies.Where(n => dbResults.Any(p => p.Title == n.Title) == false);
+
+            var ncPlusMoviesToAdd = ncPlusMovies
+                .Where(n => dbResults.Any(p => p.Title == n.Title) == false 
+                    && blackListedMovies.Any(p=>p.Title == n.Title) == false);
+
             var moviesToAdd = _filmwebResultsProvider.GetFilmwebResultsByNcPlusResults(ncPlusMoviesToAdd)
                 .Select(n => _mapper.Map<MovieEntity>(n))
                 .FillStoredDate();
 
+            var moviesToBlackList = ncPlusMoviesToAdd
+                .Where(n => moviesToAdd.Any(p => p.Title == n.Title) == false)
+                .Select(n => _mapper.Map<BlackListedMovieEntity>(n));
+
             _repositoryBackground.MarkAsDeleted(moviesToRemove);
             _repositoryBackground.AddMovies(moviesToAdd);
+            _repositoryBackground.AddBlackListedMovies(moviesToBlackList);
 
             NotifyEnded(type);
             return SUCCESS_STATE;

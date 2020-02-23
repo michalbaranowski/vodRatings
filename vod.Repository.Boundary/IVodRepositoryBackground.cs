@@ -11,5 +11,7 @@ namespace vod.Repository.Boundary
         void MarkAsDeleted(IEnumerable<MovieEntity> moviesToRemove);
         void AddMovies(IEnumerable<MovieEntity> moviesToAdd);
         void LogUpdate(int movieType);
+        void AddBlackListedMovies(IEnumerable<BlackListedMovieEntity> moviesToBlackList);
+        IList<BlackListedMovieEntity> GetBlackListedMovies();
     }
 }

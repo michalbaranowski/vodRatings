@@ -12,6 +12,9 @@ namespace vodApi.MapProfiles
         {
             CreateMap<AlreadyWatchedMovie, UserMovieEntity>()
                 .ForMember(x => x.Id, opt => opt.Ignore());
+            CreateMap<NcPlusResult, BlackListedMovieEntity>()
+                .ForMember(x => x.Id, opt => opt.Ignore());
+
             CreateMap<AlreadyWatchedMovie, AlreadyWatchedModel>();
             CreateMap<FilmwebResult, MovieViewModel>();
             CreateMap<MovieViewModel, FilmwebResult>();

@@ -54,6 +54,7 @@ namespace vod.Domain.Services
                 finally
                 {
                     _stateManager.SetState(BgWorkerStatesEnum.Active);
+                    _currentExecuteType = null;
 
                     if (_queue.Any())
                     {
