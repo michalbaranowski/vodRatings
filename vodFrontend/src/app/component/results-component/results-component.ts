@@ -26,6 +26,13 @@ export class ResultsComponent {
         this.resultsService.getResults(type).subscribe(n => {
             this.results = n as Result[];
             this.loading = false;
+            this.authService.authorize().subscribe(
+                result => {
+                    this.isLoggedIn = result != null
+                },
+                error => {
+                    this.isLoggedIn = false
+                });
         });
     }
 

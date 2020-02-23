@@ -70,7 +70,8 @@ export class NavbarComponent implements OnChanges {
             this.changeType(0);
         },
         error => {
-            this.loggedInUser = null;            
+            this.loggedInUser = null;       
+            this.changeType(0);     
         });
     }
 
