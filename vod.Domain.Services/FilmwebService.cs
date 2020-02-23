@@ -44,12 +44,16 @@ namespace vod.Domain.Services
             var moreInfoHtml = _sourceGetter.GetHtmlFrom($"{NcPlusUrls.NcPlusGoUrl}{movie.MoreInfoUrl}");
             movie.OriginalTitle = _sourceSerializer.SerializeOriginalTitle(moreInfoHtml);
             movie.Directors = _sourceSerializer.SerializeDirectors(moreInfoHtml);
+            movie.FilmWebUrlFromNcPlus = _sourceSerializer.SerializeFilmwebUrlFromNcPlus(moreInfoHtml);
 
             var filmwebSearchHtml = _sourceGetter.GetHtmlFrom(FilmwebUrls.FilmwebSearchBaseUrl(movie.OriginalTitle));
             var filmwebUrl = _sourceSerializer.SerializeFilmwebUrl(filmwebSearchHtml, movie.Directors);
 
-            if (string.IsNullOrEmpty(filmwebUrl))
+            if (string.IsNullOrEmpty(movie.FilmWebUrlFromNcPlus) && string.IsNullOrEmpty(filmwebUrl))
                 return null;
+
+            if (string.IsNullOrEmpty(filmwebUrl))
+                filmwebUrl = movie.FilmWebUrlFromNcPlus;
 
             var filmwebHtml = _sourceGetter.GetHtmlFrom(filmwebUrl);
             var result = _sourceSerializer.SerializeFilmwebResult(filmwebHtml, movie.MovieType, movie.MoreInfoUrl, movie.Title);

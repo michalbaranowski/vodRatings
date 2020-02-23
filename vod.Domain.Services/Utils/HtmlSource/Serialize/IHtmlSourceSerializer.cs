@@ -10,6 +10,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
         IEnumerable<NcPlusResult> SerializeMovies(HtmlDocument html, MovieTypes type);
         FilmwebResult SerializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieType, string moreInfoUrl, string movieTitle);
         string SerializeFilmwebUrl(HtmlDocument filmwebSearchHtml, List<string> directors);
+        string SerializeFilmwebUrlFromNcPlus(HtmlDocument ncPlusHtml);
         List<string> SerializeDirectors(HtmlDocument html);
         string SerializeOriginalTitle(HtmlDocument html);
     }

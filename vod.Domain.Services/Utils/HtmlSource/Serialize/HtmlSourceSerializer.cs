@@ -212,5 +212,12 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 .Replace(" sd", "")
                 .Replace(" SD", "");
         }
+
+        public string SerializeFilmwebUrlFromNcPlus(HtmlDocument ncPlusHtml)
+        {
+            return ncPlusHtml.DocumentNode.Descendants()?
+                .Where(n => n.Name == "a" && n.Attributes.Contains("href") && n.Attributes["href"].Value.Contains("filmweb")).FirstOrDefault()
+                ?.Attributes["href"].Value;
+        }
     }
 }

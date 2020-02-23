@@ -12,5 +12,6 @@ namespace vod.Domain.Services.Boundary.Models
         public MovieTypes MovieType { get; set; }
         public string OriginalTitle { get; set; }
         public List<string> Directors { get; set; }
+        public string FilmWebUrlFromNcPlus { get; set; }
     }
 }
