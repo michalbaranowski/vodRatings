@@ -102,5 +102,22 @@ namespace vod.Repository
                     .FirstOrDefault();
             }
         }
+
+        public void AddBlackListedMovies(IEnumerable<BlackListedMovieEntity> moviesToBlackList)
+        {
+            using (var ctx = new AppDbContext(_opt))
+            {
+                ctx.BlackListedMovies.AddRange(moviesToBlackList);
+                ctx.SaveChanges();
+            }
+        }
+
+        public IList<BlackListedMovieEntity> GetBlackListedMovies()
+        {
+            using (var ctx = new AppDbContext(_opt))
+            {
+                return ctx.BlackListedMovies.ToList();
+            }
+        }
     }
 }

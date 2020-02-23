@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using vod.Repository.Boundary.Models;
 
@@ -10,9 +9,7 @@ namespace vod.Repository.Boundary
         DbSet<MovieEntity> Movies { get; set; }
         DbSet<UserMovieEntity> UserMovies { get; }
         DbSet<UpdateLogEntity> UpdateLogs { get; set; }
-
-        [Obsolete]
-        DbSet<AlreadyWatchedModel> AlreadyWatched { get; }
+        DbSet<BlackListedMovieEntity> BlackListedMovies { get; set; }
 
         int SaveChanges();
         void AddRange(IEnumerable<object> entities);

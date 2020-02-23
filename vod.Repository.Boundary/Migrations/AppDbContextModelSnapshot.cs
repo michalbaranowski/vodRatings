@@ -180,7 +180,7 @@ namespace vod.Repository.Boundary.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("vod.Repository.Boundary.Models.AlreadyWatchedModel", b =>
+            modelBuilder.Entity("vod.Repository.Boundary.Models.BlackListedMovieEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -188,11 +188,9 @@ namespace vod.Repository.Boundary.Migrations
 
                     b.Property<string>("Title");
 
-                    b.Property<string>("Username");
-
                     b.HasKey("Id");
 
-                    b.ToTable("AlreadyWatchedMovie");
+                    b.ToTable("BlackListedMovie");
                 });
 
             modelBuilder.Entity("vod.Repository.Boundary.Models.MovieEntity", b =>
