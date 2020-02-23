@@ -1,8 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using vod.Domain.Services.Boundary;
 using vod.Domain.Services.Boundary.Interfaces.Enums;

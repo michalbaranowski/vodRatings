@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace vod.Domain.Services.Boundary.Models
+﻿namespace vod.Domain.Services.Boundary.Models
 {
     public class AlreadyWatchedMovie
     {

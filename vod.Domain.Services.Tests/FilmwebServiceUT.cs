@@ -2,10 +2,7 @@
 using HtmlAgilityPack;
 using Moq;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
 using vod.Domain.Services.Utils;

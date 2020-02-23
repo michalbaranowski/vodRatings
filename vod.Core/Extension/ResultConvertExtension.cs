@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using vod.Core.Boundary.Model;
-using vod.Domain.Services.Boundary.Models;
 
 namespace vod.Core.Extension
 {

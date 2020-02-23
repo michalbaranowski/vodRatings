@@ -1,7 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using vod.Domain.Services.Boundary;
 using vod.Domain.Services.Boundary.Models;
 using vod.Repository.Boundary;

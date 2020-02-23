@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using vod.Domain.Services.Boundary.Interfaces.Enums;
+﻿using vod.Domain.Services.Boundary.Interfaces.Enums;
 
 namespace vod.Domain.Services.Boundary.Models
 {

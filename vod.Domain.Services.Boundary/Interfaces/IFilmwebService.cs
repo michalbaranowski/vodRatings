@@ -1,5 +1,4 @@
-﻿using vod.Domain.Services.Boundary.Interfaces.Enums;
-using vod.Domain.Services.Boundary.Models;
+﻿using vod.Domain.Services.Boundary.Models;
 
 namespace vod.Domain.Services.Boundary.Interfaces
 {
