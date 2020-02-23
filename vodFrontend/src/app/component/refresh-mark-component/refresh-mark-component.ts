@@ -28,7 +28,6 @@ export class RefreshMarkComponent implements OnInit {
             .start()
             .then(() => {
                 console.log('Connection started (refresh notification)!');
-                console.log("update status");
                 this.ajaxService.doGet(this.updateStatusUrl).subscribe();
             })
             .catch(err => console.log('Error while establishing connection :('));
