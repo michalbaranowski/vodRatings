@@ -126,6 +126,7 @@ namespace vod.Domain.Services.Tests
 
             Assert.True(result.FilmwebRating == 7.5m);
             Assert.True(result.Production == "USA");
+            Assert.True(result.FilmwebTitle == "Kapitan Ameryka: Wojna bohaterów");
             Assert.True(result.FilmwebFilmType == "Akcja, Sci-Fi");
             Assert.True(result.FilmDescription.Contains("ONZ wprowadza przymusowy rejestr bohaterów"));
             Assert.True(result.Year == 2016);
