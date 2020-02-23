@@ -85,6 +85,7 @@ namespace vodApi
             services.AddTransient<IVodRepository, VodRepository>();
             services.AddTransient<IStoredDataManager, StoredDataManager>();
             services.AddTransient<IRefreshDataService, RefreshDataService>();
+            services.AddSingleton<IRefreshStateService, RefreshStateService>();
             services.AddTransient<IUrlGetter, UrlGetter>();
             services.AddSingleton<INcPlusService, NcPlusService>();
             services.AddTransient<IFilmwebService, FilmwebService>();

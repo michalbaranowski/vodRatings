@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { MovieTypeHelper } from 'src/app/helpers/movie-type-helper';
+import { AjaxService } from 'src/app/service/ajaxService';
 
 @Component({
     selector: 'app-refresh-mark',
@@ -11,16 +12,25 @@ export class RefreshMarkComponent implements OnInit {
     private _hubConnection: HubConnection;
     showNotification: Boolean;
     movieType: string;
+    updateStatusUrl = 'api/updatestatus';
 
-    constructor(private movieTypeHelper: MovieTypeHelper) {    }
+    constructor(
+        private ajaxService: AjaxService,
+        private movieTypeHelper: MovieTypeHelper) {
+      }
 
     ngOnInit(): void {
+        
         this.showNotification = false;
         this._hubConnection = new HubConnectionBuilder().withUrl('/updateNotification').build();
 
         this._hubConnection
             .start()
-            .then(() => console.log('Connection started (refresh notification)!'))
+            .then(() => {
+                console.log('Connection started (refresh notification)!');
+                console.log("update status");
+                this.ajaxService.doGet(this.updateStatusUrl).subscribe();
+            })
             .catch(err => console.log('Error while establishing connection :('));
 
         this._hubConnection.on("NotifyUpdate", (movieType) => {

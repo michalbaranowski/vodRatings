@@ -20,9 +20,11 @@ namespace vod.Domain.Services
         private IMapper _mapper;
         private readonly INcPlusService _ncPlusService;
         private readonly IFilmwebResultsProvider _filmwebResultsProvider;
+        private readonly IRefreshStateService _refreshStateService;
         private const bool SUCCESS_STATE = true;
 
         public RefreshDataService(
+            IRefreshStateService refreshStateService,
             IMapper mapper,
             INcPlusService ncPlusService,
             IFilmwebResultsProvider filmwebResultsProvider,
@@ -34,11 +36,12 @@ namespace vod.Domain.Services
             _mapper = mapper;
             _ncPlusService = ncPlusService;
             _filmwebResultsProvider = filmwebResultsProvider;
+            _refreshStateService = refreshStateService;
         }
 
         public bool Refresh(MovieTypes type, Func<IEnumerable<FilmwebResult>> func)
         {
-            _notificationHub.NotifyRefreshStarted(type);
+            NotifyStart(type);
 
             var ncPlusMovies = _ncPlusService.GetMoviesOfType(type).ToList();
             var dbResults = _repositoryBackground.GetResultsOfType((int)type);
@@ -52,9 +55,21 @@ namespace vod.Domain.Services
             _repositoryBackground.MarkAsDeleted(moviesToRemove);
             _repositoryBackground.AddMovies(moviesToAdd);
 
+            NotifyEnded(type);
+            return SUCCESS_STATE;
+        }
+
+        private void NotifyStart(MovieTypes type)
+        {
+            _notificationHub.NotifyRefreshStarted(type);
+            _refreshStateService.SetCurrentRefreshState(type);
+        }
+
+        private void NotifyEnded(MovieTypes type)
+        {
             _repositoryBackground.LogUpdate((int)type);
             _notificationHub.NotifyUpdate(type);
-            return SUCCESS_STATE;
+            _refreshStateService.RemoveCurrentRefreshState();
         }
     }
 }
