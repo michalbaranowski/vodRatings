@@ -72,8 +72,8 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 ?.Where(n =>
                     n.Name == "h1" && n.Attributes.Contains("class") &&
                     n.Attributes["class"].Value.Contains("filmTitle")).FirstOrDefault();
-
-            var title = titleH1?.Descendants().FirstOrDefault(n => n.Name == "a")?.Attributes["title"].Value;
+            
+            var title = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n => n.Name == "span" && n.HasAttributes && n.Attributes.Contains("class") && n.Attributes["class"].Value == "videoBlock__type")?.InnerText;
             var year = titleH1?.Descendants().FirstOrDefault(n => n.Name == "span")?.InnerHtml
                 .Replace("(", string.Empty).Replace(")", string.Empty);
 
