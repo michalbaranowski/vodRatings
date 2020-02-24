@@ -9,6 +9,7 @@ import { MovieTypeHelper } from 'src/app/helpers/movie-type-helper';
 export class UpdateModalComponent implements OnInit {
     private _hubConnection: HubConnection;
     updateFilmType: number;
+    newMoviesCount: number;
     @Output() updateEmitter = new EventEmitter<number>();
 
     constructor(private movieTypeHelper: MovieTypeHelper) {    }
@@ -21,8 +22,8 @@ export class UpdateModalComponent implements OnInit {
             .then(() => console.log('Connection started!'))
             .catch(err => console.log('Error while establishing connection :('));
 
-        this._hubConnection.on("NotifyUpdate", (typeToUpdate) => {
-            this.showUpdateModal(typeToUpdate);
+        this._hubConnection.on("NotifyUpdate", (typeToUpdate, newMoviesCount) => {
+            this.showUpdateModal(typeToUpdate, newMoviesCount);
         });
     }
 
@@ -37,11 +38,12 @@ export class UpdateModalComponent implements OnInit {
         el.classList.remove('is-active');
     }
 
-    showUpdateModal(typeToUpdate) {
+    showUpdateModal(typeToUpdate, newMoviesCount = 0) {
         console.log("!! UPDATE: " + typeToUpdate);
         this.updateFilmType = typeToUpdate;
         var el = this.getModalElement();
         el.classList.add('is-active');
+        this.newMoviesCount = newMoviesCount;
     }
 
     getMovieType(typeToUpdate: number) {

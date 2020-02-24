@@ -16,9 +16,9 @@ namespace vodApi.Controllers
         }
 
         [HttpGet]
-        public void Get(int type)
+        public void Get(int type, int moviesCount = 1)
         {
-            _hub.NotifyUpdate((MovieTypes)type);
+            _hub.NotifyUpdate((MovieTypes)type, moviesCount);
         }
     }
 }

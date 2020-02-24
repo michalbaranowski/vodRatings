@@ -14,6 +14,8 @@ export class RefreshMarkComponent implements OnInit {
     movieType: string;
     updateStatusUrl = 'api/updatestatus';
 
+    progress: number;
+
     constructor(
         private ajaxService: AjaxService,
         private movieTypeHelper: MovieTypeHelper) {
@@ -38,8 +40,13 @@ export class RefreshMarkComponent implements OnInit {
         });
 
         this._hubConnection.on("RefreshStarted", (movieType) => {
+            this.progress = 0;
             this.showNotification = true;
             this.movieType = this.movieTypeHelper.getMovieType(movieType);
+         });
+
+         this._hubConnection.on("NotifyRefreshProgress", (percentage) => {
+            this.progress = percentage;
          });
     }
 

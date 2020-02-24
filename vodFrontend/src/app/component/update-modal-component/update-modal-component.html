@@ -6,11 +6,13 @@
         <button class="delete" aria-label="close" (click)="closeModal()"></button>
       </header>
       <section class="modal-card-body">
-        Dostępna jest aktualizacja danych dla gatunku: {{getMovieType(updateFilmType)}}
+        Dostępne nowe pozycje dla gatunku: {{getMovieType(updateFilmType)}}
+
+        Liczba nowych filmów: {{newMoviesCount}}
       </section>
       <footer class="modal-card-foot">
-        <button class="button is-success" (click)="update()">Aktualizuj</button>
-        <button class="button" (click)="closeModal()">Anuluj</button>
+        <button class="button is-success" (click)="update()">Odśwież</button>
+        <button class="button" (click)="closeModal()">Zamknij</button>
       </footer>
     </div>
 </div>

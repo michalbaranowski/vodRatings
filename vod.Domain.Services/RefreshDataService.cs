@@ -41,7 +41,8 @@ namespace vod.Domain.Services
 
         public bool Refresh(MovieTypes type, Func<IEnumerable<FilmwebResult>> func)
         {
-            NotifyStart(type);
+            _notificationHub.NotifyRefreshStarted(type);
+            _refreshStateService.SetCurrentRefreshState(type);
 
             var ncPlusMovies = _ncPlusService.GetMoviesOfType(type).ToList();
             var dbResults = _repositoryBackground.GetResultsOfType((int)type);
@@ -65,21 +66,12 @@ namespace vod.Domain.Services
             _repositoryBackground.AddMovies(moviesToAdd);
             _repositoryBackground.AddBlackListedMovies(moviesToBlackList);
 
-            NotifyEnded(type);
-            return SUCCESS_STATE;
-        }
-
-        private void NotifyStart(MovieTypes type)
-        {
-            _notificationHub.NotifyRefreshStarted(type);
-            _refreshStateService.SetCurrentRefreshState(type);
-        }
-
-        private void NotifyEnded(MovieTypes type)
-        {
             _repositoryBackground.LogUpdate((int)type);
-            _notificationHub.NotifyUpdate(type);
             _refreshStateService.RemoveCurrentRefreshState();
+
+            _notificationHub.NotifyUpdate(type, moviesToAdd.Count());
+
+            return SUCCESS_STATE;
         }
     }
 }
