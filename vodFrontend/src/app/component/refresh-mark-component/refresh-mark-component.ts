@@ -19,10 +19,10 @@ export class RefreshMarkComponent implements OnInit {
     constructor(
         private ajaxService: AjaxService,
         private movieTypeHelper: MovieTypeHelper) {
-      }
+    }
 
     ngOnInit(): void {
-        
+
         this.showNotification = false;
         this._hubConnection = new HubConnectionBuilder().withUrl('/updateNotification').build();
 
@@ -35,19 +35,19 @@ export class RefreshMarkComponent implements OnInit {
             .catch(err => console.log('Error while establishing connection :('));
 
         this._hubConnection.on("NotifyUpdate", (movieType) => {
-           this.showNotification = false; 
-           this.movieType = this.movieTypeHelper.getMovieType(movieType);
+            this.progress = null;
+            this.showNotification = false;
+            this.movieType = this.movieTypeHelper.getMovieType(movieType);
         });
 
         this._hubConnection.on("RefreshStarted", (movieType) => {
-            this.progress = 0;
             this.showNotification = true;
             this.movieType = this.movieTypeHelper.getMovieType(movieType);
-         });
+        });
 
-         this._hubConnection.on("NotifyRefreshProgress", (percentage) => {
+        this._hubConnection.on("NotifyRefreshProgress", (percentage) => {
             this.progress = percentage;
-         });
+        });
     }
 
 }

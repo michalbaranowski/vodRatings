@@ -1,6 +1,7 @@
 <div *ngIf="showNotification" class="container refresh-notification">
     <div class="notification">
-       Trwa wyszukiwanie nowych filmów z gatunku {{movieType}} - ({{progress}}%)
+        <span *ngIf="progress"></span>Znaleziono nowe filmy z gatunku {{movieType}} - trwa zbieranie danych ({{progress}}%)</span>
+        <span *ngIf="!progress"></span>Trwa wyszukiwanie nowych filmów z gatunku {{movieType}}</span>
        <progress class="progress is-small is-primary" max="100">{{progress}}%</progress>
     </div>
 </div>
