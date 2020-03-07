@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using vod.Core.Boundary.Model;
+using vod.Domain.Services;
 using vod.Domain.Services.Boundary.Models;
 using vod.Repository.Boundary.Models;
 
@@ -13,6 +14,12 @@ namespace vodApi.MapProfiles
             CreateMap<AlreadyWatchedMovie, UserMovieEntity>()
                 .ForMember(x => x.Id, opt => opt.Ignore());
             CreateMap<NcPlusResult, BlackListedMovieEntity>()
+                .ForMember(x => x.Id, opt => opt.Ignore());
+
+            CreateMap<NetflixResult, BlackListedMovieEntity>()
+                .ForMember(x => x.Id, opt => opt.Ignore());
+
+            CreateMap<Result, BlackListedMovieEntity>()
                 .ForMember(x => x.Id, opt => opt.Ignore());
 
             CreateMap<AlreadyWatchedMovie, AlreadyWatchedModel>();
