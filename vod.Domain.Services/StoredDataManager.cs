@@ -48,7 +48,7 @@ namespace vod.Domain.Services
                 movie.IsAlreadyWatched = true;
             }
 
-            RefreshIfNeeded(storedCollection, command.Type, command.CrawlFunc);
+            RefreshIfNeeded(storedCollection, command.Type);
             return storedCollection.Select(n => _mapper.Map<FilmwebResult>(n));
         }
 
@@ -56,12 +56,11 @@ namespace vod.Domain.Services
 
         private void RefreshIfNeeded(
             List<MovieEntity> storedCollection,
-            MovieTypes type,
-            Func<IEnumerable<FilmwebResult>> func)
+            MovieTypes type)
         {
             if (storedCollection.Any() == false || IsUpdateNeeded(type))
             {
-                _backgroundWorker.Execute(type, () => _refreshDataService.Refresh(type, func));
+                _backgroundWorker.Execute(type, () => _refreshDataService.Refresh(type));
             }
 
         }

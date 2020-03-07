@@ -39,8 +39,7 @@ namespace vod.Domain.Services
             _refreshStateService = refreshStateService;
         }
 
-        //TODO: zejść z tego funca
-        public bool Refresh(MovieTypes type, Func<IEnumerable<FilmwebResult>> func)
+        public bool Refresh(MovieTypes type)
         {
             _notificationHub.NotifyRefreshStarted(type);
             _refreshStateService.SetCurrentRefreshState(type);

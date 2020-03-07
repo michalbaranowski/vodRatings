@@ -56,15 +56,14 @@ namespace vod.Domain.Services.Tests
             fakeUpdateHub.Clients = _mockClients.Object;
 
             _refreshDataServiceMock = new Mock<IRefreshDataService>();
-            _refreshDataServiceMock.Setup(x => x.Refresh(It.IsAny<MovieTypes>(), It.IsAny<Func<IEnumerable<FilmwebResult>>>()));
+            _refreshDataServiceMock.Setup(x => x.Refresh(It.IsAny<MovieTypes>()));
 
             _storedDataManager = new StoredDataManager(mapperMock.Object, _repositoryMock.Object, _bgWorkerMock.Object, _refreshDataServiceMock.Object);
             _storedDataManager2 = new StoredDataManager(mapperMock.Object, _repositoryMock.Object, _fakeBgWorker, _refreshDataServiceMock.Object);
 
             _cmd = new UseStorageIfPossibleCommand()
             {
-                Type = MovieTypes.Action,
-                CrawlFunc = () => _fakeFilmwebResults
+                Type = MovieTypes.Action
             };
         }
 
@@ -109,7 +108,7 @@ namespace vod.Domain.Services.Tests
 
             _storedDataManager2.UseStorageIfPossible(_cmd);
 
-            _refreshDataServiceMock.Verify(n => n.Refresh(_cmd.Type, _cmd.CrawlFunc), Times.Once);
+            _refreshDataServiceMock.Verify(n => n.Refresh(_cmd.Type), Times.Once);
         }
     }
 }

@@ -56,7 +56,7 @@ namespace vod.Domain.Services.Tests
             _refreshDataService = new RefreshDataService(_refreshStateService.Object, _mapperMock.Object, _ncPlusService.Object, _filmwebResultsProvider.Object, _repoBackground.Object, _hubMock.Object);
         }
 
-        private void Act() => _refreshDataService.Refresh(_expectedMovieType, () => { return new List<FilmwebResult>(); });
+        private void Act() => _refreshDataService.Refresh(_expectedMovieType);
 
         [Test]
         public void Refresh_ShouldNotifyThatRefreshingStarted()

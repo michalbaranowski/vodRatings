@@ -43,7 +43,6 @@ namespace vod.Core
             var cmd = new UseStorageIfPossibleCommand()
             {
                 Type = type,
-                CrawlFunc = () => _filmwebResultsProvider.GetFilmwebResults(type),
                 UserId = userId
             };
 
