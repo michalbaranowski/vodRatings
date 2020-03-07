@@ -11,7 +11,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
 {
     public class HtmlSourceSerializer : IHtmlSourceSerializer
     {
-        public IEnumerable<NcPlusResult> SerializeMovies(HtmlDocument html, MovieTypes type)
+        public IEnumerable<NcPlusResult> SerializeMoviesNcPlus(HtmlDocument html, MovieTypes type)
         {
             var divs = html.DocumentNode.Descendants("div")
                 .Where(x => x.Attributes.Contains("title"));
@@ -34,6 +34,24 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                     });
         }
 
+        public IEnumerable<NetflixResult> SerializeMoviesNetflix(HtmlDocument html, MovieTypes type)
+        {
+            //><p class="fallback-text">
+            var ps = html.DocumentNode.Descendants("p");
+            var ps2 = ps.Where(x => x.Attributes.Contains("class") && x.Attributes["class"].Value == "fallback-text");
+            
+            var divs = html.DocumentNode.Descendants().Where(x => x.Attributes.Contains("class") && x.Attributes["class"].Value == "title-card-container");
+            var hrefs = divs.Select(n => n.Descendants().FirstOrDefault(p => p.Id == "title-card-2-0").Descendants("a").FirstOrDefault());
+
+            return hrefs.Select(n => new NetflixResult()
+            {
+                Title = n.Attributes?.FirstOrDefault(p => p.Name == "aria-label").Value,
+                ProviderName = "Netflix",
+                MovieType = type,
+                Url = n.Attributes?.FirstOrDefault(p => p.Name == "href").Value
+            });
+        }
+
         public string SerializeFilmwebUrl(HtmlDocument html, List<string> directors)
         {
             var ul = html.DocumentNode.Descendants().FirstOrDefault(n => n.Name == "ul" && n.Attributes.Contains("class") && n.Attributes["class"].Value == "resultsList hits");
@@ -46,7 +64,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                                     p.Name == "div"
                                     && p.Attributes.Contains("class")
                                     && p.Attributes["class"].Value == "filmPreview__info filmPreview__info--directors"
-                                    && directors.Any(x => x == p.InnerText.Replace("reżyser", ""))));
+                                    && (directors.Any(x => x == p.InnerText.Replace("reżyser", ""))) || directors == null));
 
             if (li == null) return string.Empty;
 
@@ -58,7 +76,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
             return href != null ? $"{FilmwebUrls.FilmwebBaseUrl}{href}" : string.Empty;
         }
 
-        public FilmwebResult SerializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieType, string moreInfoUrl, string movieTitle)
+        public FilmwebResult SerializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieType, string movieUrl, string movieTitle)
         {
             var rate = filmwebHtml.DocumentNode.Descendants()?
                 .FirstOrDefault(n => n.Name == "span" && n.Attributes.Contains("itemprop") &&
@@ -169,7 +187,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 VodFilmType = (int)movieType,
                 Production = production,
                 FilmDescription = filmDesc,
-                MovieUrl = $"{NcPlusUrls.NcPlusGoUrl}{moreInfoUrl}",
+                MovieUrl = movieUrl,
                 Cast = cast
             };
         }

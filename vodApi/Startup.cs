@@ -88,6 +88,7 @@ namespace vodApi
             services.AddSingleton<IRefreshStateService, RefreshStateService>();
             services.AddTransient<IUrlGetter, UrlGetter>();
             services.AddSingleton<INcPlusService, NcPlusService>();
+            services.AddSingleton<INetflixService, NetflixService>();
             services.AddTransient<IFilmwebService, FilmwebService>();
             services.AddTransient<IHtmlSourceGetter, HtmlSourceGetter>();
             services.AddTransient<IHtmlSourceSerializer, HtmlSourceSerializer>();

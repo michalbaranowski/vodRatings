@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using AutoMapper;
@@ -32,12 +33,22 @@ namespace vod.Domain.Services
             _mapper = mapper;
         }
 
-        public FilmwebResult GetFilmwebResult(NcPlusResult movie)
+        public FilmwebResult GetFilmwebResult(Result movie)
         {
             if (_storedData == null || !_storedData.Any())
                 _storedData = _repositoryBackground.GetResultsOfType((int)movie.MovieType);
 
-            return GetFromStoredData(movie) ?? SearchFilmwebResult(movie);
+            switch (movie)
+            {
+                case NcPlusResult result:
+                    return GetFromStoredData(result) ?? SearchFilmwebResult(result);
+
+                case NetflixResult result:
+                    return GetFromStoredData(result) ?? null;
+
+                default:
+                    throw new NotImplementedException("Not implemented");
+            }            
         }
 
         private FilmwebResult SearchFilmwebResult(NcPlusResult movie)
@@ -57,11 +68,27 @@ namespace vod.Domain.Services
                 filmwebUrl = movie.FilmWebUrlFromNcPlus;
 
             var filmwebHtml = _sourceGetter.GetHtmlFrom(filmwebUrl);
-            var result = _sourceSerializer.SerializeFilmwebResult(filmwebHtml, movie.MovieType, movie.MoreInfoUrl, movie.Title);
+            var movieUrl = $"{NcPlusUrls.NcPlusGoUrl}{movie.MoreInfoUrl}";
+            var result = _sourceSerializer.SerializeFilmwebResult(filmwebHtml, movie.MovieType, movieUrl, movie.Title);
 
             if (IsTitleMatched(result.FilmwebTitle, movie.Title, movie.OriginalTitle) == false)
                 return null;
 
+            result.ProviderName = movie.ProviderName;
+
+            return result;
+        }
+
+        private FilmwebResult SearchFilmwebResult(NetflixResult movie)
+        {
+            var filmwebSearchHtml = _sourceGetter.GetHtmlFrom(FilmwebUrls.FilmwebSearchBaseUrl(movie.Title));
+            var filmwebUrl = _sourceSerializer.SerializeFilmwebUrl(filmwebSearchHtml, null);
+
+            if (string.IsNullOrEmpty(filmwebUrl))
+                return null;
+
+            var filmwebHtml = _sourceGetter.GetHtmlFrom(filmwebUrl);
+            var result = _sourceSerializer.SerializeFilmwebResult(filmwebHtml, movie.MovieType, movie.Url, movie.Title);
             result.ProviderName = movie.ProviderName;
 
             return result;
@@ -81,7 +108,7 @@ namespace vod.Domain.Services
             return result;
         }
 
-        private FilmwebResult GetFromStoredData(NcPlusResult movie)
+        private FilmwebResult GetFromStoredData(Result movie)
         {
             if (_storedData.Any(n => n.Title == movie.Title))
                 return _mapper.Map<FilmwebResult>(_storedData.FirstOrDefault(n => n.Title == movie.Title));

@@ -37,13 +37,13 @@ namespace vod.Domain.Services
             if (IsStoredDataAvailable(type))
                 return _results[type];
 
-            var urls = _urlGetter.GetBaseUrls();
+            var urls = _urlGetter.GetNcPlusBaseUrls();
             var result = new List<NcPlusResult>().AsEnumerable();
 
             foreach (var baseUrl in urls)
             {
-                var html = _sourceGetter.GetHtmlFrom(baseUrl.GetUrlWithType(type));
-                var serialized = _serializer.SerializeMovies(html, type);
+                var html = _sourceGetter.GetHtmlFrom(NcPlusUrls.GetUrlWithType(baseUrl, type));
+                var serialized = _serializer.SerializeMoviesNcPlus(html, type);
                 result = result.Concat(serialized);
             }
 

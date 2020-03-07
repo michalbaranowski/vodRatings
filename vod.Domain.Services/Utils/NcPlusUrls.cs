@@ -22,7 +22,7 @@ namespace vod.Domain.Services.Utils
         public static readonly string VodHboBaseUrl =
             $"{NcPlusGoUrl}Collection/Vod/Details?collectionCodename=vod-hbo-go&ParentCategoryCodename=film&CollectionCategoryCodename=Vod&ViewType=collections&page=1";
 
-        public static string GetUrlWithType(this string baseUrl, MovieTypes type)
+        public static string GetUrlWithType(string baseUrl, MovieTypes type)
         {
             switch (type)
             {

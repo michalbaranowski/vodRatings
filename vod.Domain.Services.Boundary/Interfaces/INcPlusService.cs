@@ -1,8 +1,8 @@
-﻿using vod.Domain.Services.Boundary.Interfaces.Getters;
+﻿using vod.Domain.Services.Boundary.Models;
 
 namespace vod.Domain.Services.Boundary.Interfaces
 {
-    public interface INcPlusService : INcPlusMoviesGetter
+    public interface INcPlusService : IMoviesGetter<NcPlusResult>
     {
     }
 }

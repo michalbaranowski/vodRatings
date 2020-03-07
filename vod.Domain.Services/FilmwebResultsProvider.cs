@@ -29,26 +29,26 @@ namespace vod.Domain.Services
         public IEnumerable<FilmwebResult> GetFilmwebResults(MovieTypes type)
         {
             var ncPlusResult = _ncPlusService.GetMoviesOfType(type);
-            return GetFilmwebResultsByNcPlusResults(ncPlusResult);
+            return GetFilmwebResultsByBaseResults(ncPlusResult);
         }
 
-        public IEnumerable<FilmwebResult> GetFilmwebResultsByNcPlusResults(IEnumerable<NcPlusResult> movies)
+        public IEnumerable<FilmwebResult> GetFilmwebResultsByBaseResults(IEnumerable<Result> results)
         {
-            return GetFilmwebResults(movies)
+            return GetFilmwebResultsFromNcplus(results)
                 .Where(n => n != null)
                 .DistinctBy(n => n.Title);
         }
 
-        private IEnumerable<FilmwebResult> GetFilmwebResults(IEnumerable<NcPlusResult> ncPlusResults)
+        private IEnumerable<FilmwebResult> GetFilmwebResultsFromNcplus(IEnumerable<Result> results)
         {
             var result = new List<FilmwebResult>();
-            var count = ncPlusResults.Count();
+            var count = results.Count();
 
             for (int iteration = 0; iteration < count; iteration++)
             {
                 var percent = Math.Round(decimal.Divide(iteration, count) * 100);
                 _notificationHub.NotifyRefreshProgress((int)percent);
-                result.Add(_filmwebService.GetFilmwebResult(ncPlusResults.ElementAt(iteration)));
+                result.Add(_filmwebService.GetFilmwebResult(results.ElementAt(iteration)));
             }
 
             return result;

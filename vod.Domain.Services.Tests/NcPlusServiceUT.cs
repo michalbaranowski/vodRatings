@@ -24,7 +24,7 @@ namespace vod.Domain.Services.Tests
             _sourceGetterMock = new Mock<IHtmlSourceGetter>();
 
             _serializerMock = new Mock<IHtmlSourceSerializer>();
-            _serializerMock.SetupSequence(x => x.SerializeMovies(It.IsAny<HtmlDocument>(), It.IsAny<MovieTypes>()))
+            _serializerMock.SetupSequence(x => x.SerializeMoviesNcPlus(It.IsAny<HtmlDocument>(), It.IsAny<MovieTypes>()))
                 .Returns(new List<NcPlusResult>() { new NcPlusResult() { Title = "title1" } })
                 .Returns(new List<NcPlusResult>() { new NcPlusResult() { Title = "title2" }, new NcPlusResult() { Title = "title2" } })
                 .Returns(new List<NcPlusResult>() { new NcPlusResult() { Title = "title3" } })
@@ -37,7 +37,7 @@ namespace vod.Domain.Services.Tests
                 .Returns(new List<NcPlusResult>() { new NcPlusResult() { Title = "title5" } });
 
             var realUrlGetter = new UrlGetter();
-            _urlsCollection = realUrlGetter.GetBaseUrls().ToList();
+            _urlsCollection = realUrlGetter.GetNcPlusBaseUrls().ToList();
             _urlGetterMock = new Mock<UrlGetter>();
             
             _ncPlusService = new NcPlusService(_sourceGetterMock.Object, _serializerMock.Object, _urlGetterMock.Object);

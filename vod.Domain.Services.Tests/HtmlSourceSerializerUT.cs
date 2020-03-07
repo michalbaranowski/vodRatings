@@ -67,7 +67,7 @@ namespace vod.Domain.Services.Tests
         {
             Arrange();
 
-            var result = _serializer.SerializeMovies(_moviesHtmlDoc, MovieTypes.Thriller);
+            var result = _serializer.SerializeMoviesNcPlus(_moviesHtmlDoc, MovieTypes.Thriller);
 
             Assert.True(result.Any(n=>n.Title == "Ostateczna rozgrywka"));
             Assert.True(result.Any(n => n.MoreInfoUrl == "/Collection/Asset?codename=ostateczna-rozgrywka-19"));
@@ -79,9 +79,9 @@ namespace vod.Domain.Services.Tests
         {
             Arrange();
 
-            var result1 = _serializer.SerializeMovies(_cplusComedies, MovieTypes.Comedy);
-            var result2 = _serializer.SerializeMovies(_hboComedies, MovieTypes.Comedy);
-            var result3 = _serializer.SerializeMovies(_ncPremieresComediesDoc, MovieTypes.Comedy);
+            var result1 = _serializer.SerializeMoviesNcPlus(_cplusComedies, MovieTypes.Comedy);
+            var result2 = _serializer.SerializeMoviesNcPlus(_hboComedies, MovieTypes.Comedy);
+            var result3 = _serializer.SerializeMoviesNcPlus(_ncPremieresComediesDoc, MovieTypes.Comedy);
 
             Assert.True(result1.All(n => n.ProviderName == "CANAL+ VOD"));
             Assert.True(result2.All(n => n.ProviderName.ToLower().Contains("hbo")));

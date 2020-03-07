@@ -21,6 +21,7 @@ namespace vod.Domain.Services.Tests
         private Mock<IRefreshStateService> _refreshStateService;
         private Mock<IMapper> _mapperMock;
         private Mock<INcPlusService> _ncPlusService;
+        private Mock<INetflixService> _netflixService;
         private Mock<IFilmwebResultsProvider> _filmwebResultsProvider;
         private Mock<IVodRepositoryBackground> _repoBackground;
         private Mock<UpdateNotificationHub> _hubMock;
@@ -41,6 +42,8 @@ namespace vod.Domain.Services.Tests
             _ncPlusService = new Mock<INcPlusService>();
             _ncPlusService.Setup(x => x.GetMoviesOfType(_expectedMovieType)).Returns(_fakeNcPlusResults);
 
+            _netflixService = new Mock<INetflixService>();
+
             _filmwebResultsProvider = new Mock<IFilmwebResultsProvider>();
             _filmwebResultsProvider.Setup(x => x.GetFilmwebResults(_expectedMovieType)).Returns(_fakeFilmwebResults);
 
@@ -53,7 +56,7 @@ namespace vod.Domain.Services.Tests
             _mockClients.Setup(x => x.All).Returns(new Mock<IClientProxy>().Object).Verifiable();
             _hubMock.Object.Clients = _mockClients.Object;
 
-            _refreshDataService = new RefreshDataService(_refreshStateService.Object, _mapperMock.Object, _ncPlusService.Object, _filmwebResultsProvider.Object, _repoBackground.Object, _hubMock.Object);
+            _refreshDataService = new RefreshDataService(_refreshStateService.Object, _mapperMock.Object, _ncPlusService.Object, _netflixService.Object, _filmwebResultsProvider.Object, _repoBackground.Object, _hubMock.Object);
         }
 
         private void Act() => _refreshDataService.Refresh(_expectedMovieType);
@@ -115,7 +118,7 @@ namespace vod.Domain.Services.Tests
 
             Act();
 
-            _filmwebResultsProvider.Verify(x => x.GetFilmwebResultsByNcPlusResults(It.IsAny<IEnumerable<NcPlusResult>>()), Times.Once);
+            _filmwebResultsProvider.Verify(x => x.GetFilmwebResultsByBaseResults(It.IsAny<IEnumerable<Result>>()), Times.Once);
         }
 
         [Test]
