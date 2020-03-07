@@ -44,7 +44,7 @@ namespace vod.Domain.Services
                     return GetFromStoredData(result) ?? SearchFilmwebResult(result);
 
                 case NetflixResult result:
-                    return GetFromStoredData(result) ?? null;
+                    return GetFromStoredData(result) ?? SearchFilmwebResult(result);
 
                 default:
                     throw new NotImplementedException("Not implemented");

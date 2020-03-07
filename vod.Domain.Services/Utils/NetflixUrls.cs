@@ -12,13 +12,13 @@ namespace vod.Domain.Services.Utils
             switch (type)
             {
                 case MovieTypes.Thriller:
-                    return $"{baseUrl}/browse/genre/8933?so=yr";
+                    return string.Format(baseUrl, 8933);
                 case MovieTypes.Action:
-                    return $"{baseUrl}/browse/genre/1365?so=yr";
+                    return string.Format(baseUrl, 1365);
                 case MovieTypes.Comedy:
-                    return $"{baseUrl}/browse/genre/6548?so=yr";
+                    return string.Format(baseUrl, 6548);
                 case MovieTypes.Cartoons:
-                    return $"{baseUrl}/browse/genre/6218?so=yr";
+                    return string.Format(baseUrl, 6218);
                 default:
                     throw new NotImplementedException("Brak implementacji dla podanego typu!");
             }

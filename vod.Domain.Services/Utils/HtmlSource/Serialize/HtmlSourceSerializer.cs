@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using HtmlAgilityPack;
 using Microsoft.EntityFrameworkCore.Internal;
+using Newtonsoft.Json;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
 using vod.Domain.Services.Utils.HtmlSource.Extension;
+using vod.Domain.Services.Utils.HtmlSource.Model;
 
 namespace vod.Domain.Services.Utils.HtmlSource.Serialize
 {
@@ -34,22 +36,19 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                     });
         }
 
-        public IEnumerable<NetflixResult> SerializeMoviesNetflix(HtmlDocument html, MovieTypes type)
+        public IEnumerable<NetflixResult> SerializeMoviesNetflix(string json, MovieTypes type)
         {
-            //><p class="fallback-text">
-            var ps = html.DocumentNode.Descendants("p");
-            var ps2 = ps.Where(x => x.Attributes.Contains("class") && x.Attributes["class"].Value == "fallback-text");
-            
-            var divs = html.DocumentNode.Descendants().Where(x => x.Attributes.Contains("class") && x.Attributes["class"].Value == "title-card-container");
-            var hrefs = divs.Select(n => n.Descendants().FirstOrDefault(p => p.Id == "title-card-2-0").Descendants("a").FirstOrDefault());
-
-            return hrefs.Select(n => new NetflixResult()
+            //latanie po jsonie
+            NetflixJsonResult deserialized = JsonConvert.DeserializeObject<NetflixJsonResult>(json);
+            var results = deserialized.Items.Select(n => new NetflixResult()
             {
-                Title = n.Attributes?.FirstOrDefault(p => p.Name == "aria-label").Value,
-                ProviderName = "Netflix",
+                Title = n.Title,
                 MovieType = type,
-                Url = n.Attributes?.FirstOrDefault(p => p.Name == "href").Value
+                ProviderName = "Netflix",
+                Url = NetflixUrls.NetflixBaseUrl + "/watch/" + n.NetflixId
             });
+
+            return results;
         }
 
         public string SerializeFilmwebUrl(HtmlDocument html, List<string> directors)

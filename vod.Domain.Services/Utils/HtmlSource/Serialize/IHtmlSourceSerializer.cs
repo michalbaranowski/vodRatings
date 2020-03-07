@@ -8,7 +8,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
     public interface IHtmlSourceSerializer
     {
         IEnumerable<NcPlusResult> SerializeMoviesNcPlus(HtmlDocument html, MovieTypes type);
-        IEnumerable<NetflixResult> SerializeMoviesNetflix(HtmlDocument html, MovieTypes type);
+        IEnumerable<NetflixResult> SerializeMoviesNetflix(string json, MovieTypes type);
         FilmwebResult SerializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieType, string moreInfoUrl, string movieTitle);
         string SerializeFilmwebUrl(HtmlDocument filmwebSearchHtml, List<string> directors);
         string SerializeFilmwebUrlFromNcPlus(HtmlDocument ncPlusHtml);

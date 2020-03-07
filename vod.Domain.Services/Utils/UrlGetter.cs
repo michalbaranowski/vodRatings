@@ -12,9 +12,9 @@ namespace vod.Domain.Services.Utils
             return props.Select(n => n.GetValue(null).ToString());
         }
 
-        public string GetNetflixUrl(MovieTypes type)
+        public string GetNetflixApiUrl(MovieTypes type)
         {
-            var baseUrl = NetflixUrls.NetflixBaseUrl;
+            var baseUrl = "https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=%7Bquery%7D-!1900%2C2020-!0%2C5-!0%2C10-!{0}-!Any-!Polish-!Polish-!gt100-!%7Bdownloadable%7D&t=ns&cl=all&st=adv&ob=Rating&p=1&sa=or";
             var fullUrl = NetflixUrls.GetUrlWithType(baseUrl, type);
             return fullUrl;
         }
@@ -23,6 +23,6 @@ namespace vod.Domain.Services.Utils
     public interface IUrlGetter
     {
         IEnumerable<string> GetNcPlusBaseUrls();
-        string GetNetflixUrl(MovieTypes type);
+        string GetNetflixApiUrl(MovieTypes type);
     }
 }
