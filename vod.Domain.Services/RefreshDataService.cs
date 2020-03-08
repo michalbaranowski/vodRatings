@@ -65,7 +65,7 @@ namespace vod.Domain.Services
                 .FillStoredDate();
 
             var moviesToBlackList = resultMoviesToAdd
-                .Where(n => moviesToAdd.Any(p => p.Title == n.Title) == false)
+                .Where(n => moviesToAdd.Any(p => p.Title == n.Title || p.OriginalTitle == n.Title) == false)
                 .Select(n => _mapper.Map<BlackListedMovieEntity>(n));
 
             _repositoryBackground.MarkAsDeleted(moviesToRemove);
