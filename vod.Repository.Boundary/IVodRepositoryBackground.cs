@@ -13,5 +13,6 @@ namespace vod.Repository.Boundary
         void LogUpdate(int movieType);
         void AddBlackListedMovies(IEnumerable<BlackListedMovieEntity> moviesToBlackList);
         IList<BlackListedMovieEntity> GetBlackListedMovies();
+        void RemoveDupes();
     }
 }

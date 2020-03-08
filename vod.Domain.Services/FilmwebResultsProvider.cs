@@ -34,12 +34,12 @@ namespace vod.Domain.Services
 
         public IEnumerable<FilmwebResult> GetFilmwebResultsByBaseResults(IEnumerable<Result> results)
         {
-            return GetFilmwebResultsFromNcplus(results)
+            return GetFilmwebResultsByBaseResultsInternal(results)
                 .Where(n => n != null)
                 .DistinctBy(n => n.Title);
         }
 
-        private IEnumerable<FilmwebResult> GetFilmwebResultsFromNcplus(IEnumerable<Result> results)
+        private IEnumerable<FilmwebResult> GetFilmwebResultsByBaseResultsInternal(IEnumerable<Result> results)
         {
             var result = new List<FilmwebResult>();
             var count = results.Count();

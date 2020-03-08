@@ -73,6 +73,8 @@ namespace vod.Domain.Services
             _repositoryBackground.AddBlackListedMovies(moviesToBlackList);
 
             _repositoryBackground.LogUpdate((int)type);
+            _repositoryBackground.RemoveDupes();
+
             _refreshStateService.RemoveCurrentRefreshState();
 
             _notificationHub.NotifyUpdate(type, moviesToAdd.Count());

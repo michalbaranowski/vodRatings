@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using vod.Repository.Boundary;
 using vod.Repository.Boundary.Models;
+using vod.Repository.Sql;
 
 namespace vod.Repository
 {
@@ -117,6 +118,15 @@ namespace vod.Repository
             using (var ctx = new AppDbContext(_opt))
             {
                 return ctx.BlackListedMovies.ToList();
+            }
+        }
+
+        public void RemoveDupes()
+        {
+            using (var ctx = new AppDbContext(_opt))
+            {
+                ctx.Database.ExecuteSqlCommand(SqlQueries.RemoveDupesSql);
+                ctx.SaveChanges();
             }
         }
     }

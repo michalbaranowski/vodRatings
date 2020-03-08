@@ -90,6 +90,7 @@ namespace vod.Domain.Services
             var filmwebHtml = _sourceGetter.GetHtmlFrom(filmwebUrl);
             var result = _sourceSerializer.SerializeFilmwebResult(filmwebHtml, movie.MovieType, movie.Url, movie.Title);
             result.ProviderName = movie.ProviderName;
+            result.Title = result.FilmwebTitle;
 
             return result;
         }
