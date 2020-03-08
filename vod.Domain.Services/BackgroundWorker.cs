@@ -26,10 +26,11 @@ namespace vod.Domain.Services
                 && type == _currentExecuteType)
                 return;
 
-            if (_stateManager.IsBusy() 
-                && _queue.All(n => n.Key != type))
+            if (_stateManager.IsBusy())
             {
-                _queue.Enqueue(new KeyValuePair<MovieTypes, Func<bool>>(type, func));
+                if(_queue.All(n => n.Key != type))
+                    _queue.Enqueue(new KeyValuePair<MovieTypes, Func<bool>>(type, func));
+
                 return;
             }
 
