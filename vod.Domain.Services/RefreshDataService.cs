@@ -57,7 +57,7 @@ namespace vod.Domain.Services
             var moviesToRemove = dbResults.Where(n => foundMovies.Any(p => p.Title == n.Title) == false);
 
             var resultMoviesToAdd = foundMovies
-                .Where(n => dbResults.Any(p => p.Title == n.Title) == false 
+                .Where(n => dbResults.Any(p => p.Title == n.Title || p.OriginalTitle == n.Title) == false 
                     && blackListedMovies.Any(p=>p.Title == n.Title) == false);
 
             var moviesToAdd = _filmwebResultsProvider.GetFilmwebResultsByBaseResults(resultMoviesToAdd)
