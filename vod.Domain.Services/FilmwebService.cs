@@ -91,7 +91,7 @@ namespace vod.Domain.Services
             var result = _sourceSerializer.SerializeFilmwebResult(filmwebHtml, movie.MovieType, movie.Url, movie.Title);
             result.ProviderName = movie.ProviderName;
             result.OriginalTitle = result.Title;
-            result.Title = result.FilmwebTitle;
+            result.Title = result.FilmwebTitle ?? result.Title;
 
             return result;
         }
@@ -112,7 +112,7 @@ namespace vod.Domain.Services
 
         private FilmwebResult GetFromStoredData(Result movie)
         {
-            if (_storedData.Any(n => n.Title == movie.Title))
+            if (_storedData.Any(n => n.Title == movie.Title && movie.Title != null))
                 return _mapper.Map<FilmwebResult>(_storedData.FirstOrDefault(n => n.Title == movie.Title));
 
             return null;

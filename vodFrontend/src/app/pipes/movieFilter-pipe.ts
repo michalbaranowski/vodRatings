@@ -13,7 +13,8 @@ export class MovieFilter implements PipeTransform {
         var results = items;
 
         if (filter.title)
-            results = results.filter(item => item.title.toLowerCase().indexOf(filter.title.toLowerCase()) !== -1);
+            results = results.filter(item => item.title.toLowerCase().indexOf(filter.title.toLowerCase()) !== -1
+                                          || item.originalTitle.toLowerCase().indexOf(filter.title.toLowerCase()) !== -1 );
 
         if (filter.filmwebFilmType && filter.filmwebFilmType != "Wszystkie")
             results = results.filter(item => {

@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using vod.Domain.Services.Boundary;
 using vod.Domain.Services.Boundary.Interfaces;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
-using vod.Domain.Services.Boundary.Models;
 using vod.Domain.Services.Utils;
 using vod.Repository.Boundary;
 using vod.Repository.Boundary.Models;
@@ -58,11 +55,12 @@ namespace vod.Domain.Services
 
             var resultMoviesToAdd = foundMovies
                 .Where(n => dbResults.Any(p => p.Title == n.Title || p.OriginalTitle == n.Title) == false 
-                    && blackListedMovies.Any(p=>p.Title == n.Title) == false);
+                    && blackListedMovies.Any(p=>p.Title == n.Title) == false).ToList();
 
             var moviesToAdd = _filmwebResultsProvider.GetFilmwebResultsByBaseResults(resultMoviesToAdd)
                 .Select(n => _mapper.Map<MovieEntity>(n))
-                .FillStoredDate();
+                .FillStoredDate()
+                .ToList();
 
             var moviesToBlackList = resultMoviesToAdd
                 .Where(n => moviesToAdd.Any(p => p.Title == n.Title || p.OriginalTitle == n.Title) == false)
@@ -73,8 +71,6 @@ namespace vod.Domain.Services
             _repositoryBackground.AddBlackListedMovies(moviesToBlackList);
 
             _repositoryBackground.LogUpdate((int)type);
-            _repositoryBackground.RemoveDupes();
-
             _refreshStateService.RemoveCurrentRefreshState();
 
             _notificationHub.NotifyUpdate(type, moviesToAdd.Count());
