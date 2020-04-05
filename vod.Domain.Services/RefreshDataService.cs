@@ -70,6 +70,7 @@ namespace vod.Domain.Services
             _repositoryBackground.AddMovies(moviesToAdd);
             _repositoryBackground.AddBlackListedMovies(moviesToBlackList);
 
+            _repositoryBackground.RemoveDupes();
             _repositoryBackground.LogUpdate((int)type);
             _refreshStateService.RemoveCurrentRefreshState();
 
