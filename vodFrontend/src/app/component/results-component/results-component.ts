@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/service/authService';
     templateUrl: 'results-component.html'
 })
 export class ResultsComponent {
-    loading: boolean;
+    loading: boolean = true;
     results: Result[];
     movieFilterArgs: Result;
     typeToChange: number = 0;

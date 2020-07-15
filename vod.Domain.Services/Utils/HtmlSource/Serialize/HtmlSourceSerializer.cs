@@ -77,9 +77,21 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
 
         public FilmwebResult SerializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieType, string movieUrl, string movieTitle)
         {
-            var rate = filmwebHtml.DocumentNode.Descendants()?
-                .FirstOrDefault(n => n.Name == "span" && n.Attributes.Contains("itemprop") &&
-                            n.Attributes["itemprop"].Value.Contains("ratingValue"))?.InnerHtml;
+            try
+            {
+                return SerializeFilmwebResultInternal(filmwebHtml, movieType, movieUrl, movieTitle);
+            }
+            catch (Exception exp)
+            {
+                //TODO: check why sometimes exception throws here
+                return new FilmwebResult();
+            }
+        }
+
+        private FilmwebResult SerializeFilmwebResultInternal(HtmlDocument filmwebHtml, MovieTypes movieType, string movieUrl, string movieTitle)
+        {
+            var rate = filmwebHtml.DocumentNode.Descendants()?.FirstOrDefault(n => n.Name == "span" && n.Attributes.Contains("itemprop") &&
+                n.Attributes["itemprop"].Value.Contains("ratingValue"))?.InnerHtml;
 
             var rateCount = filmwebHtml.DocumentNode.Descendants()?
                 .FirstOrDefault(n => n.Name == "span" && n.Attributes.Contains("itemprop") &&
@@ -89,7 +101,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 ?.Where(n =>
                     n.Name == "h1" && n.Attributes.Contains("class") &&
                     n.Attributes["class"].Value.Contains("filmTitle")).FirstOrDefault();
-            
+
             var title = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n => n.Name == "span" && n.HasAttributes && n.Attributes.Contains("class") && n.Attributes["class"].Value == "videoBlock__type")?.InnerText;
             var year = titleH1?.Descendants().FirstOrDefault(n => n.Name == "span")?.InnerHtml
                 .Replace("(", string.Empty).Replace(")", string.Empty);
@@ -114,7 +126,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
 
             var filmwebFilmType = filmwebFilmTypes != null ? string.Join(", ", filmwebFilmTypes) : string.Empty;
 
-            if(string.IsNullOrEmpty(filmwebFilmType))
+            if (string.IsNullOrEmpty(filmwebFilmType))
             {
                 var filmTypeHeader = infoHeaders.FirstOrDefault(n => n.InnerText == "gatunek");
                 var index = infoHeaders.IndexOf(filmTypeHeader);
@@ -125,7 +137,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 filmwebFilmType = descendantsTest
                     .Descendants()
                     .Where(n => n.Name == "span" && n.InnerText.Trim() != "/")
-                    .Select(n=>n.InnerText)
+                    .Select(n => n.InnerText)
                     .Join(", ");
             }
 
@@ -158,7 +170,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                                         .Descendants()
                                             .FirstOrDefault(r => r.Name == "a" && r.Attributes.Contains("title")).Attributes["title"].Value).ToList();
 
-            if(cast.Any() == false)
+            if (cast.Any() == false)
             {
                 cast = filmwebHtml.DocumentNode.Descendants()
                     .Where(n => n.Attributes.Contains("class") && n.Attributes.Contains("data-person"))
