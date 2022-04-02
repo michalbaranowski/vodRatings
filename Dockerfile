@@ -1,4 +1,4 @@
-FROM node:10 AS node-env
+FROM node:16 AS node-env
 COPY . .
 RUN npm install -g @angular/cli
 RUN cd vodFrontend && npm install --silent
