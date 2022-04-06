@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Text;
 using vod.Core;
 using vod.Core.Boundary.Interfaces;
@@ -60,6 +61,9 @@ namespace vodApi
             ).AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
 
+            
+            var signingKey = Environment.GetEnvironmentVariable("Jwt_SigningKey", EnvironmentVariableTarget.Machine);
+
             services.AddAuthentication(option => {
                 option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -73,7 +77,7 @@ namespace vodApi
                     ValidateAudience = true,
                     ValidAudience = Configuration["Jwt:Site"],
                     ValidIssuer = Configuration["Jwt:Site"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:SigningKey"]))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(signingKey))
                 };
             });
 
