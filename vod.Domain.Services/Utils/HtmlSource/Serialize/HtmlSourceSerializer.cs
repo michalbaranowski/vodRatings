@@ -8,6 +8,7 @@ using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
 using vod.Domain.Services.Utils.HtmlSource.Extension;
 using vod.Domain.Services.Utils.HtmlSource.Model;
+using vod.Domain.Services.Utils.HtmlSource.Model.CanalPlus;
 
 namespace vod.Domain.Services.Utils.HtmlSource.Serialize
 {
@@ -108,7 +109,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
 
             if (string.IsNullOrEmpty(year))
                 year = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n =>
-                n.Name == "span" && n.Attributes.Contains("class") && n.Attributes["class"].Value == "filmCoverSection__year").InnerText;
+                n.Name == "span" && n.Attributes.Contains("class") && n.Attributes["class"].Value == "filmCoverSection__year")?.InnerText;
 
             var imageUrl = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n =>
                 n.Name == "img" && n.Attributes.Contains("alt") && n.Attributes.Contains("itemprop") &&
@@ -247,6 +248,62 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
             return ncPlusHtml.DocumentNode.Descendants()?
                 .Where(n => n.Name == "a" && n.Attributes.Contains("href") && n.Attributes["href"].Value.Contains("filmweb")).FirstOrDefault()
                 ?.Attributes["href"].Value;
+        }
+
+        public IEnumerable<CanalPlusResult> SerializeCanalPlusMovies(string content, MovieTypes type)
+        {
+            CanalPlusApiResponse deserialized = JsonConvert.DeserializeObject<CanalPlusApiResponse>(content);
+
+            var results = new List<CanalPlusResult>();
+
+            foreach (var contentItem in deserialized.Contents)
+            {
+                var movieType = GetMovieTypeBySubTitle(contentItem.Subtitle);
+
+                if (movieType == null) continue;
+
+                var result = new CanalPlusResult()
+                {
+                    Title = contentItem.Title,
+                    MovieType = movieType.Value,
+                    ProviderName = "CanalPlus",
+                    Url = $"{CanalPlusUrls.CanalPlusBaseUrl}{contentItem.OnClick.Path}"
+                };
+
+                results.Add(result);
+            }
+
+            return results;
+        }
+
+        private MovieTypes? GetMovieTypeBySubTitle(string subtitle)
+        {
+            switch (subtitle)
+            {
+                case "Komedia":
+                    return MovieTypes.Comedy;
+                case "Akcja":
+                    return MovieTypes.Action;
+                case "Kryminał / Thriller":
+                    return MovieTypes.Thriller;
+                default:
+                    if(subtitle.Contains("Komedia"))
+                    {
+                        return MovieTypes.Comedy;
+                    }
+
+                    else if (subtitle.Contains("Thriller"))
+                    {
+                        return MovieTypes.Thriller;
+                    }
+
+                    else if (subtitle.Contains("Akcja"))
+                    {
+                        return MovieTypes.Action;
+                    }
+
+                    return null;
+            }
         }
     }
 }

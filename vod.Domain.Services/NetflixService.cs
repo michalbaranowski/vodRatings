@@ -10,16 +10,13 @@ namespace vod.Domain.Services
 {
     public class NetflixService : INetflixService
     {
-        private readonly IHtmlSourceGetter _htmlSourceGetter;
         private readonly IHtmlSourceSerializer _htmlSourceSerializer;
         private readonly IUrlGetter _urlGetter;
 
         public NetflixService(
-            IHtmlSourceGetter htmlSourceGetter, 
             IHtmlSourceSerializer htmlSourceSerializer, 
             IUrlGetter urlGetter)
         {
-            _htmlSourceGetter = htmlSourceGetter;
             _htmlSourceSerializer = htmlSourceSerializer;
             _urlGetter = urlGetter;
         }

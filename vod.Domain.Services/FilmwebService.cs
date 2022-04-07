@@ -46,6 +46,9 @@ namespace vod.Domain.Services
                 case NetflixResult result:
                     return GetFromStoredData(result) ?? SearchFilmwebResult(result);
 
+                case CanalPlusResult result:
+                    return GetFromStoredData(result) ?? SearchFilmwebResult(result);
+
                 default:
                     throw new NotImplementedException("Not implemented");
             }            
@@ -79,7 +82,7 @@ namespace vod.Domain.Services
             return result;
         }
 
-        private FilmwebResult SearchFilmwebResult(NetflixResult movie)
+        private FilmwebResult SearchFilmwebResult(ApiProviderResult movie)
         {
             var filmwebSearchHtml = _sourceGetter.GetHtmlFrom(FilmwebUrls.FilmwebSearchBaseUrl(movie.Title));
             var filmwebUrl = _sourceSerializer.SerializeFilmwebUrl(filmwebSearchHtml, null);

@@ -1,7 +1,8 @@
-﻿namespace vod.Domain.Services
+﻿using vod.Domain.Services.Boundary.Models;
+
+namespace vod.Domain.Services
 {
-    public class NetflixResult : Result
-    {
-        public string Url { get; set; }
+    public class NetflixResult : ApiProviderResult
+    {        
     }
 }
