@@ -14,5 +14,6 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
         string SerializeFilmwebUrlFromNcPlus(HtmlDocument ncPlusHtml);
         List<string> SerializeDirectors(HtmlDocument html);
         string SerializeOriginalTitle(HtmlDocument html);
+        IEnumerable<CanalPlusResult> SerializeCanalPlusMovies(string content, MovieTypes type);
     }
 }
