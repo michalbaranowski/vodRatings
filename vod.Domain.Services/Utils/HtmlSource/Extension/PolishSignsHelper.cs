@@ -25,7 +25,8 @@
                 .Replace("&#378;", "ź")
                 .Replace("&#379;", "Ż")
                 .Replace("&#380;", "ż")
-                .Replace("&quot;", "\"");
+                .Replace("&quot;", "\"")
+                .Replace("&#39;", "'");
         }
     }
 }

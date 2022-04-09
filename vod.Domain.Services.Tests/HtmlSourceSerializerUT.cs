@@ -18,6 +18,7 @@ namespace vod.Domain.Services.Tests
         private HtmlDocument _ncPremieresComediesDoc;
         private HtmlDocument _hboComedies;
         private HtmlDocument _filmwebSearch2HtmlDoc;
+        private HtmlDocument _filmwebSearchHtmlDoc;
 
         private void Arrange()
         {
@@ -46,6 +47,10 @@ namespace vod.Domain.Services.Tests
             var filmwebResultHtml = HtmlResources.FilmwebResultHtml();
             _filmwebResultHtmlDoc = new HtmlDocument();
             _filmwebResultHtmlDoc.LoadHtml(filmwebResultHtml);
+
+            var filmwebSearchHtml = HtmlResources.FilmWebSearchResultHtml();
+            _filmwebSearchHtmlDoc = new HtmlDocument();
+            _filmwebSearchHtmlDoc.LoadHtml(filmwebSearchHtml);
 
             var filmwebSearch2Html = HtmlResources.FilmWebSearchResult2Html();
             _filmwebSearch2HtmlDoc = new HtmlDocument();
