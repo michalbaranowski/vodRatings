@@ -29,7 +29,7 @@ namespace vod.Domain.Services.Utils
                     result += $"{CanalPlusMovieUrl}filmy-na-poprawe-nastroju.json";
                     break;
                 case MovieTypes.Cartoons:
-                    result += $"{CanalPlusMovieUrl}filmy-na-poprawe-nastroju.json";
+                    result += $"{CanalPlusMovieUrl}ncplus-ouah-filmy-dlacalejrodziny.json";
                     break;
                 default:
                     break;
