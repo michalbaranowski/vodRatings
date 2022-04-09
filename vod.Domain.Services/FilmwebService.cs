@@ -74,9 +74,6 @@ namespace vod.Domain.Services
             var movieUrl = $"{NcPlusUrls.NcPlusGoUrl}{movie.MoreInfoUrl}";
             var result = _sourceSerializer.SerializeFilmwebResult(filmwebHtml, movie.MovieType, movieUrl, movie.Title);
 
-            if (IsTitleMatched(result.FilmwebTitle, movie.Title, movie.OriginalTitle) == false)
-                return null;
-
             result.ProviderName = movie.ProviderName;
 
             return result;
@@ -93,23 +90,8 @@ namespace vod.Domain.Services
             var filmwebHtml = _sourceGetter.GetHtmlFrom(filmwebUrl);
             var result = _sourceSerializer.SerializeFilmwebResult(filmwebHtml, movie.MovieType, movie.Url, movie.Title);
             result.ProviderName = movie.ProviderName;
-            result.OriginalTitle = result.Title;
-            result.Title = result.FilmwebTitle ?? result.Title;
+            result.OriginalTitle = result.FilmwebTitle;
 
-            return result;
-        }
-
-        private bool IsTitleMatched(string filmwebTitle, string movieTitle, string movieOriginalTitle)
-        {
-            return NormalizeTitle(filmwebTitle) == NormalizeTitle(movieTitle) || NormalizeTitle(filmwebTitle) == NormalizeTitle(movieOriginalTitle);
-        }
-
-        private string NormalizeTitle(string title)
-        {
-            if (string.IsNullOrEmpty(title))
-                return title;
-
-            var result = Regex.Replace(title, "[^A-Za-z0-9]", "").ToLower();
             return result;
         }
 

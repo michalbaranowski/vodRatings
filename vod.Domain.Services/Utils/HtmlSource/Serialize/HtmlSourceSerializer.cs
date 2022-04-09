@@ -196,7 +196,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 Production = production,
                 FilmDescription = filmDesc,
                 MovieUrl = movieUrl,
-                Cast = cast
+                Cast = cast.Distinct().ToList()  
             };
         }
 
