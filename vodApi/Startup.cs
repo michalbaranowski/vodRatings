@@ -61,8 +61,8 @@ namespace vodApi
             ).AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
 
-            
-            var signingKey = Environment.GetEnvironmentVariable("Jwt_SigningKey", EnvironmentVariableTarget.Machine);
+
+            var signingKey = Configuration.GetValue<string>("Jwt_SigningKey");
 
             services.AddAuthentication(option => {
                 option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
