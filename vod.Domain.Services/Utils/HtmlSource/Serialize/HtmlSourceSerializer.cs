@@ -69,11 +69,15 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
             if (li == null) return string.Empty;
 
             var href = li.Descendants()
-                .FirstOrDefault(n => n.Name == "a" && n.Attributes.Contains("class") && n.Attributes.Contains("href") && n.Attributes["class"]?
-                .Value == "filmPreview__link")?
+                .FirstOrDefault(n => n.Name == "a" && n.Attributes.Contains("class") &&
+                                     n.Attributes.Contains("href") &&
+                                     n.Attributes["class"].Value.ToLower().Contains("preview__link"))?
                 .Attributes["href"]?
                 .Value;
-            return href != null ? $"{FilmwebUrls.FilmwebBaseUrl}{href}" : string.Empty;
+
+            var result = href.Contains("http") ? href : $"{FilmwebUrls.FilmwebBaseUrl}{href}";
+
+            return result ?? string.Empty;
         }
 
         public FilmwebResult SerializeFilmwebResult(HtmlDocument filmwebHtml, MovieTypes movieType, string movieUrl, string movieTitle)
@@ -104,12 +108,14 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                     n.Attributes["class"].Value.Contains("filmTitle")).FirstOrDefault();
 
             var title = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n => n.Name == "span" && n.HasAttributes && n.Attributes.Contains("class") && n.Attributes["class"].Value == "videoBlock__type")?.InnerText;
-            var year = titleH1?.Descendants().FirstOrDefault(n => n.Name == "span")?.InnerHtml
-                .Replace("(", string.Empty).Replace(")", string.Empty);
-
-            if (string.IsNullOrEmpty(year))
-                year = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n =>
-                n.Name == "span" && n.Attributes.Contains("class") && n.Attributes["class"].Value == "filmCoverSection__year")?.InnerText;
+            var year = filmwebHtml.DocumentNode.Descendants()
+                .FirstOrDefault(n => n.Name == "div" &&
+                                n.HasAttributes &&
+                                n.Attributes.Contains("class") &&
+                                n.Attributes["class"].Value == "fP__year" &&
+                                n.Attributes.Contains("itemprop") &&
+                                n.Attributes["itemprop"].Value == "datePublished")
+                .InnerText;
 
             var imageUrl = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n =>
                 n.Name == "img" && n.Attributes.Contains("alt") && n.Attributes.Contains("itemprop") &&
@@ -155,28 +161,18 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
 
             var filmDesc = filmwebHtml.DocumentNode.Descendants()
                 .FirstOrDefault(n =>
-                    n.Name == "div" && n.Attributes.Contains("class") &&
-                    n.Attributes["class"].Value.Contains("filmPlot"))?
-                .Descendants().FirstOrDefault(n => n.Name == "p")?.InnerText;
-
-            if (string.IsNullOrEmpty(filmDesc))
-                filmDesc = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n => n.Name == "div" && n.Attributes.Contains("class") && n.Attributes["class"].Value == "filmPosterSection__plot")?.InnerText;
+                    n.Name == "span" && n.Attributes.Contains("itemprop") &&
+                    n.Attributes["itemprop"].Value.Contains("description"))?.InnerText;
 
             var cast = filmwebHtml.DocumentNode.Descendants()
-                .Where(n => n.Name == "tr"
-                        && n.Attributes.Contains("id")
-                        && n.Attributes["id"].Value.Contains("role_"))
-                            .Select(n => n.Descendants()
-                                    .FirstOrDefault(p => p.Name == "td")
-                                        .Descendants()
-                                            .FirstOrDefault(r => r.Name == "a" && r.Attributes.Contains("title")).Attributes["title"].Value).ToList();
-
-            if (cast.Any() == false)
-            {
-                cast = filmwebHtml.DocumentNode.Descendants()
-                    .Where(n => n.Attributes.Contains("class") && n.Attributes.Contains("data-person"))
-                    .Select(n => n.Attributes["data-person"].Value).ToList();
-            }
+                .Where(n => n.HasAttributes &&
+                            n.Attributes.Contains("class") &&
+                            n.Attributes["class"].Value.Contains("crs__item"))
+                .SelectMany(n => n.Descendants().Where(p => p.HasAttributes &&
+                                                        p.Attributes.Contains("class") &&
+                                                        p.Attributes["class"].Value == "personRole__person"))
+                .Select(n => n.Descendants().FirstOrDefault(p => p.Name == "span").InnerText)
+                .ToList();
 
             var ratingValue = 0m;
             decimal.TryParse(rate, out ratingValue);
@@ -278,32 +274,30 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
 
         private MovieTypes? GetMovieTypeBySubTitle(string subtitle)
         {
-            switch (subtitle)
+            if (subtitle.Contains("Komedia"))
             {
-                case "Komedia":
-                    return MovieTypes.Comedy;
-                case "Akcja":
-                    return MovieTypes.Action;
-                case "Kryminał / Thriller":
-                    return MovieTypes.Thriller;
-                default:
-                    if(subtitle.Contains("Komedia"))
-                    {
-                        return MovieTypes.Comedy;
-                    }
-
-                    else if (subtitle.Contains("Thriller"))
-                    {
-                        return MovieTypes.Thriller;
-                    }
-
-                    else if (subtitle.Contains("Akcja"))
-                    {
-                        return MovieTypes.Action;
-                    }
-
-                    return null;
+                return MovieTypes.Comedy;
             }
+
+            else if (subtitle.Contains("Thriller") || subtitle.Contains("Kryminał"))
+            {
+                return MovieTypes.Thriller;
+            }
+
+            else if (subtitle.Contains("Akcja"))
+            {
+                return MovieTypes.Action;
+            }
+
+            else if (subtitle.Contains("Familijny") ||
+                     subtitle.Contains("Animowany") ||
+                     subtitle.Contains("Dla dzieci") ||
+                     subtitle.Contains("Przygodowy"))
+            {
+                return MovieTypes.Cartoons;
+            }
+
+            return null;
         }
     }
 }

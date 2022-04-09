@@ -23,6 +23,7 @@ namespace vod.Domain.Services.Tests
         private Mock<INcPlusService> _ncPlusService;
         private Mock<INetflixService> _netflixService;
         private Mock<IFilmwebResultsProvider> _filmwebResultsProvider;
+        private Mock<ICanalPlusService> _canalPlusService;
         private Mock<IVodRepositoryBackground> _repoBackground;
         private Mock<UpdateNotificationHub> _hubMock;
         private IRefreshDataService _refreshDataService;
@@ -33,7 +34,7 @@ namespace vod.Domain.Services.Tests
         private List<MovieEntity> _fakeMovieEntities = new List<MovieEntity>() { new MovieEntity() { Title="test", VodFilmType = (int)_expectedMovieType } };
         private List<BlackListedMovieEntity> _fakeBlackListedMovieEntities = new List<BlackListedMovieEntity>() { new BlackListedMovieEntity() { Title="test2" } };
         private List<FilmwebResult> _fakeFilmwebResults = new List<FilmwebResult>() { new FilmwebResult() { Title = "test" } };
-        
+
         private void BaseArrange()
         {
             _refreshStateService = new Mock<IRefreshStateService>();
@@ -43,6 +44,7 @@ namespace vod.Domain.Services.Tests
             _ncPlusService.Setup(x => x.GetMoviesOfType(_expectedMovieType)).Returns(_fakeNcPlusResults);
 
             _netflixService = new Mock<INetflixService>();
+            _canalPlusService = new Mock<ICanalPlusService>();
 
             _filmwebResultsProvider = new Mock<IFilmwebResultsProvider>();
             _filmwebResultsProvider.Setup(x => x.GetFilmwebResults(_expectedMovieType)).Returns(_fakeFilmwebResults);
@@ -56,7 +58,15 @@ namespace vod.Domain.Services.Tests
             _mockClients.Setup(x => x.All).Returns(new Mock<IClientProxy>().Object).Verifiable();
             _hubMock.Object.Clients = _mockClients.Object;
 
-            _refreshDataService = new RefreshDataService(_refreshStateService.Object, _mapperMock.Object, _ncPlusService.Object, _netflixService.Object, _filmwebResultsProvider.Object, _repoBackground.Object, _hubMock.Object);
+            _refreshDataService = new RefreshDataService(
+                _refreshStateService.Object,
+                _mapperMock.Object,
+                _ncPlusService.Object,
+                _netflixService.Object,
+                _canalPlusService.Object,
+                _filmwebResultsProvider.Object,
+                _repoBackground.Object,
+                _hubMock.Object);
         }
 
         private void Act() => _refreshDataService.Refresh(_expectedMovieType);

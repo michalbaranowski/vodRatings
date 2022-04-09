@@ -17,9 +17,7 @@ namespace vod.Domain.Services.Tests
         private HtmlDocument _cplusComedies;
         private HtmlDocument _ncPremieresComediesDoc;
         private HtmlDocument _hboComedies;
-        private HtmlDocument _filmwebSearchHtmlDoc;
         private HtmlDocument _filmwebSearch2HtmlDoc;
-        private HtmlDocument _filmwebNewResultHtmlDoc;
 
         private void Arrange()
         {
@@ -45,17 +43,9 @@ namespace vod.Domain.Services.Tests
             _moreInfoHtmlDoc = new HtmlDocument();
             _moreInfoHtmlDoc.LoadHtml(moreInfoHtml);
 
-            var filmwebSearchHtml = HtmlResources.FilmWebSearchResultHtml();
-            _filmwebSearchHtmlDoc = new HtmlDocument();
-            _filmwebSearchHtmlDoc.LoadHtml(filmwebSearchHtml);
-
             var filmwebResultHtml = HtmlResources.FilmwebResultHtml();
             _filmwebResultHtmlDoc = new HtmlDocument();
             _filmwebResultHtmlDoc.LoadHtml(filmwebResultHtml);
-
-            var filmwebNewResultHtml = HtmlResources.FilmwebNewResultHtml();
-            _filmwebNewResultHtmlDoc = new HtmlDocument();
-            _filmwebNewResultHtmlDoc.LoadHtml(filmwebNewResultHtml);
 
             var filmwebSearch2Html = HtmlResources.FilmWebSearchResult2Html();
             _filmwebSearch2HtmlDoc = new HtmlDocument();
@@ -92,11 +82,11 @@ namespace vod.Domain.Services.Tests
         public void SerializeFilmwebUrl_ShouldSerializeCorrectValues()
         {
             Arrange();
-            var directors = new List<string>() { "Sean Mathias", "Test" };
+            var directors = new List<string>() { "David Mackenzie", "Test" };
 
             var result = _serializer.SerializeFilmwebUrl(_filmwebSearch2HtmlDoc, directors);
 
-            Assert.AreEqual("https://www.filmweb.pl/film/Pi%C4%99tno-1997-31929", result);
+            Assert.AreEqual("https://www.filmweb.pl/film/A%C5%BC+do+piek%C5%82a-2016-741821", result);
         }
 
         [Test]
@@ -104,33 +94,16 @@ namespace vod.Domain.Services.Tests
         {
             Arrange();
 
-            var title = "Ostateczna rozgrywka";
+            var title = "Aż do piekła";
             var result = _serializer.SerializeFilmwebResult(_filmwebResultHtmlDoc, MovieTypes.Thriller, string.Empty, title);
 
             Assert.True(result.Title == title);
-            Assert.True(result.FilmwebRating == 5.4m);
-            Assert.True(result.Production == "Wielka Brytania");
-            Assert.True(result.FilmwebFilmType == "Akcja, Thriller");
-            Assert.True(result.FilmDescription.Contains("Piłkarski stadion zostaje opanowany"));
-            Assert.True(result.Year == 2018);
-            Assert.True(result.Cast.Contains("Dave Bautista"));
-        }
-
-        [Test]
-        public void SerializeFilmwebResult_ShouldSerializeCorrectValuesForNewFilmwebResult()
-        {
-            Arrange();
-
-            var title = "Kapitan Ameryka: Wojna bohaterów (2016)";
-            var result = _serializer.SerializeFilmwebResult(_filmwebNewResultHtmlDoc, MovieTypes.Action, string.Empty, title);
-
-            Assert.True(result.FilmwebRating == 7.5m);
+            Assert.True(result.FilmwebRating == 7.1m);
             Assert.True(result.Production == "USA");
-            Assert.True(result.FilmwebTitle == "Kapitan Ameryka: Wojna bohaterów");
-            Assert.True(result.FilmwebFilmType == "Akcja, Sci-Fi");
-            Assert.True(result.FilmDescription.Contains("ONZ wprowadza przymusowy rejestr bohaterów"));
+            Assert.True(result.FilmwebFilmType == "Dramat, Kryminał");
+            Assert.True(result.FilmDescription.Contains("Rozwiedziony ojciec i jego brat"));
             Assert.True(result.Year == 2016);
-            Assert.True(result.Cast.Contains("Robert Downey Jr."));
+            Assert.True(result.Cast.Contains("Jeff Bridges"));
         }
     }
 }
