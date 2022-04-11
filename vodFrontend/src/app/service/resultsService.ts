@@ -29,7 +29,6 @@ export class ResultsService {
     }
 
     setAsUnwatched(movie: Result) {
-        // return this.ajaxService.doPost(this.unwatchedMoviesUrl, movie);
         return this.ajaxService.doDelete(this.watchedMoviesUrl, movie.id);
     }
 }
