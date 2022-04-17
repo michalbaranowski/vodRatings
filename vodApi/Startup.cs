@@ -26,15 +26,12 @@ namespace vodApi
 {
     public class Startup
     {
-        private IHostingEnvironment _hostingEnvironment;
+        private IConfiguration _configuration;
 
-        public Startup(IConfiguration configuration, IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            _hostingEnvironment = env;
-            Configuration = configuration;
+            _configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -43,11 +40,11 @@ namespace vodApi
             services.AddSignalR();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            var dbContextOptions = new DbContextOptionsBuilder<AppDbContext>().UseSqlServer(Configuration.GetValue<string>("ConnectionStrings:DefaultConnection")).Options;
+            var dbContextOptions = new DbContextOptionsBuilder<AppDbContext>().UseSqlServer(_configuration.GetValue<string>("ConnectionStrings:DefaultConnection")).Options;
             services.AddSingleton(dbContextOptions);
             services.AddTransient<IAppDbContext, AppDbContext>();
 
-            services.AddDbContext<AppDbContext>(option => option.UseSqlServer(Configuration.GetValue<string>("ConnectionStrings:DefaultConnection")));
+            services.AddDbContext<AppDbContext>(option => option.UseSqlServer(_configuration.GetValue<string>("ConnectionStrings:DefaultConnection")));
 
             services.AddIdentity<IdentityUser, IdentityRole>(
                 option =>
@@ -62,7 +59,7 @@ namespace vodApi
             .AddDefaultTokenProviders();
 
 
-            var signingKey = Configuration.GetValue<string>("Jwt_SigningKey");
+            var signingKey = _configuration.GetValue<string>("Jwt_SigningKey");
 
             services.AddAuthentication(option => {
                 option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -75,8 +72,8 @@ namespace vodApi
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidAudience = Configuration["Jwt:Site"],
-                    ValidIssuer = Configuration["Jwt:Site"],
+                    ValidAudience = _configuration["Jwt:Site"],
+                    ValidIssuer = _configuration["Jwt:Site"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(signingKey))
                 };
             });

@@ -21,6 +21,9 @@ export class GlobalHttpInterceptorService implements HttpInterceptor {
 
             this.notifyService.notify("warning", "Logowanie nie powiodło się", error.status);
             return throwError(error);
+          case 499:
+            this.notifyService.notify("warning", "Użytkownik isnieje już w systemie", error.status);
+            return throwError(error);
         }
         this.notifyService.notify("error", "Error " + error.status + ": " + error.statusText);
         return throwError(error);
