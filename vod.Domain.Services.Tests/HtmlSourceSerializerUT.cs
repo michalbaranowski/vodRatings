@@ -19,6 +19,7 @@ namespace vod.Domain.Services.Tests
         private HtmlDocument _hboComedies;
         private HtmlDocument _filmwebSearch2HtmlDoc;
         private HtmlDocument _filmwebSearchHtmlDoc;
+        private HtmlDocument _filmwebResult2HtmlDoc;
 
         private void Arrange()
         {
@@ -48,9 +49,9 @@ namespace vod.Domain.Services.Tests
             _filmwebResultHtmlDoc = new HtmlDocument();
             _filmwebResultHtmlDoc.LoadHtml(filmwebResultHtml);
 
-            var filmwebSearchHtml = HtmlResources.FilmWebSearchResultHtml();
-            _filmwebSearchHtmlDoc = new HtmlDocument();
-            _filmwebSearchHtmlDoc.LoadHtml(filmwebSearchHtml);
+            var filmwebResult2Html = HtmlResources.FilmwebResult2Html();
+            _filmwebResult2HtmlDoc = new HtmlDocument();
+            _filmwebResult2HtmlDoc.LoadHtml(filmwebResult2Html);
 
             var filmwebSearch2Html = HtmlResources.FilmWebSearchResult2Html();
             _filmwebSearch2HtmlDoc = new HtmlDocument();
@@ -109,6 +110,23 @@ namespace vod.Domain.Services.Tests
             Assert.True(result.FilmDescription.Contains("Rozwiedziony ojciec i jego brat"));
             Assert.True(result.Year == 2016);
             Assert.True(result.Cast.Contains("Jeff Bridges"));
+        }
+
+        [Test]
+        public void SerializeFilmwebResult_ShouldSerializeCorrectValues2()
+        {
+            Arrange();
+
+            var title = "MINIONKI";
+            var result = _serializer.SerializeFilmwebResult(_filmwebResult2HtmlDoc, MovieTypes.Cartoons, string.Empty, title);
+
+            Assert.True(result.Title == title);
+            Assert.True(result.FilmwebRating == 6.8m);
+            Assert.True(result.Production == "USA");
+            Assert.True(result.FilmwebFilmType == "Animacja, Familijny, Komedia");
+            Assert.True(result.FilmDescription.Contains("Pozbawione szefa Minionki popadają w depresję."));
+            Assert.True(result.Year == 2015);
+            Assert.True(result.Cast.Contains("Sandra Bullock"));
         }
     }
 }
