@@ -112,9 +112,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 .FirstOrDefault(n => n.Name == "div" &&
                                 n.HasAttributes &&
                                 n.Attributes.Contains("class") &&
-                                n.Attributes["class"].Value == "fP__year" &&
-                                n.Attributes.Contains("itemprop") &&
-                                n.Attributes["itemprop"].Value == "datePublished")
+                                n.Attributes["class"].Value == "fP__year")?
                 .InnerText;
 
             var imageUrl = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n =>
