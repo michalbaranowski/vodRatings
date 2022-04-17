@@ -37,6 +37,12 @@ namespace vodApi.Controllers
             };
             try
             {
+                var alreadyFoundUser = await _userManager.FindByEmailAsync(user.Email);
+                if (alreadyFoundUser != null)
+                {
+                    return StatusCode(499);
+                }
+
                 var result = await _userManager.CreateAsync(user, model.Password);
             }
             catch(Exception exp)
@@ -54,21 +60,18 @@ namespace vodApi.Controllers
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
-                var claim = new[] {
-                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
-                };
-                var signinKey = new SymmetricSecurityKey(
-                  Encoding.UTF8.GetBytes(_configuration["Jwt:SigningKey"]));
+                var signingKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(_configuration.GetValue<string>("Jwt_SigningKey")));
 
                 int expiryInMinutes = Convert.ToInt32(_configuration["Jwt:ExpiryInMinutes"]);
 
                 var token = new JwtSecurityToken(
-                    new JwtHeader(new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256)),
+                    new JwtHeader(new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256)),
                     new JwtPayload(_configuration["Jwt:Site"],
-                                    _configuration["Jwt:Site"],
-                                    new List<Claim>() { new Claim(ClaimTypes.Name, user.UserName), new Claim(ClaimTypes.NameIdentifier, user.Id)},
-                                    null,
-                                    DateTime.UtcNow.AddMinutes(expiryInMinutes)));                
+                                   _configuration["Jwt:Site"],
+                                   new List<Claim>() { new Claim(ClaimTypes.Name, user.UserName), new Claim(ClaimTypes.NameIdentifier, user.Id)},
+                                   null,
+                                   DateTime.UtcNow.AddMinutes(expiryInMinutes)));
 
                 return Ok(
                   new
@@ -77,6 +80,7 @@ namespace vodApi.Controllers
                       expiration = token.ValidTo
                   });
             }
+
             return Unauthorized();
         }
 
