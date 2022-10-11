@@ -248,6 +248,11 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
         {
             CanalPlusApiResponse deserialized = JsonConvert.DeserializeObject<CanalPlusApiResponse>(content);
 
+            if (deserialized.Contents == null)
+            {
+                return Enumerable.Empty<CanalPlusResult>();
+            }
+
             var results = new List<CanalPlusResult>();
 
             foreach (var contentItem in deserialized.Contents)
