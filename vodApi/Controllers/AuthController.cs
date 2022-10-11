@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +45,12 @@ namespace vodApi.Controllers
                 }
 
                 var result = await _userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded == false)
+                {
+                    return StatusCode(498, result.Errors.First());
+                }
+
             }
             catch(Exception exp)
             {
@@ -86,11 +93,15 @@ namespace vodApi.Controllers
 
         [Route("api/authorize")]
         [HttpGet]
-        [Authorize]
         public ActionResult GetUserData()
         {
             var username = User.FindFirst(ClaimTypes.Name)?.Value;
-            return Ok(new { username });
+            return Ok(new 
+                {
+                    username = username,
+                    isAuthorized = string.IsNullOrEmpty(username) == false
+                }
+            );
         }
     }
 }

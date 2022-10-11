@@ -13,7 +13,7 @@ export class NavbarComponent implements OnChanges {
     @Input() loading: Boolean;
     @Input() typeToChange: number;
 
-    loggedInUser: UserData;
+    currentUser: UserData;
 
     constructor(private authService: AuthService) {
         this.initMenu();
@@ -66,11 +66,11 @@ export class NavbarComponent implements OnChanges {
 
     checkIfLoggedInAndGetUsername() {
         this.authService.authorize().subscribe(result => {
-            this.loggedInUser = result;
+            this.currentUser = result;
             this.changeType(0);
         },
         error => {
-            this.loggedInUser = null;       
+            this.currentUser = null;       
             this.changeType(0);     
         });
     }

@@ -15,14 +15,17 @@ export class GlobalHttpInterceptorService implements HttpInterceptor {
       catchError((error) => {
         switch (error.status) {
           case 401:
-            if(req.url === "api/authorize") {
-              return throwError(error);  
+            if (req.url === "api/authorize") {
+              return throwError(error);
             }
 
             this.notifyService.notify("warning", "Logowanie nie powiodło się", error.status);
             return throwError(error);
           case 499:
             this.notifyService.notify("warning", "Użytkownik isnieje już w systemie", error.status);
+            return throwError(error);
+          case 498:
+            this.notifyService.notify("warning", "Wystąpił błąd podczas rejestracji: " + error.error.description);
             return throwError(error);
         }
         this.notifyService.notify("error", "Error " + error.status + ": " + error.statusText);
