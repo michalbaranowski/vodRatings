@@ -2,10 +2,7 @@
 using Microsoft.AspNetCore.SignalR;
 using Moq;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using vod.Domain.Services.Boundary;
 using vod.Domain.Services.Boundary.Interfaces;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
@@ -20,7 +17,6 @@ namespace vod.Domain.Services.Tests
     {
         private Mock<IRefreshStateService> _refreshStateService;
         private Mock<IMapper> _mapperMock;
-        private Mock<INcPlusService> _ncPlusService;
         private Mock<INetflixService> _netflixService;
         private Mock<IFilmwebResultsProvider> _filmwebResultsProvider;
         private Mock<ICanalPlusService> _canalPlusService;
@@ -30,7 +26,6 @@ namespace vod.Domain.Services.Tests
         private Mock<IHubCallerClients> _mockClients;
 
         private static MovieTypes _expectedMovieType = MovieTypes.Action;
-        private List<NcPlusResult> _fakeNcPlusResults = new List<NcPlusResult>() { new NcPlusResult() { Title="test", MovieType = _expectedMovieType } };
         private List<MovieEntity> _fakeMovieEntities = new List<MovieEntity>() { new MovieEntity() { Title="test", VodFilmType = (int)_expectedMovieType } };
         private List<BlackListedMovieEntity> _fakeBlackListedMovieEntities = new List<BlackListedMovieEntity>() { new BlackListedMovieEntity() { Title="test2" } };
         private List<FilmwebResult> _fakeFilmwebResults = new List<FilmwebResult>() { new FilmwebResult() { Title = "test" } };
@@ -40,14 +35,8 @@ namespace vod.Domain.Services.Tests
             _refreshStateService = new Mock<IRefreshStateService>();
             _mapperMock = new Mock<IMapper>();
 
-            _ncPlusService = new Mock<INcPlusService>();
-            _ncPlusService.Setup(x => x.GetMoviesOfType(_expectedMovieType)).Returns(_fakeNcPlusResults);
-
             _netflixService = new Mock<INetflixService>();
             _canalPlusService = new Mock<ICanalPlusService>();
-
-            _filmwebResultsProvider = new Mock<IFilmwebResultsProvider>();
-            _filmwebResultsProvider.Setup(x => x.GetFilmwebResults(_expectedMovieType)).Returns(_fakeFilmwebResults);
 
             _repoBackground = new Mock<IVodRepositoryBackground>();
             _repoBackground.Setup(x => x.GetResultsOfType((int)_expectedMovieType)).Returns(_fakeMovieEntities);
@@ -61,7 +50,6 @@ namespace vod.Domain.Services.Tests
             _refreshDataService = new RefreshDataService(
                 _refreshStateService.Object,
                 _mapperMock.Object,
-                _ncPlusService.Object,
                 _netflixService.Object,
                 _canalPlusService.Object,
                 _filmwebResultsProvider.Object,
@@ -89,16 +77,6 @@ namespace vod.Domain.Services.Tests
             Act();
 
             _refreshStateService.Verify(x => x.SetCurrentRefreshState(_expectedMovieType), Times.Once);
-        }
-
-        [Test]
-        public void Refresh_ShouldCallGetMoviesOfType()
-        {
-            BaseArrange();
-
-            Act();
-
-            _ncPlusService.Verify(x => x.GetMoviesOfType(_expectedMovieType), Times.Once);
         }
 
         [Test]

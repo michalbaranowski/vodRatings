@@ -15,8 +15,6 @@ namespace vod.Core
     {
         private readonly IMapper _mapper;
         private readonly IStoredDataManager _storedDataManager;
-        private readonly IFilmwebResultsProvider _filmwebResultsProvider;
-        private IAlreadyWatchedFilmService _alreadyWatchedFilmService;
 
         public CoreLogic(
             IMapper mapper,
@@ -26,16 +24,6 @@ namespace vod.Core
         {
             _mapper = mapper;
             _storedDataManager = storedDataManager;
-            _filmwebResultsProvider = filmwebResultsProvider;
-            _alreadyWatchedFilmService = alreadyWatchedFilmService;
-        }
-
-        public IEnumerable<MovieViewModel> GetResults(MovieTypes type)
-        {
-            return _filmwebResultsProvider.GetFilmwebResults(type)                
-                .Select(n => _mapper.Map<MovieViewModel>(n))
-                .OrderByDescending(n => n.FilmwebRating)
-                .AddNewFlagIfNeeded();
         }
 
         public IEnumerable<MovieViewModel> GetResultsUsingStorage(MovieTypes type, string userId)

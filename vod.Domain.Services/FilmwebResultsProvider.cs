@@ -12,24 +12,15 @@ namespace vod.Domain.Services
 {
     public class FilmwebResultsProvider : IFilmwebResultsProvider
     {
-        private readonly INcPlusService _ncPlusService;
         private readonly IFilmwebService _filmwebService;
         private readonly UpdateNotificationHub _notificationHub;
 
         public FilmwebResultsProvider(
-            INcPlusService ncPlusService,
             IFilmwebService filmwebService,
             UpdateNotificationHub notificationHub)
         {
-            _ncPlusService = ncPlusService;
             _filmwebService = filmwebService;
             _notificationHub = notificationHub;
-        }
-
-        public IEnumerable<FilmwebResult> GetFilmwebResults(MovieTypes type)
-        {
-            var ncPlusResult = _ncPlusService.GetMoviesOfType(type);
-            return GetFilmwebResultsByBaseResults(ncPlusResult);
         }
 
         public IEnumerable<FilmwebResult> GetFilmwebResultsByBaseResults(IEnumerable<Result> results)

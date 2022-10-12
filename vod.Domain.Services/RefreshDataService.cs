@@ -15,7 +15,6 @@ namespace vod.Domain.Services
         private UpdateNotificationHub _notificationHub;
         private IVodRepositoryBackground _repositoryBackground;
         private IMapper _mapper;
-        private readonly INcPlusService _ncPlusService;
         private readonly INetflixService _netflixService;
         private readonly ICanalPlusService _canalPlusService;
         private readonly IFilmwebResultsProvider _filmwebResultsProvider;
@@ -25,7 +24,6 @@ namespace vod.Domain.Services
         public RefreshDataService(
             IRefreshStateService refreshStateService,
             IMapper mapper,
-            INcPlusService ncPlusService,
             INetflixService netflixService,
             ICanalPlusService canalPlusService,
             IFilmwebResultsProvider filmwebResultsProvider,
@@ -35,7 +33,6 @@ namespace vod.Domain.Services
             _notificationHub = notificationHub;
             _repositoryBackground = repositoryBackground;
             _mapper = mapper;
-            _ncPlusService = ncPlusService;
             _netflixService = netflixService;
             _canalPlusService = canalPlusService;
             _filmwebResultsProvider = filmwebResultsProvider;
@@ -47,11 +44,10 @@ namespace vod.Domain.Services
             _notificationHub.NotifyRefreshStarted(type);
             _refreshStateService.SetCurrentRefreshState(type);
 
-            var ncPlusMovies = _ncPlusService.GetMoviesOfType(type).ToList();
             var netflixMovies = _netflixService.GetMoviesOfType(type).ToList();
             var canalPlusMovies = _canalPlusService.GetMoviesOfType(type).ToList();
 
-            var foundMovies = ncPlusMovies.Select(n => n as Result).Concat(netflixMovies).Concat(canalPlusMovies);
+            var foundMovies = netflixMovies.Select(n => n as Result).Concat(canalPlusMovies);
 
             var dbResults = _repositoryBackground.GetResultsOfType((int)type);
             var blackListedMovies = _repositoryBackground.GetBlackListedMovies();
