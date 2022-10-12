@@ -3,6 +3,7 @@ using vod.Domain.Services.Boundary.Interfaces.Enums;
 
 namespace vod.Domain.Services.Utils
 {
+    [Obsolete("NC plus doesn't exist anymore")]
     public static class NcPlusUrls
     {
         public static readonly string NcPlusGoUrl = "http://ncplusgo.pl/";

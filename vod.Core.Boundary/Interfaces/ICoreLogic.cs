@@ -6,7 +6,6 @@ namespace vod.Core.Boundary.Interfaces
 {
     public interface ICoreLogic
     {
-        IEnumerable<MovieViewModel> GetResults(MovieTypes type);
         IEnumerable<MovieViewModel> GetResultsUsingStorage(MovieTypes type, string username);
     }
 }

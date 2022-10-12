@@ -16,10 +16,8 @@ namespace vod.Domain.Services
     {
         private readonly IMapper _mapper;
         private readonly IVodRepository _repository;
-        private readonly IVodRepositoryBackground _repositoryBackground;
         private readonly IBackgroundWorker _backgroundWorker;
         private readonly IRefreshDataService _refreshDataService;
-        private readonly UpdateNotificationHub _notificationHub;
 
         public StoredDataManager(
             IMapper mapper,
