@@ -23,14 +23,14 @@ namespace vod.Domain.Services
             _notificationHub = notificationHub;
         }
 
-        public IEnumerable<FilmwebResult> GetFilmwebResultsByBaseResults(IEnumerable<Result> results)
+        public IEnumerable<FilmwebResult> GetFilmwebResultsByBaseResults(IEnumerable<FilmResultWithMovieType> results)
         {
             return GetFilmwebResultsByBaseResultsInternal(results)
                 .Where(n => n != null)
                 .DistinctBy(n => n.Title);
         }
 
-        private IEnumerable<FilmwebResult> GetFilmwebResultsByBaseResultsInternal(IEnumerable<Result> results)
+        private IEnumerable<FilmwebResult> GetFilmwebResultsByBaseResultsInternal(IEnumerable<FilmResultWithMovieType> results)
         {
             var result = new List<FilmwebResult>();
             var count = results.Count();

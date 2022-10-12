@@ -106,7 +106,7 @@ namespace vod.Domain.Services.Tests
 
             Act();
 
-            _filmwebResultsProvider.Verify(x => x.GetFilmwebResultsByBaseResults(It.IsAny<IEnumerable<Result>>()), Times.Once);
+            _filmwebResultsProvider.Verify(x => x.GetFilmwebResultsByBaseResults(It.IsAny<IEnumerable<FilmResultWithMovieType>>()), Times.Once);
         }
 
         [Test]

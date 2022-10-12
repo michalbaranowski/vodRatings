@@ -33,7 +33,7 @@ namespace vod.Domain.Services
             _mapper = mapper;
         }
 
-        public FilmwebResult GetFilmwebResult(Result movie)
+        public FilmwebResult GetFilmwebResult(FilmResultWithMovieType movie)
         {
             if (_storedData == null || !_storedData.Any())
                 _storedData = _repositoryBackground.GetResultsOfType((int)movie.MovieType);
@@ -95,7 +95,7 @@ namespace vod.Domain.Services
             return result;
         }
 
-        private FilmwebResult GetFromStoredData(Result movie)
+        private FilmwebResult GetFromStoredData(FilmResultWithMovieType movie)
         {
             if (_storedData.Any(n => n.Title == movie.Title && movie.Title != null))
                 return _mapper.Map<FilmwebResult>(_storedData.FirstOrDefault(n => n.Title == movie.Title));

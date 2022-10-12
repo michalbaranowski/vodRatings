@@ -19,7 +19,7 @@ namespace vodApi.MapProfiles
             CreateMap<NetflixResult, BlackListedMovieEntity>()
                 .ForMember(x => x.Id, opt => opt.Ignore());
 
-            CreateMap<Result, BlackListedMovieEntity>()
+            CreateMap<FilmResultWithMovieType, BlackListedMovieEntity>()
                 .ForMember(x => x.Id, opt => opt.Ignore());
 
             CreateMap<AlreadyWatchedMovie, AlreadyWatchedModel>();

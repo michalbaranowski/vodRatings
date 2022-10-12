@@ -5,6 +5,7 @@ using vod.Domain.Services.Boundary.Models;
 
 namespace vod.Domain.Services.Utils.HtmlSource.Serialize
 {
+    //TODO: split to separated serializers
     public interface IHtmlSourceSerializer
     {
         IEnumerable<NcPlusResult> SerializeMoviesNcPlus(HtmlDocument html, MovieTypes type);

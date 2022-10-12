@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vod.Domain.Services.Boundary.Models
 {
-    public class ApiProviderResult : Result
+    public class ApiProviderResult : FilmResultWithMovieType
     {
         public string Url { get; set; }
     }

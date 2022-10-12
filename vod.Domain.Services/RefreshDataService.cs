@@ -47,7 +47,7 @@ namespace vod.Domain.Services
             var netflixMovies = _netflixService.GetMoviesOfType(type).ToList();
             var canalPlusMovies = _canalPlusService.GetMoviesOfType(type).ToList();
 
-            var foundMovies = netflixMovies.Select(n => n as Result).Concat(canalPlusMovies);
+            var foundMovies = netflixMovies.Select(n => n as FilmResultWithMovieType).Concat(canalPlusMovies);
 
             var dbResults = _repositoryBackground.GetResultsOfType((int)type);
             var blackListedMovies = _repositoryBackground.GetBlackListedMovies();
