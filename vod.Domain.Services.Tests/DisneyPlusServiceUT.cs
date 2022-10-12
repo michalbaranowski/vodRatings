@@ -1,8 +1,5 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using vod.Domain.Services.Tests.Resources;
 using vod.Domain.Services.Utils.HtmlSource.Serialize;
 
@@ -32,10 +29,11 @@ namespace vod.Domain.Services.Tests
             var serializer = new DisneyPlusSerializer();
 
             //act
-            var results = serializer.Serialize(html);
+            var result = serializer.Serialize(html);
 
             //assert
-            Assert.That(results.Any(n => n.Title == "Mulan"));
+            Assert.That(result.Title == "Mulan");
+            Assert.That(result.MovieType == Boundary.Interfaces.Enums.MovieTypes.Action);
         }
     }
 }

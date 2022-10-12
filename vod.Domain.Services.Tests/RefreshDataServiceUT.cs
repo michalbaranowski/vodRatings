@@ -20,6 +20,9 @@ namespace vod.Domain.Services.Tests
         private Mock<INetflixService> _netflixService;
         private Mock<IFilmwebResultsProvider> _filmwebResultsProvider;
         private Mock<ICanalPlusService> _canalPlusService;
+
+        public Mock<IDisneyPlusService> _disneyPlusService { get; private set; }
+
         private Mock<IVodRepositoryBackground> _repoBackground;
         private Mock<UpdateNotificationHub> _hubMock;
         private IRefreshDataService _refreshDataService;
@@ -37,6 +40,7 @@ namespace vod.Domain.Services.Tests
 
             _netflixService = new Mock<INetflixService>();
             _canalPlusService = new Mock<ICanalPlusService>();
+            _disneyPlusService = new Mock<IDisneyPlusService>();
 
             _repoBackground = new Mock<IVodRepositoryBackground>();
             _repoBackground.Setup(x => x.GetResultsOfType((int)_expectedMovieType)).Returns(_fakeMovieEntities);
@@ -52,6 +56,7 @@ namespace vod.Domain.Services.Tests
                 _mapperMock.Object,
                 _netflixService.Object,
                 _canalPlusService.Object,
+                _disneyPlusService.Object,
                 _filmwebResultsProvider.Object,
                 _repoBackground.Object,
                 _hubMock.Object);

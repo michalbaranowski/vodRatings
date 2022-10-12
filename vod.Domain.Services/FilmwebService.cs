@@ -44,10 +44,13 @@ namespace vod.Domain.Services
                     return GetFromStoredData(result) ?? SearchFilmwebResult(result);
 
                 case NetflixResult result:
-                    return GetFromStoredData(result) ?? SearchFilmwebResult(result);
+                    return GetFromStoredData(result) ?? SearchFilmwebResult(result, result.Url);
 
                 case CanalPlusResult result:
-                    return GetFromStoredData(result) ?? SearchFilmwebResult(result);
+                    return GetFromStoredData(result) ?? SearchFilmwebResult(result, result.Url);
+
+                case FilmResultWithMovieType result:
+                    return GetFromStoredData(result) ?? SearchFilmwebResult(result, "");
 
                 default:
                     throw new NotImplementedException("Not implemented");
@@ -79,7 +82,7 @@ namespace vod.Domain.Services
             return result;
         }
 
-        private FilmwebResult SearchFilmwebResult(ApiProviderResult movie)
+        private FilmwebResult SearchFilmwebResult(FilmResultWithMovieType movie, string url)
         {
             var filmwebSearchHtml = _sourceGetter.GetHtmlFrom(FilmwebUrls.FilmwebSearchBaseUrl(movie.Title));
             var filmwebUrl = _sourceSerializer.SerializeFilmwebUrl(filmwebSearchHtml, null);
@@ -88,7 +91,7 @@ namespace vod.Domain.Services
                 return null;
 
             var filmwebHtml = _sourceGetter.GetHtmlFrom(filmwebUrl);
-            var result = _sourceSerializer.SerializeFilmwebResult(filmwebHtml, movie.MovieType, movie.Url, movie.Title);
+            var result = _sourceSerializer.SerializeFilmwebResult(filmwebHtml, movie.MovieType, url, movie.Title);
             result.ProviderName = movie.ProviderName;
             result.OriginalTitle = result.FilmwebTitle;
 
