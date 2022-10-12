@@ -90,9 +90,11 @@ namespace vodApi
             services.AddTransient<IUrlGetter, UrlGetter>();
             services.AddSingleton<INetflixService, NetflixService>();
             services.AddSingleton<ICanalPlusService, CanalPlusService>();
+            services.AddSingleton<IDisneyPlusService, DisneyPlusService>();
             services.AddTransient<IFilmwebService, FilmwebService>();
             services.AddTransient<IHtmlSourceGetter, HtmlSourceGetter>();
             services.AddTransient<IHtmlSourceSerializer, HtmlSourceSerializer>();
+            services.AddTransient<IDisneyPlusSerializer, DisneyPlusSerializer>();
             services.AddTransient<IFilmwebResultsProvider, FilmwebResultsProvider>();
             services.AddTransient<IAlreadyWatchedFilmService, AlreadyWatchedService>();
             services.AddTransient<ICoreLogic, CoreLogic>();

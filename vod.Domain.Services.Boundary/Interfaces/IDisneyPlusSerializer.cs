@@ -7,6 +7,6 @@ namespace vod.Domain.Services.Boundary.Interfaces
     public interface IDisneyPlusSerializer
     {
         IEnumerable<string> SerializeUrls(string sitemapHtml);
-        IEnumerable<FilmResult> Serialize(string html);
+        FilmResultWithMovieType Serialize(string html);
     }
 }
