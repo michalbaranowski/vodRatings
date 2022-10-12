@@ -3,7 +3,7 @@ using vod.Domain.Services.Boundary.Interfaces.Enums;
 
 namespace vod.Domain.Services.Boundary.Models
 {
-    public class NcPlusResult : Result
+    public class NcPlusResult : FilmResultWithMovieType
     {
         public byte[] Image { get; set; }
         public string MoreInfoUrl { get; set; }

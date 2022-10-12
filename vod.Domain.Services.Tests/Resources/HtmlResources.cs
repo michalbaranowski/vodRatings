@@ -14,6 +14,8 @@ namespace vod.Domain.Services.Tests.Resources
         public static string FilmwebResultHtml() => ReadFromFile($"{BASEPATH}filmwebResult.html");
         public static string FilmwebResult2Html() => ReadFromFile($"{BASEPATH}filmwebResult2.html");
         public static string FilmWebSearchResult2Html() => ReadFromFile($"{BASEPATH}filmWebSearchResult2.html");
+        public static string DisneyPlusSitemapExampleHtml() => ReadFromFile($"{BASEPATH}disneyPlusExample.html");
+        public static string DisneyPlusMovieExampleHtml() => ReadFromFile($"{BASEPATH}disneyPlusMovieExample.html");
 
         private static string ReadFromFile(string path)
         {
