@@ -42,6 +42,8 @@ namespace vod.Domain.Services.Tests
             _canalPlusService = new Mock<ICanalPlusService>();
             _disneyPlusService = new Mock<IDisneyPlusService>();
 
+            _filmwebResultsProvider = new Mock<IFilmwebResultsProvider>();
+
             _repoBackground = new Mock<IVodRepositoryBackground>();
             _repoBackground.Setup(x => x.GetResultsOfType((int)_expectedMovieType)).Returns(_fakeMovieEntities);
             _repoBackground.Setup(x => x.GetBlackListedMovies()).Returns(_fakeBlackListedMovieEntities);
