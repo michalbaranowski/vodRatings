@@ -92,7 +92,7 @@ namespace vod.Domain.Services.Tests
 
             var result = _serializer.SerializeFilmwebUrl(_filmwebSearch2HtmlDoc, directors);
 
-            Assert.AreEqual("https://www.filmweb.pl/film/A%C5%BC+do+piek%C5%82a-2016-741821", result);
+            Assert.AreEqual("https://www.filmweb.pl/film/Co+w+duszy+gra-2020-836650", result);
         }
 
         [Test]
@@ -117,16 +117,16 @@ namespace vod.Domain.Services.Tests
         {
             Arrange();
 
-            var title = "MINIONKI";
+            var title = "CO W DUSZY GRA";
             var result = _serializer.SerializeFilmwebResult(_filmwebResult2HtmlDoc, MovieTypes.Cartoons, string.Empty, title);
 
             Assert.True(result.Title == title);
-            Assert.True(result.FilmwebRating == 6.8m);
+            Assert.True(result.FilmwebRating == 7.8m);
             Assert.True(result.Production == "USA");
-            Assert.True(result.FilmwebFilmType == "Animacja, Familijny, Komedia");
-            Assert.True(result.FilmDescription.Contains("Pozbawione szefa Minionki popadają w depresję."));
-            Assert.True(result.Year == 2015);
-            Assert.True(result.Cast.Contains("Sandra Bullock"));
+            Assert.True(result.FilmwebFilmType == "Animacja, Komedia, Przygodowy");
+            Assert.True(result.FilmDescription.Contains("Joe Gardner prowadzi zespół muzyczny w gimnazjum"));
+            Assert.True(result.Year == 2020);
+            Assert.True(result.Cast.Contains("Jamie Foxx"));
         }
     }
 }
