@@ -152,8 +152,8 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                     .FirstOrDefault(n => n.Attributes.Any(attr => attr.Name == "class") &&
                                                 n.Attributes["class"].Value == "filmInfo__info" &&
                                                 n.Descendants("span").Count() == 1 && n.Descendants("span").First()
-                                                                                .Descendants("a").Any(atag => atag.Attributes["href"].Value.Contains("ranking")))
-                    .InnerText.Trim();
+                                                                                .Descendants("a").Any(atag => atag.Attributes["href"].Value.Contains("ranking")))?
+                    .InnerText.Trim() ?? string.Empty;
             }
 
             var filmDesc = filmwebHtml.DocumentNode.Descendants()
