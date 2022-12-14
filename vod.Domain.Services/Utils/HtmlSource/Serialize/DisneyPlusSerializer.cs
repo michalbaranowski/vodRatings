@@ -37,7 +37,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
             var movieTypes = htmlDoc.DocumentNode
                 .Descendants("div")
                 .Where(n => n.Attributes.Contains("class") && n.Attributes["class"].Value == "meta-title flex-meta-item" && n.Descendants("p").Count() > 0)
-                .FirstOrDefault().InnerText;
+                .FirstOrDefault()?.InnerText ?? string.Empty;
 
             var movieType = MovieTypes.Action;
 
