@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using Microsoft.Extensions.Configuration;
+using RestSharp;
 using System.Collections.Generic;
 using System.Text;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
@@ -12,13 +13,16 @@ namespace vod.Domain.Services
     {
         private readonly IHtmlSourceSerializer _htmlSourceSerializer;
         private readonly IUrlGetter _urlGetter;
+        private readonly IConfiguration _configuration;
 
         public NetflixService(
             IHtmlSourceSerializer htmlSourceSerializer, 
-            IUrlGetter urlGetter)
+            IUrlGetter urlGetter,
+            IConfiguration configuration)
         {
             _htmlSourceSerializer = htmlSourceSerializer;
             _urlGetter = urlGetter;
+            _configuration = configuration;
         }
 
         public IEnumerable<NetflixResult> GetMoviesOfType(MovieTypes type)
@@ -26,8 +30,12 @@ namespace vod.Domain.Services
             var apiUrl = _urlGetter.GetNetflixApiUrl(type);
             var client = new RestClient(apiUrl);
             var request = new RestRequest(Method.GET);
+
             request.AddHeader("x-rapidapi-host", "unogs-unogs-v1.p.rapidapi.com");
-            request.AddHeader("x-rapidapi-key", "f4dfcd2171msh5845838bd3bcdecp130b03jsncf5dbca23307");
+
+            var apikey = _configuration.GetValue<string>("netflix_key");
+            request.AddHeader("x-rapidapi-key", apikey);
+
             IRestResponse response = client.Execute(request);            
             
             var result = _htmlSourceSerializer.SerializeMoviesNetflix(response.Content, type);
