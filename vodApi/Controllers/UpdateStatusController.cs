@@ -24,10 +24,10 @@ namespace vodApi.Controllers
         {
             var result = _refreshStateService.GetRefreshState();
 
-            if(result.IsRefreshingNow && result.RefreshingType.HasValue)
+            if (result.IsRefreshingNow && result.RefreshingType.HasValue)
             {
                 _hub.NotifyRefreshStarted(result.RefreshingType.Value);
-            }            
+            }
         }
     }
 }
