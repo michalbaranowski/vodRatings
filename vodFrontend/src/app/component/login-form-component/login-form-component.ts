@@ -18,9 +18,9 @@ export class LoginFormComponent{
 
     @Output() loggedIn = new EventEmitter<Boolean>();
 
-    login() {
-        this.authService.login(this.loginCred).subscribe(loginResult => {
-            this.tokenHandler.setToken(loginResult.token);
+    logIn() {
+        this.authService.logIn(this.loginCred).subscribe(logInResult => {
+            this.tokenHandler.setToken(logInResult.token);
             this.notifyService.notify("success", "Zalogowano pomyślnie...");
             this.loggedIn.emit(true);
         });

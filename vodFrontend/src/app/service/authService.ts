@@ -16,13 +16,13 @@ export class AuthService {
     constructor(private ajaxService: AjaxService,
                 private tokenHandler: TokenHandler) { }
     
-    loginUrl = 'api/login';
+    logInUrl = 'api/logIn';
     registerUrl = 'api/register';
     authorizeUrl = 'api/authorize';
 
-    login(loginCred: LoginCredentials) : Observable<LoginResult> {
-        if(loginCred)
-            return this.ajaxService.doPost<LoginResult>(this.loginUrl, loginCred);
+    logIn(logInCred: LoginCredentials) : Observable<LoginResult> {
+        if(logInCred)
+            return this.ajaxService.doPost<LoginResult>(this.logInUrl, logInCred);
     }
 
     register(registerData: RegisterData) : Observable<RegisterResult> {

@@ -59,9 +59,9 @@ namespace vodApi.Controllers
             return Ok(new { Username = user.UserName });
         }
 
-        [Route("api/login")] // /login
+        [Route("api/logIn")]
         [HttpPost]
-        public async Task<ActionResult> Login([FromBody] LoginViewModel model)
+        public async Task<ActionResult> LogIn([FromBody] LoginViewModel model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
