@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using NodaTime;
 using System;
 using vod.Core.Boundary.Model;
 using vod.Domain.Services;
@@ -25,13 +26,18 @@ namespace vodApi.MapProfiles
             CreateMap<AlreadyWatchedMovie, AlreadyWatchedModel>();
             CreateMap<FilmwebResult, MovieViewModel>();
             CreateMap<MovieViewModel, FilmwebResult>();
-            CreateMap<MovieViewModel, MovieEntity>();
-            CreateMap<MovieEntity, MovieViewModel>();
+            CreateMap<MovieViewModel, MovieEntity>()
+                .ForMember(x => x.DurationInMinutes, opt => opt.MapFrom(src => src.Duration.TotalMinutes));
+
+            CreateMap<MovieEntity, MovieViewModel>()
+                .ForMember(x => x.Duration, opt => opt.MapFrom(src => Duration.FromMinutes(src.DurationInMinutes)));
+
             CreateMap<FilmwebResult, MovieEntity>()
                 .ForMember(x => x.Cast,
                     opt => opt.MapFrom(
                         src => string.Join(", ", src.Cast)))
-                        .ForMember(x => x.Id, opt => opt.Ignore());
+                .ForMember(x => x.Id, opt => opt.Ignore())
+                .ForMember(x => x.DurationInMinutes, opt => opt.MapFrom(src => src.Duration.TotalMinutes));
 
             CreateMap<MovieEntity, FilmwebResult>()
                 .ForMember(x => x.FilmwebRating,
@@ -41,7 +47,8 @@ namespace vodApi.MapProfiles
                             : src.FilmwebRating))
                 .ForMember(x => x.Cast,
                     opt => opt.MapFrom(
-                        src => src.Cast.Split(",", StringSplitOptions.None)));
+                        src => src.Cast.Split(",", StringSplitOptions.None)))
+                .ForMember(x => x.Duration, opt => opt.MapFrom(src => Duration.FromMinutes(src.DurationInMinutes)));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NodaTime;
+using System;
 using System.Collections.Generic;
 
 namespace vod.Core.Boundary.Model
@@ -22,5 +23,7 @@ namespace vod.Core.Boundary.Model
         public List<string> Cast { get; set; }
         public bool IsAlreadyWatched { get; set; } = false;
         public string OriginalTitle { get; set; }
+
+        public Duration Duration { get; set; }
     }
 }

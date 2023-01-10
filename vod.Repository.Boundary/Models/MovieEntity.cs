@@ -29,5 +29,7 @@ namespace vod.Repository.Boundary.Models
         [Obsolete("Do usunięcia")]
         [NotMapped]
         public bool IsAlreadyWatched { get; set; }
+
+        public int DurationInMinutes { get; set; }
     }
 }

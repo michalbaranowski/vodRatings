@@ -110,6 +110,7 @@ namespace vod.Domain.Services.Tests
             Assert.True(result.FilmDescription.Contains("Rozwiedziony ojciec i jego brat"));
             Assert.True(result.Year == 2016);
             Assert.True(result.Cast.Contains("Jeff Bridges"));
+            Assert.True(result.Duration.TotalMinutes == 102);
         }
 
         [Test]

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NodaTime" Version="3.1.6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\vod.Repository.Boundary\vod.Repository.Boundary.csproj" />
   </ItemGroup>
 

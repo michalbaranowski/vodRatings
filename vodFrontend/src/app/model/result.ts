@@ -17,4 +17,5 @@ export class Result {
     cast: Array<string>;
     isAlreadyWatched: Boolean;
     originalTitle: string;
+    duration: any;
 }

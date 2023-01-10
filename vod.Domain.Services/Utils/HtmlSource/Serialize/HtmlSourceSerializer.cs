@@ -4,6 +4,7 @@ using System.Linq;
 using HtmlAgilityPack;
 using Microsoft.EntityFrameworkCore.Internal;
 using Newtonsoft.Json;
+using NodaTime;
 using vod.Domain.Services.Boundary.Interfaces.Enums;
 using vod.Domain.Services.Boundary.Models;
 using vod.Domain.Services.Utils.HtmlSource.Extension;
@@ -104,6 +105,11 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                                 n.Attributes["class"].Value == "filmCoverSection__year")?
                 .InnerText;
 
+            var durationInMinutesStr = filmwebHtml.DocumentNode.Descendants("div")
+                .FirstOrDefault(n => n.Attributes.Contains("class") &&
+                                n.Attributes["class"].Value == "filmCoverSection__duration")?
+                                .Attributes.FirstOrDefault(n => n.Name == "data-duration").Value;
+
             var imageUrl = filmwebHtml.DocumentNode.Descendants().FirstOrDefault(n =>
                 n.Name == "img" && n.Attributes.Contains("alt") && n.Attributes.Contains("itemprop") &&
                 n.Attributes["itemprop"].Value == "image")?.Attributes["src"].Value;
@@ -115,7 +121,8 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
             var filmwebFilmTypes = filmwebHtml.DocumentNode.Descendants()
                 .FirstOrDefault(n =>
                     n.Name == "ul" && n.Attributes.Contains("class") &&
-                    n.Attributes["class"].Value.Contains("genresList"))?.Descendants().Where(n => n.Name == "a")
+                    n.Attributes["class"].Value.Contains("genresList"))?.Descendants()
+                    .Where(n => n.Name == "a")
                 ?.Select(n => n.InnerText.Trim());
 
             var filmwebFilmType = filmwebFilmTypes != null ? string.Join(", ", filmwebFilmTypes) : string.Empty;
@@ -130,7 +137,7 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
 
                 filmwebFilmType = descendantsTest
                     .Descendants()
-                    .Where(n => n.Name == "span" && n.InnerText.Trim() != "/")
+                    .Where(n => n.Name == "span" && n.Descendants().Any(p => p.Name == "a") && n.InnerText.Trim() != "/")
                     .Select(n => n.InnerText.Trim())
                     .Join(", ");
             }
@@ -174,6 +181,9 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
             var yearValue = 0;
             int.TryParse(year.OnlyDigits(), out yearValue);
 
+            var durationInMinutes = 0;
+            int.TryParse(durationInMinutesStr, out durationInMinutes);
+
             return new FilmwebResult()
             {
                 FilmwebRating = ratingValue,
@@ -187,7 +197,8 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
                 Production = production,
                 FilmDescription = filmDesc,
                 MovieUrl = movieUrl,
-                Cast = cast.Distinct().ToList()
+                Cast = cast.Distinct().ToList(),
+                Duration = Duration.FromMinutes(durationInMinutes)
             };
         }
 

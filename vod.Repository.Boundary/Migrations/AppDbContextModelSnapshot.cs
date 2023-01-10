@@ -201,6 +201,8 @@ namespace vod.Repository.Boundary.Migrations
 
                     b.Property<string>("Cast");
 
+                    b.Property<int>("DurationInMinutes");
+
                     b.Property<string>("FilmDescription");
 
                     b.Property<string>("FilmwebFilmType");
@@ -216,6 +218,8 @@ namespace vod.Repository.Boundary.Migrations
                     b.Property<int?>("MovieId");
 
                     b.Property<string>("MovieUrl");
+
+                    b.Property<string>("OriginalTitle");
 
                     b.Property<string>("Production");
 
