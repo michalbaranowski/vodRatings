@@ -211,6 +211,8 @@ namespace vod.Repository.Boundary.Migrations
 
                     b.Property<int>("FilmwebRatingCount");
 
+                    b.Property<string>("FilmwebTitle");
+
                     b.Property<string>("ImageUrl");
 
                     b.Property<bool>("IsDeleted");
@@ -218,8 +220,6 @@ namespace vod.Repository.Boundary.Migrations
                     b.Property<int?>("MovieId");
 
                     b.Property<string>("MovieUrl");
-
-                    b.Property<string>("OriginalTitle");
 
                     b.Property<string>("Production");
 

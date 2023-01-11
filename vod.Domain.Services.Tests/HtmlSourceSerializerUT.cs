@@ -104,6 +104,7 @@ namespace vod.Domain.Services.Tests
             var result = _serializer.SerializeFilmwebResult(_filmwebResultHtmlDoc, MovieTypes.Thriller, string.Empty, title);
 
             Assert.True(result.Title == title);
+            Assert.True(result.FilmwebTitle == title);
             Assert.True(result.FilmwebRating == 7.1m);
             Assert.True(result.Production == "USA");
             Assert.True(result.FilmwebFilmType == "Dramat, Kryminał");
@@ -122,6 +123,7 @@ namespace vod.Domain.Services.Tests
             var result = _serializer.SerializeFilmwebResult(_filmwebResult2HtmlDoc, MovieTypes.Cartoons, string.Empty, title);
 
             Assert.True(result.Title == title);
+            Assert.True(result.FilmwebTitle.ToLower() == title.ToLower());
             Assert.True(result.FilmwebRating == 7.8m);
             Assert.True(result.Production == "USA");
             Assert.True(result.FilmwebFilmType == "Animacja, Komedia, Przygodowy");

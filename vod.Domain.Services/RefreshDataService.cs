@@ -59,7 +59,7 @@ namespace vod.Domain.Services
             var moviesToRemove = dbResults.Where(n => foundMovies.Any(p => p.Title == n.Title) == false);
 
             var resultMoviesToAdd = foundMovies
-                .Where(n => dbResults.Any(p => p.Title == n.Title || p.OriginalTitle == n.Title) == false 
+                .Where(n => dbResults.Any(p => p.Title == n.Title || p.FilmwebTitle == n.Title) == false 
                     && blackListedMovies.Any(p=>p.Title == n.Title) == false).ToList();
 
             var moviesToAdd = _filmwebResultsProvider.GetFilmwebResultsByBaseResults(resultMoviesToAdd)
@@ -68,7 +68,7 @@ namespace vod.Domain.Services
                 .ToList();
 
             var moviesToBlackList = resultMoviesToAdd
-                .Where(n => moviesToAdd.Any(p => p.Title == n.Title || p.OriginalTitle == n.Title) == false)
+                .Where(n => moviesToAdd.Any(p => p.Title == n.Title || p.FilmwebTitle == n.Title) == false)
                 .Select(n => _mapper.Map<BlackListedMovieEntity>(n));
 
             _repositoryBackground.MarkAsDeleted(moviesToRemove);

@@ -14,7 +14,7 @@ export class MovieFilter implements PipeTransform {
 
         if (filter.title) {
             results = results.filter(item => item.title != null && item.title.toLowerCase().indexOf(filter.title.toLowerCase()) !== -1 ||
-                                             item.originalTitle != null && item.originalTitle.toLowerCase().indexOf(filter.originalTitle.toLowerCase()) !== -1 );
+                                             item.filmwebTitle != null && item.filmwebTitle.toLowerCase().indexOf(filter.filmwebTitle.toLowerCase()) !== -1 );
         }
 
         if (filter.filmwebFilmType && filter.filmwebFilmType != "Wszystkie")

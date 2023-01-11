@@ -16,6 +16,6 @@ export class Result {
     movieUrl: string;
     cast: Array<string>;
     isAlreadyWatched: Boolean;
-    originalTitle: string;
+    filmwebTitle: string;
     duration: any;
 }

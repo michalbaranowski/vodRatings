@@ -33,7 +33,7 @@ export class FiltersComponent implements OnInit {
         this.movieFilter.filmwebFilmType = "Wszystkie";
         this.movieFilter.production = "Wszystkie";
         this.movieFilter.title = "";
-        this.movieFilter.originalTitle = "";
+        this.movieFilter.filmwebTitle = "";
         this.movieFilter.isAlreadyWatched = false;
 
         this.filmwebTypes = [];

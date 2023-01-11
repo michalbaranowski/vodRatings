@@ -24,7 +24,7 @@ namespace vod.Repository.Boundary.Models
         public string MovieUrl { get; set; }
         public string Cast { get; set; }
         public bool IsDeleted { get; set; }
-        public string OriginalTitle { get; set; }
+        public string FilmwebTitle { get; set; }
 
         [Obsolete("Do usunięcia")]
         [NotMapped]
