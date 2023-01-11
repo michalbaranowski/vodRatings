@@ -22,7 +22,7 @@ namespace vod.Core.Boundary.Model
         public string MovieUrl { get; set; }
         public List<string> Cast { get; set; }
         public bool IsAlreadyWatched { get; set; } = false;
-        public string OriginalTitle { get; set; }
+        public string FilmwebTitle { get; set; }
 
         public Duration Duration { get; set; }
     }
