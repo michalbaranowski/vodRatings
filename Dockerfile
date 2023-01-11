@@ -3,8 +3,13 @@ COPY . .
 RUN npm install -g @angular/cli
 RUN cd vodFrontend && npm install --silent
 RUN cd vodFrontend && ng build
+
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build-env
 COPY --from=node-env . .
+
+# update the ca-certificates package
+RUN apt update && apt install -y --no-install-recommends ca-certificates
+
 RUN dotnet publish -c Release
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.1
 COPY --from=build-env ./vodApi/bin/Release/netcoreapp2.1/publish .
