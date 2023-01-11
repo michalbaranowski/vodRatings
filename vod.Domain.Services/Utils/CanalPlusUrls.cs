@@ -13,7 +13,7 @@ namespace vod.Domain.Services.Utils
         public static readonly string CanalPlusApiUrl = "https://hodor.canalplus.pro/";
 
         public static readonly string CanalPlusMovieUrl 
-            = $"{CanalPlusApiUrl}api/v2/mycanalint/strateContent/38735f340e5ea529e0c005b800f0c4aa/pfs/spyro/contents/";
+            = $"{CanalPlusApiUrl}api/v2/mycanalint/strateContent/08e336458f30c749731b2f778ae7c153/pfs/spyro/contents/";
 
         public static string GetUrlWithType(MovieTypes type)
         {
@@ -35,7 +35,9 @@ namespace vod.Domain.Services.Utils
                     break;
             }
 
-            var additionalParams = $"?displayNBOLogo=false&discoverMode=true&dsp=detailPage&sdm=show&displayLogo=true&imageRatio=169&titleDisplayMode=all&context_type=edito&context_page_title=Theme%20-%20%5BOTTTVE%5D%20Filmy&context_list_title=Trzymajace%20w%20napieciu&context_list_id=ncplus-ouah-filmy-trzymajacewnapieciu&context_list_type=contentRow&context_list_position=4&after=YXJyYXljb25uZWN0aW9uOjEz&maxContentRemaining={_numberOfMoviesToLoad}&get={_numberOfMoviesToLoad}";
+
+            
+            var additionalParams = $"?displayNBOLogo=false&discoverMode=true&dsp=detailPage&sdm=show&displayLogo=true&imageRatio=34&titleDisplayMode=none&context_type=edito&context_list_category=Trzymajace+w+napieciu&context_page_title=Theme+-+[OTTTVE]+Filmy&context_list_title=Trzymajace+w+napieciu&context_list_id=ncplus-ouah-filmy-trzymajacewnapieciu&context_list_type=contentRow&context_list_position=4&after=YXJyYXljb25uZWN0aW9uOjEz&maxContentRemaining={_numberOfMoviesToLoad}&get={_numberOfMoviesToLoad}";
             return $"{result}{additionalParams}";
         }
     }
