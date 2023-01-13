@@ -39,4 +39,6 @@ Autodeploy with every commit on branch master - heroku with docker.
 
 ~~http://vodratings.azurewebsites.net/~~
 
-https://vodsearcher.herokuapp.com/
+~~https://vodsearcher.herokuapp.com/~~
+
+http://vps-9fe9d11f.vps.ovh.net:997/
