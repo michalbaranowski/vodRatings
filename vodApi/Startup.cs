@@ -40,11 +40,11 @@ namespace vodApi
             services.AddSignalR();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            var dbContextOptions = new DbContextOptionsBuilder<AppDbContext>().UseSqlServer(_configuration.GetValue<string>("ConnectionStrings:DefaultConnection")).Options;
+            var dbContextOptions = new DbContextOptionsBuilder<AppDbContext>().UseSqlServer(_configuration.GetValue<string>("vodsearcher_Connection")).Options;
             services.AddSingleton(dbContextOptions);
             services.AddTransient<IAppDbContext, AppDbContext>();
 
-            services.AddDbContext<AppDbContext>(option => option.UseSqlServer(_configuration.GetValue<string>("ConnectionStrings:DefaultConnection")));
+            services.AddDbContext<AppDbContext>(option => option.UseSqlServer(_configuration.GetValue<string>("vodsearcher_Connection")));
 
             services.AddIdentity<IdentityUser, IdentityRole>(
                 option =>
