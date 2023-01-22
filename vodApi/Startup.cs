@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Net;
 using System.Text;
 using vod.Core;
 using vod.Core.Boundary.Interfaces;
@@ -107,12 +108,19 @@ namespace vodApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
+            }
 
             app.UseSignalR(routes =>
             {
                 routes.MapHub<UpdateNotificationHub>("/updateNotification");
             });
 
+
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseMvc();
