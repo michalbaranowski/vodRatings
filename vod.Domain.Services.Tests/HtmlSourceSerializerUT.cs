@@ -119,17 +119,17 @@ namespace vod.Domain.Services.Tests
         {
             Arrange();
 
-            var title = "CO W DUSZY GRA";
+            var title = "INFILTRACJA";
             var result = _serializer.SerializeFilmwebResult(_filmwebResult2HtmlDoc, MovieTypes.Cartoons, string.Empty, title);
 
             Assert.True(result.Title == title);
             Assert.True(result.FilmwebTitle.ToLower() == title.ToLower());
-            Assert.True(result.FilmwebRating == 7.8m);
+            Assert.True(result.FilmwebRating == 8.0m);
             Assert.True(result.Production == "USA");
-            Assert.True(result.FilmwebFilmType == "Animacja, Komedia, Przygodowy");
-            Assert.True(result.FilmDescription.Contains("Joe Gardner prowadzi zespół muzyczny w gimnazjum"));
-            Assert.True(result.Year == 2020);
-            Assert.True(result.Cast.Contains("Jamie Foxx"));
+            Assert.True(result.FilmwebFilmType == "Kryminał");
+            Assert.True(result.FilmDescription.Contains("Tajny policjant"));
+            Assert.True(result.Year == 2006);
+            Assert.True(result.Cast.Contains("Leonardo DiCaprio"));
         }
     }
 }

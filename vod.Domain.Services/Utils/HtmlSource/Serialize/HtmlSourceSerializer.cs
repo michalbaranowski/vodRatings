@@ -154,11 +154,16 @@ namespace vod.Domain.Services.Utils.HtmlSource.Serialize
             if (string.IsNullOrWhiteSpace(production))
             {
                 production = filmwebHtml.DocumentNode.Descendants("div")
-                    .FirstOrDefault(n => n.Attributes.Any(attr => attr.Name == "class") &&
+                    .LastOrDefault(n => n.Attributes.Any(attr => attr.Name == "class") &&
                                                 n.Attributes["class"].Value == "filmInfo__info" &&
-                                                n.Descendants("span").Count() == 1 && n.Descendants("span").First()
-                                                                                .Descendants("a").Any(atag => atag.Attributes["href"].Value.Contains("ranking")))?
+                                                n.Descendants("span").Count() > 0 && n.Descendants("span").LastOrDefault()
+                                                .Descendants("a").Any(atag => atag.Attributes["href"].Value.Contains("ranking")))?
                     .InnerText.Trim() ?? string.Empty;
+
+                if (string.IsNullOrWhiteSpace(production) == false)
+                {
+                    production = production.Replace(" ", "").Split(",").First();
+                }
             }
 
             var filmDesc = filmwebHtml.DocumentNode.Descendants()
