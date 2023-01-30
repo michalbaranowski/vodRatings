@@ -15,7 +15,6 @@ namespace vodApi
             WebHost.CreateDefaultBuilder(args)
                     .ConfigureAppConfiguration((builderContext, config) =>
                     {
-                        config.AddXmlFile("appsettings.xml", optional: true, reloadOnChange: true);
                         config.AddEnvironmentVariables();
                     })
                 .UseStartup<Startup>();
