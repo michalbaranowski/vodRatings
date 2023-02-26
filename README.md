@@ -41,4 +41,4 @@ Autodeploy with every commit on branch master - heroku with docker.
 
 ~~https://vodsearcher.herokuapp.com/~~
 
-http://vodsearcher.mbaranowski.it
+https://vodsearcher.mbaranowski.it/
