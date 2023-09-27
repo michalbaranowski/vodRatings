@@ -33,12 +33,3 @@ Backend aplikacji napisany został w języku C# przy wykorzysaniu frameworku ASP
 Wykorzystano SignalR do informowania frontendu o dostępności nowych danych. Część frontendowa wykonana została przy wykorzystaniu frameworku Angular 8, widoki HTML/CSS zostały wsparte frameworkiem Bulma.
 
 Autodeploy with every commit on branch master - heroku with docker.
-
-
-**3. Live demo**
-
-~~http://vodratings.azurewebsites.net/~~
-
-~~https://vodsearcher.herokuapp.com/~~
-
-https://vodsearcher.mbaranowski.it/
