@@ -34,11 +34,3 @@ Wykorzystano SignalR do informowania frontendu o dostępności nowych danych. Cz
 
 Autodeploy with every commit on branch master - heroku with docker.
 
-
-**3. Live demo**
-
-~~http://vodratings.azurewebsites.net/~~
-
-~~https://vodsearcher.herokuapp.com/~~
-
-https://vodsearcher.mbaranowski.it/
